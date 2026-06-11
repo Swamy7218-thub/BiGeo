@@ -1,8 +1,0 @@
-{
-  "name": "vaahan-parse-function",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "@aws-sdk/client-bedrock-runtime": "^3.840.0"
-  }
-}
