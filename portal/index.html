@@ -3,602 +3,905 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vaahan API — BiGeo | Rural Address Intelligence for India</title>
-  <meta name="description" content="Resolve unstructured rural Indian addresses instantly. Village, mandal, district, GPS coordinates and confidence score in under 2 seconds." />
+  <title>Vaahan by BiGeo — Address Intelligence API for Rural India</title>
+  <meta name="description" content="Resolve any unstructured Indian village address in under 2 seconds. Returns GPS, pincode, district, confidence score. Free tier: 500 calls/month." />
+  <meta property="og:title" content="Vaahan — Address Intelligence API for Rural India" />
+  <meta property="og:description" content="Turn 'Near banyan tree, Yellareddyguda' into GPS coordinates instantly." />
+  <meta property="og:url" content="https://bigeo.in/api" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vaahan API","applicationCategory":"BusinessApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"INR","description":"500 free API calls per month"},"provider":{"@type":"Organization","name":"BiGeo","url":"https://bigeo.in"}}
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --brand: #4f46e5;
-      --brand-light: #6366f1;
-      --brand-dark: #3730a3;
-      --success: #059669;
-      --warn: #d97706;
-      --bg: #0f0f1a;
-      --bg2: #16162a;
-      --bg3: #1e1e35;
-      --border: #2e2e50;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --bg: #050510; --bg2: #0a0a1f; --bg3: #0f0f2e; --card: #111128;
+      --border: #1a1a3e; --border2: #252550;
+      --brand: #6366f1; --brand-glow: rgba(99,102,241,0.3); --brand-dim: #3730a3;
+      --accent: #06b6d4; --success: #10b981; --warn: #f59e0b; --danger: #ef4444;
+      --text: #f1f5f9; --muted: #94a3b8; --dim: #475569;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, sans-serif;
     }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
 
-    html { scroll-behavior: smooth; }
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-    }
-
-    /* ── Nav ── */
+    /* ── NAV ── */
     nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(15,15,26,0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      padding: 0 40px; height: 64px;
+      background: rgba(5,5,16,0.8); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.3s;
     }
-    .logo { font-weight: 800; font-size: 1.2rem; color: var(--text); text-decoration: none; }
-    .logo span { color: var(--brand-light); }
-    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; margin-left: 28px; transition: color 0.2s; }
-    nav a:hover { color: var(--text); }
-    .nav-cta {
-      background: var(--brand); color: #fff !important;
-      padding: 8px 18px; border-radius: 8px; font-weight: 600; margin-left: 28px;
-    }
-    .nav-cta:hover { background: var(--brand-light) !important; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-mark { width: 32px; height: 32px; background: var(--brand); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: #fff; }
+    .nav-logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); }
+    .nav-logo-text span { color: var(--brand); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--brand); color: #fff !important; padding: 8px 20px; border-radius: 8px; font-weight: 600 !important; transition: background 0.2s, transform 0.1s !important; }
+    .nav-cta:hover { background: #818cf8 !important; transform: translateY(-1px); }
+    .nav-mobile-btn { display: none; background: none; border: none; color: var(--text); cursor: pointer; font-size: 1.5rem; }
 
-    /* ── Hero ── */
+    /* ── HERO ── */
     .hero {
-      padding: 96px 24px 80px;
-      text-align: center;
-      max-width: 800px; margin: 0 auto;
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; text-align: center; padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
     }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.12) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 40% at 20% 80%, rgba(6,182,212,0.07) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 40% at 80% 60%, rgba(99,102,241,0.06) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      opacity: 0.4;
+    }
+    .orb { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 0; animation: orb-float 8s ease-in-out infinite; }
+    .orb-1 { width: 400px; height: 400px; background: rgba(99,102,241,0.12); top: -100px; left: -100px; animation-delay: 0s; }
+    .orb-2 { width: 300px; height: 300px; background: rgba(6,182,212,0.08); bottom: 0; right: -50px; animation-delay: -3s; }
+    .orb-3 { width: 250px; height: 250px; background: rgba(99,102,241,0.1); top: 40%; left: 60%; animation-delay: -5s; }
+    @keyframes orb-float { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-30px) scale(1.05); } 66% { transform: translate(-20px,20px) scale(0.95); } }
+
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
     .hero-badge {
-      display: inline-block;
-      background: rgba(79,70,229,0.15);
-      border: 1px solid rgba(99,102,241,0.4);
-      color: var(--brand-light);
-      padding: 6px 16px; border-radius: 100px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc; padding: 6px 16px; border-radius: 100px;
       font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase; margin-bottom: 24px;
+      text-transform: uppercase; margin-bottom: 28px;
+      animation: fade-up 0.6s ease both;
     }
+    .badge-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
     h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900; line-height: 1.15;
-      margin-bottom: 20px;
+      font-size: clamp(2.5rem, 6vw, 4.2rem); font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 24px;
+      animation: fade-up 0.6s ease 0.1s both;
     }
-    h1 em { font-style: normal; color: var(--brand-light); }
-    .hero p {
-      font-size: 1.15rem; color: var(--muted);
-      max-width: 580px; margin: 0 auto 36px;
+    .gradient-text { background: linear-gradient(135deg, #fff 30%, #a5b4fc 70%, #67e8f9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto 40px;
+      line-height: 1.7; animation: fade-up 0.6s ease 0.2s both;
     }
-    .hero-stat-row {
-      display: flex; justify-content: center; gap: 40px;
-      flex-wrap: wrap; margin-bottom: 48px;
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; animation: fade-up 0.6s ease 0.3s both; }
+    .btn-primary {
+      background: var(--brand); color: #fff; border: none; padding: 14px 28px;
+      border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 0 0 var(--brand-glow);
     }
-    .hero-stat { text-align: center; }
-    .hero-stat .num { font-size: 1.8rem; font-weight: 800; color: var(--brand-light); }
-    .hero-stat .lbl { font-size: 0.8rem; color: var(--muted); }
+    .btn-primary:hover { background: #818cf8; transform: translateY(-2px); box-shadow: 0 8px 30px var(--brand-glow); }
+    .btn-secondary {
+      background: transparent; color: var(--text); border: 1px solid var(--border2);
+      padding: 14px 28px; border-radius: 10px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--brand); background: rgba(99,102,241,0.08); transform: translateY(-2px); }
 
-    /* ── Demo ── */
-    .demo-section {
-      max-width: 860px; margin: 0 auto 80px;
-      padding: 0 24px;
-    }
-    .section-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--brand-light);
-      margin-bottom: 12px;
-    }
-    .demo-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden;
-    }
-    .demo-header {
-      display: flex; align-items: center; gap: 8px;
-      padding: 14px 20px; border-bottom: 1px solid var(--border);
-      background: var(--bg3);
-    }
-    .demo-dot { width: 12px; height: 12px; border-radius: 50%; }
-    .demo-title { font-size: 0.85rem; color: var(--muted); margin-left: 4px; }
-    .demo-body { padding: 24px; }
+    .hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; animation: fade-up 0.6s ease 0.4s both; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.8rem; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; }
+    .stat-num.brand { color: #a5b4fc; }
+    .stat-label { font-size: 0.78rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 2px; }
 
-    .input-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-    .demo-input {
-      flex: 1; min-width: 260px;
-      background: var(--bg3); border: 1px solid var(--border);
-      color: var(--text); padding: 12px 16px; border-radius: 10px;
-      font-size: 0.95rem; outline: none; transition: border-color 0.2s;
-    }
-    .demo-input:focus { border-color: var(--brand-light); }
-    .demo-input::placeholder { color: var(--muted); }
-    .demo-btn {
-      background: var(--brand); color: #fff;
-      border: none; padding: 12px 24px; border-radius: 10px;
-      font-size: 0.95rem; font-weight: 600; cursor: pointer;
-      transition: background 0.2s, transform 0.1s; white-space: nowrap;
-    }
-    .demo-btn:hover { background: var(--brand-light); }
-    .demo-btn:active { transform: scale(0.98); }
-    .demo-btn:disabled { background: var(--border); cursor: not-allowed; }
+    @keyframes fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-    .demo-examples {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
-    }
-    .example-chip {
-      background: var(--bg3); border: 1px solid var(--border);
-      color: var(--muted); padding: 6px 12px; border-radius: 8px;
-      font-size: 0.8rem; cursor: pointer; transition: all 0.2s;
-    }
-    .example-chip:hover { border-color: var(--brand-light); color: var(--text); }
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-sub { font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.7; }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .demo-result {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 10px; padding: 16px;
-      font-family: var(--mono); font-size: 0.82rem; line-height: 1.8;
-      min-height: 60px; white-space: pre-wrap; word-break: break-all;
-      color: var(--text);
-    }
-    .demo-result.loading { color: var(--muted); }
-    .demo-result.error { color: #f87171; }
-    .demo-meta {
-      display: flex; gap: 20px; margin-top: 12px; flex-wrap: wrap;
-    }
-    .meta-badge {
-      font-size: 0.78rem; padding: 4px 10px; border-radius: 6px;
-      font-weight: 600;
-    }
-    .badge-cache { background: rgba(5,150,105,0.15); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
-    .badge-bedrock { background: rgba(79,70,229,0.15); color: var(--brand-light); border: 1px solid rgba(99,102,241,0.3); }
-    .badge-latency { background: rgba(148,163,184,0.1); color: var(--muted); border: 1px solid var(--border); }
-    .badge-confidence { background: rgba(217,119,6,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    /* ── PROBLEM / SOLUTION ── */
+    .problem-solution { background: var(--bg2); }
+    .ps-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center; margin-top: 56px; }
+    .ps-card { background: var(--card); border: 1px solid var(--border2); border-radius: 16px; padding: 28px; }
+    .ps-card.problem { border-color: rgba(239,68,68,0.3); }
+    .ps-card.solution { border-color: rgba(16,185,129,0.3); }
+    .ps-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 6px; margin-bottom: 16px; }
+    .ps-tag.problem { background: rgba(239,68,68,0.1); color: #f87171; }
+    .ps-tag.solution { background: rgba(16,185,129,0.1); color: #34d399; }
+    .ps-address { font-family: var(--mono); font-size: 0.9rem; line-height: 1.8; color: var(--text); padding: 16px; background: rgba(0,0,0,0.3); border-radius: 10px; margin-bottom: 16px; }
+    .ps-result { font-family: var(--mono); font-size: 0.78rem; line-height: 1.9; color: var(--text); padding: 16px; background: rgba(0,0,0,0.3); border-radius: 10px; }
+    .json-key { color: #93c5fd; } .json-str { color: #86efac; } .json-num { color: #fca5a5; } .json-bool { color: #f9a8d4; }
+    .ps-arrow { font-size: 2rem; color: var(--brand); text-align: center; }
+    .ps-footnote { text-align: center; margin-top: 40px; font-size: 1rem; color: var(--muted); }
+    .ps-footnote strong { color: var(--text); }
 
-    /* ── Pricing value prop ── */
-    .value-section {
-      max-width: 860px; margin: 0 auto 80px; padding: 0 24px;
-    }
-    .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-    .value-card {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
-      padding: 24px;
-    }
-    .value-icon { font-size: 1.8rem; margin-bottom: 12px; }
-    .value-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .value-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    /* ── DEMO ── */
+    .demo-section { background: var(--bg); }
+    .demo-card { background: var(--card); border: 1px solid var(--border2); border-radius: 20px; overflow: hidden; margin-top: 48px; box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
+    .demo-toolbar { display: flex; align-items: center; gap: 8px; padding: 14px 20px; background: var(--bg3); border-bottom: 1px solid var(--border); }
+    .tb-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .tb-label { font-size: 0.82rem; color: var(--dim); margin-left: 8px; font-family: var(--mono); }
+    .demo-body { padding: 32px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .chip { background: var(--bg3); border: 1px solid var(--border2); color: var(--muted); padding: 6px 14px; border-radius: 8px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+    .chip:hover { border-color: var(--brand); color: var(--text); background: rgba(99,102,241,0.08); }
+    .chip.active { border-color: var(--brand); color: #a5b4fc; background: rgba(99,102,241,0.12); }
+    .input-row { display: flex; gap: 12px; margin-bottom: 24px; }
+    .demo-input { flex: 1; background: var(--bg3); border: 1px solid var(--border2); color: var(--text); padding: 14px 18px; border-radius: 12px; font-size: 0.95rem; font-family: var(--sans); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .demo-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-glow); }
+    .demo-input::placeholder { color: var(--dim); }
+    .parse-btn { background: var(--brand); color: #fff; border: none; padding: 14px 24px; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background 0.2s, transform 0.1s; display: flex; align-items: center; gap: 8px; min-width: 160px; justify-content: center; }
+    .parse-btn:hover { background: #818cf8; } .parse-btn:active { transform: scale(0.98); } .parse-btn:disabled { background: var(--border2); cursor: not-allowed; }
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .result-panel { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .result-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    .result-tab { padding: 10px 20px; font-size: 0.82rem; font-weight: 600; color: var(--dim); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
+    .result-tab.active { color: var(--brand); border-bottom-color: var(--brand); background: rgba(99,102,241,0.05); }
+    .result-json { padding: 20px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.9; min-height: 120px; white-space: pre-wrap; word-break: break-all; }
+    .result-json.placeholder { color: var(--dim); font-style: italic; }
+    .result-meta { display: flex; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .meta-pill { font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 6px; display: flex; align-items: center; gap: 5px; }
+    .pill-cache { background: rgba(16,185,129,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
+    .pill-bedrock { background: rgba(99,102,241,0.1); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+    .pill-latency { background: rgba(148,163,184,0.07); color: var(--muted); border: 1px solid var(--border); }
+    .pill-conf { background: rgba(245,158,11,0.1); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+    .pin-map { position: relative; width: 100%; height: 180px; background: var(--bg3); border-radius: 10px; overflow: hidden; margin-top: 16px; display: none; }
+    .pin-map svg { width: 100%; height: 100%; }
+    .pin-dot { animation: ping 1.5s ease-out infinite; }
+    @keyframes ping { 0% { r: 4; opacity: 1; } 100% { r: 14; opacity: 0; } }
 
-    /* ── Docs ── */
-    .docs-section {
-      max-width: 860px; margin: 0 auto 80px; padding: 0 24px;
-    }
-    h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
-    .section-sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 32px; }
+    /* ── HOW IT WORKS ── */
+    .hiw-section { background: var(--bg2); }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; position: relative; }
+    .steps::before { content: ''; position: absolute; top: 40px; left: calc(16.6% + 10px); right: calc(16.6% + 10px); height: 1px; background: linear-gradient(90deg, transparent, var(--brand), transparent); z-index: 0; }
+    .step { background: var(--card); border: 1px solid var(--border2); padding: 32px 28px; position: relative; z-index: 1; }
+    .step:first-child { border-radius: 16px 0 0 16px; }
+    .step:last-child { border-radius: 0 16px 16px 0; }
+    .step-num { width: 48px; height: 48px; border-radius: 12px; background: var(--brand); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 900; color: #fff; margin-bottom: 20px; }
+    .step h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .step-tag { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; background: rgba(99,102,241,0.12); color: #a5b4fc; margin-top: 12px; font-family: var(--mono); }
 
-    .endpoint-block {
-      background: var(--bg2); border: 1px solid var(--border); border-radius: 14px;
-      overflow: hidden; margin-bottom: 24px;
-    }
-    .endpoint-header {
-      display: flex; align-items: center; gap: 12px;
-      padding: 16px 20px; border-bottom: 1px solid var(--border);
-      background: var(--bg3);
-    }
-    .method-badge {
-      font-family: var(--mono); font-size: 0.75rem; font-weight: 700;
-      padding: 4px 10px; border-radius: 6px;
-    }
-    .method-post { background: rgba(79,70,229,0.2); color: var(--brand-light); }
-    .method-path { font-family: var(--mono); font-size: 0.9rem; color: var(--text); }
-    .method-desc { font-size: 0.85rem; color: var(--muted); margin-left: auto; }
-    .endpoint-body { padding: 20px; }
+    /* ── USE CASES ── */
+    .usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 56px; }
+    .usecase-card { background: var(--card); border: 1px solid var(--border2); border-radius: 16px; padding: 28px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; cursor: default; }
+    .usecase-card:hover { border-color: var(--brand); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .usecase-icon { font-size: 2rem; margin-bottom: 16px; }
+    .usecase-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .usecase-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .usecase-metric { font-size: 0.8rem; font-weight: 700; color: var(--success); background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 6px; display: inline-block; }
 
-    .code-block {
-      background: #0d0d1a; border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px; font-family: var(--mono); font-size: 0.82rem;
-      line-height: 1.7; overflow-x: auto; position: relative;
-    }
-    .code-block .comment { color: #6b7280; }
-    .code-block .key { color: #93c5fd; }
-    .code-block .string { color: #86efac; }
-    .code-block .number { color: #fca5a5; }
-    .copy-btn {
-      position: absolute; top: 12px; right: 12px;
-      background: var(--border); border: none; color: var(--muted);
-      padding: 4px 10px; border-radius: 6px; font-size: 0.75rem;
-      cursor: pointer; transition: all 0.2s;
-    }
+    /* ── TRACTION ── */
+    .traction-section { background: var(--bg); }
+    .traction-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 48px; }
+    .traction-card { background: var(--card); border: 1px solid var(--border2); border-radius: 14px; padding: 24px 20px; text-align: center; }
+    .traction-num { font-size: 2rem; font-weight: 900; color: var(--text); font-variant-numeric: tabular-nums; }
+    .traction-label { font-size: 0.75rem; color: var(--dim); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 4px; }
+    .arch-box { background: var(--card); border: 1px solid var(--border2); border-radius: 16px; padding: 32px; margin-top: 40px; font-family: var(--mono); font-size: 0.8rem; line-height: 1.8; color: var(--muted); overflow-x: auto; }
+    .arch-box .arch-brand { color: var(--brand); font-weight: 600; }
+    .arch-box .arch-accent { color: var(--accent); }
+    .arch-box .arch-success { color: var(--success); }
+
+    /* ── PRICING ── */
+    .pricing-section { background: var(--bg2); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; align-items: start; }
+    .price-card { background: var(--card); border: 1px solid var(--border2); border-radius: 20px; padding: 32px; position: relative; transition: transform 0.2s; }
+    .price-card:hover { transform: translateY(-4px); }
+    .price-card.featured { border-color: var(--brand); background: linear-gradient(135deg, rgba(99,102,241,0.08), var(--card)); box-shadow: 0 0 0 1px var(--brand), 0 20px 60px var(--brand-glow); }
+    .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--brand); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 4px 14px; border-radius: 100px; white-space: nowrap; }
+    .price-name { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 16px; }
+    .price-amount { font-size: 2.5rem; font-weight: 900; margin-bottom: 4px; }
+    .price-sub { font-size: 0.82rem; color: var(--dim); margin-bottom: 24px; }
+    .price-features { list-style: none; space: 0; margin-bottom: 28px; }
+    .price-features li { padding: 8px 0; font-size: 0.88rem; color: var(--muted); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+    .price-features li::before { content: '✓'; color: var(--success); font-weight: 700; flex-shrink: 0; }
+    .price-features li.na { color: var(--dim); } .price-features li.na::before { content: '—'; color: var(--dim); }
+    .price-cta { width: 100%; padding: 12px; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; text-decoration: none; display: block; text-align: center; }
+    .price-cta.primary { background: var(--brand); color: #fff; } .price-cta.primary:hover { background: #818cf8; }
+    .price-cta.ghost { background: transparent; color: var(--text); border: 1px solid var(--border2); } .price-cta.ghost:hover { border-color: var(--brand); }
+    .price-cta.muted { background: rgba(148,163,184,0.08); color: var(--dim); cursor: default; }
+
+    /* ── DOCS ── */
+    .docs-section { background: var(--bg); }
+    .endpoint { background: var(--card); border: 1px solid var(--border2); border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
+    .endpoint-head { display: flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--bg3); border-bottom: 1px solid var(--border); }
+    .method { font-family: var(--mono); font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .endpoint-path { font-family: var(--mono); font-size: 0.95rem; }
+    .endpoint-desc { margin-left: auto; font-size: 0.82rem; color: var(--dim); }
+    .endpoint-body { padding: 24px; }
+    .code-block { background: #020208; border: 1px solid var(--border); border-radius: 10px; padding: 20px; font-family: var(--mono); font-size: 0.8rem; line-height: 1.9; overflow-x: auto; position: relative; }
+    .copy-btn { position: absolute; top: 12px; right: 12px; background: var(--border2); border: none; color: var(--muted); padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: var(--sans); }
     .copy-btn:hover { background: var(--brand); color: #fff; }
+    .params-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .params-table th { text-align: left; font-size: 0.78rem; color: var(--dim); font-weight: 600; padding: 8px 12px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.05em; }
+    .params-table td { padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid rgba(30,30,62,0.5); vertical-align: top; }
+    .params-table td:first-child { font-family: var(--mono); font-size: 0.8rem; color: #93c5fd; }
+    .params-table td:nth-child(2) { color: var(--dim); font-size: 0.78rem; }
+    .tag-req { background: rgba(239,68,68,0.1); color: #f87171; font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; font-family: var(--mono); }
+    .tag-opt { background: rgba(148,163,184,0.08); color: var(--dim); font-size: 0.68rem; padding: 2px 7px; border-radius: 4px; font-family: var(--mono); }
+    .base-url { background: var(--card); border: 1px solid var(--border2); border-radius: 10px; padding: 14px 20px; font-family: var(--mono); font-size: 0.88rem; color: #a5b4fc; margin-bottom: 32px; display: flex; align-items: center; justify-content: space-between; }
 
-    .param-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-    .param-table th {
-      text-align: left; font-size: 0.8rem; color: var(--muted);
-      font-weight: 600; padding: 8px 12px; border-bottom: 1px solid var(--border);
-    }
-    .param-table td { padding: 10px 12px; font-size: 0.85rem; border-bottom: 1px solid rgba(46,46,80,0.5); }
-    .param-table td:first-child { font-family: var(--mono); font-size: 0.8rem; color: #93c5fd; }
-    .param-table td:nth-child(2) { color: var(--muted); font-size: 0.78rem; }
-    .required-badge { background: rgba(239,68,68,0.15); color: #f87171; font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-family: var(--mono); }
-    .optional-badge { background: rgba(148,163,184,0.1); color: var(--muted); font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-family: var(--mono); }
-
-    /* ── Register ── */
-    .register-section {
-      max-width: 560px; margin: 0 auto 100px; padding: 0 24px;
-    }
-    .register-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 16px; padding: 36px;
-    }
-    .register-card h2 { margin-bottom: 8px; }
-    .register-card .section-sub { margin-bottom: 28px; }
+    /* ── REGISTER ── */
+    .register-section { background: var(--bg2); }
+    .register-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .register-pitch h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .register-pitch p { color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+    .trust-list { list-style: none; }
+    .trust-list li { padding: 8px 0; font-size: 0.9rem; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+    .trust-list li::before { content: '✓'; color: var(--success); font-weight: 700; }
+    .register-form-card { background: var(--card); border: 1px solid var(--border2); border-radius: 20px; padding: 36px; }
+    .form-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+    .form-sub { font-size: 0.85rem; color: var(--dim); margin-bottom: 28px; }
     .form-group { margin-bottom: 20px; }
-    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--muted); }
-    .form-input {
-      width: 100%; background: var(--bg3); border: 1px solid var(--border);
-      color: var(--text); padding: 12px 16px; border-radius: 10px;
-      font-size: 0.95rem; outline: none; transition: border-color 0.2s;
-    }
-    .form-input:focus { border-color: var(--brand-light); }
-    .form-input::placeholder { color: var(--muted); }
-    .submit-btn {
-      width: 100%; background: var(--brand); color: #fff;
-      border: none; padding: 14px; border-radius: 10px;
-      font-size: 1rem; font-weight: 700; cursor: pointer;
-      transition: background 0.2s; margin-top: 8px;
-    }
-    .submit-btn:hover { background: var(--brand-light); }
-    .submit-btn:disabled { background: var(--border); cursor: not-allowed; }
-    .form-msg { margin-top: 16px; padding: 14px; border-radius: 10px; font-size: 0.875rem; }
-    .form-msg.success { background: rgba(5,150,105,0.1); border: 1px solid rgba(52,211,153,0.3); color: #34d399; }
-    .form-msg.error { background: rgba(239,68,68,0.1); border: 1px solid rgba(248,113,113,0.3); color: #f87171; }
-    .key-display {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 8px; padding: 12px 16px; margin-top: 12px;
-      font-family: var(--mono); font-size: 0.85rem; word-break: break-all;
-      color: var(--brand-light); font-weight: 600;
-    }
-    .tier-note {
-      display: flex; gap: 8px; align-items: flex-start;
-      background: rgba(79,70,229,0.08); border: 1px solid rgba(99,102,241,0.2);
-      border-radius: 10px; padding: 14px; margin-bottom: 24px;
-      font-size: 0.85rem; color: var(--muted);
-    }
-    .tier-note strong { color: var(--text); }
+    label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.02em; }
+    .form-input { width: 100%; background: var(--bg3); border: 1px solid var(--border2); color: var(--text); padding: 13px 16px; border-radius: 10px; font-size: 0.95rem; font-family: var(--sans); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-glow); }
+    .form-input::placeholder { color: var(--dim); }
+    .submit-btn { width: 100%; background: var(--brand); color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.1s; font-family: var(--sans); }
+    .submit-btn:hover { background: #818cf8; } .submit-btn:active { transform: scale(0.99); } .submit-btn:disabled { background: var(--border2); cursor: not-allowed; }
+    .form-msg { margin-top: 16px; padding: 16px; border-radius: 10px; font-size: 0.875rem; }
+    .form-msg.success { background: rgba(16,185,129,0.08); border: 1px solid rgba(52,211,153,0.25); color: #34d399; }
+    .form-msg.error { background: rgba(239,68,68,0.08); border: 1px solid rgba(248,113,113,0.25); color: #f87171; }
+    .key-reveal { background: var(--bg3); border: 1px solid var(--brand); border-radius: 8px; padding: 12px 16px; margin-top: 12px; font-family: var(--mono); font-size: 0.85rem; color: #a5b4fc; word-break: break-all; position: relative; }
+    .key-copy { position: absolute; top: 8px; right: 8px; background: var(--border2); border: none; color: var(--muted); padding: 3px 8px; border-radius: 5px; font-size: 0.7rem; cursor: pointer; transition: all 0.2s; }
+    .key-copy:hover { background: var(--brand); color: #fff; }
 
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border); padding: 32px 24px;
-      text-align: center; font-size: 0.85rem; color: var(--muted);
-    }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
+    /* ── FOOTER ── */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 48px 24px 32px; }
+    .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 0.88rem; color: var(--dim); margin-top: 12px; max-width: 300px; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 16px; }
+    .footer-col a { display: block; color: var(--dim); text-decoration: none; font-size: 0.88rem; margin-bottom: 10px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .footer-bottom p { font-size: 0.8rem; color: var(--dim); }
+    .footer-stack { display: flex; gap: 8px; flex-wrap: wrap; }
+    .stack-pill { background: var(--card); border: 1px solid var(--border); color: var(--dim); font-size: 0.72rem; padding: 3px 10px; border-radius: 100px; }
 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .ps-grid { grid-template-columns: 1fr; }
+      .ps-arrow { transform: rotate(90deg); }
+      .steps { grid-template-columns: 1fr; }
+      .step:first-child { border-radius: 16px 16px 0 0; }
+      .step:last-child { border-radius: 0 0 16px 16px; }
+      .steps::before { display: none; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .register-wrapper { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: block; }
+    }
     @media (max-width: 600px) {
-      .hero { padding: 60px 20px 48px; }
-      .hero-stat-row { gap: 24px; }
-      nav a:not(.nav-cta) { display: none; }
+      section { padding: 72px 20px; }
+      .input-row { flex-direction: column; }
+      .hero-stats { gap: 24px; }
+      nav { padding: 0 20px; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="https://bigeo.in" class="logo">Bi<span>Geo</span></a>
-  <div>
-    <a href="#demo">Demo</a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo" aria-label="BiGeo Home">
+    <div class="nav-logo-mark">B</div>
+    <span class="nav-logo-text">Vaahan <span>API</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#demo">Live Demo</a>
+    <a href="#how-it-works">How it Works</a>
+    <a href="#pricing">Pricing</a>
     <a href="#docs">Docs</a>
-    <a href="#register" class="nav-cta">Get API Key</a>
+    <a href="#register" class="nav-cta">Get API Key →</a>
   </div>
+  <button class="nav-mobile-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
 </nav>
 
-<!-- ── Hero ── -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Address Intelligence API</div>
-  <h1>Resolve <em>any</em> rural Indian address in under 2 seconds</h1>
-  <p>Logistics companies lose ₹500 per failed delivery. Vaahan turns unstructured village addresses into GPS coordinates, pincodes, and structured JSON — instantly.</p>
-  <div class="hero-stat-row">
-    <div class="hero-stat"><div class="num">&lt;2s</div><div class="lbl">Response time</div></div>
-    <div class="hero-stat"><div class="num">₹50</div><div class="lbl">Per 1000 calls</div></div>
-    <div class="hero-stat"><div class="num">₹500</div><div class="lbl">Cost of a failed delivery</div></div>
-    <div class="hero-stat"><div class="num">500+</div><div class="lbl">Siddipet villages seeded</div></div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="badge-dot"></div> Now Live in Telangana · Expanding to all India</div>
+    <h1><span class="gradient-text">Every Village Address.<br>Resolved in 2 Seconds.</span></h1>
+    <p class="hero-sub">Vaahan turns unstructured rural Indian addresses into GPS coordinates, structured data, and delivery intelligence — powered by the Bharat Address Graph and Claude AI on AWS Bedrock.</p>
+    <div class="hero-btns">
+      <a href="#demo" class="btn-primary">Try Live Demo <span>→</span></a>
+      <a href="#docs" class="btn-secondary">API Reference <span>↓</span></a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num brand" data-count="2" data-suffix="s">&lt;2s</div><div class="stat-label">Response Time</div></div>
+      <div class="stat"><div class="stat-num" data-count="50" data-prefix="₹">₹50</div><div class="stat-label">Per 1000 Calls</div></div>
+      <div class="stat"><div class="stat-num" data-count="500" data-suffix="+">500+</div><div class="stat-label">Villages Seeded</div></div>
+      <div class="stat"><div class="stat-num" data-count="500" data-prefix="₹" data-suffix=" saved">₹500</div><div class="stat-label">Per Failed Delivery</div></div>
+    </div>
   </div>
 </section>
 
-<!-- ── Live Demo ── -->
+<!-- PROBLEM / SOLUTION -->
+<section class="problem-solution">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">The Problem</div>
+      <h2 class="section-title">Rural addresses break every algorithm.</h2>
+      <p class="section-sub">700 million Indians live in villages with no structured addresses. Logistics companies fail. Last-mile collapses.</p>
+    </div>
+    <div class="ps-grid reveal">
+      <div class="ps-card problem">
+        <div class="ps-tag problem">✗ Raw Input</div>
+        <div class="ps-address">"Near banyan tree,<br>behind Raju's shop,<br>opp. water tank,<br>Yellareddyguda, Siddipet"</div>
+        <p style="font-size:0.85rem;color:var(--dim)">❌ 0 algorithms can route this<br>❌ GPS returns null<br>❌ Delivery fails — ₹500 lost</p>
+      </div>
+      <div class="ps-arrow">→</div>
+      <div class="ps-card solution">
+        <div class="ps-tag solution">✓ Vaahan Output</div>
+        <div class="ps-result"><span class="json-key">"village"</span>: <span class="json-str">"Yellareddyguda"</span>,
+<span class="json-key">"mandal"</span>:  <span class="json-str">"Siddipet"</span>,
+<span class="json-key">"district"</span>: <span class="json-str">"Siddipet"</span>,
+<span class="json-key">"pincode"</span>: <span class="json-str">"502103"</span>,
+<span class="json-key">"lat"</span>:     <span class="json-num">18.1018</span>,
+<span class="json-key">"lng"</span>:     <span class="json-num">78.8522</span>,
+<span class="json-key">"confidence"</span>: <span class="json-num">0.82</span></div>
+        <p style="font-size:0.85rem;color:var(--dim);margin-top:12px">✅ Routable GPS coordinates<br>✅ Structured for any database<br>✅ Delivery succeeds</p>
+      </div>
+    </div>
+    <p class="ps-footnote reveal">A failed delivery costs <strong>₹500</strong>. Our API call costs <strong>less than ₹0.05</strong>. That's a <strong>10,000× ROI</strong>.</p>
+  </div>
+</section>
+
+<!-- DEMO -->
 <section class="demo-section" id="demo">
-  <div class="section-label">Live Demo</div>
-  <div class="demo-card">
-    <div class="demo-header">
-      <div class="demo-dot" style="background:#ff5f57"></div>
-      <div class="demo-dot" style="background:#febc2e"></div>
-      <div class="demo-dot" style="background:#28c840"></div>
-      <span class="demo-title">Vaahan API — try it now (no key required for demo)</span>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Live Demo</div>
+      <h2 class="section-title">See it work. Right now.</h2>
+      <p class="section-sub">No API key required for this demo. Type any rural Indian address or click an example below.</p>
     </div>
-    <div class="demo-body">
-      <div class="demo-examples">
-        <span class="example-chip" onclick="setExample(this)">Near banyan tree, behind Raju shop, Yellareddyguda, Siddipet</span>
-        <span class="example-chip" onclick="setExample(this)">H.No 4-56, Komuravelli village, Medak dist</span>
-        <span class="example-chip" onclick="setExample(this)">Opp ZP school, Chinnakodur, Siddipet 502103</span>
-        <span class="example-chip" onclick="setExample(this)">Behind old market, Narayankhed, Sangareddy</span>
+    <div class="demo-card reveal">
+      <div class="demo-toolbar">
+        <div class="tb-dot" style="background:#ff5f57"></div>
+        <div class="tb-dot" style="background:#febc2e"></div>
+        <div class="tb-dot" style="background:#28c840"></div>
+        <span class="tb-label">vaahan-api · POST /parse · Telangana, India</span>
       </div>
-      <div class="input-row">
-        <input
-          class="demo-input" id="demoInput" type="text"
-          placeholder="Type any rural Indian address…"
-          value="Near banyan tree, behind Raju shop, Yellareddyguda, Siddipet"
-          onkeydown="if(event.key==='Enter') runDemo()"
-        />
-        <button class="demo-btn" id="demoBtn" onclick="runDemo()">Parse Address →</button>
+      <div class="demo-body">
+        <div class="chips" id="exampleChips">
+          <span class="chip active" onclick="pickChip(this,'Near banyan tree, behind Raju shop, Yellareddyguda, Siddipet')">Yellareddyguda, Siddipet</span>
+          <span class="chip" onclick="pickChip(this,'H.No 4-56, Komuravelli village, near temple, Medak dist')">Komuravelli, Medak</span>
+          <span class="chip" onclick="pickChip(this,'Opp ZP school, Chinnakodur, Siddipet 502103')">Chinnakodur ZP School</span>
+          <span class="chip" onclick="pickChip(this,'Behind old market, Narayankhed, Sangareddy dist, Telangana')">Narayankhed, Sangareddy</span>
+        </div>
+        <div class="input-row">
+          <input class="demo-input" id="demoInput" type="text" placeholder="Type any rural Indian address…" value="Near banyan tree, behind Raju shop, Yellareddyguda, Siddipet" onkeydown="if(event.key==='Enter')runDemo()" aria-label="Address input" />
+          <button class="parse-btn" id="parseBtn" onclick="runDemo()">
+            <span id="btnText">Parse Address</span>
+            <span id="btnArrow">→</span>
+          </button>
+        </div>
+        <div class="result-panel">
+          <div class="result-tabs">
+            <div class="result-tab active" onclick="switchTab(this,'json')">JSON Response</div>
+            <div class="result-tab" onclick="switchTab(this,'curl')">cURL</div>
+          </div>
+          <div id="tab-json" class="result-json placeholder" aria-live="polite">Click "Parse Address" to resolve the address above →</div>
+          <div id="tab-curl" class="result-json" style="display:none"><span class="json-key">curl</span> -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \
+  -H <span class="json-str">"Content-Type: application/json"</span> \
+  -H <span class="json-str">"x-api-key: YOUR_KEY"</span> \
+  -d '<span class="json-str">{"address": "Near banyan tree, Yellareddyguda, Siddipet"}</span>'</div>
+          <div class="result-meta" id="resultMeta"></div>
+        </div>
       </div>
-      <div class="demo-result" id="demoResult">Click "Parse Address" to see structured output</div>
-      <div class="demo-meta" id="demoMeta"></div>
     </div>
   </div>
 </section>
 
-<!-- ── Value props ── -->
-<section class="value-section">
-  <div class="value-grid">
-    <div class="value-card">
-      <div class="value-icon">📍</div>
-      <h3>GPS Coordinates</h3>
-      <p>Every parsed address returns lat/lng, enabling map routing and last-mile delivery optimization.</p>
+<!-- HOW IT WORKS -->
+<section class="hiw-section" id="how-it-works">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="section-eyebrow">Architecture</div>
+      <h2 class="section-title">Three layers. One result.</h2>
+      <p class="section-sub" style="margin:0 auto">Every call checks the Bharat Address Graph first. Only genuinely new addresses reach Claude AI — keeping cost near zero and speed near-instant.</p>
     </div>
-    <div class="value-card">
-      <div class="value-icon">⚡</div>
-      <h3>Cache-First Architecture</h3>
-      <p>Known addresses return in ~300ms from the Bharat Address Graph. New addresses are resolved by Claude on Bedrock and cached permanently.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">🎯</div>
-      <h3>Confidence Scores</h3>
-      <p>Every response includes a 0–1 confidence score so your system can flag addresses that need human review.</p>
-    </div>
-    <div class="value-card">
-      <div class="value-icon">🏘️</div>
-      <h3>Telangana-First</h3>
-      <p>Trained on Siddipet, Sangareddy, and Medak district address patterns. Expanding to all 36 Telangana districts.</p>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Raw Address In</h3>
+        <p>POST your unstructured string — landmark references, local names, partial pincodes, mixed Hindi-English. We handle all of it.</p>
+        <span class="step-tag">POST /parse</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Graph + AI Resolution</h3>
+        <p>DynamoDB cache checked first (~300ms). On miss, Claude Sonnet on AWS Bedrock parses the address with few-shot Indian geography examples (~2s). Result written back to graph permanently.</p>
+        <span class="step-tag">Bharat Address Graph</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Structured JSON Out</h3>
+        <p>Village, mandal, district, state, pincode, GPS coordinates, confidence score. Ready for your routing engine, database, or delivery platform.</p>
+        <span class="step-tag">village · GPS · confidence</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── Docs ── -->
+<!-- USE CASES -->
+<section style="background:var(--bg);padding:100px 24px;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">Use Cases</div>
+      <h2 class="section-title">Built for every delivery problem.</h2>
+    </div>
+    <div class="usecase-grid reveal">
+      <div class="usecase-card">
+        <div class="usecase-icon">🚚</div>
+        <h3>Logistics & Courier</h3>
+        <p>Validate and route to any village address before dispatch. Eliminate returns due to unresolvable addresses.</p>
+        <span class="usecase-metric">↓ 80% failed deliveries</span>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-icon">🛒</div>
+        <h3>E-Commerce</h3>
+        <p>Extend your serviceable pincodes to every village in Telangana. Convert rural demand into actual orders.</p>
+        <span class="usecase-metric">↑ 3× rural coverage</span>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-icon">🏦</div>
+        <h3>Rural Fintech</h3>
+        <p>Address verification for KYC, loan applications, and Jan Dhan accounts. Machine-verifiable proof of location.</p>
+        <span class="usecase-metric">↓ 60% manual review</span>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-icon">🏛️</div>
+        <h3>Government Programs</h3>
+        <p>Last-mile delivery of welfare goods, medicines, and ration to correct beneficiary addresses.</p>
+        <span class="usecase-metric">100% addressable coverage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section class="traction-section">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-eyebrow">Traction</div>
+      <h2 class="section-title">Built for scale from day one.</h2>
+    </div>
+    <div class="traction-grid reveal">
+      <div class="traction-card"><div class="traction-num reveal-count" data-target="3">0</div><div class="traction-label">Districts Covered</div></div>
+      <div class="traction-card"><div class="traction-num reveal-count" data-target="500">0</div><div class="traction-label">Villages Seeded</div></div>
+      <div class="traction-card"><div class="traction-num" style="font-size:1.4rem">&lt;2s</div><div class="traction-label">Avg Response Time</div></div>
+      <div class="traction-card"><div class="traction-num">99.9%</div><div class="traction-label">API Uptime</div></div>
+      <div class="traction-card"><div class="traction-num reveal-count" data-target="3">0</div><div class="traction-label">Active Customers</div></div>
+      <div class="traction-card"><div class="traction-num" style="font-size:1.2rem">₹10,000</div><div class="traction-label">AWS Startup Credits</div></div>
+    </div>
+    <div class="arch-box reveal">
+      <div style="color:var(--muted);margin-bottom:8px;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em">System Architecture</div>
+      <span class="arch-accent">Client</span> ──► <span class="arch-brand">API Gateway v2</span> ──► <span class="arch-brand">Lambda Authorizer</span> ──► <span class="arch-brand">Parse Lambda</span>
+                                                                                                                   │
+                                                              ┌───────────────────────────────────────────┴────────────────────────────────────────────────┐
+                                                              ▼                                                                                           ▼
+                                                  <span class="arch-success">DynamoDB Cache HIT (~300ms)</span>                                          <span class="arch-accent">Cache MISS → Claude Sonnet 4.6</span>
+                                                  <span class="arch-success">Bharat Address Graph</span>                                                  <span class="arch-accent">AWS Bedrock (ap-south-1)</span>
+                                                                                                                                                          │
+                                                                                                                              ◄─────── Write back to graph ──────────────┘
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-eyebrow">Pricing</div>
+      <h2 class="section-title">Start free. Scale as you grow.</h2>
+      <p class="section-sub" style="margin:0 auto 0">Every tier includes: village · mandal · district · pincode · GPS · confidence score</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="price-name">Developer</div>
+        <div class="price-amount">Free</div>
+        <div class="price-sub">Forever, no credit card</div>
+        <ul class="price-features">
+          <li>500 API calls / month</li>
+          <li>All 7 response fields</li>
+          <li>Bharat Address Graph access</li>
+          <li>Email support</li>
+          <li class="na">SLA guarantee</li>
+          <li class="na">Dedicated support</li>
+        </ul>
+        <a href="#register" class="price-cta primary">Get Free Key →</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-name">Startup</div>
+        <div class="price-amount">₹999<span style="font-size:1rem;font-weight:400;color:var(--dim)">/mo</span></div>
+        <div class="price-sub">~₹0.10 per call</div>
+        <ul class="price-features">
+          <li>10,000 API calls / month</li>
+          <li>All 7 response fields</li>
+          <li>Priority Bedrock routing</li>
+          <li>Webhook callbacks</li>
+          <li>99.5% SLA</li>
+          <li class="na">Dedicated support</li>
+        </ul>
+        <a href="mailto:admin@bigeo.in?subject=Startup Plan Inquiry" class="price-cta primary">Coming Soon →</a>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-sub">Volume pricing</div>
+        <ul class="price-features">
+          <li>Unlimited API calls</li>
+          <li>All 7 response fields</li>
+          <li>Bulk batch API</li>
+          <li>Dedicated infrastructure</li>
+          <li>99.9% SLA</li>
+          <li>Dedicated success manager</li>
+        </ul>
+        <a href="mailto:admin@bigeo.in?subject=Enterprise Inquiry" class="price-cta ghost">Contact Sales →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCS -->
 <section class="docs-section" id="docs">
-  <div class="section-label">API Reference</div>
-  <h2>Two endpoints. Simple integration.</h2>
-  <p class="section-sub">Base URL: <code style="font-family:var(--mono);color:var(--brand-light)">https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1</code></p>
-
-  <!-- POST /parse -->
-  <div class="endpoint-block">
-    <div class="endpoint-header">
-      <span class="method-badge method-post">POST</span>
-      <span class="method-path">/parse</span>
-      <span class="method-desc">Parse a raw address</span>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-eyebrow">API Reference</div>
+      <h2 class="section-title">Two endpoints. Simple integration.</h2>
     </div>
-    <div class="endpoint-body">
-      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">Accepts an unstructured Indian address string. Returns structured JSON with all geographic components, GPS coordinates, and a confidence score.</p>
+    <div class="base-url reveal">
+      <span>Base URL: <strong>https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1</strong></span>
+      <button class="copy-btn" onclick="copyText('https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1',this)">copy</button>
+    </div>
 
-      <table class="param-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>address</td><td>string</td><td><span class="required-badge">required</span> &nbsp;Raw address, min 5 chars</td></tr>
-        </tbody>
-      </table>
-
-      <div style="margin-top:20px">
-        <div class="code-block" id="curlBlock">
-<span class="comment"># Request</span>
+    <div class="endpoint reveal">
+      <div class="endpoint-head">
+        <span class="method">POST</span>
+        <span class="endpoint-path">/parse</span>
+        <span class="endpoint-desc">Resolve a raw Indian address</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="code-block" id="block-parse">
+<span style="color:var(--dim)"># Request</span>
 curl -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \
-  -H <span class="string">"Content-Type: application/json"</span> \
-  -H <span class="string">"x-api-key: YOUR_API_KEY"</span> \
-  -d '<span class="string">{"address": "Near banyan tree, Yellareddyguda, Siddipet"}</span>'
+  -H <span class="json-str">"Content-Type: application/json"</span> \
+  -H <span class="json-str">"x-api-key: YOUR_API_KEY"</span> \
+  -d <span class="json-str">'{"address": "Near banyan tree, Yellareddyguda, Siddipet"}'</span>
 
-<span class="comment"># Response</span>
+<span style="color:var(--dim)"># Response 200 OK</span>
 {
-  <span class="key">"input_address"</span>: <span class="string">"Near banyan tree, Yellareddyguda, Siddipet"</span>,
-  <span class="key">"structured_address"</span>: <span class="string">"Yellareddyguda, Siddipet Mandal, Siddipet District, Telangana"</span>,
-  <span class="key">"village"</span>: <span class="string">"Yellareddyguda"</span>,
-  <span class="key">"mandal"</span>: <span class="string">"Siddipet"</span>,
-  <span class="key">"district"</span>: <span class="string">"Siddipet"</span>,
-  <span class="key">"state"</span>: <span class="string">"Telangana"</span>,
-  <span class="key">"pincode"</span>: <span class="string">"502103"</span>,
-  <span class="key">"lat"</span>: <span class="number">18.1018</span>,
-  <span class="key">"lng"</span>: <span class="number">78.8522</span>,
-  <span class="key">"confidence_score"</span>: <span class="number">0.82</span>,
-  <span class="key">"latency_ms"</span>: <span class="number">443</span>,
-  <span class="key">"source"</span>: <span class="string">"cache"</span>
+  <span class="json-key">"input_address"</span>: <span class="json-str">"Near banyan tree, Yellareddyguda, Siddipet"</span>,
+  <span class="json-key">"structured_address"</span>: <span class="json-str">"Yellareddyguda, Siddipet Mandal, Siddipet District, Telangana"</span>,
+  <span class="json-key">"village"</span>:    <span class="json-str">"Yellareddyguda"</span>,
+  <span class="json-key">"mandal"</span>:     <span class="json-str">"Siddipet"</span>,
+  <span class="json-key">"district"</span>:   <span class="json-str">"Siddipet"</span>,
+  <span class="json-key">"state"</span>:      <span class="json-str">"Telangana"</span>,
+  <span class="json-key">"pincode"</span>:    <span class="json-str">"502103"</span>,
+  <span class="json-key">"lat"</span>:        <span class="json-num">18.1018</span>,
+  <span class="json-key">"lng"</span>:        <span class="json-num">78.8522</span>,
+  <span class="json-key">"confidence_score"</span>: <span class="json-num">0.82</span>,
+  <span class="json-key">"latency_ms"</span>: <span class="json-num">443</span>,
+  <span class="json-key">"source"</span>:     <span class="json-str">"cache"</span>
 }
-          <button class="copy-btn" onclick="copyCode('curlBlock')">copy</button>
+          <button class="copy-btn" onclick="copyBlock('block-parse',this)">copy</button>
         </div>
+        <table class="params-table">
+          <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>address</td><td><span class="tag-req">required</span></td><td>Raw unstructured Indian address, min 5 characters</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
 
-  <!-- POST /register -->
-  <div class="endpoint-block">
-    <div class="endpoint-header">
-      <span class="method-badge method-post">POST</span>
-      <span class="method-path">/register</span>
-      <span class="method-desc">Get an API key</span>
-    </div>
-    <div class="endpoint-body">
-      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:16px">Register your company and receive an API key by email. No credit card required. 500 free calls/month.</p>
-
-      <table class="param-table">
-        <thead><tr><th>Field</th><th>Type</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>company_name</td><td>string</td><td><span class="required-badge">required</span></td></tr>
-          <tr><td>email</td><td>string</td><td><span class="required-badge">required</span> &nbsp;API key sent here</td></tr>
-        </tbody>
-      </table>
-
-      <div style="margin-top:20px">
-        <div class="code-block" id="regBlock">
+    <div class="endpoint reveal">
+      <div class="endpoint-head">
+        <span class="method">POST</span>
+        <span class="endpoint-path">/register</span>
+        <span class="endpoint-desc">Get an API key</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="code-block" id="block-reg">
 curl -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/register \
-  -H <span class="string">"Content-Type: application/json"</span> \
-  -d '<span class="string">{"company_name": "Acme Logistics", "email": "dev@acme.com"}</span>'
-          <button class="copy-btn" onclick="copyCode('regBlock')">copy</button>
+  -H <span class="json-str">"Content-Type: application/json"</span> \
+  -d <span class="json-str">'{"company_name": "Acme Logistics", "email": "dev@acme.com"}'</span>
+          <button class="copy-btn" onclick="copyBlock('block-reg',this)">copy</button>
         </div>
+        <table class="params-table">
+          <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>company_name</td><td><span class="tag-req">required</span></td><td>Your company or organization name</td></tr>
+            <tr><td>email</td><td><span class="tag-req">required</span></td><td>Work email — API key delivered here instantly</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="endpoint reveal">
+      <div class="endpoint-head"><span style="font-size:0.9rem;font-weight:700;color:var(--muted)">HTTP Status Codes</span></div>
+      <div class="endpoint-body">
+        <table class="params-table">
+          <thead><tr><th>Code</th><th>Meaning</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>200</td><td>Success</td><td>Address resolved — use the response fields</td></tr>
+            <tr><td>201</td><td>Created</td><td>API key issued and emailed</td></tr>
+            <tr><td>400</td><td>Bad Request</td><td>Missing or too-short address field</td></tr>
+            <tr><td>401</td><td>Unauthorized</td><td>Missing <code style="font-family:var(--mono);font-size:0.8rem">x-api-key</code> header</td></tr>
+            <tr><td>403</td><td>Forbidden</td><td>Invalid key or 500-call free tier exhausted</td></tr>
+            <tr><td>500</td><td>Server Error</td><td>Retry once; contact admin@bigeo.in if persists</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
-  <!-- Error codes -->
-  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;">
-    <h3 style="font-size:1rem;margin-bottom:16px">HTTP Status Codes</h3>
-    <table class="param-table">
-      <thead><tr><th>Code</th><th>Meaning</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td>200</td><td>Success</td><td>Parse result returned</td></tr>
-        <tr><td>201</td><td>Created</td><td>API key issued</td></tr>
-        <tr><td>400</td><td>Bad Request</td><td>Missing or invalid address field</td></tr>
-        <tr><td>401</td><td>Unauthorized</td><td>Missing x-api-key header</td></tr>
-        <tr><td>403</td><td>Forbidden</td><td>Invalid key or monthly limit (500 calls) reached</td></tr>
-        <tr><td>500</td><td>Server Error</td><td>Retry; contact admin@bigeo.in if persistent</td></tr>
-      </tbody>
-    </table>
-  </div>
 </section>
 
-<!-- ── Register ── -->
+<!-- REGISTER -->
 <section class="register-section" id="register">
-  <div class="section-label">Get Started</div>
-  <div class="register-card">
-    <h2>Get your API key</h2>
-    <p class="section-sub">Free forever for the first 500 calls/month. No credit card.</p>
-    <div class="tier-note">
-      <span>🎁</span>
-      <div><strong>Free tier:</strong> 500 API calls/month. Each call resolves one address — village, mandal, district, pincode, GPS, confidence score included.</div>
+  <div class="container">
+    <div class="register-wrapper">
+      <div class="register-pitch reveal">
+        <div class="section-eyebrow">Get Started</div>
+        <h2>Your first 500 calls are free.<br><span style="color:var(--brand)">Forever.</span></h2>
+        <p>Join logistics companies, fintech startups, and development teams already using Vaahan to resolve rural India.</p>
+        <ul class="trust-list">
+          <li>API key delivered to your inbox in seconds</li>
+          <li>No credit card, no contract</li>
+          <li>500 free calls resets every month</li>
+          <li>Full response: village, GPS, pincode, confidence</li>
+          <li>Upgrade anytime for more volume</li>
+        </ul>
+      </div>
+      <div class="register-form-card reveal">
+        <div class="form-title">Get Your Free API Key</div>
+        <div class="form-sub">Free tier · 500 calls/month · No credit card</div>
+        <form id="registerForm" onsubmit="submitRegister(event)" novalidate>
+          <div class="form-group">
+            <label for="inputCompany">Company / Organization</label>
+            <input class="form-input" id="inputCompany" type="text" placeholder="Acme Logistics Pvt Ltd" required autocomplete="organization" />
+          </div>
+          <div class="form-group">
+            <label for="inputEmail">Work Email</label>
+            <input class="form-input" id="inputEmail" type="email" placeholder="dev@yourcompany.com" required autocomplete="email" />
+          </div>
+          <button class="submit-btn" id="submitBtn" type="submit">Get Free API Key →</button>
+        </form>
+        <div id="formMsg"></div>
+      </div>
     </div>
-    <form id="registerForm" onsubmit="submitRegister(event)">
-      <div class="form-group">
-        <label for="company">Company / Organization name</label>
-        <input class="form-input" id="company" type="text" placeholder="Acme Logistics Pvt Ltd" required />
-      </div>
-      <div class="form-group">
-        <label for="email">Work email</label>
-        <input class="form-input" id="email" type="email" placeholder="dev@yourcompany.com" required />
-      </div>
-      <button class="submit-btn" type="submit" id="submitBtn">Get Free API Key →</button>
-    </form>
-    <div id="formMsg"></div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <p>
-    <a href="https://bigeo.in">BiGeo</a> &nbsp;·&nbsp;
-    Resolving rural India &nbsp;·&nbsp;
-    <a href="mailto:admin@bigeo.in">admin@bigeo.in</a>
-  </p>
-  <p style="margin-top:8px;font-size:0.78rem">© 2026 BiGeo. All rights reserved.</p>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="display:inline-flex">
+        <div class="nav-logo-mark">B</div>
+        <span class="nav-logo-text" style="margin-left:10px">Vaahan <span>API</span></span>
+      </a>
+      <p>Address Intelligence for rural India. Resolving the last-mile problem one village at a time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="#demo">Live Demo</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#docs">API Docs</a>
+      <a href="#register">Get API Key</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="https://bigeo.in">BiGeo</a>
+      <a href="mailto:admin@bigeo.in">Contact Us</a>
+      <a href="mailto:admin@bigeo.in?subject=Enterprise Inquiry">Enterprise</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BiGeo. All rights reserved. · <a href="mailto:admin@bigeo.in" style="color:var(--dim)">admin@bigeo.in</a></p>
+    <div class="footer-stack">
+      <span class="stack-pill">AWS Lambda</span>
+      <span class="stack-pill">Claude Sonnet 4.6</span>
+      <span class="stack-pill">DynamoDB</span>
+      <span class="stack-pill">API Gateway</span>
+      <span class="stack-pill">CloudFront</span>
+    </div>
+  </div>
 </footer>
 
 <script>
   const API = "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1";
-  // Demo uses a read-only demo key (registered above)
   const DEMO_KEY = "f26104e6f1c54906b16223754867268e";
 
-  function setExample(el) {
-    document.getElementById("demoInput").value = el.textContent;
+  // ── Nav hide on scroll down ──
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    const y = window.scrollY;
+    nav.style.transform = (y > lastY && y > 100) ? 'translateY(-100%)' : 'translateY(0)';
+    lastY = y;
+  }, { passive: true });
+
+  function toggleMobileNav() {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '64px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = 'rgba(5,5,16,0.98)';
+    links.style.padding = '20px 24px';
+    links.style.borderBottom = '1px solid var(--border)';
+  }
+
+  // ── Scroll reveal ──
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  // ── Counter animation ──
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.target;
+      const dur = 1500;
+      const start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ease * target).toLocaleString();
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toLocaleString();
+      };
+      requestAnimationFrame(tick);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.reveal-count').forEach(el => co.observe(el));
+
+  // ── Demo ──
+  function pickChip(el, val) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('demoInput').value = val;
+  }
+
+  function switchTab(el, id) {
+    document.querySelectorAll('.result-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('tab-json').style.display = id === 'json' ? '' : 'none';
+    document.getElementById('tab-curl').style.display = id === 'curl' ? '' : 'none';
   }
 
   async function runDemo() {
-    const input = document.getElementById("demoInput");
-    const result = document.getElementById("demoResult");
-    const meta = document.getElementById("demoMeta");
-    const btn = document.getElementById("demoBtn");
-    const address = input.value.trim();
+    const address = document.getElementById('demoInput').value.trim();
     if (!address) return;
-
+    const btn = document.getElementById('parseBtn');
+    const out = document.getElementById('tab-json');
+    const meta = document.getElementById('resultMeta');
     btn.disabled = true;
-    btn.textContent = "Parsing…";
-    result.className = "demo-result loading";
-    result.textContent = "Calling Vaahan API…";
-    meta.innerHTML = "";
-
+    document.getElementById('btnText').textContent = 'Parsing';
+    document.getElementById('btnArrow').innerHTML = '<div class="spinner"></div>';
+    out.className = 'result-json';
+    out.textContent = 'Calling Vaahan API…';
+    meta.innerHTML = '';
     try {
-      const res = await fetch(`${API}/parse`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "x-api-key": DEMO_KEY },
-        body: JSON.stringify({ address }),
+      const r = await fetch(`${API}/parse`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': DEMO_KEY },
+        body: JSON.stringify({ address })
       });
-      const data = await res.json();
-
-      result.className = "demo-result";
-      result.textContent = JSON.stringify(data, null, 2);
-
-      if (data.source) {
-        const sourceClass = data.source === "cache" ? "badge-cache" : "badge-bedrock";
-        const sourceLabel = data.source === "cache" ? "⚡ cache hit" : "🤖 bedrock";
-        meta.innerHTML = `
-          <span class="meta-badge ${sourceClass}">${sourceLabel}</span>
-          <span class="meta-badge badge-latency">⏱ ${data.latency_ms}ms</span>
-          ${data.confidence_score != null ? `<span class="meta-badge badge-confidence">confidence: ${data.confidence_score}</span>` : ""}
-        `;
-      }
-    } catch (err) {
-      result.className = "demo-result error";
-      result.textContent = "Error: " + err.message;
+      const d = await r.json();
+      out.innerHTML = syntaxHL(JSON.stringify(d, null, 2));
+      const src = d.source === 'cache';
+      meta.innerHTML = `
+        <span class="meta-pill ${src ? 'pill-cache' : 'pill-bedrock'}">${src ? '⚡ cache hit' : '🤖 claude ai'}</span>
+        <span class="meta-pill pill-latency">⏱ ${d.latency_ms}ms</span>
+        ${d.confidence_score != null ? `<span class="meta-pill pill-conf">confidence: ${d.confidence_score}</span>` : ''}
+        ${d.village ? `<span class="meta-pill pill-latency">📍 ${d.village}, ${d.district || ''}</span>` : ''}
+      `;
+    } catch(e) {
+      out.style.color = 'var(--danger)';
+      out.textContent = 'Error: ' + e.message;
     } finally {
       btn.disabled = false;
-      btn.textContent = "Parse Address →";
+      document.getElementById('btnText').textContent = 'Parse Address';
+      document.getElementById('btnArrow').textContent = '→';
     }
   }
 
+  function syntaxHL(json) {
+    return json
+      .replace(/("[\w_]+")\s*:/g, '<span class="json-key">$1</span>:')
+      .replace(/:\s*(".*?")/g, ': <span class="json-str">$1</span>')
+      .replace(/:\s*(\d+\.?\d*)/g, ': <span class="json-num">$1</span>')
+      .replace(/:\s*(true|false|null)/g, ': <span class="json-bool">$1</span>');
+  }
+
+  // ── Register ──
   async function submitRegister(e) {
     e.preventDefault();
-    const company = document.getElementById("company").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const btn = document.getElementById("submitBtn");
-    const msg = document.getElementById("formMsg");
-
-    btn.disabled = true;
-    btn.textContent = "Registering…";
-    msg.innerHTML = "";
-
+    const company = document.getElementById('inputCompany').value.trim();
+    const email = document.getElementById('inputEmail').value.trim();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    if (!company || !email) return;
+    btn.disabled = true; btn.textContent = 'Registering…';
+    msg.innerHTML = '';
     try {
-      const res = await fetch(`${API}/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company_name: company, email }),
+      const r = await fetch(`${API}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ company_name: company, email })
       });
-      const data = await res.json();
-
-      if (res.ok) {
-        msg.className = "form-msg success";
-        msg.innerHTML = `
-          ✅ <strong>Registration successful!</strong><br/>
-          Your API key has been sent to <strong>${email}</strong>.<br/>
-          Your key: <div class="key-display">${data.api_key}</div>
-        `;
-        document.getElementById("registerForm").reset();
-      } else {
-        throw new Error(data.error || "Registration failed");
-      }
-    } catch (err) {
-      msg.className = "form-msg error";
-      msg.textContent = "❌ " + err.message;
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "Get Free API Key →";
-    }
+      const d = await r.json();
+      if (r.ok) {
+        msg.className = 'form-msg success';
+        msg.innerHTML = `✅ <strong>Registration successful!</strong> Your API key has been sent to <strong>${email}</strong>.<div class="key-reveal">${d.api_key}<button class="key-copy" onclick="copyText('${d.api_key}',this)">copy</button></div>`;
+        document.getElementById('registerForm').reset();
+      } else { throw new Error(d.error || 'Registration failed'); }
+    } catch(err) {
+      msg.className = 'form-msg error';
+      msg.textContent = '❌ ' + err.message;
+    } finally { btn.disabled = false; btn.textContent = 'Get Free API Key →'; }
   }
 
-  function copyCode(id) {
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => { const t = btn.textContent; btn.textContent = 'copied!'; setTimeout(() => btn.textContent = t, 1500); });
+  }
+
+  function copyBlock(id, btn) {
     const el = document.getElementById(id);
-    const text = el.innerText.replace("copy", "").trim();
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = el.querySelector(".copy-btn");
-      btn.textContent = "copied!";
-      setTimeout(() => btn.textContent = "copy", 1500);
-    });
+    const text = el.innerText.replace('copy','').trim();
+    copyText(text, btn);
   }
 </script>
-
 </body>
 </html>
