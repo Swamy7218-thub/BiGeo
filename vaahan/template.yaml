@@ -14,10 +14,23 @@ Globals:
       Env: prod
 
 Resources:
+
+  # ── API Gateway ──────────────────────────────────────────────────────────────
   VaahanApi:
     Type: AWS::Serverless::HttpApi
     Properties:
       StageName: v1
+      Auth:
+        Authorizers:
+          ApiKeyAuthorizer:
+            AuthorizerPayloadFormatVersion: "2.0"
+            FunctionArn: !GetAtt AuthorizerFunction.Arn
+            FunctionInvokeRole: !GetAtt AuthorizerInvokeRole.Arn
+            EnableSimpleResponses: true
+            Identity:
+              Headers:
+                - x-api-key
+        DefaultAuthorizer: ApiKeyAuthorizer
       CorsConfiguration:
         AllowOrigins:
           - "*"
@@ -31,6 +44,92 @@ Resources:
         Project: BiGeo
         Env: prod
 
+  # IAM role for API GW to invoke authorizer
+  AuthorizerInvokeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: InvokeAuthorizer
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource: !GetAtt AuthorizerFunction.Arn
+      Tags:
+        - Key: Project
+          Value: BiGeo
+
+  # ── Authorizer Lambda ─────────────────────────────────────────────────────────
+  AuthorizerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-authorizer
+      CodeUri: authorizer-function/
+      Handler: index.handler
+      Description: Validate API keys and enforce usage quotas
+      Environment:
+        Variables:
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:UpdateItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+
+  # ── Register Lambda ───────────────────────────────────────────────────────────
+  RegisterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-register
+      CodeUri: register-function/
+      Handler: index.handler
+      Description: Register company and issue API key
+      Environment:
+        Variables:
+          KEYS_TABLE: bigeo-api-keys
+          FROM_EMAIL: admin@bigeo.in
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        RegisterApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /register
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        RegisterOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /register
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Parse Lambda ──────────────────────────────────────────────────────────────
   ParseFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -67,6 +166,8 @@ Resources:
             ApiId: !Ref VaahanApi
             Path: /parse
             Method: OPTIONS
+            Auth:
+              Authorizer: NONE
 
 Outputs:
   ApiEndpoint:
