@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "@aws-sdk/client-bedrock-runtime": "^3.840.0"
+    "@aws-sdk/client-bedrock-runtime": "^3.840.0",
+    "@aws-sdk/client-dynamodb": "^3.1066.0",
+    "@aws-sdk/lib-dynamodb": "^3.1066.0"
   }
 }

@@ -37,17 +37,23 @@ Resources:
       FunctionName: vaahan-parse-address
       CodeUri: parse-function/
       Handler: index.handler
-      Description: Parse raw Indian address using Claude on Bedrock
+      Description: Parse raw Indian address using Claude on Bedrock with DynamoDB cache
+      Environment:
+        Variables:
+          ADDRESS_TABLE: bigeo-address-graph
       Policies:
         - Statement:
             - Effect: Allow
               Action:
                 - bedrock:InvokeModel
+              Resource: "*"
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:BatchWriteItem
               Resource:
-                - !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/anthropic.claude-sonnet-4-6"
-                - !Sub "arn:aws:bedrock:${AWS::Region}::foundation-model/global.anthropic.claude-sonnet-4-6"
-                - !Sub "arn:aws:bedrock:*::foundation-model/anthropic.claude-sonnet-4-6"
-                - "*"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-address-graph"
       Events:
         ParseApi:
           Type: HttpApi
