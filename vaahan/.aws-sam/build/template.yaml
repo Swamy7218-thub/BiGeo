@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Vaahan - Address Intelligence API by BiGeo
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 256
+    Runtime: nodejs20.x
+    Architectures:
+    - x86_64
+    Tags:
+      Project: BiGeo
+      Env: prod
+Resources:
+  VaahanApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: v1
+      CorsConfiguration:
+        AllowOrigins:
+        - '*'
+        AllowMethods:
+        - POST
+        - OPTIONS
+        AllowHeaders:
+        - Content-Type
+        - X-Api-Key
+      Tags:
+        Project: BiGeo
+        Env: prod
+  ParseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-parse-address
+      CodeUri: ParseFunction
+      Handler: index.handler
+      Description: Parse raw Indian address using Claude on Bedrock
+      Policies:
+      - Statement:
+        - Effect: Allow
+          Action:
+          - bedrock:InvokeModel
+          Resource:
+          - Fn::Sub: arn:aws:bedrock:${AWS::Region}::foundation-model/anthropic.claude-sonnet-4-6
+          - Fn::Sub: arn:aws:bedrock:${AWS::Region}::foundation-model/global.anthropic.claude-sonnet-4-6
+          - Fn::Sub: arn:aws:bedrock:*::foundation-model/anthropic.claude-sonnet-4-6
+          - '*'
+      Events:
+        ParseApi:
+          Type: HttpApi
+          Properties:
+            ApiId:
+              Ref: VaahanApi
+            Path: /parse
+            Method: POST
+        ParseOptions:
+          Type: HttpApi
+          Properties:
+            ApiId:
+              Ref: VaahanApi
+            Path: /parse
+            Method: OPTIONS
+    Metadata:
+      SamResourceId: ParseFunction
+Outputs:
+  ApiEndpoint:
+    Description: Vaahan API endpoint
+    Value:
+      Fn::Sub: https://${VaahanApi}.execute-api.${AWS::Region}.amazonaws.com/v1
+    Export:
+      Name: VaahanApiEndpoint
