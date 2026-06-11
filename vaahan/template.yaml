@@ -169,6 +169,80 @@ Resources:
             Auth:
               Authorizer: NONE
 
+  # ── Health Lambda ─────────────────────────────────────────────────────────────
+  HealthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-health
+      CodeUri: health-function/
+      Handler: index.handler
+      Description: System health check — DynamoDB table status
+      Environment:
+        Variables:
+          ADDRESS_TABLE: bigeo-address-graph
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:DescribeTable
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-address-graph"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+      Events:
+        HealthApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /health
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        HealthOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /health
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Usage Lambda ──────────────────────────────────────────────────────────────
+  UsageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-usage
+      CodeUri: usage-function/
+      Handler: index.handler
+      Description: Return current month API usage for the caller's key
+      Environment:
+        Variables:
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+      Events:
+        UsageApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /usage
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        UsageOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /usage
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
   # ── Daily Summary Lambda ─────────────────────────────────────────────────────
   DailySummaryFunction:
     Type: AWS::Serverless::Function
