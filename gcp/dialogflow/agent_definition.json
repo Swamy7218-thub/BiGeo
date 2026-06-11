@@ -1,0 +1,27 @@
+{
+  "displayName": "BiGeo Producer Onboarding Bot",
+  "defaultLanguageCode": "en",
+  "supportedLanguageCodes": ["te", "hi"],
+  "timeZone": "Asia/Kolkata",
+  "description": "WhatsApp-based producer onboarding bot for BiGeo rural logistics platform",
+  "enableStackdriverLogging": true,
+  "enableSpellCorrection": false,
+  "project": "bigeo-491617",
+  "flows": {
+    "Default Start Flow": {
+      "description": "Entry point for all producer conversations",
+      "pages": [
+        "Welcome",
+        "Collect Name",
+        "Collect Village",
+        "Collect Products",
+        "Collect Quantity",
+        "Collect Pickup Date",
+        "Confirm Registration",
+        "Request Pickup",
+        "Check Status",
+        "End Session"
+      ]
+    }
+  }
+}
