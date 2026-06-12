@@ -2,6 +2,7 @@ import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedroc
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
+import { LocationClient, SearchPlaceIndexForTextCommand } from "@aws-sdk/client-location";
 import { createHash } from "crypto";
 import https from "https";
 
@@ -10,6 +11,7 @@ const TABLE_NAME = process.env.ADDRESS_TABLE || "bigeo-address-graph";
 const BEDROCK_MODEL = "global.anthropic.claude-sonnet-4-6";
 const GCP_PROJECT = process.env.GCP_PROJECT_ID || "bigeo-491617";
 const GCP_SECRET_ARN = process.env.GCP_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1::secret:bigeo/gcp-service-account";
+const PLACE_INDEX = process.env.LOCATION_PLACE_INDEX || "bigeo-place-index";
 
 // Route config: "gemini" | "claude" | "auto" (default: auto = gemini first, claude fallback)
 const MODEL_ROUTE = process.env.MODEL_ROUTE || "auto";
@@ -17,6 +19,7 @@ const MODEL_ROUTE = process.env.MODEL_ROUTE || "auto";
 const bedrockClient = new BedrockRuntimeClient({ region });
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region }));
 const smClient = new SecretsManagerClient({ region });
+const locationClient = new LocationClient({ region });
 
 // ── GCP credential cache (warm across Lambda invocations) ──
 let _gcpAccessToken = null;
@@ -43,7 +46,6 @@ function fetchGCPTokenFromKey(key) {
       exp: now + 3600,
       iat: now,
     })).toString("base64url");
-    // Node's crypto for JWT signing
     import("crypto").then(({ createSign }) => {
       const sign = createSign("RSA-SHA256");
       sign.update(`${header}.${payload}`);
@@ -105,6 +107,44 @@ async function translateIfNeeded(text) {
     });
   } catch {
     return { text, detected_language: "en" };
+  }
+}
+
+// ── Amazon Location Service: precise GPS from HERE Maps ──
+// Called after AI structures the address — gives verified coordinates vs AI estimates
+async function lookupWithLocationService(structuredAddress, district, state) {
+  try {
+    const query = [structuredAddress, district, state, "India"]
+      .filter(Boolean).join(", ");
+
+    const cmd = new SearchPlaceIndexForTextCommand({
+      IndexName: PLACE_INDEX,
+      Text: query,
+      MaxResults: 1,
+      // Bias toward India's geographic center to avoid false matches abroad
+      BiasPosition: [78.9629, 20.5937],
+      FilterCountries: ["IND"],
+    });
+
+    const response = await locationClient.send(cmd);
+    const result = response.Results?.[0];
+    if (!result) return null;
+
+    const [lng, lat] = result.Place.Geometry.Point;
+    const relevance = result.Relevance || 0;
+
+    // Only use Location Service result if relevance is reasonable
+    if (relevance < 0.3) return null;
+
+    return {
+      lat: Math.round(lat * 100000) / 100000,
+      lng: Math.round(lng * 100000) / 100000,
+      location_relevance: relevance,
+      location_label: result.Place.Label,
+    };
+  } catch (err) {
+    console.warn("Location Service lookup failed:", err.message);
+    return null;
   }
 }
 
@@ -297,7 +337,6 @@ export const handler = async (event) => {
     try {
       parsed = await callGemini(processedAddress);
       modelUsed = "gemini-2.0-flash";
-      // If Gemini confidence is low, upgrade to Claude
       if ((parsed?.confidence_score || 0) < 0.6) {
         console.log(`Gemini low confidence (${parsed?.confidence_score}), escalating to Claude`);
         const claudeParsed = await callClaude(processedAddress);
@@ -313,6 +352,26 @@ export const handler = async (event) => {
     }
   }
 
+  // 4. Enhance coordinates with Amazon Location Service (HERE Maps)
+  //    AI gives us structured address fields; Location Service gives precise GPS
+  let gpsSource = "ai";
+  if (parsed?.structured_address || parsed?.village) {
+    const loc = await lookupWithLocationService(
+      parsed.structured_address || `${parsed.village}, ${parsed.mandal}`,
+      parsed.district,
+      parsed.state || "Telangana"
+    );
+    if (loc) {
+      console.log(`Location Service enhanced GPS: ${loc.lat},${loc.lng} (relevance: ${loc.location_relevance})`);
+      parsed.lat = loc.lat;
+      parsed.lng = loc.lng;
+      parsed.location_label = loc.location_label;
+      // Boost confidence when Location Service verifies the coordinates
+      parsed.confidence_score = Math.min(0.99, (parsed.confidence_score || 0.7) + 0.08);
+      gpsSource = "here-maps";
+    }
+  }
+
   const latencyMs = Date.now() - start;
 
   // Write cache async
@@ -323,6 +382,7 @@ export const handler = async (event) => {
     ...parsed,
     latency_ms: latencyMs,
     model: modelUsed,
+    gps_source: gpsSource,
     detected_language: detectedLang !== "en" ? detectedLang : undefined,
     source: "ai",
   })};
