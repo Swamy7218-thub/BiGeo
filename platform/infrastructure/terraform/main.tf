@@ -27,9 +27,18 @@ provider "aws" {
 
 # ── Variables ─────────────────────────────────────────────────────────────────
 
-variable "aws_region"   { default = "ap-south-1" }
-variable "environment"  { default = "prod" }
-variable "app_image"    { description = "ECR image URI for API gateway service" }
+variable "aws_region" {
+  default = "ap-south-1"
+}
+
+variable "environment" {
+  default = "prod"
+}
+
+variable "app_image" {
+  description = "ECR image URI for API gateway service"
+  default     = "nginx:latest"
+}
 
 locals {
   prefix = "bigeo-platform"
@@ -64,6 +73,7 @@ resource "aws_internet_gateway" "main" {
 
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
+
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.main.id
@@ -76,15 +86,19 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_eip" "nat" { domain = "vpc" }
+resource "aws_eip" "nat" {
+  domain = "vpc"
+}
 
 resource "aws_nat_gateway" "main" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_subnet.public[0].id
+  depends_on    = [aws_internet_gateway.main]
 }
 
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
+
   route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.main.id
@@ -97,12 +111,15 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private.id
 }
 
-data "aws_availability_zones" "available" { state = "available" }
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 # ── ECS Cluster ───────────────────────────────────────────────────────────────
 
 resource "aws_ecs_cluster" "platform" {
   name = "${local.prefix}-cluster"
+
   setting {
     name  = "containerInsights"
     value = "enabled"
@@ -112,11 +129,13 @@ resource "aws_ecs_cluster" "platform" {
 resource "aws_ecs_cluster_capacity_providers" "platform" {
   cluster_name       = aws_ecs_cluster.platform.name
   capacity_providers = ["FARGATE", "FARGATE_SPOT"]
+
   default_capacity_provider_strategy {
     capacity_provider = "FARGATE_SPOT"
     weight            = 80
     base              = 0
   }
+
   default_capacity_provider_strategy {
     capacity_provider = "FARGATE"
     weight            = 20
@@ -124,46 +143,94 @@ resource "aws_ecs_cluster_capacity_providers" "platform" {
   }
 }
 
-# ── ECR Repository ────────────────────────────────────────────────────────────
+# ── ECR Repositories ──────────────────────────────────────────────────────────
 
 resource "aws_ecr_repository" "api_gateway" {
   name                 = "${local.prefix}-api-gateway"
   image_tag_mutability = "MUTABLE"
-  image_scanning_configuration { scan_on_push = true }
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }
 
 resource "aws_ecr_repository" "hub_optimizer" {
   name                 = "${local.prefix}-hub-optimizer"
   image_tag_mutability = "MUTABLE"
-  image_scanning_configuration { scan_on_push = true }
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }
 
 resource "aws_ecr_repository" "route_optimizer" {
   name                 = "${local.prefix}-route-optimizer"
   image_tag_mutability = "MUTABLE"
-  image_scanning_configuration { scan_on_push = true }
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
 }
 
-resource "aws_ecr_lifecycle_policy" "retain_last_10" {
-  for_each   = toset([aws_ecr_repository.api_gateway.name, aws_ecr_repository.hub_optimizer.name, aws_ecr_repository.route_optimizer.name])
-  repository = each.key
+resource "aws_ecr_lifecycle_policy" "api_gateway" {
+  repository = aws_ecr_repository.api_gateway.name
   policy = jsonencode({
     rules = [{
       rulePriority = 1
       description  = "Keep last 10 images"
-      selection = { tagStatus = "any", countType = "imageCountMoreThan", countNumber = 10 }
+      selection = {
+        tagStatus   = "any"
+        countType   = "imageCountMoreThan"
+        countNumber = 10
+      }
       action = { type = "expire" }
     }]
   })
 }
 
-# ── IAM for ECS Tasks ─────────────────────────────────────────────────────────
+resource "aws_ecr_lifecycle_policy" "hub_optimizer" {
+  repository = aws_ecr_repository.hub_optimizer.name
+  policy = jsonencode({
+    rules = [{
+      rulePriority = 1
+      description  = "Keep last 10 images"
+      selection = {
+        tagStatus   = "any"
+        countType   = "imageCountMoreThan"
+        countNumber = 10
+      }
+      action = { type = "expire" }
+    }]
+  })
+}
+
+resource "aws_ecr_lifecycle_policy" "route_optimizer" {
+  repository = aws_ecr_repository.route_optimizer.name
+  policy = jsonencode({
+    rules = [{
+      rulePriority = 1
+      description  = "Keep last 10 images"
+      selection = {
+        tagStatus   = "any"
+        countType   = "imageCountMoreThan"
+        countNumber = 10
+      }
+      action = { type = "expire" }
+    }]
+  })
+}
+
+# ── IAM ───────────────────────────────────────────────────────────────────────
 
 resource "aws_iam_role" "ecs_task_execution" {
   name = "${local.prefix}-ecs-exec-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [{ Effect = "Allow", Principal = { Service = "ecs-tasks.amazonaws.com" }, Action = "sts:AssumeRole" }]
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "ecs-tasks.amazonaws.com" }
+      Action    = "sts:AssumeRole"
+    }]
   })
 }
 
@@ -176,7 +243,11 @@ resource "aws_iam_role" "ecs_task" {
   name = "${local.prefix}-ecs-task-role"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [{ Effect = "Allow", Principal = { Service = "ecs-tasks.amazonaws.com" }, Action = "sts:AssumeRole" }]
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "ecs-tasks.amazonaws.com" }
+      Action    = "sts:AssumeRole"
+    }]
   })
 }
 
@@ -186,12 +257,31 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
-      { Effect = "Allow", Action = ["dynamodb:*"], Resource = "arn:aws:dynamodb:${var.aws_region}:*:table/bigeo-*" },
-      { Effect = "Allow", Action = ["bedrock:InvokeModel"], Resource = "*" },
-      { Effect = "Allow", Action = ["secretsmanager:GetSecretValue"], Resource = "arn:aws:secretsmanager:${var.aws_region}:*:secret:bigeo/*" },
-      { Effect = "Allow", Action = ["elasticache:*"], Resource = "*" },
-      { Effect = "Allow", Action = ["events:PutEvents"], Resource = "arn:aws:events:${var.aws_region}:*:event-bus/bigeo-logistics-events" },
-      { Effect = "Allow", Action = ["logs:CreateLogStream", "logs:PutLogEvents"], Resource = "*" }
+      {
+        Effect   = "Allow"
+        Action   = ["dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:UpdateItem", "dynamodb:Query", "dynamodb:BatchWriteItem"]
+        Resource = "arn:aws:dynamodb:${var.aws_region}:*:table/bigeo-*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["bedrock:InvokeModel"]
+        Resource = "*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["secretsmanager:GetSecretValue"]
+        Resource = "arn:aws:secretsmanager:${var.aws_region}:*:secret:bigeo/*"
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["events:PutEvents"]
+        Resource = "arn:aws:events:${var.aws_region}:*:event-bus/bigeo-logistics-events"
+      },
+      {
+        Effect   = "Allow"
+        Action   = ["logs:CreateLogStream", "logs:PutLogEvents"]
+        Resource = "*"
+      }
     ]
   })
 }
@@ -201,22 +291,58 @@ resource "aws_iam_role_policy" "ecs_task_policy" {
 resource "aws_security_group" "alb" {
   name   = "${local.prefix}-alb-sg"
   vpc_id = aws_vpc.main.id
-  ingress { from_port = 443, to_port = 443, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"] }
-  ingress { from_port = 80,  to_port = 80,  protocol = "tcp", cidr_blocks = ["0.0.0.0/0"] }
-  egress  { from_port = 0,   to_port = 0,   protocol = "-1",  cidr_blocks = ["0.0.0.0/0"] }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_security_group" "ecs" {
   name   = "${local.prefix}-ecs-sg"
   vpc_id = aws_vpc.main.id
-  ingress { from_port = 8000, to_port = 8000, protocol = "tcp", security_groups = [aws_security_group.alb.id] }
-  egress  { from_port = 0,    to_port = 0,    protocol = "-1",  cidr_blocks    = ["0.0.0.0/0"] }
+
+  ingress {
+    from_port       = 8000
+    to_port         = 8000
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_security_group" "redis" {
   name   = "${local.prefix}-redis-sg"
   vpc_id = aws_vpc.main.id
-  ingress { from_port = 6379, to_port = 6379, protocol = "tcp", security_groups = [aws_security_group.ecs.id] }
+
+  ingress {
+    from_port       = 6379
+    to_port         = 6379
+    protocol        = "tcp"
+    security_groups = [aws_security_group.ecs.id]
+  }
 }
 
 # ── ALB ───────────────────────────────────────────────────────────────────────
@@ -235,6 +361,7 @@ resource "aws_lb_target_group" "api" {
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
+
   health_check {
     path                = "/health"
     healthy_threshold   = 2
@@ -247,18 +374,37 @@ resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.platform.arn
   port              = 80
   protocol          = "HTTP"
+
   default_action {
     type = "redirect"
-    redirect { port = "443", protocol = "HTTPS", status_code = "HTTP_301" }
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
   }
 }
 
-# ── ECS Task Definition: API Gateway ─────────────────────────────────────────
+resource "aws_lb_listener" "http_forward" {
+  load_balancer_arn = aws_lb.platform.arn
+  port              = 8000
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.api.arn
+  }
+}
+
+# ── CloudWatch Log Group ──────────────────────────────────────────────────────
 
 resource "aws_cloudwatch_log_group" "api_gateway" {
   name              = "/ecs/${local.prefix}/api-gateway"
   retention_in_days = 14
 }
+
+# ── ECS Task Definition ───────────────────────────────────────────────────────
 
 resource "aws_ecs_task_definition" "api_gateway" {
   family                   = "${local.prefix}-api-gateway"
@@ -272,21 +418,27 @@ resource "aws_ecs_task_definition" "api_gateway" {
   container_definitions = jsonencode([{
     name  = "api-gateway"
     image = var.app_image
-    portMappings = [{ containerPort = 8000, protocol = "tcp" }]
+
+    portMappings = [{
+      containerPort = 8000
+      protocol      = "tcp"
+    }]
+
     environment = [
-      { name = "AWS_REGION",       value = var.aws_region },
-      { name = "ENVIRONMENT",      value = var.environment },
-      { name = "REDIS_URL",        value = "redis://${aws_elasticache_serverless_cache.platform.endpoint[0].address}:6379" },
-      { name = "EVENT_BUS_NAME",   value = aws_cloudwatch_event_bus.logistics.name }
+      { name = "AWS_REGION",     value = var.aws_region },
+      { name = "ENVIRONMENT",    value = var.environment },
+      { name = "EVENT_BUS_NAME", value = aws_cloudwatch_event_bus.logistics.name }
     ]
+
     logConfiguration = {
       logDriver = "awslogs"
       options = {
-        awslogs-group         = aws_cloudwatch_log_group.api_gateway.name
-        awslogs-region        = var.aws_region
-        awslogs-stream-prefix = "ecs"
+        "awslogs-group"         = aws_cloudwatch_log_group.api_gateway.name
+        "awslogs-region"        = var.aws_region
+        "awslogs-stream-prefix" = "ecs"
       }
     }
+
     healthCheck = {
       command     = ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"]
       interval    = 30
@@ -301,13 +453,14 @@ resource "aws_ecs_service" "api_gateway" {
   name            = "${local.prefix}-api-gateway"
   cluster         = aws_ecs_cluster.platform.id
   task_definition = aws_ecs_task_definition.api_gateway.arn
-  desired_count   = 2
+  desired_count   = 1
 
   capacity_provider_strategy {
     capacity_provider = "FARGATE"
     weight            = 1
     base              = 1
   }
+
   capacity_provider_strategy {
     capacity_provider = "FARGATE_SPOT"
     weight            = 3
@@ -326,15 +479,23 @@ resource "aws_ecs_service" "api_gateway" {
     container_port   = 8000
   }
 
-  deployment_controller { type = "ECS" }
-  deployment_circuit_breaker { enable = true, rollback = true }
+  deployment_controller {
+    type = "ECS"
+  }
+
+  deployment_circuit_breaker {
+    enable   = true
+    rollback = true
+  }
+
+  depends_on = [aws_lb_listener.http_forward]
 }
 
 # ── Auto Scaling ──────────────────────────────────────────────────────────────
 
 resource "aws_appautoscaling_target" "api_gateway" {
   max_capacity       = 10
-  min_capacity       = 2
+  min_capacity       = 1
   resource_id        = "service/${aws_ecs_cluster.platform.name}/${aws_ecs_service.api_gateway.name}"
   scalable_dimension = "ecs:service:DesiredCount"
   service_namespace  = "ecs"
@@ -346,23 +507,34 @@ resource "aws_appautoscaling_policy" "api_cpu" {
   resource_id        = aws_appautoscaling_target.api_gateway.resource_id
   scalable_dimension = aws_appautoscaling_target.api_gateway.scalable_dimension
   service_namespace  = aws_appautoscaling_target.api_gateway.service_namespace
+
   target_tracking_scaling_policy_configuration {
     target_value       = 70
-    predefined_metric_specification { predefined_metric_type = "ECSServiceAverageCPUUtilization" }
     scale_in_cooldown  = 300
     scale_out_cooldown = 60
+
+    predefined_metric_specification {
+      predefined_metric_type = "ECSServiceAverageCPUUtilization"
+    }
   }
 }
 
-# ── ElastiCache Serverless (Redis) ────────────────────────────────────────────
+# ── ElastiCache Serverless ────────────────────────────────────────────────────
 
 resource "aws_elasticache_serverless_cache" "platform" {
   engine = "redis"
   name   = "${local.prefix}-cache"
+
   cache_usage_limits {
-    data_storage { maximum = 5, unit = "GB" }
-    ecpu_per_second { maximum = 5000 }
+    data_storage {
+      maximum = 5
+      unit    = "GB"
+    }
+    ecpu_per_second {
+      maximum = 5000
+    }
   }
+
   subnet_ids         = aws_subnet.private[*].id
   security_group_ids = [aws_security_group.redis.id]
 }
@@ -375,10 +547,22 @@ resource "aws_dynamodb_table" "hubs" {
   hash_key     = "PK"
   range_key    = "SK"
 
-  attribute { name = "PK", type = "S" }
-  attribute { name = "SK", type = "S" }
-  attribute { name = "GSI1PK", type = "S" }
-  attribute { name = "GSI1SK", type = "S" }
+  attribute {
+    name = "PK"
+    type = "S"
+  }
+  attribute {
+    name = "SK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI1PK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI1SK"
+    type = "S"
+  }
 
   global_secondary_index {
     name            = "GSI1"
@@ -387,8 +571,13 @@ resource "aws_dynamodb_table" "hubs" {
     projection_type = "ALL"
   }
 
-  point_in_time_recovery { enabled = true }
-  server_side_encryption { enabled = true }
+  point_in_time_recovery {
+    enabled = true
+  }
+
+  server_side_encryption {
+    enabled = true
+  }
 }
 
 resource "aws_dynamodb_table" "routes" {
@@ -397,10 +586,22 @@ resource "aws_dynamodb_table" "routes" {
   hash_key     = "PK"
   range_key    = "SK"
 
-  attribute { name = "PK", type = "S" }
-  attribute { name = "SK", type = "S" }
-  attribute { name = "GSI1PK", type = "S" }
-  attribute { name = "GSI1SK", type = "S" }
+  attribute {
+    name = "PK"
+    type = "S"
+  }
+  attribute {
+    name = "SK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI1PK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI1SK"
+    type = "S"
+  }
 
   global_secondary_index {
     name            = "GSI1"
@@ -409,9 +610,18 @@ resource "aws_dynamodb_table" "routes" {
     projection_type = "ALL"
   }
 
-  ttl { attribute_name = "expires_at", enabled = true }
-  point_in_time_recovery { enabled = true }
-  server_side_encryption { enabled = true }
+  ttl {
+    attribute_name = "expires_at"
+    enabled        = true
+  }
+
+  point_in_time_recovery {
+    enabled = true
+  }
+
+  server_side_encryption {
+    enabled = true
+  }
 }
 
 resource "aws_dynamodb_table" "deliveries" {
@@ -420,12 +630,30 @@ resource "aws_dynamodb_table" "deliveries" {
   hash_key     = "PK"
   range_key    = "SK"
 
-  attribute { name = "PK", type = "S" }
-  attribute { name = "SK", type = "S" }
-  attribute { name = "GSI1PK", type = "S" }
-  attribute { name = "GSI1SK", type = "S" }
-  attribute { name = "GSI2PK", type = "S" }
-  attribute { name = "GSI2SK", type = "S" }
+  attribute {
+    name = "PK"
+    type = "S"
+  }
+  attribute {
+    name = "SK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI1PK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI1SK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI2PK"
+    type = "S"
+  }
+  attribute {
+    name = "GSI2SK"
+    type = "S"
+  }
 
   global_secondary_index {
     name            = "GSI1"
@@ -433,6 +661,7 @@ resource "aws_dynamodb_table" "deliveries" {
     range_key       = "GSI1SK"
     projection_type = "ALL"
   }
+
   global_secondary_index {
     name            = "GSI2"
     hash_key        = "GSI2PK"
@@ -440,8 +669,13 @@ resource "aws_dynamodb_table" "deliveries" {
     projection_type = "ALL"
   }
 
-  point_in_time_recovery { enabled = true }
-  server_side_encryption { enabled = true }
+  point_in_time_recovery {
+    enabled = true
+  }
+
+  server_side_encryption {
+    enabled = true
+  }
 }
 
 resource "aws_dynamodb_table" "network_config" {
@@ -450,11 +684,22 @@ resource "aws_dynamodb_table" "network_config" {
   hash_key     = "PK"
   range_key    = "SK"
 
-  attribute { name = "PK", type = "S" }
-  attribute { name = "SK", type = "S" }
+  attribute {
+    name = "PK"
+    type = "S"
+  }
+  attribute {
+    name = "SK"
+    type = "S"
+  }
 
-  point_in_time_recovery { enabled = true }
-  server_side_encryption { enabled = true }
+  point_in_time_recovery {
+    enabled = true
+  }
+
+  server_side_encryption {
+    enabled = true
+  }
 }
 
 # ── EventBridge ───────────────────────────────────────────────────────────────
@@ -466,6 +711,7 @@ resource "aws_cloudwatch_event_bus" "logistics" {
 resource "aws_cloudwatch_event_rule" "hub_optimized" {
   name           = "bigeo-hub-optimized"
   event_bus_name = aws_cloudwatch_event_bus.logistics.name
+
   event_pattern = jsonencode({
     source      = ["bigeo.platform"]
     detail-type = ["HubOptimized"]
@@ -475,6 +721,7 @@ resource "aws_cloudwatch_event_rule" "hub_optimized" {
 resource "aws_cloudwatch_event_rule" "route_completed" {
   name           = "bigeo-route-completed"
   event_bus_name = aws_cloudwatch_event_bus.logistics.name
+
   event_pattern = jsonencode({
     source      = ["bigeo.platform"]
     detail-type = ["RouteCompleted", "DeliveryStatusUpdated"]
@@ -493,6 +740,7 @@ resource "aws_cloudwatch_metric_alarm" "api_5xx" {
   statistic           = "Sum"
   threshold           = 10
   alarm_description   = "API 5xx error rate too high"
+
   dimensions = {
     LoadBalancer = aws_lb.platform.arn_suffix
   }
@@ -507,6 +755,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu" {
   period              = 60
   statistic           = "Average"
   threshold           = 85
+
   dimensions = {
     ClusterName = aws_ecs_cluster.platform.name
     ServiceName = aws_ecs_service.api_gateway.name
@@ -515,10 +764,27 @@ resource "aws_cloudwatch_metric_alarm" "ecs_cpu" {
 
 # ── Outputs ───────────────────────────────────────────────────────────────────
 
-output "alb_dns_name" { value = aws_lb.platform.dns_name }
-output "ecs_cluster_name" { value = aws_ecs_cluster.platform.name }
-output "ecr_api_gateway_url" { value = aws_ecr_repository.api_gateway.repository_url }
-output "ecr_hub_optimizer_url" { value = aws_ecr_repository.hub_optimizer.repository_url }
-output "ecr_route_optimizer_url" { value = aws_ecr_repository.route_optimizer.repository_url }
-output "redis_endpoint" { value = aws_elasticache_serverless_cache.platform.endpoint[0].address }
-output "event_bus_name" { value = aws_cloudwatch_event_bus.logistics.name }
+output "alb_dns_name" {
+  value       = aws_lb.platform.dns_name
+  description = "ALB DNS — point your domain here"
+}
+
+output "ecs_cluster_name" {
+  value = aws_ecs_cluster.platform.name
+}
+
+output "ecr_api_gateway_url" {
+  value = aws_ecr_repository.api_gateway.repository_url
+}
+
+output "ecr_hub_optimizer_url" {
+  value = aws_ecr_repository.hub_optimizer.repository_url
+}
+
+output "ecr_route_optimizer_url" {
+  value = aws_ecr_repository.route_optimizer.repository_url
+}
+
+output "event_bus_name" {
+  value = aws_cloudwatch_event_bus.logistics.name
+}
