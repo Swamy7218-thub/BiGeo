@@ -11,6 +11,7 @@ const TABLE_NAME = process.env.ADDRESS_TABLE || "bigeo-address-graph";
 const BEDROCK_MODEL = "global.anthropic.claude-sonnet-4-6";
 const GCP_PROJECT = process.env.GCP_PROJECT_ID || "bigeo-491617";
 const GCP_SECRET_ARN = process.env.GCP_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1::secret:bigeo/gcp-service-account";
+const GMAPS_SECRET_ARN = process.env.GMAPS_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1:841162683979:secret:bigeo/google-maps-api-key-JseBtB";
 const PLACE_INDEX = process.env.LOCATION_PLACE_INDEX || "bigeo-place-index";
 
 // Route config: "gemini" | "claude" | "auto" (default: auto = gemini first, claude fallback)
@@ -20,6 +21,15 @@ const bedrockClient = new BedrockRuntimeClient({ region });
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region }));
 const smClient = new SecretsManagerClient({ region });
 const locationClient = new LocationClient({ region });
+
+// ── Google Maps API key cache ──
+let _gmapsApiKey = null;
+async function getGMapsKey() {
+  if (_gmapsApiKey) return _gmapsApiKey;
+  const secret = await smClient.send(new GetSecretValueCommand({ SecretId: GMAPS_SECRET_ARN }));
+  _gmapsApiKey = secret.SecretString.trim();
+  return _gmapsApiKey;
+}
 
 // ── GCP credential cache (warm across Lambda invocations) ──
 let _gcpAccessToken = null;
@@ -110,8 +120,52 @@ async function translateIfNeeded(text) {
   }
 }
 
-// ── Amazon Location Service: precise GPS from HERE Maps ──
-// Called after AI structures the address — gives verified coordinates vs AI estimates
+// ── Google Maps Geocoding: primary GPS source for rural India ──
+async function geocodeWithGoogleMaps(structuredAddress, district, state) {
+  try {
+    const key = await getGMapsKey();
+    const query = encodeURIComponent(
+      [structuredAddress, district, state, "India"].filter(Boolean).join(", ")
+    );
+    return await new Promise((resolve) => {
+      const req = https.request({
+        hostname: "maps.googleapis.com",
+        path: `/maps/api/geocode/json?address=${query}&key=${key}&region=in&language=en`,
+        method: "GET",
+      }, (res) => {
+        let data = "";
+        res.on("data", (d) => (data += d));
+        res.on("end", () => {
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.status !== "OK" || !parsed.results?.length) {
+              resolve(null);
+              return;
+            }
+            const result = parsed.results[0];
+            const loc = result.geometry.location;
+            // Extract pincode from address_components if present
+            const pincodeComp = result.address_components?.find(c => c.types.includes("postal_code"));
+            resolve({
+              lat: Math.round(loc.lat * 100000) / 100000,
+              lng: Math.round(loc.lng * 100000) / 100000,
+              formatted_address: result.formatted_address,
+              pincode: pincodeComp?.long_name || null,
+              location_type: result.geometry.location_type, // ROOFTOP | RANGE_INTERPOLATED | GEOMETRIC_CENTER | APPROXIMATE
+            });
+          } catch { resolve(null); }
+        });
+      });
+      req.on("error", () => resolve(null));
+      req.end();
+    });
+  } catch (err) {
+    console.warn("Google Maps geocoding failed:", err.message);
+    return null;
+  }
+}
+
+// ── Amazon Location Service: HERE Maps cross-validation ──
 async function lookupWithLocationService(structuredAddress, district, state) {
   try {
     const query = [structuredAddress, district, state, "India"]
@@ -131,15 +185,10 @@ async function lookupWithLocationService(structuredAddress, district, state) {
     if (!result) return null;
 
     const [lng, lat] = result.Place.Geometry.Point;
-    const relevance = result.Relevance || 0;
-
-    // Only use Location Service result if relevance is reasonable
-    if (relevance < 0.3) return null;
 
     return {
       lat: Math.round(lat * 100000) / 100000,
       lng: Math.round(lng * 100000) / 100000,
-      location_relevance: relevance,
       location_label: result.Place.Label,
     };
   } catch (err) {
@@ -352,23 +401,45 @@ export const handler = async (event) => {
     }
   }
 
-  // 4. Enhance coordinates with Amazon Location Service (HERE Maps)
-  //    AI gives us structured address fields; Location Service gives precise GPS
+  // 4. GPS enrichment: Google Maps (primary) → HERE Maps (cross-validate)
   let gpsSource = "ai";
-  if (parsed?.structured_address || parsed?.village) {
-    const loc = await lookupWithLocationService(
-      parsed.structured_address || `${parsed.village}, ${parsed.mandal}`,
-      parsed.district,
-      parsed.state || "Telangana"
-    );
-    if (loc) {
-      console.log(`Location Service enhanced GPS: ${loc.lat},${loc.lng} (relevance: ${loc.location_relevance})`);
-      parsed.lat = loc.lat;
-      parsed.lng = loc.lng;
-      parsed.location_label = loc.location_label;
-      // Boost confidence when Location Service verifies the coordinates
-      parsed.confidence_score = Math.min(0.99, (parsed.confidence_score || 0.7) + 0.08);
-      gpsSource = "here-maps";
+  const addressQuery = parsed.structured_address || `${parsed.village || ""}, ${parsed.mandal || ""}, ${parsed.district || ""}`;
+
+  if (addressQuery.trim().length > 5) {
+    // Primary: Google Maps (best rural India coverage)
+    const gmaps = await geocodeWithGoogleMaps(addressQuery, parsed.district, parsed.state || "Telangana");
+
+    if (gmaps) {
+      console.log(`Google Maps GPS: ${gmaps.lat},${gmaps.lng} (${gmaps.location_type})`);
+      parsed.lat = gmaps.lat;
+      parsed.lng = gmaps.lng;
+      if (gmaps.pincode && !parsed.pincode) parsed.pincode = gmaps.pincode;
+      parsed.formatted_address = gmaps.formatted_address;
+      gpsSource = "google-maps";
+
+      // Confidence boost based on Google's location_type precision
+      const precisionBoost = { ROOFTOP: 0.15, RANGE_INTERPOLATED: 0.10, GEOMETRIC_CENTER: 0.08, APPROXIMATE: 0.04 };
+      parsed.confidence_score = Math.min(0.99, (parsed.confidence_score || 0.7) + (precisionBoost[gmaps.location_type] || 0.05));
+
+      // Cross-validate with HERE Maps — if both agree within ~2km, max confidence
+      const here = await lookupWithLocationService(addressQuery, parsed.district, parsed.state || "Telangana");
+      if (here) {
+        const distKm = Math.sqrt(Math.pow((gmaps.lat - here.lat) * 111, 2) + Math.pow((gmaps.lng - here.lng) * 111, 2));
+        console.log(`HERE Maps GPS: ${here.lat},${here.lng} | Agreement distance: ${distKm.toFixed(2)}km`);
+        if (distKm < 2) {
+          parsed.confidence_score = Math.min(0.99, parsed.confidence_score + 0.05);
+          gpsSource = "google-maps+here-verified";
+        }
+      }
+    } else {
+      // Fallback: HERE Maps only
+      const here = await lookupWithLocationService(addressQuery, parsed.district, parsed.state || "Telangana");
+      if (here) {
+        parsed.lat = here.lat;
+        parsed.lng = here.lng;
+        parsed.confidence_score = Math.min(0.99, (parsed.confidence_score || 0.7) + 0.08);
+        gpsSource = "here-maps";
+      }
     }
   }
 
