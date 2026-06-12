@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #030d07;
+  --surface: #0d1f14;
+  --border: #1a3322;
+  --amber: #f59e0b;
+  --green: #22c55e;
+  --green-dim: #166534;
+  --text-muted: #94a3b8;
+}
+
+@layer base {
+  * { border-color: var(--border); }
+  body { background: var(--bg); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+}
+
+/* Leaflet overrides for dark mode */
+.leaflet-container { background: #1a3322 !important; }
+.leaflet-tile-pane { filter: brightness(0.85) saturate(1.1); }
