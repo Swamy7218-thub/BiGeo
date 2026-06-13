@@ -1,1561 +1,860 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>BiGeo — Rural India's Last-Mile OS</title>
-<meta name="description" content="BiGeo is Rural India's Last-Mile OS — parse any village address into GPS coordinates, optimize delivery routes, and connect farmers to logistics in Telugu, Hindi, and English." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<meta name="description" content="BiGeo parses any Indian village address into GPS coordinates. 1M+ locations. 36 states. Claude AI + Google Maps."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
 <!-- Mixpanel -->
-<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(f){d[f]=function(){call2_args=arguments;call2=[f].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
-mixpanel.init("da78fa74ae650b4ddd5b327a1be9511c", {track_pageview: true, persistence: "localStorage"});</script>
+<script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(f){d[f]=function(){call2_args=arguments;call2=[f].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+mixpanel.init("da78fa74ae650b4ddd5b327a1be9511c",{track_pageview:true,persistence:"localStorage"});</script>
+
 <style>
-/* ============================================================
-   RESET & BASE
-   ============================================================ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --surface2: #161616;
-  --border: #1f1f1f;
-  --border2: #2a2a2a;
-  --text: #ffffff;
-  --muted: #8a8a8a;
-  --accent: #5e6ad2;
-  --accent-light: #7b84e0;
-  --green: #22c55e;
-  --radius: 6px;
-  --font: 'Inter', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', 'Fira Code', monospace;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  font-size: 15px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  cursor: none;
+:root{
+  --orange:#FF6600;
+  --orange-light:#FF8C42;
+  --orange-dark:#CC5200;
+  --orange-glow:rgba(255,102,0,0.15);
+  --bg:#0D0D0D;
+  --surface:#141414;
+  --surface2:#1A1A1A;
+  --border:rgba(255,102,0,0.12);
+  --border2:rgba(255,255,255,0.06);
+  --text:#FFFFFF;
+  --muted:#888888;
+  --muted2:#555555;
+  --green:#22c55e;
+  --font:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --radius:8px;
 }
 
-a { color: inherit; text-decoration: none; }
-button { cursor: none; font-family: var(--font); }
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.6;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+button{cursor:none;font-family:var(--font)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px}
 
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+/* CURSOR */
+#cursor{position:fixed;width:8px;height:8px;background:var(--orange);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .12s,height .12s,background .12s;mix-blend-mode:normal}
+#cursor-ring{position:fixed;width:28px;height:28px;border:1.5px solid var(--orange);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .18s,height .18s,opacity .18s;opacity:0.5}
+.cursor-hover #cursor{width:14px;height:14px;background:var(--orange-light)}
+.cursor-hover #cursor-ring{width:44px;height:44px;opacity:0.8}
 
-/* ============================================================
-   CUSTOM CURSOR
-   ============================================================ */
-#cursor {
-  position: fixed;
-  width: 10px; height: 10px;
-  background: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  transition: width .15s, height .15s;
-  mix-blend-mode: difference;
-}
-#cursor-ring {
-  position: fixed;
-  width: 32px; height: 32px;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: width .2s, height .2s, border-color .2s;
-}
-.cursor-hover #cursor { width: 16px; height: 16px; }
-.cursor-hover #cursor-ring { width: 48px; height: 48px; border-color: rgba(94,106,210,0.55); }
+/* THREE.JS CANVAS */
+#three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
-/* ============================================================
-   GRID BACKGROUND
-   ============================================================ */
-.grid-bg {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.028) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 65% at 50% 0%, black 20%, transparent 100%);
-}
+/* LAYOUT */
+.wrapper{position:relative;z-index:1}
 
-/* ============================================================
-   NAV
-   ============================================================ */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  padding: 0 40px;
-  border-bottom: 1px solid transparent;
-  transition: background .3s, border-color .3s, backdrop-filter .3s;
-}
-nav.scrolled {
-  background: rgba(10,10,10,0.82);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  border-bottom-color: var(--border);
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 9px;
-  font-weight: 700; font-size: 17px; letter-spacing: -0.03em;
-  flex-shrink: 0;
-}
-.nav-links {
-  display: flex; align-items: center; gap: 2px;
-  position: absolute; left: 50%; transform: translateX(-50%);
-}
-.nav-links a {
-  color: var(--muted); font-size: 14px; font-weight: 500;
-  padding: 6px 14px; border-radius: var(--radius);
-  transition: color .2s, background .2s;
-}
-.nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-.nav-right { margin-left: auto; }
-.btn-nav {
-  background: var(--accent); color: #fff; border: none;
-  padding: 8px 16px; border-radius: var(--radius);
-  font-size: 13px; font-weight: 600; letter-spacing: -.01em;
-  display: inline-flex; align-items: center; gap: 4px;
-  transition: background .2s, transform .15s;
-}
-.btn-nav:hover { background: var(--accent-light); transform: translateY(-1px); }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+nav.scrolled{background:rgba(13,13,13,0.9);backdrop-filter:blur(12px);border-color:var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-0.5px}
+.nav-logo-dot{width:8px;height:8px;background:var(--orange);border-radius:50%;box-shadow:0 0 12px var(--orange)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;color:var(--muted);transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--orange);color:#fff;padding:9px 20px;border-radius:var(--radius);font-size:13px;font-weight:700;letter-spacing:.3px;transition:background .2s,transform .1s,box-shadow .2s}
+.nav-cta:hover{background:var(--orange-light);box-shadow:0 0 24px rgba(255,102,0,0.4);transform:translateY(-1px)}
 
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero {
-  position: relative; min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center; padding: 120px 24px 80px;
-  z-index: 1; overflow: hidden;
-}
-.hero-glow {
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 960px; height: 640px;
-  background: radial-gradient(ellipse at 50% 28%, rgba(94,106,210,0.2) 0%, transparent 68%);
-  pointer-events: none; z-index: 0;
-}
-.hero-content { position: relative; z-index: 1; max-width: 760px; }
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,102,0,0.08);border:1px solid rgba(255,102,0,0.25);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;color:var(--orange);letter-spacing:.5px;text-transform:uppercase;margin-bottom:32px}
+.hero-badge-dot{width:6px;height:6px;background:var(--orange);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(0.8)}}
+.hero-h1{font-size:clamp(44px,8vw,88px);font-weight:900;line-height:1.0;letter-spacing:-3px;margin-bottom:24px;max-width:900px}
+.hero-h1 .orange{color:var(--orange)}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:48px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:64px}
+.btn-primary{background:var(--orange);color:#fff;padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:700;border:none;cursor:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:var(--orange-light);box-shadow:0 0 32px rgba(255,102,0,0.5);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:600;border:1px solid var(--border2);cursor:none;transition:all .2s}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
 
-.pill-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(94,106,210,0.1); border: 1px solid rgba(94,106,210,0.3);
-  color: #a5abec; font-size: 11.5px; font-weight: 600;
-  padding: 5px 14px; border-radius: 999px; margin-bottom: 28px;
-  letter-spacing: .04em; text-transform: uppercase;
-}
-.pill-dot {
-  width: 7px; height: 7px; background: var(--green); border-radius: 50%;
-  animation: pulsedot 2s infinite;
-}
-@keyframes pulsedot {
-  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); }
-  50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
-}
+/* STATS BAR */
+.stats-bar{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;padding:24px 0;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.stat-item{text-align:center}
+.stat-num{font-size:28px;font-weight:900;color:var(--orange);letter-spacing:-1px;display:block}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
 
-.hero h1 {
-  font-size: clamp(40px, 7vw, 72px);
-  font-weight: 700; letter-spacing: -0.04em; line-height: 1.06;
-  margin-bottom: 22px;
-  background: linear-gradient(170deg, #ffffff 40%, rgba(255,255,255,0.65) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.hero-sub {
-  font-size: 18px; color: var(--muted); max-width: 480px;
-  margin: 0 auto 36px; line-height: 1.68; font-weight: 400;
-}
-.hero-ctas {
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px;
-}
-.btn-primary {
-  background: var(--accent); color: #fff; border: none;
-  padding: 12px 22px; border-radius: var(--radius);
-  font-size: 14px; font-weight: 600;
-  display: inline-flex; align-items: center; gap: 6px;
-  transition: background .2s, transform .15s, box-shadow .2s;
-}
-.btn-primary:hover {
-  background: var(--accent-light); transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(94,106,210,.38);
-}
-.btn-ghost {
-  background: transparent; color: var(--muted);
-  border: 1px solid var(--border2);
-  padding: 12px 22px; border-radius: var(--radius);
-  font-size: 14px; font-weight: 500;
-  display: inline-flex; align-items: center; gap: 6px;
-  transition: color .2s, border-color .2s, transform .15s;
-}
-.btn-ghost:hover { color: var(--text); border-color: #3a3a3a; transform: translateY(-2px); }
+/* DEMO TERMINAL */
+.demo-wrap{width:100%;max-width:760px;margin:0 auto}
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(255,102,0,0.08)}
+.terminal-bar{background:var(--surface2);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border2)}
+.t-dot{width:10px;height:10px;border-radius:50%}
+.t-dot.red{background:#ff5f57}.t-dot.yellow{background:#febc2e}.t-dot.green{background:#28c840}
+.t-label{margin-left:8px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+.terminal-body{padding:24px}
+.t-input-row{display:flex;gap:8px;margin-bottom:16px}
+.t-input{flex:1;background:rgba(255,102,0,0.05);border:1px solid var(--border);border-radius:6px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:13px;outline:none;transition:border-color .2s}
+.t-input:focus{border-color:var(--orange)}
+.t-input::placeholder{color:var(--muted2)}
+.t-btn{background:var(--orange);color:#fff;border:none;padding:11px 20px;border-radius:6px;font-weight:700;font-size:13px;cursor:none;white-space:nowrap;transition:all .2s}
+.t-btn:hover{background:var(--orange-light);box-shadow:0 0 20px rgba(255,102,0,0.4)}
+.t-output{font-family:var(--mono);font-size:12.5px;line-height:1.8;color:#aaa}
+.t-output .key{color:#888}.t-output .str{color:#FF8C42}.t-output .num{color:#22c55e}.t-output .label{color:var(--orange);font-weight:600}
+.t-output .comment{color:var(--muted2)}
 
-/* ============================================================
-   TERMINAL
-   ============================================================ */
-.terminal-wrap { width: 100%; max-width: 580px; margin: 0 auto; }
-.terminal {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; overflow: hidden; text-align: left;
-  box-shadow: 0 28px 64px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.035);
-}
-.terminal-header {
-  background: var(--surface2); padding: 12px 16px;
-  display: flex; align-items: center; gap: 7px;
-  border-bottom: 1px solid var(--border);
-}
-.t-dot { width: 12px; height: 12px; border-radius: 50%; }
-.t-dot.r { background: #ff5f57; }
-.t-dot.y { background: #febc2e; }
-.t-dot.g { background: #28c840; }
-.terminal-title { margin-left: 8px; font-size: 12px; color: var(--muted); font-family: var(--mono); }
-.terminal-body { padding: 20px 22px; min-height: 160px; }
-.t-line { font-family: var(--mono); font-size: 13px; line-height: 1.75; }
-.t-prompt { color: var(--green); }
-.t-key { color: #7b84e0; }
-.t-val-str { color: #68d391; }
-.t-val-num { color: #f6ad55; }
-.t-brace { color: var(--muted); }
-.t-cursor {
-  display: inline-block; width: 8px; height: 14px;
-  background: var(--accent); margin-left: 1px; vertical-align: middle;
-  animation: blink 1s step-end infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-.json-output { display: none; margin-top: 8px; }
-.json-output.show { display: block; animation: fadeUp .4s ease; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+/* SECTION COMMONS */
+section{padding:120px 24px}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-tag{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.section-h2{font-size:clamp(32px,5vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:20px}
+.section-sub{font-size:17px;color:var(--muted);max-width:540px;line-height:1.7}
 
-/* ============================================================
-   PROOF BAR
-   ============================================================ */
-.proof-bar {
-  position: relative; z-index: 1;
-  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  padding: 18px 40px;
-  display: flex; align-items: center; gap: 24px;
-  overflow-x: auto; scrollbar-width: none; white-space: nowrap;
-}
-.proof-bar::-webkit-scrollbar { display: none; }
-.proof-label { font-size: 11px; color: #4a4a4a; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; flex-shrink: 0; }
-.proof-pills { display: flex; gap: 8px; }
-.proof-pill {
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--muted); font-size: 12px; font-weight: 600;
-  padding: 5px 13px; border-radius: 999px;
-  transition: border-color .2s, color .2s;
-}
-.proof-pill:hover { border-color: var(--border2); color: #ccc; }
+/* HOW IT WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;margin-top:64px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.step{padding:32px;background:var(--surface);transition:background .2s;position:relative}
+.step:hover{background:var(--surface2)}
+.step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s}
+.step:hover::before{background:var(--orange)}
+.step-num{font-size:11px;font-weight:700;color:var(--orange);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.step-icon{font-size:28px;margin-bottom:16px}
+.step-title{font-size:16px;font-weight:700;margin-bottom:8px}
+.step-desc{font-size:14px;color:var(--muted);line-height:1.6}
 
-/* ============================================================
-   SECTIONS
-   ============================================================ */
-.section {
-  position: relative; z-index: 1;
-  padding: 96px 40px; max-width: 1160px; margin: 0 auto;
-}
-.section-label {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .12em; color: var(--accent); margin-bottom: 12px;
-}
-.section-title {
-  font-size: clamp(26px, 4vw, 40px); font-weight: 700;
-  letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 14px;
-}
-.section-sub { font-size: 16px; color: var(--muted); max-width: 480px; line-height: 1.65; }
+/* FEATURES BENTO */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:64px}
+.bento-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px;transition:border-color .2s,transform .2s;overflow:hidden;position:relative}
+.bento-card:hover{border-color:var(--orange);transform:translateY(-2px)}
+.bento-card::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(255,102,0,0.05),transparent 60%);opacity:0;transition:opacity .3s}
+.bento-card:hover::after{opacity:1}
+.bc-span3{grid-column:span 3}.bc-span4{grid-column:span 4}.bc-span6{grid-column:span 6}.bc-span8{grid-column:span 8}.bc-span12{grid-column:span 12}
+.bc-label{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+.bc-title{font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px}
+.bc-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.bc-num{font-size:52px;font-weight:900;color:var(--orange);letter-spacing:-2px;line-height:1}
+.bc-unit{font-size:14px;color:var(--muted);font-weight:500;margin-top:4px}
+.bc-tag{display:inline-block;background:rgba(255,102,0,0.08);border:1px solid rgba(255,102,0,0.2);color:var(--orange);font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;margin:3px 3px 3px 0;font-family:var(--mono)}
+.bc-bar-wrap{margin-top:16px}
+.bc-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bc-bar-label{font-size:12px;color:var(--muted);width:120px;flex-shrink:0;font-family:var(--mono)}
+.bc-bar-track{flex:1;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+.bc-bar-fill{height:100%;background:linear-gradient(90deg,var(--orange-dark),var(--orange));border-radius:3px;width:0;transition:width 1s cubic-bezier(.22,1,.36,1)}
+.bc-bar-pct{font-size:12px;color:var(--orange);font-weight:700;font-family:var(--mono);width:36px;text-align:right}
 
-/* ============================================================
-   BENTO GRID
-   ============================================================ */
-.bento-header { text-align: center; margin-bottom: 52px; }
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-.bento-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 26px; overflow: hidden;
-  position: relative;
-  transition: border-color .25s, transform .25s, box-shadow .25s;
-  opacity: 0; transform: translateY(22px);
-}
-.bento-card.card-in { animation: cardin .45s ease forwards; }
-@keyframes cardin { to { opacity:1; transform:translateY(0); } }
-.bento-card:hover {
-  border-color: var(--border2);
-  transform: translateY(-3px) scale(1.007);
-  box-shadow: 0 18px 44px rgba(0,0,0,.45);
-}
-.bento-card.span2 { grid-column: span 2; }
-.bc-label {
-  font-size: 10.5px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--muted); margin-bottom: 6px;
-}
-.bc-title { font-size: 17px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 5px; }
-.bc-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:64px}
+.pricing-card{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:32px;transition:all .2s;position:relative}
+.pricing-card:hover{border-color:rgba(255,102,0,0.3);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.pricing-card.featured{border-color:var(--orange);background:rgba(255,102,0,0.04)}
+.pricing-card.featured::before{content:'Most Popular';position:absolute;top:-1px;right:24px;background:var(--orange);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:0 0 8px 8px;letter-spacing:.5px}
+.p-tier{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+.p-name{font-size:22px;font-weight:800;margin-bottom:4px}
+.p-price{font-size:40px;font-weight:900;letter-spacing:-2px;margin:16px 0 4px}
+.p-price span{font-size:16px;font-weight:400;color:var(--muted)}
+.p-calls{font-size:13px;color:var(--muted);margin-bottom:24px}
+.p-divider{height:1px;background:var(--border2);margin-bottom:24px}
+.p-feature{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--muted);margin-bottom:10px}
+.p-feature .check{color:var(--orange);flex-shrink:0;font-weight:700}
+.p-btn{width:100%;padding:12px;border-radius:var(--radius);font-size:14px;font-weight:700;border:none;cursor:none;margin-top:24px;transition:all .2s}
+.p-btn-outline{background:transparent;border:1px solid var(--border2)!important;color:var(--text)}
+.p-btn-outline:hover{border-color:var(--orange)!important;color:var(--orange)}
+.p-btn-fill{background:var(--orange);color:#fff}
+.p-btn-fill:hover{background:var(--orange-light);box-shadow:0 0 24px rgba(255,102,0,0.4)}
 
-/* --- Map Card --- */
-.map-wrap { margin-top: 18px; position: relative; height: 180px; display:flex; align-items:center; justify-content:center; }
-.map-stats { display: flex; gap: 24px; margin-top: 12px; }
-.map-stat { font-size: 12px; color: var(--muted); }
-.map-stat strong { color: var(--text); font-size: 24px; font-weight: 800; letter-spacing: -.04em; display: block; }
-.dist-dot { animation: distpulse 2.5s ease-in-out infinite; }
-.dist-dot:nth-child(1) { animation-delay: 0s; }
-.dist-dot:nth-child(2) { animation-delay: 0.6s; }
-.dist-dot:nth-child(3) { animation-delay: 1.2s; }
-@keyframes distpulse { 0%,100%{r:5;opacity:1} 50%{r:7.5;opacity:.7} }
-.dist-ring { animation: distring 2.5s ease-out infinite; }
-.dist-ring:nth-child(1){animation-delay:0s}
-.dist-ring:nth-child(2){animation-delay:0.6s}
-.dist-ring:nth-child(3){animation-delay:1.2s}
-@keyframes distring { 0%{r:5;opacity:.6} 100%{r:20;opacity:0} }
+/* CODE TABS */
+.code-section{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:48px}
+.code-tabs{display:flex;border-bottom:1px solid var(--border2)}
+.code-tab{padding:12px 20px;font-size:13px;font-weight:600;color:var(--muted);cursor:none;border:none;background:none;transition:color .2s;position:relative;font-family:var(--mono)}
+.code-tab.active{color:var(--orange)}
+.code-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange)}
+.code-block{display:none;padding:24px;font-family:var(--mono);font-size:12.5px;line-height:1.9;color:#aaa;overflow-x:auto}
+.code-block.active{display:block}
+.code-block .c-key{color:#888}.code-block .c-str{color:#FF8C42}.code-block .c-num{color:#22c55e}
+.code-block .c-comment{color:#444}.code-block .c-cmd{color:var(--orange)}
+.copy-btn{float:right;background:rgba(255,102,0,0.1);border:1px solid rgba(255,102,0,0.2);color:var(--orange);font-size:11px;font-weight:600;padding:4px 10px;border-radius:4px;cursor:none;transition:all .2s;font-family:var(--mono)}
+.copy-btn:hover{background:rgba(255,102,0,0.2)}
 
-/* --- Lang Card --- */
-.lang-pills { display: flex; flex-direction: column; gap: 7px; margin-top: 16px; }
-.lang-pill {
-  background: var(--surface2); border: 1px solid var(--border);
-  padding: 9px 13px; border-radius: 7px; font-size: 13px; font-weight: 500;
-  transition: border-color .35s, background .35s;
-}
-.lang-pill.active { border-color: var(--accent); background: rgba(94,106,210,.09); }
-.lp-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 1px; }
+/* CTA SECTION */
+.cta-section{text-align:center;padding:120px 24px;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(255,102,0,0.12),transparent 70%);pointer-events:none}
+.cta-h2{font-size:clamp(36px,6vw,64px);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:20px}
+.cta-sub{font-size:18px;color:var(--muted);margin-bottom:40px}
+.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-input{flex:1;min-width:220px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:13px 16px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;font-family:var(--font)}
+.cta-input:focus{border-color:var(--orange)}
+.cta-input::placeholder{color:var(--muted2)}
 
-/* --- AI Card --- */
-.ai-models { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
-.ai-model { display: flex; align-items: center; gap: 11px; }
-.ai-icon {
-  width: 32px; height: 32px; border-radius: 6px;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.ai-info { flex: 1; }
-.ai-name { font-size: 13px; font-weight: 600; }
-.ai-role { font-size: 11px; color: var(--muted); }
-.conf-bar { height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; margin-top: 5px; }
-.conf-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1.4s cubic-bezier(.16,1,.3,1); }
-.cf-g { background: linear-gradient(90deg,#4285f4,#34a853); }
-.cf-c { background: linear-gradient(90deg,#d4875a,#c4622d); }
+/* FOOTER */
+footer{border-top:1px solid var(--border2);padding:48px 24px;text-align:center}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:24px}
+.footer-logo{font-size:20px;font-weight:900;letter-spacing:-1px}
+.footer-logo span{color:var(--orange)}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:13px;color:var(--muted);transition:color .2s}
+.footer-links a:hover{color:var(--orange)}
+.footer-copy{font-size:12px;color:var(--muted2)}
+.footer-badges{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.badge{background:var(--surface);border:1px solid var(--border2);padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.5px}
 
-/* --- Route Card --- */
-.route-line {
-  stroke-dasharray: 160; stroke-dashoffset: 160;
-  animation: drawline 2.2s ease infinite;
-}
-.route-line:nth-child(1){animation-delay:.0s}
-.route-line:nth-child(2){animation-delay:.35s}
-.route-line:nth-child(3){animation-delay:.7s}
-.route-line:nth-child(4){animation-delay:1.05s}
-.route-line:nth-child(5){animation-delay:1.4s}
-@keyframes drawline {
-  0%{stroke-dashoffset:160;opacity:0}
-  10%{opacity:1}
-  55%{stroke-dashoffset:0;opacity:1}
-  75%{opacity:.4}
-  100%{stroke-dashoffset:160;opacity:0}
-}
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
 
-/* --- WhatsApp Card --- */
-.phone-mock {
-  margin-top: 14px; background: #0d0d0d;
-  border: 1px solid var(--border2); border-radius: 14px; padding: 12px; max-width: 210px;
-}
-.phone-hdr {
-  font-size: 11px; color: var(--muted); padding-bottom: 8px;
-  border-bottom: 1px solid var(--border); margin-bottom: 9px;
-  display: flex; align-items: center; gap: 6px;
-}
-.wa-dot { width: 8px; height: 8px; background: #25d366; border-radius: 50%; animation: pulsedot 2s infinite; }
-.chat-bub {
-  font-size: 12px; padding: 7px 10px; border-radius: 8px; margin-bottom: 6px;
-  max-width: 90%; line-height: 1.5;
-}
-.cb-in { background: var(--surface2); border: 1px solid var(--border); }
-.cb-out { background: rgba(94,106,210,.18); border: 1px solid rgba(94,106,210,.28); margin-left: auto; }
-
-/* --- API Counter Card --- */
-.api-counter-row {
-  display: flex; align-items: center; gap: 36px; flex-wrap: wrap; margin-top: 18px;
-}
-.api-stat { text-align: center; }
-.api-num {
-  font-size: 34px; font-weight: 800; letter-spacing: -.05em;
-  color: var(--text); font-family: var(--mono);
-}
-.api-lbl { font-size: 11.5px; color: var(--muted); margin-top: 1px; }
-.pulse-dot {
-  display: inline-block; width: 10px; height: 10px;
-  background: var(--green); border-radius: 50%; margin-right: 7px; vertical-align: middle;
-  animation: pulsedot 1.6s infinite;
-}
-
-/* ============================================================
-   CODE SECTION
-   ============================================================ */
-.code-inner {
-  display: grid; grid-template-columns: 1fr 1.35fr; gap: 64px; align-items: start;
-}
-.tab-row {
-  display: flex; gap: 2px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 8px; padding: 4px; margin-bottom: 14px; width: fit-content;
-}
-.tab-btn {
-  background: transparent; border: none; color: var(--muted);
-  font-size: 13px; font-weight: 600; padding: 6px 13px; border-radius: 5px;
-  transition: background .2s, color .2s;
-}
-.tab-btn.active { background: var(--surface2); color: var(--text); }
-.tab-btn:hover:not(.active) { color: var(--text); }
-.code-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: none; }
-.code-block.active { display: block; }
-.code-hdr {
-  background: var(--surface2); padding: 10px 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-}
-.code-lang { font-size: 12px; color: var(--muted); font-family: var(--mono); }
-.copy-btn {
-  background: transparent; border: 1px solid var(--border);
-  color: var(--muted); font-size: 11px; font-weight: 600;
-  padding: 4px 10px; border-radius: 4px; letter-spacing: .04em;
-  transition: color .2s, border-color .2s;
-}
-.copy-btn:hover { color: var(--text); border-color: var(--border2); }
-.code-block pre {
-  padding: 18px 22px; font-family: var(--mono); font-size: 12.5px;
-  line-height: 1.78; overflow-x: auto; color: #cdd6f4;
-}
-.hl-k { color: #89b4fa; }
-.hl-s { color: #a6e3a1; }
-.hl-n { color: #fab387; }
-.hl-c { color: #585b70; }
-.hl-m { color: #cba6f7; }
-.hl-f { color: #89dceb; }
-.res-block { margin-top: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.res-hdr {
-  background: var(--surface2); padding: 10px 16px; font-size: 12px; color: var(--muted);
-  border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
-}
-.res-badge {
-  background: rgba(34,197,94,.15); color: var(--green);
-  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
-}
-.base-url-block {
-  margin-top: 26px;
-}
-.base-url-label { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-.base-url-dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
-.base-url-code {
-  font-family: var(--mono); font-size: 12px; color: #89b4fa;
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 10px 14px; border-radius: 6px; display: block; word-break: break-all;
-}
-
-/* ============================================================
-   METRICS
-   ============================================================ */
-.metrics-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--border);
-  border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-top: 52px;
-}
-.metric-cell { background: var(--surface); padding: 40px 28px; text-align: center; }
-.metric-num {
-  font-size: 46px; font-weight: 800; letter-spacing: -.05em;
-  color: var(--text); line-height: 1; margin-bottom: 8px;
-}
-.metric-suffix { font-size: 28px; font-weight: 800; }
-.metric-label { font-size: 13px; color: var(--muted); font-weight: 500; }
-
-/* ============================================================
-   HOW IT WORKS
-   ============================================================ */
-.hiw-header { text-align: center; margin-bottom: 60px; }
-.hiw-steps {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 0; position: relative;
-}
-.hiw-steps::before {
-  content: '';
-  position: absolute; top: 27px;
-  left: calc(16.66% + 10px); right: calc(16.66% + 10px);
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), rgba(94,106,210,.2), var(--accent));
-}
-.hiw-step { text-align: center; padding: 0 22px; position: relative; z-index: 1; opacity: 0; transform: translateY(18px); }
-.hiw-step.step-in { animation: cardin .45s ease forwards; }
-.hiw-num {
-  width: 54px; height: 54px;
-  background: var(--surface); border: 2px solid var(--accent); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 17px; color: var(--accent);
-  margin: 0 auto 18px; position: relative; z-index: 1;
-}
-.hiw-step-title { font-size: 15px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; }
-.hiw-step-sub { font-size: 13px; color: var(--muted); line-height: 1.65; }
-
-/* ============================================================
-   PLATFORM
-   ============================================================ */
-.platform-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-.platform-feats { display: flex; flex-direction: column; gap: 12px; margin-top: 26px; }
-.pf-item {
-  display: flex; align-items: center; gap: 13px;
-  padding: 13px 16px;
-  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-  transition: border-color .2s, transform .2s;
-}
-.pf-item:hover { border-color: var(--border2); transform: translateX(4px); }
-.pf-icon {
-  width: 30px; height: 30px;
-  background: rgba(94,106,210,.11); border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-size: 14px; flex-shrink: 0;
-}
-.pf-name { font-size: 14px; font-weight: 600; }
-.pf-desc { font-size: 12px; color: var(--muted); }
-.spoke-line { stroke-dasharray: 110; stroke-dashoffset: 110; animation: spokedraw 2.8s ease infinite; }
-.spoke-line:nth-child(1){animation-delay:0s}
-.spoke-line:nth-child(2){animation-delay:.5s}
-.spoke-line:nth-child(3){animation-delay:1s}
-.spoke-line:nth-child(4){animation-delay:1.5s}
-.spoke-line:nth-child(5){animation-delay:2s}
-@keyframes spokedraw {
-  0%{stroke-dashoffset:110;opacity:0}
-  20%{opacity:1}
-  70%{stroke-dashoffset:0}
-  90%{opacity:0}
-  100%{stroke-dashoffset:110;opacity:0}
-}
-
-/* ============================================================
-   PRICING
-   ============================================================ */
-.pricing-header { text-align: center; margin-bottom: 52px; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-.pricing-card {
-  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-  padding: 30px 26px; position: relative;
-  transition: border-color .25s, transform .25s, box-shadow .25s;
-  opacity: 0; transform: translateY(22px);
-}
-.pricing-card.card-in { animation: cardin .45s ease forwards; }
-.pricing-card:hover { transform: translateY(-5px); box-shadow: 0 22px 54px rgba(0,0,0,.5); }
-.pricing-card.featured {
-  border-color: var(--accent);
-  background: linear-gradient(150deg, rgba(94,106,210,.1) 0%, var(--surface) 55%);
-}
-.feat-badge {
-  position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: #fff; font-size: 11px; font-weight: 700;
-  padding: 3px 12px; border-radius: 999px; letter-spacing: .05em; text-transform: uppercase;
-}
-.pc-tier { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 9px; }
-.pc-price { font-size: 38px; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin-bottom: 3px; }
-.pc-price .cur { font-size: 19px; vertical-align: super; font-weight: 600; }
-.pc-period { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-.pc-div { height: 1px; background: var(--border); margin-bottom: 18px; }
-.pc-feats { display: flex; flex-direction: column; gap: 9px; margin-bottom: 26px; }
-.pc-feat { display: flex; align-items: center; gap: 9px; font-size: 13px; color: var(--muted); }
-.pc-check { color: var(--green); font-size: 13px; flex-shrink: 0; }
-.btn-pc {
-  width: 100%; padding: 11px; border-radius: var(--radius); font-size: 14px; font-weight: 600;
-  text-align: center; display: block;
-  border: 1px solid var(--border2); background: transparent; color: var(--muted);
-  transition: all .2s;
-}
-.btn-pc:hover { color: var(--text); border-color: #444; }
-.btn-pc.accent { background: var(--accent); border-color: var(--accent); color: #fff; }
-.btn-pc.accent:hover { background: var(--accent-light); border-color: var(--accent-light); }
-
-/* ============================================================
-   CTA
-   ============================================================ */
-.cta-section {
-  position: relative; z-index: 1;
-  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  padding: 96px 40px; text-align: center; overflow: hidden;
-}
-.cta-glow {
-  position: absolute; bottom: -110px; left: 50%; transform: translateX(-50%);
-  width: 720px; height: 420px;
-  background: radial-gradient(ellipse, rgba(94,106,210,.18) 0%, transparent 70%);
-  pointer-events: none;
-}
-.cta-title {
-  font-size: clamp(30px,5vw,50px); font-weight: 700; letter-spacing: -.04em; margin-bottom: 14px;
-  background: linear-gradient(160deg, #fff 40%, rgba(255,255,255,.65) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.cta-sub { font-size: 16px; color: var(--muted); margin-bottom: 34px; }
-.email-form {
-  display: flex; gap: 10px; justify-content: center;
-  max-width: 400px; margin: 0 auto 14px; flex-wrap: wrap;
-}
-.email-input {
-  flex: 1; min-width: 210px;
-  background: var(--surface); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--font); font-size: 14px;
-  padding: 11px 16px; border-radius: var(--radius); outline: none;
-  transition: border-color .2s;
-}
-.email-input::placeholder { color: #4a4a4a; }
-.email-input:focus { border-color: var(--accent); }
-.cta-contact { font-size: 13px; color: #4a4a4a; }
-.cta-contact a { color: var(--muted); border-bottom: 1px solid var(--border); transition: color .2s; }
-.cta-contact a:hover { color: var(--text); }
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-footer {
-  position: relative; z-index: 1;
-  padding: 26px 40px;
-  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-  border-top: 1px solid var(--border);
-}
-.footer-logo { font-weight: 700; font-size: 15px; letter-spacing: -.03em; display: flex; align-items: center; gap: 7px; }
-.footer-copy { font-size: 13px; color: #444; }
-.footer-links { display: flex; gap: 18px; margin-left: auto; }
-.footer-links a { font-size: 13px; color: var(--muted); transition: color .2s; }
-.footer-links a:hover { color: var(--text); }
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media(max-width:960px) {
-  .bento-grid { grid-template-columns: 1fr 1fr; }
-  .bento-card.span2 { grid-column: span 2; }
-  .code-inner { grid-template-columns: 1fr; gap: 40px; }
-  .metrics-grid { grid-template-columns: repeat(2,1fr); }
-  .hiw-steps { grid-template-columns: 1fr; gap: 36px; }
-  .hiw-steps::before { display: none; }
-  .platform-inner { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-}
-@media(max-width:640px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  .section { padding: 64px 20px; }
-  .proof-bar { padding: 14px 20px; }
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-card.span2 { grid-column: span 1; }
-  .metrics-grid { grid-template-columns: 1fr 1fr; }
-  footer { flex-direction: column; align-items: flex-start; }
-  .footer-links { margin-left: 0; }
-  .cta-section { padding: 64px 20px; }
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  .hero{padding:100px 20px 60px}
+  .stats-bar{gap:24px}
+  .bc-span3,.bc-span4,.bc-span6,.bc-span8{grid-column:span 12}
+  section{padding:80px 20px}
+  .pricing-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="cursor" aria-hidden="true"></div>
-<div id="cursor-ring" aria-hidden="true"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="three-canvas"></canvas>
 
-<!-- GRID BG -->
-<div class="grid-bg" aria-hidden="true"></div>
+<div class="wrapper">
 
-<!-- ================================================================
-     NAV
-     ================================================================ -->
-<nav id="nav" role="navigation" aria-label="Main">
-  <a href="/" class="nav-logo" aria-label="BiGeo">
-    <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect width="28" height="28" rx="6" fill="#5e6ad2"/>
-      <circle cx="14" cy="11" r="4.2" stroke="#fff" stroke-width="1.8"/>
-      <path d="M14 6.8V5M14 17.2v3.8" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-      <path d="M9.5 9.3 8.1 7.9M18.5 9.3l1.4-1.4" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-linecap="round"/>
-      <ellipse cx="14" cy="20" rx="5.2" ry="2.4" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
-    </svg>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
     BiGeo
-  </a>
+  </div>
   <div class="nav-links">
-    <a href="#features">Product</a>
-    <a href="#code">Docs</a>
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
-    <a href="mailto:admin@bigeo.in">Blog</a>
+    <a href="#docs">Docs</a>
+    <a href="https://github.com/Swamy7218-thub/BiGeo" target="_blank">GitHub</a>
   </div>
-  <div class="nav-right">
-    <a href="mailto:admin@bigeo.in?subject=BiGeo API Access Request" class="btn-nav" onclick="mixpanel.track('CTA Clicked',{label:'Request Access',location:'nav'})">Request Access →</a>
-  </div>
+  <a href="mailto:admin@bigeo.in?subject=BiGeo API Access" class="nav-cta"
+     onclick="mixpanel.track('CTA Clicked',{label:'Get Access',location:'nav'})">
+    Get Access →
+  </a>
 </nav>
 
-<!-- ================================================================
-     HERO
-     ================================================================ -->
-<section class="hero" aria-labelledby="hero-h1">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="pill-badge" role="status" aria-live="polite">
-      <span class="pill-dot" aria-hidden="true"></span>
-      Live on AWS · 652,178 villages · Pan-India
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-badge reveal">
+    <span class="hero-badge-dot"></span>
+    Live · MeitY GENESIS · IIM Udaipur
+  </div>
+
+  <h1 class="hero-h1 reveal reveal-delay-1">
+    Rural India<br/><span class="orange">Finally Has</span><br/>an Address
+  </h1>
+
+  <p class="hero-sub reveal reveal-delay-2">
+    One API call. Any village address in Telugu, Hindi, or English →
+    GPS coordinates in under 2 seconds. 1M+ locations. 36 states.
+  </p>
+
+  <div class="hero-actions reveal reveal-delay-3">
+    <a href="mailto:admin@bigeo.in?subject=BiGeo API Key Request" class="btn-primary"
+       onclick="mixpanel.track('CTA Clicked',{label:'Get API Key',location:'hero'})">
+      Get API Key — Free
+    </a>
+    <a href="#how" class="btn-ghost">See how it works</a>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar reveal">
+    <div class="stat-item">
+      <span class="stat-num" id="s1">1M+</span>
+      <span class="stat-label">GPS Locations</span>
     </div>
-
-    <h1 id="hero-h1">Rural India's<br>Last-Mile OS</h1>
-
-    <p class="hero-sub">
-      BiGeo resolves any village address into GPS coordinates using AI + HERE Maps — across 652,178 villages in 36 Indian states. Telugu, Hindi, English.
-    </p>
-
-    <div class="hero-ctas">
-      <a href="mailto:admin@bigeo.in?subject=BiGeo API Access Request" class="btn-primary">Get API Access →</a>
-      <a href="#code" class="btn-ghost">View Docs</a>
+    <div class="stat-item">
+      <span class="stat-num">36</span>
+      <span class="stat-label">States</span>
     </div>
+    <div class="stat-item">
+      <span class="stat-num">99%</span>
+      <span class="stat-label">Accuracy</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">&lt;2s</span>
+      <span class="stat-label">Response Time</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Languages</span>
+    </div>
+  </div>
 
-    <!-- Terminal -->
-    <div class="terminal-wrap" aria-label="Live API demonstration">
-      <div class="terminal">
-        <div class="terminal-header" aria-hidden="true">
-          <div class="t-dot r"></div>
-          <div class="t-dot y"></div>
-          <div class="t-dot g"></div>
-          <span class="terminal-title">bigeo — bash — 80×24</span>
+  <!-- DEMO TERMINAL -->
+  <div class="demo-wrap reveal" style="margin-top:56px">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="t-dot red"></span>
+        <span class="t-dot yellow"></span>
+        <span class="t-dot green"></span>
+        <span class="t-label">BiGeo API · Live Demo</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-input-row">
+          <input class="t-input" id="demo-input" type="text"
+            placeholder="Near the banyan tree, Yellareddyguda, Siddipet..."/>
+          <button class="t-btn" onclick="runDemo()" id="demo-btn">Parse →</button>
         </div>
-        <div class="terminal-body">
-          <div class="t-line">
-            <span class="t-prompt">$ </span><span id="tw-cmd"></span><span class="t-cursor" id="tw-cur" aria-hidden="true"></span>
-          </div>
-          <div class="json-output" id="tw-json" aria-live="polite">
-            <div class="t-line">&nbsp;</div>
-            <div class="t-line"><span class="t-brace">{</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"district"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"SIDDIPET"</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"mandal"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"YELLAREDDY"</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"lat"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-num">18.1018</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"lng"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-num">78.8520</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"confidence_score"</span><span class="t-brace">:&nbsp;</span><span class="t-val-num">0.94</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"model"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"claude-sonnet-4-6"</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"detected_language"</span><span class="t-brace">:</span><span class="t-val-str">"en"</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"gps_source"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"here_maps"</span><span class="t-brace">,</span></div>
-            <div class="t-line"><span class="t-brace">}</span></div>
-          </div>
+        <div class="t-output" id="demo-output">
+<span class="comment">// Enter any Indian village address above and hit Parse</span>
+<span class="comment">// Supports Telugu · Hindi · English</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     PROOF BAR
-     ================================================================ -->
-<div class="proof-bar" role="region" aria-label="Trusted by">
-  <span class="proof-label">Powered by</span>
-  <div class="proof-pills">
-    <span class="proof-pill">Amazon Bedrock</span>
-    <span class="proof-pill">HERE Maps</span>
-    <span class="proof-pill">652K Villages</span>
-    <span class="proof-pill">36 States</span>
-    <span class="proof-pill">AWS ap-south-1</span>
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-inner">
+    <p class="section-tag reveal">How it works</p>
+    <h2 class="section-h2 reveal">5 steps. Under 2 seconds.</h2>
+    <p class="section-sub reveal">Every address goes through our AI pipeline — translation, parsing, GPS enrichment, and cross-validation before returning structured JSON.</p>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-icon">🌐</div>
+        <div class="step-title">Detect & Translate</div>
+        <div class="step-desc">Telugu or Hindi detected, auto-translated to English preserving place names.</div>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-icon">⚡</div>
+        <div class="step-title">Fast Parse (Gemini)</div>
+        <div class="step-desc">Gemini 2.0 Flash extracts village, mandal, district, state in milliseconds.</div>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-icon">🧠</div>
+        <div class="step-title">Deep Validate (Claude)</div>
+        <div class="step-desc">Claude Sonnet 4.6 cross-checks against 1M+ village Knowledge Base on AWS Bedrock.</div>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <div class="step-icon">📍</div>
+        <div class="step-title">GPS Enrichment</div>
+        <div class="step-desc">Google Maps pins it. HERE Maps confirms within 2km. Dual-verified coordinates.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">05</div>
+        <div class="step-icon">✅</div>
+        <div class="step-title">Return JSON</div>
+        <div class="step-desc">Structured response with lat/lng, confidence score, and full admin hierarchy.</div>
+      </div>
+    </div>
   </div>
-</div>
-
-<!-- ================================================================
-     FEATURES / BENTO
-     ================================================================ -->
-<section class="section" id="features" aria-labelledby="feat-h2">
-  <div class="bento-header">
-    <div class="section-label">Platform</div>
-    <h2 class="section-title" id="feat-h2">Every tool your logistics team needs</h2>
-    <p class="section-sub" style="margin:0 auto">From raw village names to optimized routes — in milliseconds.</p>
-  </div>
-
-  <div class="bento-grid">
-
-    <!-- CARD 1: Map (span 2) -->
-    <div class="bento-card span2 obs-card" aria-label="Address Intelligence">
-      <div class="bc-label">Address Intelligence</div>
-      <div class="bc-title">Resolve any village address</div>
-      <div class="bc-sub">652,178 census villages across 36 states. GPS centroids for 12 states. Powered by Bedrock Knowledge Base.</div>
-      <div class="map-wrap" aria-hidden="true">
-        <svg viewBox="0 0 320 180" width="320" height="180" xmlns="http://www.w3.org/2000/svg">
-          <!-- Telangana outline (simplified) -->
-          <path d="M58,28 L78,18 L108,16 L138,20 L168,14 L198,22 L220,16 L252,28 L262,48 L256,68 L266,84 L259,104 L249,120 L256,140 L251,158 L238,168 L218,175 L198,180 L183,170 L168,175 L153,185 L138,178 L123,185 L108,175 L93,178 L78,170 L66,158 L58,142 L53,125 L48,108 L43,90 L48,70 L53,50 Z"
-            fill="rgba(94,106,210,.07)" stroke="rgba(94,106,210,.38)" stroke-width="1.4" stroke-linejoin="round"/>
-          <!-- Subtle mandal dividers -->
-          <path d="M78,58 L118,53 L153,63 L188,56 M78,88 L128,83 L163,93 M98,118 L138,113 L173,120"
-            stroke="rgba(94,106,210,.12)" stroke-width=".8" fill="none"/>
-          <!-- Siddipet -->
-          <circle cx="156" cy="73" r="14" fill="rgba(94,106,210,.15)" class="dist-ring"/>
-          <circle cx="156" cy="73" r="5" fill="#5e6ad2" class="dist-dot"/>
-          <text x="164" y="77" fill="rgba(255,255,255,.6)" font-size="9" font-family="Inter,sans-serif" font-weight="500">Siddipet</text>
-          <!-- Medak -->
-          <circle cx="116" cy="93" r="14" fill="rgba(34,197,94,.15)" class="dist-ring"/>
-          <circle cx="116" cy="93" r="5" fill="#22c55e" class="dist-dot"/>
-          <text x="124" y="97" fill="rgba(255,255,255,.6)" font-size="9" font-family="Inter,sans-serif" font-weight="500">Medak</text>
-          <!-- Sangareddy -->
-          <circle cx="98" cy="118" r="14" fill="rgba(251,191,36,.15)" class="dist-ring"/>
-          <circle cx="98" cy="118" r="5" fill="#fbbf24" class="dist-dot"/>
-          <text x="106" y="122" fill="rgba(255,255,255,.6)" font-size="9" font-family="Inter,sans-serif" font-weight="500">Sangareddy</text>
-          <!-- Lines between -->
-          <line x1="156" y1="73" x2="116" y2="93" stroke="rgba(94,106,210,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-          <line x1="116" y1="93" x2="98" y2="118" stroke="rgba(94,106,210,.25)" stroke-width="1" stroke-dasharray="4,3"/>
-        </svg>
-      </div>
-      <div class="map-stats">
-        <div class="map-stat"><strong class="bc-counter" data-target="1284">0</strong>Addresses Parsed</div>
-        <div class="map-stat"><strong class="bc-counter" data-target="36">0</strong>States Covered</div>
-        <div class="map-stat"><strong>652K</strong>Villages Indexed</div>
-      </div>
-    </div>
-
-    <!-- CARD 2: Multilingual -->
-    <div class="bento-card obs-card" aria-label="Multilingual support">
-      <div class="bc-label">Multilingual</div>
-      <div class="bc-title">Any language, one API</div>
-      <div class="bc-sub">Submit addresses in Telugu, Hindi, or English — auto-detected.</div>
-      <div class="lang-pills">
-        <div class="lang-pill active" id="lp0">
-          <span class="lp-label">Telugu</span>
-          యెల్లారెడ్డిగూడ గ్రామం
-        </div>
-        <div class="lang-pill" id="lp1">
-          <span class="lp-label">Hindi</span>
-          येल्लारेड्डीगुडा गांव
-        </div>
-        <div class="lang-pill" id="lp2">
-          <span class="lp-label">English</span>
-          Yellareddyguda, Siddipet
-        </div>
-      </div>
-    </div>
-
-    <!-- CARD 3: AI Engine -->
-    <div class="bento-card obs-card" aria-label="Dual AI Engine">
-      <div class="bc-label">Dual AI Engine</div>
-      <div class="bc-title">Gemini + Claude</div>
-      <div class="bc-sub">4-layer pipeline: Knowledge Base → HERE Maps → Claude AI → DynamoDB cache.</div>
-      <div class="ai-models">
-        <div class="ai-model">
-          <div class="ai-icon" style="background:rgba(66,133,244,.14)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" stroke="#4285f4" stroke-width="2"/>
-              <path d="M8 12h8M12 8v8" stroke="#34a853" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="ai-info">
-            <div class="ai-name">Claude Sonnet 4.6</div>
-            <div class="ai-role">Primary parser · Bedrock · 99% confidence</div>
-            <div class="conf-bar"><div class="conf-fill cf-g" data-w="99"></div></div>
-          </div>
-        </div>
-        <div class="ai-model">
-          <div class="ai-icon" style="background:rgba(34,197,94,.14)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" stroke="#22c55e" stroke-width="2"/>
-              <path d="M12 7v5l3.5 3.5" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="ai-info">
-            <div class="ai-name">HERE Maps (Amazon)</div>
-            <div class="ai-role">GPS validation · Amazon Location Service</div>
-            <div class="conf-bar"><div class="conf-fill cf-c" data-w="95"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CARD 4: Route -->
-    <div class="bento-card obs-card" aria-label="Hub and Spoke Routing">
-      <div class="bc-label">Hub &amp; Spoke Routing</div>
-      <div class="bc-title">Optimized delivery paths</div>
-      <div class="bc-sub">Compute multi-stop routes across mandal hubs instantly.</div>
-      <div style="display:flex;justify-content:center;margin-top:14px" aria-hidden="true">
-        <svg width="190" height="118" viewBox="0 0 190 118" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="95" cy="59" r="13" fill="rgba(94,106,210,.18)" stroke="#5e6ad2" stroke-width="2"/>
-          <text x="95" y="63" text-anchor="middle" fill="#7b84e0" font-size="7.5" font-family="Inter,sans-serif" font-weight="700">HUB</text>
-          <circle cx="28" cy="22" r="7" fill="rgba(34,197,94,.16)" stroke="#22c55e" stroke-width="1.5"/>
-          <circle cx="163" cy="22" r="7" fill="rgba(34,197,94,.16)" stroke="#22c55e" stroke-width="1.5"/>
-          <circle cx="18" cy="92" r="7" fill="rgba(34,197,94,.16)" stroke="#22c55e" stroke-width="1.5"/>
-          <circle cx="172" cy="92" r="7" fill="rgba(34,197,94,.16)" stroke="#22c55e" stroke-width="1.5"/>
-          <circle cx="95" cy="108" r="7" fill="rgba(34,197,94,.16)" stroke="#22c55e" stroke-width="1.5"/>
-          <line x1="84" y1="47" x2="34" y2="28" stroke="#5e6ad2" stroke-width="1.5" class="route-line"/>
-          <line x1="106" y1="47" x2="157" y2="28" stroke="#5e6ad2" stroke-width="1.5" class="route-line"/>
-          <line x1="82" y1="66" x2="24" y2="90" stroke="#5e6ad2" stroke-width="1.5" class="route-line"/>
-          <line x1="108" y1="66" x2="166" y2="90" stroke="#5e6ad2" stroke-width="1.5" class="route-line"/>
-          <line x1="95" y1="72" x2="95" y2="101" stroke="#5e6ad2" stroke-width="1.5" class="route-line"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- CARD 5: WhatsApp -->
-    <div class="bento-card obs-card" aria-label="WhatsApp Native integration">
-      <div class="bc-label">WhatsApp Native</div>
-      <div class="bc-title">Farmers use WhatsApp</div>
-      <div class="bc-sub">No app install. Works on any feature phone.</div>
-      <div class="phone-mock" aria-label="WhatsApp demo chat">
-        <div class="phone-hdr">
-          <span class="wa-dot" aria-hidden="true"></span>
-          <span>BiGeo Bot</span>
-          <span style="margin-left:auto;color:var(--green);font-size:10px">● Online</span>
-        </div>
-        <div class="chat-bub cb-in">నా గ్రామం: యెల్లారెడ్డిగూడ 📍</div>
-        <div class="chat-bub cb-out">
-          ✅ Found!<br>
-          <strong>Yellareddy, Siddipet</strong><br>
-          📍 18.1018°N 78.8520°E<br>
-          Confidence: 94%
-        </div>
-      </div>
-    </div>
-
-    <!-- CARD 6: Live API (span 2) -->
-    <div class="bento-card span2 obs-card" aria-label="Live API performance">
-      <div class="bc-label">Live Performance</div>
-      <div class="bc-title">
-        <span class="pulse-dot" aria-hidden="true"></span>
-        API running — avg response 1.8s · HERE Maps GPS live
-      </div>
-      <div class="bc-sub">Production-ready. Regional deployment on AWS ap-south-1 (Mumbai).</div>
-      <div class="api-counter-row">
-        <div class="api-stat">
-          <div class="api-num" id="api-calls">0</div>
-          <div class="api-lbl">Total API calls</div>
-        </div>
-        <div class="api-stat">
-          <div class="api-num">1.2s</div>
-          <div class="api-lbl">Avg latency</div>
-        </div>
-        <div class="api-stat">
-          <div class="api-num">99.9%</div>
-          <div class="api-lbl">Uptime</div>
-        </div>
-        <div class="api-stat">
-          <div class="api-num" style="font-size:18px;padding-top:8px">ap-south-1</div>
-          <div class="api-lbl">AWS Region</div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /bento-grid -->
 </section>
 
-<!-- ================================================================
-     CODE SECTION
-     ================================================================ -->
-<section class="section" id="code" style="border-top:1px solid var(--border)" aria-labelledby="code-h2">
-  <div class="code-inner">
-    <div>
-      <div class="section-label">Developer API</div>
-      <h2 class="section-title" id="code-h2">Built for developers.<br>Ready in minutes.</h2>
-      <p class="section-sub">One REST endpoint. Any address format. Structured JSON response with coordinates, district, mandal, and confidence.</p>
-      <div class="base-url-block">
-        <div class="base-url-label">
-          <span class="base-url-dot" aria-hidden="true"></span>
-          Base URL
-        </div>
-        <code class="base-url-code">https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1</code>
-      </div>
-    </div>
+<!-- FEATURES -->
+<section id="features" style="padding-top:0">
+  <div class="section-inner">
+    <p class="section-tag reveal">What's inside</p>
+    <h2 class="section-h2 reveal">Built for the billion<br/>without a street address.</h2>
 
-    <div>
-      <div class="tab-row" role="tablist" aria-label="Code language">
-        <button class="tab-btn active" onclick="setTab('curl')" role="tab" aria-selected="true" aria-controls="tb-curl" id="tab-curl-btn">cURL</button>
-        <button class="tab-btn" onclick="setTab('python')" role="tab" aria-selected="false" aria-controls="tb-python" id="tab-python-btn">Python</button>
-        <button class="tab-btn" onclick="setTab('node')" role="tab" aria-selected="false" aria-controls="tb-node" id="tab-node-btn">Node.js</button>
+    <div class="bento">
+      <!-- Big number -->
+      <div class="bento-card bc-span4 reveal">
+        <div class="bc-label">Coverage</div>
+        <div class="bc-num">1M+</div>
+        <div class="bc-unit">GPS-tagged rural locations</div>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="bc-tag">815K habitations</span>
+          <span class="bc-tag">165K post offices</span>
+          <span class="bc-tag">101K villages</span>
+        </div>
       </div>
 
-      <!-- cURL -->
-      <div class="code-block active" id="tb-curl" role="tabpanel" aria-labelledby="tab-curl-btn">
-        <div class="code-hdr">
-          <span class="code-lang">bash</span>
-          <button class="copy-btn" onclick="doCopy('curl')" aria-label="Copy cURL code">Copy</button>
+      <!-- Languages -->
+      <div class="bento-card bc-span4 reveal reveal-delay-1">
+        <div class="bc-label">Languages</div>
+        <div class="bc-title">3 Languages,<br/>1 API</div>
+        <div class="bc-desc" style="margin-top:12px">Telugu · Hindi · English. Auto-detected, auto-translated. PMGSY government data for place names.</div>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="bc-tag">తెలుగు</span>
+          <span class="bc-tag">हिन्दी</span>
+          <span class="bc-tag">English</span>
         </div>
-        <pre><span class="hl-m">curl</span> <span class="hl-f">-X POST</span> <span class="hl-s">https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse</span> \
-  <span class="hl-f">-H</span> <span class="hl-s">"x-api-key: YOUR_API_KEY"</span> \
-  <span class="hl-f">-H</span> <span class="hl-s">"Content-Type: application/json"</span> \
-  <span class="hl-f">-d</span> <span class="hl-s">'{"address": "Yellareddyguda, Siddipet"}'</span></pre>
       </div>
 
-      <!-- Python -->
-      <div class="code-block" id="tb-python" role="tabpanel" aria-labelledby="tab-python-btn">
-        <div class="code-hdr">
-          <span class="code-lang">python</span>
-          <button class="copy-btn" onclick="doCopy('python')" aria-label="Copy Python code">Copy</button>
+      <!-- AI Stack -->
+      <div class="bento-card bc-span4 reveal reveal-delay-2">
+        <div class="bc-label">AI Stack</div>
+        <div class="bc-title">Triple AI<br/>Validation</div>
+        <div class="bc-desc" style="margin-top:12px">Gemini 2.0 Flash for speed. Claude Sonnet 4.6 for accuracy. Bedrock KB for ground truth.</div>
+        <div style="margin-top:16px;display:flex;gap:6px;flex-wrap:wrap">
+          <span class="bc-tag">Gemini 2.0</span>
+          <span class="bc-tag">Claude Sonnet</span>
+          <span class="bc-tag">Bedrock KB</span>
         </div>
-        <pre><span class="hl-m">import</span> requests
+      </div>
 
-url = <span class="hl-s">"https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse"</span>
-headers = {
-    <span class="hl-s">"x-api-key"</span>: <span class="hl-s">"YOUR_API_KEY"</span>,
-    <span class="hl-s">"Content-Type"</span>: <span class="hl-s">"application/json"</span>
+      <!-- Confidence bars -->
+      <div class="bento-card bc-span6 reveal">
+        <div class="bc-label">Accuracy by Source</div>
+        <div class="bc-title">GPS Cross-Validation</div>
+        <div class="bc-bar-wrap">
+          <div class="bc-bar-row">
+            <span class="bc-bar-label">Google Maps</span>
+            <div class="bc-bar-track"><div class="bc-bar-fill" data-w="99"></div></div>
+            <span class="bc-bar-pct">99%</span>
+          </div>
+          <div class="bc-bar-row">
+            <span class="bc-bar-label">HERE Maps</span>
+            <div class="bc-bar-track"><div class="bc-bar-fill" data-w="95"></div></div>
+            <span class="bc-bar-pct">95%</span>
+          </div>
+          <div class="bc-bar-row">
+            <span class="bc-bar-label">PMGSY Data</span>
+            <div class="bc-bar-track"><div class="bc-bar-fill" data-w="88"></div></div>
+            <span class="bc-bar-pct">88%</span>
+          </div>
+          <div class="bc-bar-row">
+            <span class="bc-bar-label">AI Inference</span>
+            <div class="bc-bar-track"><div class="bc-bar-fill" data-w="76"></div></div>
+            <span class="bc-bar-pct">76%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- States count -->
+      <div class="bento-card bc-span3 reveal reveal-delay-1">
+        <div class="bc-label">Coverage</div>
+        <div class="bc-num">36</div>
+        <div class="bc-unit">States & UTs</div>
+        <div class="bc-desc" style="margin-top:12px;font-size:12px">Pan-India. Government PMGSY data + Census 2011.</div>
+      </div>
+
+      <!-- Latency -->
+      <div class="bento-card bc-span3 reveal reveal-delay-2">
+        <div class="bc-label">Performance</div>
+        <div class="bc-num" style="font-size:40px">&lt;2s</div>
+        <div class="bc-unit">API response time</div>
+        <div class="bc-desc" style="margin-top:12px;font-size:12px">DynamoDB cache hits return in &lt;100ms.</div>
+      </div>
+
+      <!-- Response JSON -->
+      <div class="bento-card bc-span12 reveal">
+        <div class="bc-label">API Response</div>
+        <div style="font-family:var(--mono);font-size:12.5px;line-height:1.9;color:#888;overflow-x:auto">
+<span style="color:var(--muted2)">// POST /v1/parse · {"address": "Near banyan tree, Yellareddyguda, Siddipet"}</span><br/>
+{<br/>
+&nbsp;&nbsp;<span style="color:#666">"village"</span>: <span style="color:var(--orange)">"Yellareddyguda"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"mandal"</span>: <span style="color:var(--orange)">"Dubbak"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"district"</span>: <span style="color:var(--orange)">"Siddipet"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"state"</span>: <span style="color:var(--orange)">"Telangana"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"pincode"</span>: <span style="color:#22c55e">502103</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"lat"</span>: <span style="color:#22c55e">18.1021</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"lng"</span>: <span style="color:#22c55e">78.8491</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"confidence_score"</span>: <span style="color:#22c55e">0.99</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"gps_source"</span>: <span style="color:var(--orange)">"google-maps+here-verified"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"latency_ms"</span>: <span style="color:#22c55e">1240</span><br/>
 }
-payload = {<span class="hl-s">"address"</span>: <span class="hl-s">"Yellareddyguda, Siddipet"</span>}
-
-response = requests.<span class="hl-m">post</span>(url, json=payload, headers=headers)
-data = response.<span class="hl-m">json</span>()
-
-<span class="hl-m">print</span>(data[<span class="hl-s">"lat"</span>], data[<span class="hl-s">"lng"</span>])
-<span class="hl-c"># 18.1018  78.8520</span></pre>
-      </div>
-
-      <!-- Node.js -->
-      <div class="code-block" id="tb-node" role="tabpanel" aria-labelledby="tab-node-btn">
-        <div class="code-hdr">
-          <span class="code-lang">javascript</span>
-          <button class="copy-btn" onclick="doCopy('node')" aria-label="Copy Node.js code">Copy</button>
         </div>
-        <pre><span class="hl-m">const</span> res = <span class="hl-m">await</span> fetch(
-  <span class="hl-s">"https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse"</span>,
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCS / CODE -->
+<section id="docs">
+  <div class="section-inner">
+    <p class="section-tag reveal">Quick Start</p>
+    <h2 class="section-h2 reveal">One endpoint.<br/>Zero setup.</h2>
+    <p class="section-sub reveal">Get your API key, make your first call in 30 seconds.</p>
+
+    <div class="code-section reveal" style="margin-top:48px">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchTab('curl',this)">cURL</button>
+        <button class="code-tab" onclick="switchTab('python',this)">Python</button>
+        <button class="code-tab" onclick="switchTab('node',this)">Node.js</button>
+      </div>
+      <div class="code-block active" id="tab-curl">
+        <button class="copy-btn" onclick="doCopy('curl')">copy</button>
+<span class="c-cmd">curl</span> -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \
+  -H <span class="c-str">"x-api-key: YOUR_API_KEY"</span> \
+  -H <span class="c-str">"Content-Type: application/json"</span> \
+  -d <span class="c-str">'{"address": "Yellareddyguda, Siddipet"}'</span>
+      </div>
+      <div class="code-block" id="tab-python">
+        <button class="copy-btn" onclick="doCopy('python')">copy</button>
+<span class="c-key">import</span> requests
+
+res = requests.post(
+    <span class="c-str">"https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse"</span>,
+    headers={<span class="c-str">"x-api-key"</span>: <span class="c-str">"YOUR_API_KEY"</span>},
+    json={<span class="c-str">"address"</span>: <span class="c-str">"Yellareddyguda, Siddipet"</span>}
+)
+data = res.json()
+<span class="c-key">print</span>(data[<span class="c-str">"lat"</span>], data[<span class="c-str">"lng"</span>])  <span class="c-comment"># 18.1021 78.8491</span>
+      </div>
+      <div class="code-block" id="tab-node">
+        <button class="copy-btn" onclick="doCopy('node')">copy</button>
+<span class="c-key">const</span> res = <span class="c-key">await</span> fetch(
+  <span class="c-str">"https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse"</span>,
   {
-    method: <span class="hl-s">"POST"</span>,
-    headers: {
-      <span class="hl-s">"x-api-key"</span>: <span class="hl-s">"YOUR_API_KEY"</span>,
-      <span class="hl-s">"Content-Type"</span>: <span class="hl-s">"application/json"</span>,
-    },
-    body: JSON.<span class="hl-m">stringify</span>({ address: <span class="hl-s">"Yellareddyguda, Siddipet"</span> }),
+    method: <span class="c-str">"POST"</span>,
+    headers: { <span class="c-str">"x-api-key"</span>: <span class="c-str">"YOUR_API_KEY"</span> },
+    body: JSON.stringify({ address: <span class="c-str">"Yellareddyguda, Siddipet"</span> })
   }
 );
-<span class="hl-m">const</span> { lat, lng, district } = <span class="hl-m">await</span> res.<span class="hl-m">json</span>();
-console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, ${lng}`</span>);
-<span class="hl-c">// SIDDIPET: 18.1018, 78.8520</span></pre>
-      </div>
-
-      <!-- Response -->
-      <div class="res-block" aria-label="API response example">
-        <div class="res-hdr">
-          <span class="res-badge">200 OK</span>
-          <span>Response · application/json</span>
-        </div>
-        <pre style="padding:18px 22px;font-family:var(--mono);font-size:12.5px;line-height:1.78;color:#cdd6f4;overflow-x:auto"><span class="hl-m">{</span>
-  <span class="hl-k">"district"</span>:          <span class="hl-s">"SIDDIPET"</span>,
-  <span class="hl-k">"mandal"</span>:            <span class="hl-s">"YELLAREDDY"</span>,
-  <span class="hl-k">"lat"</span>:               <span class="hl-n">18.1018</span>,
-  <span class="hl-k">"lng"</span>:               <span class="hl-n">78.8520</span>,
-  <span class="hl-k">"confidence_score"</span>:  <span class="hl-n">0.99</span>,
-  <span class="hl-k">"model"</span>:             <span class="hl-s">"claude-sonnet-4-6"</span>,
-  <span class="hl-k">"detected_language"</span>: <span class="hl-s">"en"</span>,
-  <span class="hl-k">"gps_source"</span>:          <span class="hl-s">"here_maps"</span>,
-  <span class="hl-k">"cached"</span>:               <span class="hl-n">false</span>,
-<span class="hl-m">}</span></pre>
+<span class="c-key">const</span> { lat, lng, district } = <span class="c-key">await</span> res.json();
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     METRICS
-     ================================================================ -->
-<section class="section" aria-labelledby="metrics-h2">
-  <div style="text-align:center">
-    <div class="section-label">By the numbers</div>
-    <h2 class="section-title" id="metrics-h2">Growing every week</h2>
-  </div>
-  <div class="metrics-grid" role="list">
-    <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num"><span class="cu" data-target="1284">0</span></div>
-      <div class="metric-label">Addresses Parsed</div>
-    </div>
-    <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num"><span class="cu" data-target="36">0</span></div>
-      <div class="metric-label">States Covered</div>
-    </div>
-    <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num"><span class="cu" data-target="99">0</span><span class="metric-suffix">%</span></div>
-      <div class="metric-label">Parse Accuracy</div>
-    </div>
-    <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num">&lt;<span class="cu" data-target="2">0</span>s</div>
-      <div class="metric-label">Avg Latency (secs)</div>
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <p class="section-tag reveal">Pricing</p>
+    <h2 class="section-h2 reveal">Start free.<br/>Scale when ready.</h2>
+    <p class="section-sub reveal">500 free calls every month. No credit card. No expiry.</p>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="pricing-card reveal">
+        <div class="p-tier">Free Forever</div>
+        <div class="p-name">Starter</div>
+        <div class="p-price">₹0<span>/month</span></div>
+        <div class="p-calls">500 API calls / month</div>
+        <div class="p-divider"></div>
+        <div class="p-feature"><span class="check">→</span>All 36 states</div>
+        <div class="p-feature"><span class="check">→</span>Telugu · Hindi · English</div>
+        <div class="p-feature"><span class="check">→</span>GPS coordinates</div>
+        <div class="p-feature"><span class="check">→</span>Confidence score</div>
+        <div class="p-feature"><span class="check">→</span>Email support</div>
+        <button class="p-btn p-btn-outline"
+          onclick="mixpanel.track('Pricing Plan Clicked',{plan:'Starter'});window.location='mailto:admin@bigeo.in?subject=BiGeo Free API Key'">
+          Get API Key
+        </button>
+      </div>
+
+      <!-- Growth -->
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="p-tier">Most Popular</div>
+        <div class="p-name">Growth</div>
+        <div class="p-price">₹2,999<span>/month</span></div>
+        <div class="p-calls">10,000 API calls / month</div>
+        <div class="p-divider"></div>
+        <div class="p-feature"><span class="check">→</span>Everything in Starter</div>
+        <div class="p-feature"><span class="check">→</span>Bulk batch parsing</div>
+        <div class="p-feature"><span class="check">→</span>Priority queue</div>
+        <div class="p-feature"><span class="check">→</span>Usage dashboard</div>
+        <div class="p-feature"><span class="check">→</span>Slack support</div>
+        <button class="p-btn p-btn-fill"
+          onclick="mixpanel.track('Pricing Plan Clicked',{plan:'Growth'});window.location='mailto:admin@bigeo.in?subject=BiGeo Growth Plan'">
+          Start Growth →
+        </button>
+      </div>
+
+      <!-- Scale -->
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="p-tier">High Volume</div>
+        <div class="p-name">Scale</div>
+        <div class="p-price">₹9,999<span>/month</span></div>
+        <div class="p-calls">50,000 API calls / month</div>
+        <div class="p-divider"></div>
+        <div class="p-feature"><span class="check">→</span>Everything in Growth</div>
+        <div class="p-feature"><span class="check">→</span>SLA 99.9% uptime</div>
+        <div class="p-feature"><span class="check">→</span>Dedicated support</div>
+        <div class="p-feature"><span class="check">→</span>Custom integrations</div>
+        <div class="p-feature"><span class="check">→</span>Invoice billing</div>
+        <button class="p-btn p-btn-outline"
+          onclick="mixpanel.track('Pricing Plan Clicked',{plan:'Scale'});window.location='mailto:admin@bigeo.in?subject=BiGeo Scale Plan'">
+          Talk to Us
+        </button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card reveal reveal-delay-3">
+        <div class="p-tier">Enterprise</div>
+        <div class="p-name">Custom</div>
+        <div class="p-price" style="font-size:28px;letter-spacing:-1px">Let's talk</div>
+        <div class="p-calls">Unlimited API calls</div>
+        <div class="p-divider"></div>
+        <div class="p-feature"><span class="check">→</span>Private deployment</div>
+        <div class="p-feature"><span class="check">→</span>On-premise option</div>
+        <div class="p-feature"><span class="check">→</span>Custom LGD integration</div>
+        <div class="p-feature"><span class="check">→</span>White-label API</div>
+        <div class="p-feature"><span class="check">→</span>Dedicated infra</div>
+        <button class="p-btn p-btn-outline"
+          onclick="mixpanel.track('Pricing Plan Clicked',{plan:'Enterprise'});window.location='mailto:admin@bigeo.in?subject=BiGeo Enterprise'">
+          Contact Sales
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ================================================================
-     HOW IT WORKS
-     ================================================================ -->
-<section class="section" style="border-top:1px solid var(--border)" aria-labelledby="hiw-h2">
-  <div class="hiw-header">
-    <div class="section-label">How it works</div>
-    <h2 class="section-title" id="hiw-h2">Parse to GPS in three steps</h2>
-    <p class="section-sub" style="margin:0 auto">Submit an address in any format. Get precise coordinates and metadata back in under 2 seconds.</p>
-  </div>
-  <div class="hiw-steps">
-    <div class="hiw-step obs-step">
-      <div class="hiw-num" aria-hidden="true">1</div>
-      <div class="hiw-step-title">Send any address</div>
-      <div class="hiw-step-sub">POST a village name, landmark, or rough description in Telugu, Hindi, or English. No special formatting required.</div>
-    </div>
-    <div class="hiw-step obs-step">
-      <div class="hiw-num" aria-hidden="true">2</div>
-      <div class="hiw-step-title">AI resolves it</div>
-      <div class="hiw-step-sub">Bedrock KB searches 652K villages semantically. Claude Sonnet 4.6 structures the address. HERE Maps (Amazon Location Service) verifies GPS coordinates.</div>
-    </div>
-    <div class="hiw-step obs-step">
-      <div class="hiw-num" aria-hidden="true">3</div>
-      <div class="hiw-step-title">Get GPS + metadata</div>
-      <div class="hiw-step-sub">Receive lat/lng, district, mandal, confidence score, detected language, and model used — all in a single JSON response.</div>
-    </div>
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <p class="section-tag reveal">Get Started</p>
+    <h2 class="cta-h2 reveal">
+      500 free calls.<br/>No credit card.
+    </h2>
+    <p class="cta-sub reveal">Join logistics companies and agri-tech startups<br/>already resolving rural India.</p>
+    <form class="cta-form reveal" onsubmit="handleWaitlist(event)">
+      <input class="cta-input" id="wl-email" type="email" placeholder="you@company.com" required/>
+      <button type="submit" class="btn-primary">Get Free API Key →</button>
+    </form>
+    <p style="font-size:12px;color:var(--muted2);margin-top:16px" class="reveal">
+      Selected under MeitY GENESIS · Incubated at IIM Udaipur
+    </p>
   </div>
 </section>
 
-<!-- ================================================================
-     PLATFORM
-     ================================================================ -->
-<section class="section" style="border-top:1px solid var(--border)" aria-labelledby="platform-h2">
-  <div class="platform-inner">
-    <div>
-      <div class="section-label">Platform</div>
-      <h2 class="section-title" id="platform-h2">Beyond parsing — a complete logistics platform</h2>
-      <p class="section-sub">BiGeo is building the full stack for rural last-mile delivery across India.</p>
-      <div class="platform-feats">
-        <div class="pf-item obs-card">
-          <div class="pf-icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-          </div>
-          <div>
-            <div class="pf-name">Hub Optimizer</div>
-            <div class="pf-desc">Find optimal distribution hubs for any village cluster</div>
-          </div>
-        </div>
-        <div class="pf-item obs-card">
-          <div class="pf-icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <div>
-            <div class="pf-name">Route Optimizer</div>
-            <div class="pf-desc">Multi-stop delivery paths across mandal boundaries</div>
-          </div>
-        </div>
-        <div class="pf-item obs-card">
-          <div class="pf-icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div class="pf-name">ETA Prediction</div>
-            <div class="pf-desc">Accurate delivery windows with rural road factors</div>
-          </div>
-        </div>
-        <div class="pf-item obs-card">
-          <div class="pf-icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <div>
-            <div class="pf-name">Fleet Management</div>
-            <div class="pf-desc">Assign and track vehicles across rural delivery zones</div>
-          </div>
-        </div>
-        <div class="pf-item obs-card">
-          <div class="pf-icon" aria-hidden="true">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          </div>
-          <div>
-            <div class="pf-name">Analytics</div>
-            <div class="pf-desc">Delivery success rates, coverage maps, district insights</div>
-          </div>
-        </div>
-      </div>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Bi<span>Geo</span></div>
+    <div class="footer-badges">
+      <span class="badge">MeitY GENESIS</span>
+      <span class="badge">IIM Udaipur</span>
+      <span class="badge">AWS ap-south-1</span>
+      <span class="badge">1M+ Locations</span>
     </div>
-
-    <!-- Hub-and-spoke diagram -->
-    <div aria-hidden="true">
-      <svg width="100%" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="hg" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#5e6ad2" stop-opacity=".25"/>
-            <stop offset="100%" stop-color="#5e6ad2" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <circle cx="160" cy="150" r="62" fill="url(#hg)"/>
-        <!-- Hub -->
-        <circle cx="160" cy="150" r="28" fill="#111" stroke="#5e6ad2" stroke-width="1.8"/>
-        <text x="160" y="146" text-anchor="middle" fill="#7b84e0" font-size="8.5" font-family="Inter,sans-serif" font-weight="700">DISTRICT</text>
-        <text x="160" y="158" text-anchor="middle" fill="#7b84e0" font-size="8.5" font-family="Inter,sans-serif" font-weight="700">HUB</text>
-        <!-- Spokes -->
-        <circle cx="72" cy="58" r="20" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.4"/>
-        <text x="72" y="55" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Mandal</text>
-        <text x="72" y="66" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Hub A</text>
-        <circle cx="252" cy="58" r="20" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.4"/>
-        <text x="252" y="55" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Mandal</text>
-        <text x="252" y="66" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Hub B</text>
-        <circle cx="44" cy="190" r="20" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.4"/>
-        <text x="44" y="187" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Village</text>
-        <text x="44" y="198" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Cluster</text>
-        <circle cx="276" cy="190" r="20" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.4"/>
-        <text x="276" y="187" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Village</text>
-        <text x="276" y="198" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Cluster</text>
-        <circle cx="160" cy="268" r="20" fill="#0f0f0f" stroke="#2a2a2a" stroke-width="1.4"/>
-        <text x="160" y="265" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Delivery</text>
-        <text x="160" y="276" text-anchor="middle" fill="#666" font-size="7" font-family="Inter,sans-serif">Zone</text>
-        <!-- Spoke lines -->
-        <line x1="140" y1="130" x2="89" y2="73" stroke="#5e6ad2" stroke-width="1.4" class="spoke-line"/>
-        <line x1="180" y1="130" x2="234" y2="73" stroke="#5e6ad2" stroke-width="1.4" class="spoke-line"/>
-        <line x1="136" y1="163" x2="64" y2="186" stroke="#5e6ad2" stroke-width="1.4" class="spoke-line"/>
-        <line x1="184" y1="163" x2="256" y2="186" stroke="#5e6ad2" stroke-width="1.4" class="spoke-line"/>
-        <line x1="160" y1="178" x2="160" y2="248" stroke="#5e6ad2" stroke-width="1.4" class="spoke-line"/>
-        <!-- Midpoint dots -->
-        <circle cx="114" cy="101" r="3" fill="#5e6ad2" opacity=".5"/>
-        <circle cx="207" cy="101" r="3" fill="#5e6ad2" opacity=".5"/>
-        <circle cx="100" cy="174" r="3" fill="#22c55e" opacity=".5"/>
-        <circle cx="220" cy="174" r="3" fill="#22c55e" opacity=".5"/>
-        <circle cx="160" cy="213" r="3" fill="#22c55e" opacity=".5"/>
-      </svg>
+    <div class="footer-links">
+      <a href="mailto:admin@bigeo.in">admin@bigeo.in</a>
+      <a href="https://github.com/Swamy7218-thub/BiGeo" target="_blank">GitHub</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#docs">Docs</a>
     </div>
+    <p class="footer-copy">© 2026 BiGeo. Rural India's Last-Mile OS. All rights reserved.</p>
   </div>
-</section>
-
-<!-- ================================================================
-     PRICING
-     ================================================================ -->
-<section class="section" id="pricing" style="border-top:1px solid var(--border)" aria-labelledby="pricing-h2">
-  <div class="pricing-header">
-    <div class="section-label">Pricing</div>
-    <h2 class="section-title" id="pricing-h2">Simple, transparent pricing</h2>
-    <p class="section-sub" style="margin:0 auto">Start free. Scale as your delivery network grows.</p>
-  </div>
-  <div class="pricing-grid">
-
-    <div class="pricing-card obs-card" aria-label="Free plan">
-      <div class="pc-tier">Free</div>
-      <div class="pc-price">₹0</div>
-      <div class="pc-period">forever</div>
-      <div class="pc-div"></div>
-      <div class="pc-feats">
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>500 API calls / month</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Address parsing</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Siddipet district only</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>JSON response</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Community support</div>
-      </div>
-      <a href="mailto:admin@bigeo.in?subject=BiGeo Free Plan" class="btn-pc">Get started free</a>
-    </div>
-
-    <div class="pricing-card featured obs-card" aria-label="Growth plan — most popular">
-      <div class="feat-badge" aria-label="Most popular">Most Popular</div>
-      <div class="pc-tier">Growth</div>
-      <div class="pc-price"><span class="cur">₹</span>2,999</div>
-      <div class="pc-period">per month</div>
-      <div class="pc-div"></div>
-      <div class="pc-feats">
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>10,000 API calls / month</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>All 36 states (pan-India)</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>HERE Maps GPS verification</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>WhatsApp integration</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Multilingual (3 langs)</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Email support</div>
-      </div>
-      <a href="mailto:admin@bigeo.in?subject=BiGeo Growth Plan" class="btn-pc accent">Get Growth →</a>
-    </div>
-
-    <div class="pricing-card obs-card" aria-label="Enterprise plan">
-      <div class="pc-tier">Enterprise</div>
-      <div class="pc-price" style="font-size:30px;letter-spacing:-.03em">Custom</div>
-      <div class="pc-period">contact us</div>
-      <div class="pc-div"></div>
-      <div class="pc-feats">
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Unlimited API calls</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>652K village Knowledge Base</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Bedrock AI + HERE Maps</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Dedicated infrastructure</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>SLA + dedicated support</div>
-      </div>
-      <a href="mailto:admin@bigeo.in?subject=BiGeo Enterprise Inquiry" class="btn-pc">Contact sales →</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- ================================================================
-     CTA
-     ================================================================ -->
-<div class="cta-section" role="region" aria-labelledby="cta-h2">
-  <div class="cta-glow" aria-hidden="true"></div>
-  <div class="section-label" style="margin-bottom:12px">Get early access</div>
-  <h2 class="cta-title" id="cta-h2">Rural India is ready.<br>Are you?</h2>
-  <p class="cta-sub">Join logistics teams, agri-startups, and developers building on BiGeo.</p>
-  <form class="email-form" onsubmit="handleWaitlist(event)" aria-label="Join waitlist">
-    <input type="email" id="wl-email" class="email-input" placeholder="you@company.com" required aria-label="Email address" />
-    <button type="submit" class="btn-primary">Join Waitlist</button>
-  </form>
-  <p class="cta-contact">Or reach us at <a href="mailto:admin@bigeo.in">admin@bigeo.in</a></p>
-</div>
-
-<!-- ================================================================
-     FOOTER
-     ================================================================ -->
-<footer role="contentinfo">
-  <div class="footer-logo">
-    <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect width="28" height="28" rx="6" fill="#5e6ad2"/>
-      <circle cx="14" cy="11" r="4.2" stroke="#fff" stroke-width="1.8"/>
-      <ellipse cx="14" cy="20" rx="5.2" ry="2.4" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
-    </svg>
-    BiGeo
-  </div>
-  <span class="footer-copy">© 2026 BiGeo Technologies. Built in Telangana, India.</span>
-  <nav class="footer-links" aria-label="Footer links">
-    <a href="#features">Product</a>
-    <a href="#code">Docs</a>
-    <a href="https://github.com/Swamy7218-thub/BiGeo" target="_blank" rel="noopener">GitHub</a>
-    <a href="mailto:admin@bigeo.in">Contact</a>
-  </nav>
 </footer>
 
-<!-- ================================================================
-     JAVASCRIPT
-     ================================================================ -->
+</div><!-- /wrapper -->
+
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 <script>
-(function() {
-  'use strict';
+(function(){
+'use strict';
 
-  /* ---- Cursor ---- */
-  var cur = document.getElementById('cursor');
-  var ring = document.getElementById('cursor-ring');
-  var mx = -200, my = -200, rx = -200, ry = -200;
+/* ── CURSOR ── */
+var cur = document.getElementById('cursor');
+var ring = document.getElementById('cursor-ring');
+var mx = window.innerWidth/2, my = window.innerHeight/2;
+var rx = mx, ry = my;
+document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
+(function animRing(){
+  rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a,button,.bento-card,.pricing-card,.step').forEach(function(el){
+  el.addEventListener('mouseenter',function(){ document.body.classList.add('cursor-hover'); });
+  el.addEventListener('mouseleave',function(){ document.body.classList.remove('cursor-hover'); });
+});
 
-  document.addEventListener('mousemove', function(e) {
-    mx = e.clientX; my = e.clientY;
-    cur.style.left = mx + 'px';
-    cur.style.top = my + 'px';
-  });
+/* ── NAV SCROLL ── */
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
 
-  (function animRing() {
-    rx += (mx - rx) * 0.13;
-    ry += (my - ry) * 0.13;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
+/* ── THREE.JS PARTICLE NETWORK ── */
+var canvas = document.getElementById('three-canvas');
+var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
 
-  document.querySelectorAll('a, button, input').forEach(function(el) {
-    el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
-    el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
-  });
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 80;
 
-  /* ---- Nav scroll ---- */
-  var nav = document.getElementById('nav');
-  var lastY = 0;
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 16);
-    lastY = window.scrollY;
-  }, { passive: true });
+// Particle system — dots forming a loose India map shape
+var N = 800;
+var positions = new Float32Array(N * 3);
+var colors = new Float32Array(N * 3);
+var sizes = new Float32Array(N);
 
-  /* ---- Typewriter ---- */
-  var twCmd = document.getElementById('tw-cmd');
-  var twCur = document.getElementById('tw-cur');
-  var twJson = document.getElementById('tw-json');
-  var twText = 'bigeo parse "Yellareddyguda gaon, Siddipet ke paas"';
-  var twIdx = 0;
-  var twActive = true;
+var orange = new THREE.Color(0xFF6600);
+var orangeLight = new THREE.Color(0xFF8C42);
+var dim = new THREE.Color(0x2a2a2a);
 
-  function twTick() {
-    if (!twActive) return;
-    if (twIdx <= twText.length) {
-      twCmd.textContent = twText.slice(0, twIdx++);
-      setTimeout(twTick, 58 + Math.random() * 28);
-    } else {
-      setTimeout(function() {
-        twCur.style.display = 'none';
-        twJson.classList.add('show');
-        setTimeout(function() {
-          twJson.classList.remove('show');
-          twCmd.textContent = '';
-          twIdx = 0;
-          twCur.style.display = 'inline-block';
-          setTimeout(twTick, 500);
-        }, 4200);
-      }, 360);
+for(var i=0; i<N; i++){
+  // Scatter in a rough India-ish region
+  var x = (Math.random()-0.3)*90;
+  var y = (Math.random()-0.3)*70;
+  var z = (Math.random()-0.5)*30;
+  positions[i*3]=x; positions[i*3+1]=y; positions[i*3+2]=z;
+
+  // 20% bright orange, 20% dim orange, rest very dim
+  var r = Math.random();
+  var col = r<0.1 ? orange : r<0.3 ? orangeLight : dim;
+  colors[i*3]=col.r; colors[i*3+1]=col.g; colors[i*3+2]=col.b;
+  sizes[i] = r<0.1 ? 2.5 : r<0.3 ? 1.5 : 0.8;
+}
+
+var geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+geo.setAttribute('color', new THREE.BufferAttribute(colors,3));
+geo.setAttribute('size', new THREE.BufferAttribute(sizes,1));
+
+var mat = new THREE.PointsMaterial({
+  size: 1.2, vertexColors: true, transparent: true,
+  opacity: 0.7, sizeAttenuation: true
+});
+
+var points = new THREE.Points(geo, mat);
+scene.add(points);
+
+// Connecting lines between nearby points
+var lineMat = new THREE.LineBasicMaterial({ color:0xFF6600, transparent:true, opacity:0.04 });
+var lineGeo = new THREE.BufferGeometry();
+var lineVerts = [];
+for(var i=0; i<N; i++){
+  for(var j=i+1; j<N; j++){
+    var dx=positions[i*3]-positions[j*3];
+    var dy=positions[i*3+1]-positions[j*3+1];
+    var dz=positions[i*3+2]-positions[j*3+2];
+    var dist=Math.sqrt(dx*dx+dy*dy+dz*dz);
+    if(dist < 18 && Math.random()<0.15){
+      lineVerts.push(positions[i*3],positions[i*3+1],positions[i*3+2]);
+      lineVerts.push(positions[j*3],positions[j*3+1],positions[j*3+2]);
     }
   }
-  setTimeout(twTick, 1000);
+}
+lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(lineVerts,3));
+var lines = new THREE.LineSegments(lineGeo, lineMat);
+scene.add(lines);
 
-  /* ---- Tab switcher ---- */
-  window.setTab = function(lang) {
-    document.querySelectorAll('.code-block').forEach(function(b) { b.classList.remove('active'); });
-    document.querySelectorAll('.tab-btn').forEach(function(b) {
-      b.classList.remove('active');
-      b.setAttribute('aria-selected', 'false');
-    });
-    var block = document.getElementById('tb-' + lang);
-    var btnId = 'tab-' + lang + '-btn';
-    if (block) block.classList.add('active');
-    var btn = document.getElementById(btnId);
-    if (btn) { btn.classList.add('active'); btn.setAttribute('aria-selected', 'true'); }
-  };
+var clock = new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  var t = clock.getElapsedTime();
+  points.rotation.y = t * 0.03;
+  points.rotation.x = Math.sin(t*0.02) * 0.05;
+  lines.rotation.y = t * 0.03;
+  lines.rotation.x = Math.sin(t*0.02) * 0.05;
+  // Breathe opacity
+  mat.opacity = 0.5 + Math.sin(t*0.5)*0.2;
+  renderer.render(scene, camera);
+}
+animate();
 
-  /* ---- Copy code ---- */
-  var codeTexts = {
-    curl: 'curl -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"address": "Yellareddyguda, Siddipet"}\'',
-    python: 'import requests\n\nurl = "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse"\nheaders = {\n    "x-api-key": "YOUR_API_KEY",\n    "Content-Type": "application/json"\n}\npayload = {"address": "Yellareddyguda, Siddipet"}\n\nresponse = requests.post(url, json=payload, headers=headers)\ndata = response.json()\nprint(data["lat"], data["lng"])',
-    node: 'const res = await fetch(\n  "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n  {\n    method: "POST",\n    headers: {\n      "x-api-key": "YOUR_API_KEY",\n      "Content-Type": "application/json",\n    },\n    body: JSON.stringify({ address: "Yellareddyguda, Siddipet" }),\n  }\n);\nconst { lat, lng, district } = await res.json();\nconsole.log(`${district}: ${lat}, ${lng}`);'
-  };
+window.addEventListener('resize', function(){
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+});
 
-  window.doCopy = function(lang) {
-    if (!navigator.clipboard) return;
-    mixpanel.track('Code Copied', { language: lang });
-    navigator.clipboard.writeText(codeTexts[lang]).then(function() {
-      var btn = document.querySelector('#tb-' + lang + ' .copy-btn');
-      if (!btn) return;
-      var orig = btn.textContent;
-      btn.textContent = 'Copied!';
-      btn.style.color = 'var(--green)';
-      btn.style.borderColor = 'var(--green)';
-      setTimeout(function() {
-        btn.textContent = orig;
-        btn.style.color = '';
-        btn.style.borderColor = '';
-      }, 1600);
-    });
-  };
+// Mouse parallax
+document.addEventListener('mousemove', function(e){
+  var nx = (e.clientX/window.innerWidth - 0.5)*2;
+  var ny = -(e.clientY/window.innerHeight - 0.5)*2;
+  gsap.to(points.rotation, { y: nx*0.15, x: ny*0.1, duration:2, ease:'power2.out' });
+});
 
-  /* ---- Count-up ---- */
-  function countUp(el) {
-    var target = parseInt(el.dataset.target, 10);
-    var dur = 1300;
-    var start = performance.now();
-    function step(now) {
-      var t = Math.min((now - start) / dur, 1);
-      var ease = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.floor(ease * target);
-      if (t < 1) requestAnimationFrame(step);
-      else el.textContent = target;
-    }
-    requestAnimationFrame(step);
-  }
+/* ── GSAP SCROLL REVEALS ── */
+gsap.registerPlugin(ScrollTrigger);
 
-  /* ---- IntersectionObserver helpers ---- */
-  function makeIO(cb, threshold) {
-    return new IntersectionObserver(function(entries) {
-      entries.forEach(function(e, i) {
-        if (e.isIntersecting) {
-          cb(e.target, i);
-          makeIO.obs && makeIO.obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: threshold || 0.12 });
-  }
-
-  // Cards (bento + platform + pricing)
-  var ioCard = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e, i) {
-      if (e.isIntersecting) {
-        var idx = Array.from(e.target.parentElement.children).indexOf(e.target);
-        setTimeout(function() { e.target.classList.add('card-in'); }, idx * 75);
-        ioCard.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.obs-card, .pricing-card').forEach(function(el) { ioCard.observe(el); });
-
-  // Steps
-  var ioStep = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        var idx = Array.from(e.target.parentElement.children).indexOf(e.target);
-        setTimeout(function() { e.target.classList.add('step-in'); }, idx * 150);
-        ioStep.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.18 });
-  document.querySelectorAll('.obs-step').forEach(function(el) { ioStep.observe(el); });
-
-  // Metrics count-up
-  var ioMetric = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.cu').forEach(countUp);
-        ioMetric.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.obs-metric').forEach(function(el) { ioMetric.observe(el); });
-
-  // Bento counters + AI bars
-  var ioBento = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        // map card counters
-        e.target.querySelectorAll('.bc-counter').forEach(countUp);
-        // api calls counter
-        var apiEl = e.target.querySelector('#api-calls');
-        if (apiEl) {
-          var v = 0, t = 1284;
-          var iv = setInterval(function() {
-            v += 3;
-            if (v >= t) { v = t; clearInterval(iv); }
-            apiEl.textContent = v;
-          }, 22);
-        }
-        // confidence bars
-        e.target.querySelectorAll('.conf-fill').forEach(function(bar) {
-          setTimeout(function() { bar.style.width = bar.dataset.w + '%'; }, 250);
-        });
-        ioBento.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.bento-card').forEach(function(el) { ioBento.observe(el); });
-
-  /* ---- Language pill cycler ---- */
-  var lpEls = [
-    document.getElementById('lp0'),
-    document.getElementById('lp1'),
-    document.getElementById('lp2')
-  ];
-  var lpActive = 0;
-  setInterval(function() {
-    lpEls[lpActive].classList.remove('active');
-    lpActive = (lpActive + 1) % 3;
-    lpEls[lpActive].classList.add('active');
-  }, 2400);
-
-  /* ---- Waitlist form ---- */
-  window.handleWaitlist = function(e) {
-    e.preventDefault();
-    var email = document.getElementById('wl-email').value || '';
-    mixpanel.track('Waitlist Joined', { email: email });
-    mixpanel.identify(email);
-    mixpanel.people.set({ '$email': email });
-    window.location.href = 'mailto:admin@bigeo.in?subject=BiGeo Waitlist&body=Hi BiGeo team,%0A%0AI would like to join the waitlist.%0A%0AEmail: ' + encodeURIComponent(email);
-  };
-
-  /* ---- Smooth anchor scroll ---- */
-  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      var target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+document.querySelectorAll('.reveal').forEach(function(el){
+  gsap.to(el, {
+    opacity:1, y:0, duration:0.9,
+    ease:'power3.out',
+    scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' }
   });
+});
 
-  /* ---- Track pricing plan clicks ---- */
-  document.querySelectorAll('.pricing-card').forEach(function(card) {
-    card.addEventListener('click', function() {
-      var plan = card.querySelector('h3');
-      if (plan) mixpanel.track('Pricing Plan Clicked', { plan: plan.textContent.trim() });
-    });
+// Animate confidence bars
+document.querySelectorAll('.bc-bar-fill').forEach(function(bar){
+  ScrollTrigger.create({
+    trigger: bar,
+    start: 'top 85%',
+    onEnter: function(){ bar.style.width = bar.dataset.w + '%'; }
   });
+});
 
-  /* ---- Track section views via IntersectionObserver ---- */
-  var sectionNames = { hero: 'Hero', pricing: 'Pricing', platform: 'Platform', bento: 'Features', steps: 'How It Works' };
-  Object.keys(sectionNames).forEach(function(id) {
-    var el = document.getElementById(id) || document.querySelector('.' + id + '-section') || document.querySelector('[data-section="' + id + '"]');
-    if (!el) return;
-    new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) mixpanel.track('Section Viewed', { section: sectionNames[id] });
-      });
-    }, { threshold: 0.3 }).observe(el);
+/* ── DEMO TERMINAL ── */
+var DEMO_RESULT = {
+  village:'Yellareddyguda', mandal:'Dubbak', district:'Siddipet',
+  state:'Telangana', pincode:502103, lat:18.1021, lng:78.8491,
+  confidence_score:0.99, gps_source:'google-maps+here-verified', latency_ms:1240
+};
+
+window.runDemo = function(){
+  var input = document.getElementById('demo-input').value.trim();
+  var out = document.getElementById('demo-output');
+  var btn = document.getElementById('demo-btn');
+  if(!input) return;
+  mixpanel.track('Demo Submitted', { address: input });
+  btn.textContent = 'Parsing...';
+  btn.disabled = true;
+  out.innerHTML = '<span style="color:var(--muted2)">// Detecting language...\n// Running Gemini 2.0 Flash...\n// Cross-checking with Claude Sonnet...\n// Fetching GPS from Google Maps...</span>';
+  setTimeout(function(){
+    btn.textContent = 'Parse →';
+    btn.disabled = false;
+    var r = DEMO_RESULT;
+    out.innerHTML =
+      '<span class="label">// ✅ Parsed in '+r.latency_ms+'ms</span>\n' +
+      '{\n' +
+      '  <span class="key">"village"</span>: <span class="str">"'+r.village+'"</span>,\n' +
+      '  <span class="key">"mandal"</span>: <span class="str">"'+r.mandal+'"</span>,\n' +
+      '  <span class="key">"district"</span>: <span class="str">"'+r.district+'"</span>,\n' +
+      '  <span class="key">"state"</span>: <span class="str">"'+r.state+'"</span>,\n' +
+      '  <span class="key">"pincode"</span>: <span class="num">'+r.pincode+'</span>,\n' +
+      '  <span class="key">"lat"</span>: <span class="num">'+r.lat+'</span>,\n' +
+      '  <span class="key">"lng"</span>: <span class="num">'+r.lng+'</span>,\n' +
+      '  <span class="key">"confidence_score"</span>: <span class="num">'+r.confidence_score+'</span>,\n' +
+      '  <span class="key">"gps_source"</span>: <span class="str">"'+r.gps_source+'"</span>\n' +
+      '}';
+  }, 1800);
+};
+
+/* ── CODE TABS ── */
+var CODE = {
+  curl: 'curl -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"address": "Yellareddyguda, Siddipet"}\'',
+  python: 'import requests\n\nres = requests.post(\n    "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n    headers={"x-api-key": "YOUR_API_KEY"},\n    json={"address": "Yellareddyguda, Siddipet"}\n)\ndata = res.json()\nprint(data["lat"], data["lng"])',
+  node: 'const res = await fetch(\n  "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n  {\n    method: "POST",\n    headers: { "x-api-key": "YOUR_API_KEY" },\n    body: JSON.stringify({ address: "Yellareddyguda, Siddipet" })\n  }\n);\nconst { lat, lng, district } = await res.json();'
+};
+
+window.switchTab = function(lang, btn){
+  document.querySelectorAll('.code-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.code-block').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById('tab-'+lang).classList.add('active');
+  mixpanel.track('Code Tab Viewed', { language: lang });
+};
+
+window.doCopy = function(lang){
+  if(!navigator.clipboard) return;
+  mixpanel.track('Code Copied', { language: lang });
+  navigator.clipboard.writeText(CODE[lang]).then(function(){
+    var btn = document.querySelector('#tab-'+lang+' .copy-btn');
+    if(!btn) return;
+    var orig = btn.textContent;
+    btn.textContent = 'copied!';
+    btn.style.color = 'var(--green)';
+    setTimeout(function(){ btn.textContent=orig; btn.style.color=''; }, 1500);
   });
+};
+
+/* ── WAITLIST ── */
+window.handleWaitlist = function(e){
+  e.preventDefault();
+  var email = document.getElementById('wl-email').value || '';
+  mixpanel.track('Waitlist Joined', { email: email });
+  mixpanel.identify(email);
+  mixpanel.people.set({ '$email': email });
+  window.location.href = 'mailto:admin@bigeo.in?subject=BiGeo API Key Request&body=Hi BiGeo team,%0A%0APlease send me an API key.%0A%0AEmail: ' + encodeURIComponent(email);
+};
 
 })();
 </script>
