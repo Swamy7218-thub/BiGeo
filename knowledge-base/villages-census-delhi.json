@@ -1,0 +1,2222 @@
+[
+  {
+    "village": "Badar Pur Majra Burari",
+    "village_census_code_2011": "63952",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Burari  (CT)",
+    "village_census_code_2011": "63957",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jagat Pur ilaqa Delhi",
+    "village_census_code_2011": "63954",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jagat Pur ilaqa Shahdara (un-inhabited)",
+    "village_census_code_2011": "63953",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jharoda Majra Burari  (CT)",
+    "village_census_code_2011": "63958",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kamal Pur Majra Burari (CT)",
+    "village_census_code_2011": "63956",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mukand Pur (CT)",
+    "village_census_code_2011": "63955",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Salem Pur Majra Burari",
+    "village_census_code_2011": "63951",
+    "block": "Civil Lines",
+    "block_census_code": "433",
+    "district": "Central",
+    "district_census_code": "77",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shakar Pur Baramad (CT)",
+    "village_census_code_2011": "63983",
+    "block": "Gandhi Nagar",
+    "block_census_code": "439",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chilla Saroda Bangar (CT)",
+    "village_census_code_2011": "63989",
+    "block": "Mayur Vihar",
+    "block_census_code": "6084",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chilla Saroda Khadar (CT)",
+    "village_census_code_2011": "63990",
+    "block": "Mayur Vihar",
+    "block_census_code": "6084",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Dallo Pura (CT)",
+    "village_census_code_2011": "63988",
+    "block": "Mayur Vihar",
+    "block_census_code": "6084",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Gharoli (CT)",
+    "village_census_code_2011": "63986",
+    "block": "Mayur Vihar",
+    "block_census_code": "6084",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kondli (CT)",
+    "village_census_code_2011": "63987",
+    "block": "Mayur Vihar",
+    "block_census_code": "6084",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Gharonda Neemka Bangar alias Patpar Ganj (CT)",
+    "village_census_code_2011": "63985",
+    "block": "Preet Vihar",
+    "block_census_code": "441",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shamas Pur",
+    "village_census_code_2011": "63984",
+    "block": "Preet Vihar",
+    "block_census_code": "441",
+    "district": "East",
+    "district_census_code": "78",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Moradabad Pahari (CT)",
+    "village_census_code_2011": "64055",
+    "block": "Delhi Cantonment",
+    "block_census_code": "452",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ghitorni (CT)",
+    "village_census_code_2011": "64061",
+    "block": "Vasant Vihar",
+    "block_census_code": "453",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kapas Hera (CT)",
+    "village_census_code_2011": "64059",
+    "block": "Vasant Vihar",
+    "block_census_code": "453",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kusum Pur (CT)",
+    "village_census_code_2011": "64056",
+    "block": "Vasant Vihar",
+    "block_census_code": "453",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Malik Pur Kohi alias Rang Puri (CT)",
+    "village_census_code_2011": "64057",
+    "block": "Vasant Vihar",
+    "block_census_code": "453",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Rajokri (CT)",
+    "village_census_code_2011": "64060",
+    "block": "Vasant Vihar",
+    "block_census_code": "453",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sambhalka (CT)",
+    "village_census_code_2011": "64058",
+    "block": "Vasant Vihar",
+    "block_census_code": "453",
+    "district": "New Delhi",
+    "district_census_code": "79",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Akbar Pur Majra",
+    "village_census_code_2011": "63872",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ali Pur (CT)",
+    "village_census_code_2011": "63910",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bakhtawar Pur (CT)",
+    "village_census_code_2011": "63908",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bankauli (CT)",
+    "village_census_code_2011": "63909",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bodh Pur Bija Pur",
+    "village_census_code_2011": "63902",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Fateh Pur Jat",
+    "village_census_code_2011": "63879",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Garhi Khasru",
+    "village_census_code_2011": "63900",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Hamid Pur",
+    "village_census_code_2011": "63870",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Hiranki",
+    "village_census_code_2011": "63897",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ibrahim Pur (CT)",
+    "village_census_code_2011": "63912",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jhangola",
+    "village_census_code_2011": "63875",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kham Pur",
+    "village_census_code_2011": "63880",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Khera Kalan (CT)",
+    "village_census_code_2011": "63916",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Libas Pur (CT)",
+    "village_census_code_2011": "63914",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mohd. Pur Ramzan Pur",
+    "village_census_code_2011": "63898",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mukhmel Pur (CT)",
+    "village_census_code_2011": "63911",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nangli Poona",
+    "village_census_code_2011": "63901",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Palla",
+    "village_census_code_2011": "63873",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Qadi Pur (CT)",
+    "village_census_code_2011": "63913",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Qullak Pur",
+    "village_census_code_2011": "63874",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sahibabad Daulat Pur (CT)",
+    "village_census_code_2011": "63917",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Singhola",
+    "village_census_code_2011": "63869",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Singhu",
+    "village_census_code_2011": "63868",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Siras Pur (CT)",
+    "village_census_code_2011": "63915",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sunger Pur Delhi",
+    "village_census_code_2011": "63877",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sunger Pur Shahdara  (un-inhabited)",
+    "village_census_code_2011": "63876",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Taj Pur Kalan",
+    "village_census_code_2011": "63871",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tehri Daulat Pur (Un-inhabited)",
+    "village_census_code_2011": "63899",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tigi Pur",
+    "village_census_code_2011": "63878",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Zind Pur",
+    "village_census_code_2011": "63896",
+    "block": "Alipur",
+    "block_census_code": "6076",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bhalswa Jahangir Pur (CT)",
+    "village_census_code_2011": "63950",
+    "block": "Model Town",
+    "block_census_code": "432",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shanjar Pur(un-inhabited)",
+    "village_census_code_2011": "63949",
+    "block": "Model Town",
+    "block_census_code": "432",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bankner (CT)",
+    "village_census_code_2011": "63905",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Barwala (CT)",
+    "village_census_code_2011": "63920",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bawana (CT)",
+    "village_census_code_2011": "63922",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bazid Pur Thakran",
+    "village_census_code_2011": "63890",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bhor Garh (CT)",
+    "village_census_code_2011": "63906",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Darya Pur Kalan (CT)",
+    "village_census_code_2011": "63923",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ghoga",
+    "village_census_code_2011": "63885",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Hareoli",
+    "village_census_code_2011": "63886",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Holambi Kalan",
+    "village_census_code_2011": "63895",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Holambi Khurd",
+    "village_census_code_2011": "63894",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Iradat Nagar alias Naya Bans",
+    "village_census_code_2011": "63893",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kankar Khera",
+    "village_census_code_2011": "63903",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Katewara",
+    "village_census_code_2011": "63889",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Khera Khurd (CT)",
+    "village_census_code_2011": "63919",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kureni",
+    "village_census_code_2011": "63882",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Lam Pur",
+    "village_census_code_2011": "63866",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mamoor Pur",
+    "village_census_code_2011": "63867",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mungesh Pur",
+    "village_census_code_2011": "63888",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nangal Thakran",
+    "village_census_code_2011": "63891",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ochandi",
+    "village_census_code_2011": "63887",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pansali",
+    "village_census_code_2011": "63904",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pehlad Pur Bangar (CT)",
+    "village_census_code_2011": "63918",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pooth Khurd (CT)",
+    "village_census_code_2011": "63921",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Raja Pur Kalan (Un-inhabited)",
+    "village_census_code_2011": "63883",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sanoth",
+    "village_census_code_2011": "63884",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shah Pur Garhi",
+    "village_census_code_2011": "63881",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sultan Pur Dabas",
+    "village_census_code_2011": "63892",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tikri Khurd (CT)",
+    "village_census_code_2011": "63907",
+    "block": "Narela",
+    "block_census_code": "430",
+    "district": "North",
+    "district_census_code": "80",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Badar Pur Khadar",
+    "village_census_code_2011": "63959",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Baqiabad (CT)",
+    "village_census_code_2011": "63969",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bihari Pur",
+    "village_census_code_2011": "63965",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jiwan Pur alias Johri Pur (CT)",
+    "village_census_code_2011": "63972",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Karawal Nagar (CT)",
+    "village_census_code_2011": "63970",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pur Delhi",
+    "village_census_code_2011": "63960",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pur Shahdara",
+    "village_census_code_2011": "63961",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Saba Pur Delhi",
+    "village_census_code_2011": "63962",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Saba Pur Shahdara",
+    "village_census_code_2011": "63963",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sadat Pur Gujran (CT)",
+    "village_census_code_2011": "63968",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sadat Pur Musalmanan (un-inhabited)",
+    "village_census_code_2011": "63964",
+    "block": "Karawal Nagar",
+    "block_census_code": "6083",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Dayal Pur (CT)",
+    "village_census_code_2011": "63971",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Garhi Mendu",
+    "village_census_code_2011": "63967",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Khajoori Khas (CT)",
+    "village_census_code_2011": "63976",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Khan Pur Dhani (CT)",
+    "village_census_code_2011": "63974",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mir Pur Turk (CT)",
+    "village_census_code_2011": "63977",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sher Pur",
+    "village_census_code_2011": "63966",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tukhmir Pur (CT)",
+    "village_census_code_2011": "63975",
+    "block": "Seelam Pur",
+    "block_census_code": "436",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Gokal Pur (CT)",
+    "village_census_code_2011": "63979",
+    "block": "Yamuna Vihar",
+    "block_census_code": "6082",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mustafabad (CT)",
+    "village_census_code_2011": "63973",
+    "block": "Yamuna Vihar",
+    "block_census_code": "6082",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ziauddin Pur (CT)",
+    "village_census_code_2011": "63978",
+    "block": "Yamuna Vihar",
+    "block_census_code": "6082",
+    "district": "North East",
+    "district_census_code": "81",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Budhan Pur",
+    "village_census_code_2011": "63927",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chand Pur",
+    "village_census_code_2011": "63928",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chatesar",
+    "village_census_code_2011": "63932",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Garhi Rindhala",
+    "village_census_code_2011": "63934",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Gheora (CT)",
+    "village_census_code_2011": "63939",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jat Khor",
+    "village_census_code_2011": "63925",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jonti",
+    "village_census_code_2011": "63933",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kanjhawala (CT)",
+    "village_census_code_2011": "63938",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Karala (CT)",
+    "village_census_code_2011": "63945",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Lad Pur (CT)",
+    "village_census_code_2011": "63937",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mohammad Pur Majri (CT)",
+    "village_census_code_2011": "63944",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nizam Pur Rashid Pur",
+    "village_census_code_2011": "63935",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Punjab Khor",
+    "village_census_code_2011": "63924",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Qutab Garh (CT)",
+    "village_census_code_2011": "63936",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Salah Pur Majra",
+    "village_census_code_2011": "63926",
+    "block": "Kanjhawala",
+    "block_census_code": "6078",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Begum Pur (CT)",
+    "village_census_code_2011": "63946",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kirari Suleman Nagar (CT)",
+    "village_census_code_2011": "63942",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Madan Pur Dabas",
+    "village_census_code_2011": "63929",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mubarak Pur Dabas (CT)",
+    "village_census_code_2011": "63941",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nithari (CT)",
+    "village_census_code_2011": "63943",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pooth Kalan (CT)",
+    "village_census_code_2011": "63947",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Rani Khera (CT)",
+    "village_census_code_2011": "63940",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Rasool Pur",
+    "village_census_code_2011": "63930",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sultan Pur Majra (CT)",
+    "village_census_code_2011": "63948",
+    "block": "Rohini",
+    "block_census_code": "6077",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Saoda",
+    "village_census_code_2011": "63931",
+    "block": "Saraswati Vihar",
+    "block_census_code": "431",
+    "district": "North West",
+    "district_census_code": "82",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mandoli (CT)",
+    "village_census_code_2011": "63982",
+    "block": "Seema Puri",
+    "block_census_code": "438",
+    "district": "Shahdara",
+    "district_census_code": "671",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Babar Pur (CT)",
+    "village_census_code_2011": "63980",
+    "block": "Shahdara",
+    "block_census_code": "437",
+    "district": "Shahdara",
+    "district_census_code": "671",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jaffrabad (CT)",
+    "village_census_code_2011": "63981",
+    "block": "Shahdara",
+    "block_census_code": "437",
+    "district": "Shahdara",
+    "district_census_code": "671",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Deoli (CT)",
+    "village_census_code_2011": "64076",
+    "block": "Hauz Khas",
+    "block_census_code": "454",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Saidul Azaib (CT)",
+    "village_census_code_2011": "64078",
+    "block": "Hauz Khas",
+    "block_census_code": "454",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Aya Nagar (CT)",
+    "village_census_code_2011": "64065",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chandan Hola (CT)",
+    "village_census_code_2011": "64071",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Dera Mandi (CT)",
+    "village_census_code_2011": "64068",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Fateh Pur Beri (CT)",
+    "village_census_code_2011": "64067",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Gadai Pur",
+    "village_census_code_2011": "64062",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jona Pur (CT)",
+    "village_census_code_2011": "64066",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sultan Pur (CT)",
+    "village_census_code_2011": "64072",
+    "block": "Mehrauli",
+    "block_census_code": "6080",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Asola (CT)",
+    "village_census_code_2011": "64070",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bhati (CT)",
+    "village_census_code_2011": "64069",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chattar Pur (CT)",
+    "village_census_code_2011": "64073",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Maidan Garhi (CT)",
+    "village_census_code_2011": "64074",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Neb Sarai (CT)",
+    "village_census_code_2011": "64077",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Raj Pur Khurd (CT)",
+    "village_census_code_2011": "64075",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Satberi",
+    "village_census_code_2011": "64063",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shahur Pur",
+    "village_census_code_2011": "64064",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tigri (CT)",
+    "village_census_code_2011": "64079",
+    "block": "Saket",
+    "block_census_code": "6079",
+    "district": "South",
+    "district_census_code": "83",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Saidabad (CT)",
+    "village_census_code_2011": "64080",
+    "block": "Defence Colony",
+    "block_census_code": "455",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pul Pehlad (CT)",
+    "village_census_code_2011": "64082",
+    "block": "Kalkaji",
+    "block_census_code": "456",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Aali (CT)",
+    "village_census_code_2011": "64086",
+    "block": "Sarita Vihar",
+    "block_census_code": "6081",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jait Pur (CT)",
+    "village_census_code_2011": "64087",
+    "block": "Sarita Vihar",
+    "block_census_code": "6081",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kotla Mahigiran (CT)",
+    "village_census_code_2011": "64081",
+    "block": "Sarita Vihar",
+    "block_census_code": "6081",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mithe Pur (CT)",
+    "village_census_code_2011": "64084",
+    "block": "Sarita Vihar",
+    "block_census_code": "6081",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Molar Band (CT)",
+    "village_census_code_2011": "64085",
+    "block": "Sarita Vihar",
+    "block_census_code": "6081",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Taj Pul (CT)",
+    "village_census_code_2011": "64083",
+    "block": "Sarita Vihar",
+    "block_census_code": "6081",
+    "district": "South East",
+    "district_census_code": "670",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nangli Sakrawati (CT)",
+    "village_census_code_2011": "64053",
+    "block": "Dwarka",
+    "block_census_code": "6086",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Asalat Pur Khawad",
+    "village_census_code_2011": "64035",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Chhawala (CT)",
+    "village_census_code_2011": "64054",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Darya Pur Khurd",
+    "village_census_code_2011": "64023",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Daulat Pur",
+    "village_census_code_2011": "64027",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Deorala",
+    "village_census_code_2011": "64044",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Dindar Pur (CT)",
+    "village_census_code_2011": "64051",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Goela Khurd",
+    "village_census_code_2011": "64011",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Goman Hera",
+    "village_census_code_2011": "64038",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Hasan Pur",
+    "village_census_code_2011": "64026",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jain Pur(Un-inhabited)",
+    "village_census_code_2011": "64037",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jhatikra",
+    "village_census_code_2011": "64034",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kangan Heri",
+    "village_census_code_2011": "64029",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kharkhari Jatmal",
+    "village_census_code_2011": "64016",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kharkhari Rond",
+    "village_census_code_2011": "64025",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nanak Heri",
+    "village_census_code_2011": "64033",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Paprawat",
+    "village_census_code_2011": "64010",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pindwala Kalan",
+    "village_census_code_2011": "64015",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Pindwala Khurd",
+    "village_census_code_2011": "64028",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Raghu Pur",
+    "village_census_code_2011": "64031",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Raota",
+    "village_census_code_2011": "64043",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Rewla Kham Pur",
+    "village_census_code_2011": "64014",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Salah Pur",
+    "village_census_code_2011": "64030",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shikar Pur",
+    "village_census_code_2011": "64036",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Taj Pur Khurd",
+    "village_census_code_2011": "64013",
+    "block": "Kapeshera",
+    "block_census_code": "6085",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Badhosra",
+    "village_census_code_2011": "64032",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Baqar Garh",
+    "village_census_code_2011": "64019",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Dhansa",
+    "village_census_code_2011": "64041",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Dichaon Kalan",
+    "village_census_code_2011": "64004",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ghalib Pur",
+    "village_census_code_2011": "64042",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Isa Pur",
+    "village_census_code_2011": "64020",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jaffar Pur Kalan (CT)",
+    "village_census_code_2011": "64047",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jharoda Kalan (CT)",
+    "village_census_code_2011": "64045",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jhuljhuli",
+    "village_census_code_2011": "64039",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kair (CT)",
+    "village_census_code_2011": "64046",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Kharkhari Nahar",
+    "village_census_code_2011": "64009",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Khera (CT)",
+    "village_census_code_2011": "64050",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Khera Dabar",
+    "village_census_code_2011": "64017",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Malik Pur zer-Najafgarh",
+    "village_census_code_2011": "64022",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mitraon (CT)",
+    "village_census_code_2011": "64049",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mundhela Kalan",
+    "village_census_code_2011": "64007",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mundhela Khurd",
+    "village_census_code_2011": "64006",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Qazi Pur",
+    "village_census_code_2011": "64021",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Qutab Pur",
+    "village_census_code_2011": "64012",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Roshan Pura alias Dichaon Khurd (CT)",
+    "village_census_code_2011": "64052",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Samas Pur Khalsa",
+    "village_census_code_2011": "64018",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sarang Pur",
+    "village_census_code_2011": "64040",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Sher Pur Deri",
+    "village_census_code_2011": "64024",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Surakh Pur",
+    "village_census_code_2011": "64005",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Surera",
+    "village_census_code_2011": "64008",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Ujwa (CT)",
+    "village_census_code_2011": "64048",
+    "block": "Najafgarh",
+    "block_census_code": "451",
+    "district": "South West",
+    "district_census_code": "84",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Hastsal (CT)",
+    "village_census_code_2011": "63991",
+    "block": "Patel Nagar",
+    "block_census_code": "448",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Raja Pur Khurd (CT)",
+    "village_census_code_2011": "63992",
+    "block": "Patel Nagar",
+    "block_census_code": "448",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bakkar Wala (CT)",
+    "village_census_code_2011": "64002",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Bapraula (CT)",
+    "village_census_code_2011": "63995",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Jaffar Pur alias Hiran Kudna",
+    "village_census_code_2011": "63994",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Mundka (CT)",
+    "village_census_code_2011": "64001",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nangloi Jat (CT)",
+    "village_census_code_2011": "63999",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Neel Wal",
+    "village_census_code_2011": "63993",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Nilothi (CT)",
+    "village_census_code_2011": "63998",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Quammruddin Nagar (CT)",
+    "village_census_code_2011": "64000",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Shafi Pur Ranhola (CT)",
+    "village_census_code_2011": "63997",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tikri Kalan (CT)",
+    "village_census_code_2011": "64003",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  },
+  {
+    "village": "Tilang Pur Kotla (CT)",
+    "village_census_code_2011": "63996",
+    "block": "Punjabi Bagh",
+    "block_census_code": "450",
+    "district": "West",
+    "district_census_code": "85",
+    "state": "Delhi",
+    "is_pesa": false
+  }
+]

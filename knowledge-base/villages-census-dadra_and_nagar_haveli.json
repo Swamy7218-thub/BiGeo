@@ -1,0 +1,702 @@
+[
+  {
+    "village": "Ambabari",
+    "village_census_code_2011": "524971",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Amboli",
+    "village_census_code_2011": "524962",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Apti",
+    "village_census_code_2011": "524960",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Athal",
+    "village_census_code_2011": "524946",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Athola",
+    "village_census_code_2011": "524942",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Bedpa",
+    "village_census_code_2011": "524994",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Bensda",
+    "village_census_code_2011": "524993",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Bildhari",
+    "village_census_code_2011": "524976",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Bindrabin",
+    "village_census_code_2011": "524963",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Bonta",
+    "village_census_code_2011": "524939",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Chauda",
+    "village_census_code_2011": "524982",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Chikhali",
+    "village_census_code_2011": "524955",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Chinchpada",
+    "village_census_code_2011": "524953",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Chinsda",
+    "village_census_code_2011": "524990",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Dadra (CT)",
+    "village_census_code_2011": "524997",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Dapada",
+    "village_census_code_2011": "524956",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Demani",
+    "village_census_code_2011": "524932",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Dhapsa",
+    "village_census_code_2011": "524943",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Dolara",
+    "village_census_code_2011": "524986",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Dudhani",
+    "village_census_code_2011": "524974",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Falandi",
+    "village_census_code_2011": "524947",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Galonda",
+    "village_census_code_2011": "524941",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Ghodbari",
+    "village_census_code_2011": "524977",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Goratpada",
+    "village_census_code_2011": "524967",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Gunsa",
+    "village_census_code_2011": "524975",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Jamalpada",
+    "village_census_code_2011": "524972",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kala",
+    "village_census_code_2011": "524983",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kanadi",
+    "village_census_code_2011": "524944",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Karachgam",
+    "village_census_code_2011": "524984",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Karad",
+    "village_census_code_2011": "524951",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Karchond",
+    "village_census_code_2011": "524978",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kauncha",
+    "village_census_code_2011": "524973",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Khadoli",
+    "village_census_code_2011": "524958",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Khanvel",
+    "village_census_code_2011": "524965",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kharadpada",
+    "village_census_code_2011": "524945",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Khedpa",
+    "village_census_code_2011": "524996",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kherarbari",
+    "village_census_code_2011": "524979",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kherdi",
+    "village_census_code_2011": "524985",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Khutali",
+    "village_census_code_2011": "524981",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kilavani",
+    "village_census_code_2011": "524940",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kothar",
+    "village_census_code_2011": "524969",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Kudacha",
+    "village_census_code_2011": "524950",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Luhari",
+    "village_census_code_2011": "524954",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Mandoni",
+    "village_census_code_2011": "524991",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Masat (CT)",
+    "village_census_code_2011": "525000",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Medha",
+    "village_census_code_2011": "524970",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Morkhal",
+    "village_census_code_2011": "524936",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Mota Randha",
+    "village_census_code_2011": "524938",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Nana Randha",
+    "village_census_code_2011": "524937",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Naroli (CT)",
+    "village_census_code_2011": "524998",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Parzai",
+    "village_census_code_2011": "524987",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Pati",
+    "village_census_code_2011": "524957",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Rakholi (CT)",
+    "village_census_code_2011": "525001",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Rudana",
+    "village_census_code_2011": "524989",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Saily",
+    "village_census_code_2011": "524949",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Samarvarni (CT)",
+    "village_census_code_2011": "524999",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Shelti",
+    "village_census_code_2011": "524980",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Sili",
+    "village_census_code_2011": "524935",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Sindoni",
+    "village_census_code_2011": "524995",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Surangi",
+    "village_census_code_2011": "524959",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Talavali",
+    "village_census_code_2011": "524988",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Tighra",
+    "village_census_code_2011": "524933",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Tinoda",
+    "village_census_code_2011": "524964",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Umarkui",
+    "village_census_code_2011": "524948",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Umbervarni",
+    "village_census_code_2011": "524966",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Vaghchauda",
+    "village_census_code_2011": "524968",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Vaghchhipa",
+    "village_census_code_2011": "524934",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Vansda",
+    "village_census_code_2011": "524992",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Vasona",
+    "village_census_code_2011": "524952",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  },
+  {
+    "village": "Velugam",
+    "village_census_code_2011": "524961",
+    "block": "Dadra & Nagar Haveli",
+    "block_census_code": "3949",
+    "district": "Dadra And Nagar Haveli",
+    "district_census_code": "465",
+    "state": "Dadra And Nagar Haveli",
+    "is_pesa": false
+  }
+]

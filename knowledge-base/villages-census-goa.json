@@ -1,0 +1,4052 @@
+[
+  {
+    "village": "Aldona (CT)",
+    "village_census_code_2011": "626704",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Anjuna (CT)",
+    "village_census_code_2011": "626694",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Arpora",
+    "village_census_code_2011": "626673",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Assagao",
+    "village_census_code_2011": "626672",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Assonora",
+    "village_census_code_2011": "626668",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bastora",
+    "village_census_code_2011": "626678",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Calangute (CT)",
+    "village_census_code_2011": "626695",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Calvim",
+    "village_census_code_2011": "626685",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Camurlim",
+    "village_census_code_2011": "626663",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Canca",
+    "village_census_code_2011": "626677",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Candolim (CT)",
+    "village_census_code_2011": "626697",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Colvale (CT)",
+    "village_census_code_2011": "626691",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Corjuem",
+    "village_census_code_2011": "626683",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Guirim (CT)",
+    "village_census_code_2011": "626693",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Marna",
+    "village_census_code_2011": "626671",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Marra",
+    "village_census_code_2011": "626689",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Moira (CT)",
+    "village_census_code_2011": "626692",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Moitem",
+    "village_census_code_2011": "626667",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nachinola",
+    "village_census_code_2011": "626682",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nadora",
+    "village_census_code_2011": "626665",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nagoa",
+    "village_census_code_2011": "626674",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nerul (CT)",
+    "village_census_code_2011": "626698",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Olaulim",
+    "village_census_code_2011": "626686",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Oxel",
+    "village_census_code_2011": "626662",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Paliem",
+    "village_census_code_2011": "626679",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Parra",
+    "village_census_code_2011": "626675",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Penha-de-Franca (CT)",
+    "village_census_code_2011": "626701",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pilerne (CT)",
+    "village_census_code_2011": "626700",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pirna",
+    "village_census_code_2011": "626666",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pomburpa",
+    "village_census_code_2011": "626687",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ponolem",
+    "village_census_code_2011": "626684",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Punola",
+    "village_census_code_2011": "626680",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Reis Magos (CT)",
+    "village_census_code_2011": "626699",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Revora",
+    "village_census_code_2011": "626664",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Saligao (CT)",
+    "village_census_code_2011": "626696",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Salvador do Mundo (CT)",
+    "village_census_code_2011": "626702",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sangolda",
+    "village_census_code_2011": "626688",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Siolim (CT)",
+    "village_census_code_2011": "626690",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sircaim",
+    "village_census_code_2011": "626669",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Socorro (CT)",
+    "village_census_code_2011": "626703",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sodiem",
+    "village_census_code_2011": "912999",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tivim",
+    "village_census_code_2011": "626670",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ucassaim",
+    "village_census_code_2011": "626681",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Verla",
+    "village_census_code_2011": "626676",
+    "block": "Bardez",
+    "block_census_code": "5610",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Adwalpale",
+    "village_census_code_2011": "626745",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Amone",
+    "village_census_code_2011": "626758",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Aturli",
+    "village_census_code_2011": "626754",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Carapur (CT)",
+    "village_census_code_2011": "626763",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cotombi",
+    "village_census_code_2011": "626760",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cudnem",
+    "village_census_code_2011": "626757",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Curchirem",
+    "village_census_code_2011": "626750",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dumacem",
+    "village_census_code_2011": "626742",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Latambarcem",
+    "village_census_code_2011": "626744",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Maem",
+    "village_census_code_2011": "626752",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Maulinguem North",
+    "village_census_code_2011": "626749",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mencurem",
+    "village_census_code_2011": "626741",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mulgao",
+    "village_census_code_2011": "626747",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Naroa",
+    "village_census_code_2011": "626712",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Navelim",
+    "village_census_code_2011": "626759",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ona",
+    "village_census_code_2011": "626748",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pale (CT)",
+    "village_census_code_2011": "626764",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Piligao",
+    "village_census_code_2011": "626756",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Salem",
+    "village_census_code_2011": "626743",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sarvona",
+    "village_census_code_2011": "626751",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sirigao",
+    "village_census_code_2011": "626746",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Surla",
+    "village_census_code_2011": "626761",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vainguinim",
+    "village_census_code_2011": "626753",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Velguem",
+    "village_census_code_2011": "626762",
+    "block": "Bicholim",
+    "block_census_code": "5612",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Agarvado",
+    "village_census_code_2011": "626657",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Alorna",
+    "village_census_code_2011": "626649",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Amberem",
+    "village_census_code_2011": "626643",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Arambol (CT)",
+    "village_census_code_2011": "626658",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cansarvornem",
+    "village_census_code_2011": "626651",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Casnem",
+    "village_census_code_2011": "626641",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chandel",
+    "village_census_code_2011": "626648",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chopdem",
+    "village_census_code_2011": "626656",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Corgao",
+    "village_census_code_2011": "626638",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dargalim",
+    "village_census_code_2011": "626653",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ibrampur",
+    "village_census_code_2011": "626650",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mandrem (CT)",
+    "village_census_code_2011": "626659",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mopa",
+    "village_census_code_2011": "626647",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Morjim (CT)",
+    "village_census_code_2011": "626661",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ozorim",
+    "village_census_code_2011": "626652",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Paliem",
+    "village_census_code_2011": "626637",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Parcem (CT)",
+    "village_census_code_2011": "626660",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Poroscodem",
+    "village_census_code_2011": "626640",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Querim",
+    "village_census_code_2011": "626636",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tamboxem",
+    "village_census_code_2011": "626645",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tiracol",
+    "village_census_code_2011": "626635",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Torxem",
+    "village_census_code_2011": "626646",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tuem",
+    "village_census_code_2011": "626655",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Uguem",
+    "village_census_code_2011": "626644",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Varconda",
+    "village_census_code_2011": "626642",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Virnora",
+    "village_census_code_2011": "626654",
+    "block": "Pernem",
+    "block_census_code": "5609",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Adcolna",
+    "village_census_code_2011": "626847",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bandora (CT)",
+    "village_census_code_2011": "626869",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Betora",
+    "village_census_code_2011": "626859",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Betqui",
+    "village_census_code_2011": "626844",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Boma",
+    "village_census_code_2011": "626848",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Borim (CT)",
+    "village_census_code_2011": "626872",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Candepar",
+    "village_census_code_2011": "626853",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Candola (CT)",
+    "village_census_code_2011": "626865",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Codar",
+    "village_census_code_2011": "626860",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Conxem",
+    "village_census_code_2011": "626862",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cuncoliem",
+    "village_census_code_2011": "626849",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cundaim",
+    "village_census_code_2011": "626855",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Curti (CT)",
+    "village_census_code_2011": "626870",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Durbhat",
+    "village_census_code_2011": "626856",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gangem",
+    "village_census_code_2011": "626852",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Marcaim (CT)",
+    "village_census_code_2011": "626867",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nirancal",
+    "village_census_code_2011": "626861",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Orgao (CT)",
+    "village_census_code_2011": "626866",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ponchavadi",
+    "village_census_code_2011": "626864",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Priol (CT)",
+    "village_census_code_2011": "626868",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Quela (CT)",
+    "village_census_code_2011": "626871",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Querim",
+    "village_census_code_2011": "626850",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Savoi-Verem",
+    "village_census_code_2011": "626846",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Siroda",
+    "village_census_code_2011": "626863",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Telaulim",
+    "village_census_code_2011": "626857",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tivrem",
+    "village_census_code_2011": "626843",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Usgao (CT)",
+    "village_census_code_2011": "626873",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vadi",
+    "village_census_code_2011": "626858",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vagurbem",
+    "village_census_code_2011": "626851",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Velinga",
+    "village_census_code_2011": "626854",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Volvoi",
+    "village_census_code_2011": "626845",
+    "block": "Ponda",
+    "block_census_code": "5614",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Advoi",
+    "village_census_code_2011": "626825",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ambedem",
+    "village_census_code_2011": "626803",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ambeli",
+    "village_census_code_2011": "626839",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Anjunem",
+    "village_census_code_2011": "626770",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ansolem",
+    "village_census_code_2011": "626814",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Assodem",
+    "village_census_code_2011": "626836",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Birondem",
+    "village_census_code_2011": "626830",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bombedem",
+    "village_census_code_2011": "626802",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Buimpal",
+    "village_census_code_2011": "626807",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Carambolim-Bozruco",
+    "village_census_code_2011": "626821",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Carambolim- Brama",
+    "village_census_code_2011": "626793",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Caranzol",
+    "village_census_code_2011": "626820",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Choraundem",
+    "village_census_code_2011": "626773",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Codal",
+    "village_census_code_2011": "626780",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Codiem",
+    "village_census_code_2011": "626812",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Codqui",
+    "village_census_code_2011": "626823",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Codvol",
+    "village_census_code_2011": "626818",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Compordem",
+    "village_census_code_2011": "626790",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Conquirem",
+    "village_census_code_2011": "626841",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cotorem",
+    "village_census_code_2011": "626832",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cudcem",
+    "village_census_code_2011": "626815",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cumarconda",
+    "village_census_code_2011": "626808",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dabem",
+    "village_census_code_2011": "626789",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Damocem",
+    "village_census_code_2011": "626831",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Davem",
+    "village_census_code_2011": "626801",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Derodem",
+    "village_census_code_2011": "626779",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dongurli",
+    "village_census_code_2011": "626782",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Edorem",
+    "village_census_code_2011": "626791",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Golauli",
+    "village_census_code_2011": "626776",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gonteli",
+    "village_census_code_2011": "626768",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Govanem",
+    "village_census_code_2011": "626837",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Guleli",
+    "village_census_code_2011": "626828",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gululem",
+    "village_census_code_2011": "626784",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ivrem-Buzruco",
+    "village_census_code_2011": "626774",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ivrem-Curdo",
+    "village_census_code_2011": "626775",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Maloli",
+    "village_census_code_2011": "626796",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Malpona",
+    "village_census_code_2011": "626838",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mauzi",
+    "village_census_code_2011": "626806",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Melauli",
+    "village_census_code_2011": "626840",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Morlem",
+    "village_census_code_2011": "626786",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nagargao",
+    "village_census_code_2011": "626804",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Naguem",
+    "village_census_code_2011": "626813",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Naneli",
+    "village_census_code_2011": "626792",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nanorem",
+    "village_census_code_2011": "626797",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Onda (CT)",
+    "village_census_code_2011": "626842",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Padeli",
+    "village_census_code_2011": "626829",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pale",
+    "village_census_code_2011": "626783",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pendral",
+    "village_census_code_2011": "626819",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pissurlem",
+    "village_census_code_2011": "626809",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Podocem",
+    "village_census_code_2011": "626765",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ponocem",
+    "village_census_code_2011": "626826",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ponsuli",
+    "village_census_code_2011": "626772",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Poriem",
+    "village_census_code_2011": "626766",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Quelaudem",
+    "village_census_code_2011": "626771",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Querim",
+    "village_census_code_2011": "626785",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ravona",
+    "village_census_code_2011": "626767",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Rivem",
+    "village_census_code_2011": "626781",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Saleli",
+    "village_census_code_2011": "626787",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sanvorcem",
+    "village_census_code_2011": "626824",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sanvordem",
+    "village_census_code_2011": "626816",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Satorem",
+    "village_census_code_2011": "626805",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Satrem",
+    "village_census_code_2011": "626778",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sigonem",
+    "village_census_code_2011": "626795",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Siranguli",
+    "village_census_code_2011": "626834",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Siroli",
+    "village_census_code_2011": "626769",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sirsodem",
+    "village_census_code_2011": "626835",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sonal",
+    "village_census_code_2011": "626817",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sonus-Vonvoliem",
+    "village_census_code_2011": "626810",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Surla",
+    "village_census_code_2011": "626777",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ustem",
+    "village_census_code_2011": "626800",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vaguriem",
+    "village_census_code_2011": "626811",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vainguinim",
+    "village_census_code_2011": "626798",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vantem",
+    "village_census_code_2011": "626827",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Velguem",
+    "village_census_code_2011": "626822",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Xelopo-Buzruco",
+    "village_census_code_2011": "626794",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Xelopo-Curdo",
+    "village_census_code_2011": "626833",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Zarani",
+    "village_census_code_2011": "626799",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Zormen",
+    "village_census_code_2011": "626788",
+    "block": "Satari",
+    "block_census_code": "5613",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ambarim",
+    "village_census_code_2011": "626705",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Azossim",
+    "village_census_code_2011": "626719",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bainguinim",
+    "village_census_code_2011": "626715",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bambolim (CT)",
+    "village_census_code_2011": "626733",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Batim",
+    "village_census_code_2011": "626722",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Calapor (CT)",
+    "village_census_code_2011": "626732",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Capao",
+    "village_census_code_2011": "626708",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Caraim",
+    "village_census_code_2011": "626707",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Carambolim",
+    "village_census_code_2011": "626718",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chimbel (CT)",
+    "village_census_code_2011": "626730",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chorao",
+    "village_census_code_2011": "626706",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Corlim (CT)",
+    "village_census_code_2011": "626729",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cujira (OG)",
+    "village_census_code_2011": "626740",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cumbarjua (CT)",
+    "village_census_code_2011": "626728",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Curca",
+    "village_census_code_2011": "626723",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Durgawadi (OG) (Part)",
+    "village_census_code_2011": "645599",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ella",
+    "village_census_code_2011": "626714",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gancim",
+    "village_census_code_2011": "626721",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gandaulim",
+    "village_census_code_2011": "626713",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Goalim Moula",
+    "village_census_code_2011": "626717",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Goa Velha (CT)",
+    "village_census_code_2011": "626734",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Goltim",
+    "village_census_code_2011": "626710",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Jua (CT)",
+    "village_census_code_2011": "626727",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Malar",
+    "village_census_code_2011": "626711",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mandur",
+    "village_census_code_2011": "626720",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mercurim (CT)",
+    "village_census_code_2011": "626735",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Morambi-O-Grande (Merces) (OG)",
+    "village_census_code_2011": "626737",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Morambi-O-Pequeno (Merces) (OG)",
+    "village_census_code_2011": "626739",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Murda (CT)",
+    "village_census_code_2011": "626731",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Navelim",
+    "village_census_code_2011": "626709",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Neura-O-Grande",
+    "village_census_code_2011": "626726",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Neura-O-Pequeno",
+    "village_census_code_2011": "626725",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Panelim (OG)",
+    "village_census_code_2011": "626736",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Renovadi (OG)",
+    "village_census_code_2011": "626738",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Siridao",
+    "village_census_code_2011": "626724",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Talaulim",
+    "village_census_code_2011": "626716",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Taleigao (OG) (Part)",
+    "village_census_code_2011": "645598",
+    "block": "Tiswadi",
+    "block_census_code": "5611",
+    "district": "North Goa",
+    "district_census_code": "551",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Agonda",
+    "village_census_code_2011": "627023",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Anjadip",
+    "village_census_code_2011": "627029",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Canacona",
+    "village_census_code_2011": "627024",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cola",
+    "village_census_code_2011": "627022",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cotigao",
+    "village_census_code_2011": "627028",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gaodongrem",
+    "village_census_code_2011": "627025",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Loliem",
+    "village_census_code_2011": "627027",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Poinguinim",
+    "village_census_code_2011": "627026",
+    "block": "Canacona",
+    "block_census_code": "5619",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Aglote",
+    "village_census_code_2011": "626973",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bandoli",
+    "village_census_code_2011": "626984",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Camarconda",
+    "village_census_code_2011": "626982",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Caranzol",
+    "village_census_code_2011": "626976",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Codli",
+    "village_census_code_2011": "626981",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Colem",
+    "village_census_code_2011": "626977",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cormonem",
+    "village_census_code_2011": "626980",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Darbandora",
+    "village_census_code_2011": "626971",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Moissal",
+    "village_census_code_2011": "626983",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Molem",
+    "village_census_code_2011": "626975",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Piliem",
+    "village_census_code_2011": "626970",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sancordem",
+    "village_census_code_2011": "626972",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sangod",
+    "village_census_code_2011": "626979",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sigao",
+    "village_census_code_2011": "626978",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sonauli",
+    "village_census_code_2011": "626989",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Surla",
+    "village_census_code_2011": "626974",
+    "block": "Dharbandora",
+    "block_census_code": "5931",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Arossim",
+    "village_census_code_2011": "626884",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cansaulim",
+    "village_census_code_2011": "626883",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chicalim",
+    "village_census_code_2011": "910333",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chicalim (CT)",
+    "village_census_code_2011": "626885",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chicolna",
+    "village_census_code_2011": "626880",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cortalim (CT)",
+    "village_census_code_2011": "626887",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cuelim",
+    "village_census_code_2011": "626877",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dabolim",
+    "village_census_code_2011": "626874",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Issorcim",
+    "village_census_code_2011": "626879",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pale",
+    "village_census_code_2011": "626878",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Quelossim",
+    "village_census_code_2011": "626876",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sancoale",
+    "village_census_code_2011": "910332",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sancoale (CT)",
+    "village_census_code_2011": "626886",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sao Jacinto Island",
+    "village_census_code_2011": "626875",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sao Jorge Island",
+    "village_census_code_2011": "626881",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Velsao",
+    "village_census_code_2011": "626882",
+    "block": "Mormugao",
+    "block_census_code": "5615",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Adnem",
+    "village_census_code_2011": "626948",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ambaulim",
+    "village_census_code_2011": "626947",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Amona",
+    "village_census_code_2011": "910339",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Assolda",
+    "village_census_code_2011": "626934",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Avedem",
+    "village_census_code_2011": "626939",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bali",
+    "village_census_code_2011": "626949",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Barcem",
+    "village_census_code_2011": "626961",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bendordem",
+    "village_census_code_2011": "626955",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cavorem",
+    "village_census_code_2011": "626956",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cazur",
+    "village_census_code_2011": "626967",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chaifi",
+    "village_census_code_2011": "626940",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Colomba",
+    "village_census_code_2011": "627013",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cordem",
+    "village_census_code_2011": "626958",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Corla",
+    "village_census_code_2011": "626966",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cotombi",
+    "village_census_code_2011": "626938",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cusmane",
+    "village_census_code_2011": "910340",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Fatorpa",
+    "village_census_code_2011": "626950",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gocoldem",
+    "village_census_code_2011": "626962",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Maina",
+    "village_census_code_2011": "626957",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mangal",
+    "village_census_code_2011": "626968",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Molcarnem",
+    "village_census_code_2011": "626946",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Molcopona",
+    "village_census_code_2011": "626945",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Morpila",
+    "village_census_code_2011": "626953",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nagvem",
+    "village_census_code_2011": "626942",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Naquerim",
+    "village_census_code_2011": "626952",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Odar",
+    "village_census_code_2011": "626937",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Padi",
+    "village_census_code_2011": "626959",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Pirla",
+    "village_census_code_2011": "626964",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Quedem",
+    "village_census_code_2011": "626960",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Quisconda",
+    "village_census_code_2011": "626963",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Quitol",
+    "village_census_code_2011": "626951",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Rivona",
+    "village_census_code_2011": "627014",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sirvoi",
+    "village_census_code_2011": "626941",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sulcorna",
+    "village_census_code_2011": "626965",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tiloi",
+    "village_census_code_2011": "626954",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Undorna",
+    "village_census_code_2011": "626944",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Xeldem (CT)",
+    "village_census_code_2011": "626969",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Xelvona",
+    "village_census_code_2011": "626936",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Xic-Xelvona",
+    "village_census_code_2011": "626935",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Zanodem",
+    "village_census_code_2011": "626943",
+    "block": "Quepem",
+    "block_census_code": "5617",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Adsulim",
+    "village_census_code_2011": "626906",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Ambelim",
+    "village_census_code_2011": "626922",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Aquem",
+    "village_census_code_2011": "910337",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Aquem (CT)",
+    "village_census_code_2011": "626929",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Assolna",
+    "village_census_code_2011": "626919",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Benaulim",
+    "village_census_code_2011": "910334",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Benaulim (CT)",
+    "village_census_code_2011": "626931",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Betalbatim",
+    "village_census_code_2011": "626895",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Calata",
+    "village_census_code_2011": "626891",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Camurlim",
+    "village_census_code_2011": "626890",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cana",
+    "village_census_code_2011": "626904",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Carmona",
+    "village_census_code_2011": "626917",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cavelossim",
+    "village_census_code_2011": "626920",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cavorim",
+    "village_census_code_2011": "626910",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chandor",
+    "village_census_code_2011": "626911",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Chinchinim (CT)",
+    "village_census_code_2011": "626933",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Colva",
+    "village_census_code_2011": "626897",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Curtorim (CT)",
+    "village_census_code_2011": "626926",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Davorlim (CT)",
+    "village_census_code_2011": "626928",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Deussua",
+    "village_census_code_2011": "626918",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dicarpale",
+    "village_census_code_2011": "626909",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dramapur",
+    "village_census_code_2011": "626908",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Duncolim",
+    "village_census_code_2011": "626900",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gandaulim",
+    "village_census_code_2011": "626896",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Gonsua",
+    "village_census_code_2011": "626894",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Guirdolim",
+    "village_census_code_2011": "626903",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Loutulim",
+    "village_census_code_2011": "626889",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Macasana",
+    "village_census_code_2011": "626902",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Majorda",
+    "village_census_code_2011": "626892",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Mulem",
+    "village_census_code_2011": "626913",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nagoa",
+    "village_census_code_2011": "626888",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Navelim",
+    "village_census_code_2011": "910335",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Navelim (CT)",
+    "village_census_code_2011": "626930",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nuvem (CT)",
+    "village_census_code_2011": "626924",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Orlim",
+    "village_census_code_2011": "626916",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Paroda",
+    "village_census_code_2011": "626912",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Rachol",
+    "village_census_code_2011": "626901",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Raia (CT)",
+    "village_census_code_2011": "626925",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sao Jose de Areal",
+    "village_census_code_2011": "910338",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sao Jose de Areal (CT)",
+    "village_census_code_2011": "626927",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sarzora",
+    "village_census_code_2011": "626914",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Seraulim",
+    "village_census_code_2011": "626899",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sernabatim",
+    "village_census_code_2011": "626905",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sirlim",
+    "village_census_code_2011": "626915",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Talaulim",
+    "village_census_code_2011": "626907",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Utorda",
+    "village_census_code_2011": "626893",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vanelim",
+    "village_census_code_2011": "626898",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Varca",
+    "village_census_code_2011": "910336",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Varca (CT)",
+    "village_census_code_2011": "626932",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Velim",
+    "village_census_code_2011": "626921",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Verna (CT)",
+    "village_census_code_2011": "626923",
+    "block": "Salcete",
+    "block_census_code": "5616",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Antoriem",
+    "village_census_code_2011": "626986",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Bati",
+    "village_census_code_2011": "627006",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Boma",
+    "village_census_code_2011": "626990",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Calem",
+    "village_census_code_2011": "626988",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Comproi",
+    "village_census_code_2011": "626998",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Coranginim",
+    "village_census_code_2011": "626997",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Costi",
+    "village_census_code_2011": "626996",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cotarli",
+    "village_census_code_2011": "627000",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Cumbari",
+    "village_census_code_2011": "627007",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Curdi",
+    "village_census_code_2011": "627012",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Curpem",
+    "village_census_code_2011": "627015",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dongor",
+    "village_census_code_2011": "627009",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dongurli",
+    "village_census_code_2011": "626992",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Dudal",
+    "village_census_code_2011": "626995",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Maulinguem",
+    "village_census_code_2011": "626994",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Muguli",
+    "village_census_code_2011": "626999",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Naiquinim",
+    "village_census_code_2011": "627010",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Netorli",
+    "village_census_code_2011": "627018",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Nundem",
+    "village_census_code_2011": "627019",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Oxel",
+    "village_census_code_2011": "626991",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Patiem",
+    "village_census_code_2011": "626993",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Porteem",
+    "village_census_code_2011": "627011",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Potrem",
+    "village_census_code_2011": "627005",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Rumbrem",
+    "village_census_code_2011": "626985",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Salauli",
+    "village_census_code_2011": "627002",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Santona",
+    "village_census_code_2011": "626987",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sanvordem (CT)",
+    "village_census_code_2011": "627021",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Sigonem",
+    "village_census_code_2011": "627017",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Tudou",
+    "village_census_code_2011": "627004",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Uguem",
+    "village_census_code_2011": "627003",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Verlem",
+    "village_census_code_2011": "627020",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Vichundrem",
+    "village_census_code_2011": "627016",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Viliena",
+    "village_census_code_2011": "627008",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  },
+  {
+    "village": "Xelpem",
+    "village_census_code_2011": "627001",
+    "block": "Sanguem",
+    "block_census_code": "5618",
+    "district": "South Goa",
+    "district_census_code": "552",
+    "state": "Goa",
+    "is_pesa": false
+  }
+]

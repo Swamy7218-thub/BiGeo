@@ -1,0 +1,5632 @@
+[
+  {
+    "village": "Arong",
+    "village_census_code_2011": "645015",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Big Lapati",
+    "village_census_code_2011": "645025",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chuckchucha",
+    "village_census_code_2011": "645023",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gandhi Nagar",
+    "village_census_code_2011": "911499",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "IAF Camp",
+    "village_census_code_2011": "645018",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kakana",
+    "village_census_code_2011": "645017",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kimois",
+    "village_census_code_2011": "645016",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kinmai",
+    "village_census_code_2011": "645027",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kinyuka",
+    "village_census_code_2011": "645022",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Malacca",
+    "village_census_code_2011": "645019",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mus",
+    "village_census_code_2011": "645012",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Perka",
+    "village_census_code_2011": "645020",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sawai",
+    "village_census_code_2011": "645014",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Small Lapati",
+    "village_census_code_2011": "645026",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tamaloo",
+    "village_census_code_2011": "645021",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tapoiming",
+    "village_census_code_2011": "645024",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Teetop",
+    "village_census_code_2011": "645013",
+    "block": "Car Nicobar",
+    "block_census_code": "5916",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "7 km Farm",
+    "village_census_code_2011": "645196",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Afra Bay",
+    "village_census_code_2011": "645166",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Akupa",
+    "village_census_code_2011": "645144",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alexandera River",
+    "village_census_code_2011": "645168",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Anul/Anula",
+    "village_census_code_2011": "645142",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ayouk",
+    "village_census_code_2011": "645169",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bahua",
+    "village_census_code_2011": "645162",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bewai/Kuwak",
+    "village_census_code_2011": "645148",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Campbell Bay",
+    "village_census_code_2011": "645200",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chaw Nallaha",
+    "village_census_code_2011": "645204",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chingen (incl.FC at Magar Nalla",
+    "village_census_code_2011": "645189",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dairkurat",
+    "village_census_code_2011": "645167",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dakhiyon (FC)",
+    "village_census_code_2011": "645184",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Danlet",
+    "village_census_code_2011": "645179",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dogmar River",
+    "village_census_code_2011": "645174",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Elahi/Ilhoya",
+    "village_census_code_2011": "645159",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Galathia River (FC)",
+    "village_census_code_2011": "645190",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gandhi Nagar",
+    "village_census_code_2011": "645192",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gol Tikrey",
+    "village_census_code_2011": "645205",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Govinda Nagar",
+    "village_census_code_2011": "645199",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hin-Pou-Chi",
+    "village_census_code_2011": "645182",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hoin incl. Ikuia",
+    "village_census_code_2011": "645151",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hokesiang",
+    "village_census_code_2011": "645154",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Indira Point",
+    "village_census_code_2011": "645188",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "In-Hig-Loi",
+    "village_census_code_2011": "645186",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Inlock/Infock",
+    "village_census_code_2011": "645145",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Inlock/Pattia",
+    "village_census_code_2011": "645157",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Inod",
+    "village_census_code_2011": "645160",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Joginder Nagar",
+    "village_census_code_2011": "645195",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kasintung",
+    "village_census_code_2011": "645177",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Katahu",
+    "village_census_code_2011": "645165",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kiyang",
+    "village_census_code_2011": "645149",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Koe",
+    "village_census_code_2011": "645178",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kokeon",
+    "village_census_code_2011": "645183",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kondul",
+    "village_census_code_2011": "645163",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kopenheat",
+    "village_census_code_2011": "645175",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lanaya",
+    "village_census_code_2011": "645210",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lawful",
+    "village_census_code_2011": "645207",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Laxmi Nagar",
+    "village_census_code_2011": "645193",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Makhahu/Makachua",
+    "village_census_code_2011": "645143",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Minlana/Minlan",
+    "village_census_code_2011": "645141",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Navy Dera",
+    "village_census_code_2011": "645206",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Not yet named",
+    "village_census_code_2011": "645203",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Not yet named",
+    "village_census_code_2011": "645202",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Not yet named (at 27.9 km)-A",
+    "village_census_code_2011": "645197",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Olinchi/Bombay",
+    "village_census_code_2011": "645156",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Patatiya",
+    "village_census_code_2011": "645181",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Patisang",
+    "village_census_code_2011": "645209",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pattia (Pulopattia)",
+    "village_census_code_2011": "645155",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pea",
+    "village_census_code_2011": "645152",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pehayo",
+    "village_census_code_2011": "645161",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pitayo",
+    "village_census_code_2011": "645211",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulloullo/Puloulo",
+    "village_census_code_2011": "645150",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulobaha",
+    "village_census_code_2011": "645187",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulobaha/Pathathifen",
+    "village_census_code_2011": "645147",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulobed",
+    "village_census_code_2011": "645170",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulobed/Lababu",
+    "village_census_code_2011": "645164",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulobhabi",
+    "village_census_code_2011": "645180",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulobha/Pulobahan",
+    "village_census_code_2011": "645153",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulokunji",
+    "village_census_code_2011": "645171",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulomilo",
+    "village_census_code_2011": "645140",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulopanja",
+    "village_census_code_2011": "645158",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulopucca",
+    "village_census_code_2011": "645185",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pulotalia/Pulotohio",
+    "village_census_code_2011": "645146",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ranganathan Bay",
+    "village_census_code_2011": "645201",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Renguang",
+    "village_census_code_2011": "645173",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sastri Nagar",
+    "village_census_code_2011": "645191",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shompen hut",
+    "village_census_code_2011": "645198",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shompen Village-A",
+    "village_census_code_2011": "645172",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shompen Village-B",
+    "village_census_code_2011": "645176",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Trinket Bay",
+    "village_census_code_2011": "645208",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Vijoy Nagar",
+    "village_census_code_2011": "645194",
+    "block": "Great Nicobar",
+    "block_census_code": "5918",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alhiat",
+    "village_census_code_2011": "645030",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alhitoth/Alhiloth*",
+    "village_census_code_2011": "645053",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Al-Hit-Touch/Balu Basti",
+    "village_census_code_2011": "645094",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alipa/Alips*",
+    "village_census_code_2011": "645085",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alkaipoh/Alkripoh*",
+    "village_census_code_2011": "645052",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alointung*",
+    "village_census_code_2011": "645115",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Aloora*",
+    "village_census_code_2011": "645035",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Aloorang",
+    "village_census_code_2011": "645034",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alpintu/Alpintung*",
+    "village_census_code_2011": "645117",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alreak*",
+    "village_census_code_2011": "645101",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alsama*",
+    "village_census_code_2011": "645076",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Altaful*",
+    "village_census_code_2011": "645074",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Altheak",
+    "village_census_code_2011": "645093",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alukian/Alhukheck",
+    "village_census_code_2011": "645121",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Atkuna/Alkun*",
+    "village_census_code_2011": "645066",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Banderkari/Pulu",
+    "village_census_code_2011": "645116",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bengali",
+    "village_census_code_2011": "645044",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Berainak/Badnak",
+    "village_census_code_2011": "645129",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bompoka Island*",
+    "village_census_code_2011": "645045",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bumpal*",
+    "village_census_code_2011": "645109",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Champin",
+    "village_census_code_2011": "645096",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chanel/Chanol*",
+    "village_census_code_2011": "645113",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Changua/Changup",
+    "village_census_code_2011": "645119",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chengtamilan*",
+    "village_census_code_2011": "645065",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chonghipoh*",
+    "village_census_code_2011": "645050",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chongkamong",
+    "village_census_code_2011": "645029",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chonsiyala*",
+    "village_census_code_2011": "645059",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chota Inak",
+    "village_census_code_2011": "645128",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chukmachi",
+    "village_census_code_2011": "645039",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Daring",
+    "village_census_code_2011": "645111",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Enam",
+    "village_census_code_2011": "645036",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "E-Wall",
+    "village_census_code_2011": "645083",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hakonhala*",
+    "village_census_code_2011": "645069",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Halnatai/Hoinatai*",
+    "village_census_code_2011": "645073",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hindra*",
+    "village_census_code_2011": "645087",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hinnunga*",
+    "village_census_code_2011": "645097",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hintona*",
+    "village_census_code_2011": "645102",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hitlat*",
+    "village_census_code_2011": "645048",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hockook*",
+    "village_census_code_2011": "645136",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hoipoh*",
+    "village_census_code_2011": "645063",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hontona*",
+    "village_census_code_2011": "645060",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hutnyak*",
+    "village_census_code_2011": "645057",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Inmae*",
+    "village_census_code_2011": "645123",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Inroak/Chinlak*",
+    "village_census_code_2011": "645099",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Itoi*(HITUI)",
+    "village_census_code_2011": "645100",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jansin*",
+    "village_census_code_2011": "645047",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Japan Tikri",
+    "village_census_code_2011": "645082",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jhoola*",
+    "village_census_code_2011": "645046",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kakana",
+    "village_census_code_2011": "645131",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalara*",
+    "village_census_code_2011": "645038",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalasi",
+    "village_census_code_2011": "645043",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalminikum/Kalmenkam*",
+    "village_census_code_2011": "645068",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kamorta/Kalatapu(Incl.Sanuh)",
+    "village_census_code_2011": "645127",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kamriak*",
+    "village_census_code_2011": "645056",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kanahinot",
+    "village_census_code_2011": "645042",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kapanga*",
+    "village_census_code_2011": "645077",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kapila*",
+    "village_census_code_2011": "645139",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Karan/Karav*",
+    "village_census_code_2011": "645110",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Katahuwa*",
+    "village_census_code_2011": "645054",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kavatinpeu/Karahinpoh*",
+    "village_census_code_2011": "645075",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Knot",
+    "village_census_code_2011": "645122",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kuikua*",
+    "village_census_code_2011": "645134",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kuitasuk",
+    "village_census_code_2011": "645031",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kulatapangia*",
+    "village_census_code_2011": "645061",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kumikia*",
+    "village_census_code_2011": "645055",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kupinga*",
+    "village_census_code_2011": "645078",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lanuanga*",
+    "village_census_code_2011": "645092",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lapat*",
+    "village_census_code_2011": "645086",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Luxi",
+    "village_census_code_2011": "645037",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Malacca*",
+    "village_census_code_2011": "645095",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Manjula*",
+    "village_census_code_2011": "645106",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mapayala*",
+    "village_census_code_2011": "645064",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Maru*",
+    "village_census_code_2011": "645112",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Masala Tapu*",
+    "village_census_code_2011": "645120",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mavatapis/Maratapia*",
+    "village_census_code_2011": "645049",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Meenakshi Ram Nagar",
+    "village_census_code_2011": "645081",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mildera",
+    "village_census_code_2011": "645079",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Minyuk",
+    "village_census_code_2011": "645041",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mohreak/Kohreakap*",
+    "village_census_code_2011": "645133",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Munak incl. Ponioo/Moul",
+    "village_census_code_2011": "645125",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mus*",
+    "village_census_code_2011": "645088",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Neang*",
+    "village_census_code_2011": "645090",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Neeche Tapu*",
+    "village_census_code_2011": "645105",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nyicalang*",
+    "village_census_code_2011": "645132",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Okiya/Chiya*",
+    "village_census_code_2011": "645107",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Olinpon/Alhinpon*",
+    "village_census_code_2011": "645108",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ongulongho*",
+    "village_census_code_2011": "645058",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Payak*",
+    "village_census_code_2011": "645089",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Payuha",
+    "village_census_code_2011": "645124",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pilpilow",
+    "village_census_code_2011": "645104",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Raihion",
+    "village_census_code_2011": "645032",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ramzoo*(Ramjaw)",
+    "village_census_code_2011": "645126",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Reakomlong*",
+    "village_census_code_2011": "645070",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Safedbalu*",
+    "village_census_code_2011": "645135",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Safedbalu*",
+    "village_census_code_2011": "645040",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sanaya*",
+    "village_census_code_2011": "645051",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sonomkuwa*",
+    "village_census_code_2011": "645071",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tahaila",
+    "village_census_code_2011": "645028",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tanae*",
+    "village_census_code_2011": "645114",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tani*",
+    "village_census_code_2011": "645067",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tapani/Tapainy*",
+    "village_census_code_2011": "645098",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tapiang*",
+    "village_census_code_2011": "645138",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tapong incl. Kabila",
+    "village_census_code_2011": "645091",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tavinkin/Tavakin*",
+    "village_census_code_2011": "645072",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tillang Chong Island*",
+    "village_census_code_2011": "645033",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tomae/Inmae*",
+    "village_census_code_2011": "645118",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Trinket*",
+    "village_census_code_2011": "645137",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Uper Tapu*",
+    "village_census_code_2011": "645103",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Upper Katchal",
+    "village_census_code_2011": "645080",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Vikas Nagar",
+    "village_census_code_2011": "645130",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Vyavtapu*",
+    "village_census_code_2011": "645062",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "W.B.Katchal/Hindra*",
+    "village_census_code_2011": "645084",
+    "block": "Nancowry",
+    "block_census_code": "5917",
+    "district": "Nicobars",
+    "district_census_code": "603",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Aam Tikry (FDCA)",
+    "village_census_code_2011": "645280",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Aerial Bay (RV)",
+    "village_census_code_2011": "645227",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Amber Chad (EFA)",
+    "village_census_code_2011": "645253",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Austin Creek (FDCA)",
+    "village_census_code_2011": "645282",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Austin II (EFA)",
+    "village_census_code_2011": "645287",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Austin IX (FC)",
+    "village_census_code_2011": "645285",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bali Nallaha (EFA)",
+    "village_census_code_2011": "645269",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bamboo Nallaha (EFA)",
+    "village_census_code_2011": "645270",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bamboo Nallaha (EFA)",
+    "village_census_code_2011": "645284",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bandhan Nallaha (EFA)",
+    "village_census_code_2011": "645249",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bara Dabla (EFA)",
+    "village_census_code_2011": "645277",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Baskata Nallaha (EFA)",
+    "village_census_code_2011": "645267",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Beach Dera (EFA)",
+    "village_census_code_2011": "645247",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Borang (RV)",
+    "village_census_code_2011": "645240",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Burmachad (EFA)",
+    "village_census_code_2011": "645258",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Coffe Dera (EFA)",
+    "village_census_code_2011": "645248",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Curlew Island (FCPA)",
+    "village_census_code_2011": "645290",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Deshbandhugram (RV)",
+    "village_census_code_2011": "645217",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Diglipur (RV)",
+    "village_census_code_2011": "645223",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Durgapur (RV)",
+    "village_census_code_2011": "645228",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "East Island (Police post & Light house)",
+    "village_census_code_2011": "645243",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Elezabeth Bay (EFA)",
+    "village_census_code_2011": "645246",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gandhi Nagar",
+    "village_census_code_2011": "645255",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gandhi Nagar (Forest Beat)",
+    "village_census_code_2011": "645256",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ganesh Nagar",
+    "village_census_code_2011": "645252",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ganna Dabla (EFA)",
+    "village_census_code_2011": "645281",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ganna Level (EFA)",
+    "village_census_code_2011": "645272",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Haran Nallaha (EFA)",
+    "village_census_code_2011": "645259",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hara Tikry (EFA)",
+    "village_census_code_2011": "645286",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Haridas Kattai (EFA)",
+    "village_census_code_2011": "645250",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hoari Bay (EFA)",
+    "village_census_code_2011": "645278",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jagannath Dera (RV)",
+    "village_census_code_2011": "645238",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalighat (RV)",
+    "village_census_code_2011": "645237",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalipur (RV)",
+    "village_census_code_2011": "645230",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Karen Basti (EFA)",
+    "village_census_code_2011": "645245",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Keralapuram (RV)",
+    "village_census_code_2011": "645226",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Khudirampur (EFA)",
+    "village_census_code_2011": "645264",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Khudirampur (RV)",
+    "village_census_code_2011": "645231",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kishori Nagar (RV)",
+    "village_census_code_2011": "645234",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Krishnapuri (RV)",
+    "village_census_code_2011": "645219",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lamiya Bay (EFA)",
+    "village_census_code_2011": "645265",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lamiya Bay (WLS)",
+    "village_census_code_2011": "645266",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Land Fall Island (Police post)",
+    "village_census_code_2011": "645292",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Laxmipur (EFA)",
+    "village_census_code_2011": "645260",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Laxmipur (RV)",
+    "village_census_code_2011": "645216",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Madhupur (RV)",
+    "village_census_code_2011": "645218",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Madhyamgram (RV)",
+    "village_census_code_2011": "645235",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Milangram (RV)",
+    "village_census_code_2011": "645215",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mohanpur (RV)",
+    "village_census_code_2011": "645241",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mutha Nallaha (EFA)",
+    "village_census_code_2011": "645268",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nabagram (RV)",
+    "village_census_code_2011": "645232",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Narayan Tikri (EFA)",
+    "village_census_code_2011": "645273",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Narcondam Island (Police post)",
+    "village_census_code_2011": "645244",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Narkul Danga (EFA)",
+    "village_census_code_2011": "645275",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nischintapur (RV)",
+    "village_census_code_2011": "645236",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Paranghara (RV)",
+    "village_census_code_2011": "645233",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Paschim Sagar",
+    "village_census_code_2011": "911498",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Paschimsagar (EFA)",
+    "village_census_code_2011": "645261",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pathi Level (EFA)",
+    "village_census_code_2011": "645276",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pemaiahdera (FDCA)",
+    "village_census_code_2011": "645274",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pilone Nallaha (FDCA)",
+    "village_census_code_2011": "645279",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rabindrapalli (RV)",
+    "village_census_code_2011": "645221",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Radha Nagar (EFA)",
+    "village_census_code_2011": "645257",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Radha Nagar (RV)",
+    "village_census_code_2011": "645213",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rahil (FDCA)",
+    "village_census_code_2011": "645283",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ramakrishnagram (RV)",
+    "village_census_code_2011": "645224",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ramnagar (RV)",
+    "village_census_code_2011": "645239",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sagar Dweep (RV)",
+    "village_census_code_2011": "645242",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Santi Nagar",
+    "village_census_code_2011": "645254",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shibpur (RV)",
+    "village_census_code_2011": "645229",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shyam Nagar",
+    "village_census_code_2011": "645251",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shyam Nagar (RV)",
+    "village_census_code_2011": "645212",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sitanagar, (EFA)",
+    "village_census_code_2011": "645263",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sitanagar (RV)",
+    "village_census_code_2011": "645220",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Smith (EFA)",
+    "village_census_code_2011": "645288",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Smith (Timber Export Depot)",
+    "village_census_code_2011": "645289",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Srinagar (EFA)",
+    "village_census_code_2011": "645271",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Stewart Island",
+    "village_census_code_2011": "645291",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Subhashgram (RV)",
+    "village_census_code_2011": "645222",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Swarajgram (RV)",
+    "village_census_code_2011": "645214",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tal Bagan (EFA)",
+    "village_census_code_2011": "645262",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Vidyasagarpalli (RV)",
+    "village_census_code_2011": "645225",
+    "block": "Diglipur",
+    "block_census_code": "5919",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Asha Nagar (EFA)",
+    "village_census_code_2011": "645338",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Aves Island (RV)",
+    "village_census_code_2011": "645293",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bajato (EFA & 40 acre plot)",
+    "village_census_code_2011": "645337",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bamboo Nallaha (EFA)",
+    "village_census_code_2011": "645324",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Basantipur (RV)",
+    "village_census_code_2011": "645308",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Birsa Nagar (EFA)",
+    "village_census_code_2011": "645339",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Buddha Nallaha (EFA)",
+    "village_census_code_2011": "645325",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chainpur (EFA)",
+    "village_census_code_2011": "645336",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chainpur (RV)",
+    "village_census_code_2011": "645306",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chappa Nali (EFA)",
+    "village_census_code_2011": "645330",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chuglum Gum (EFA)",
+    "village_census_code_2011": "645326",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Danpur (RV)",
+    "village_census_code_2011": "645296",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Devpur (RV)",
+    "village_census_code_2011": "645301",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dukennagar (RV)",
+    "village_census_code_2011": "645316",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ganesh Nagar I & II (EFA)",
+    "village_census_code_2011": "645332",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ganeshpur (EFA)",
+    "village_census_code_2011": "645333",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gora Tikry (EFA)",
+    "village_census_code_2011": "645329",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Govindpur (RV)",
+    "village_census_code_2011": "645310",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hanspuri (RV) (including JPP Camps)",
+    "village_census_code_2011": "645305",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Harinagar (RV)",
+    "village_census_code_2011": "645315",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Interview Island (PO)",
+    "village_census_code_2011": "645320",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Interview Island (WLS)",
+    "village_census_code_2011": "645319",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jaipur (RV)",
+    "village_census_code_2011": "645313",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kamalapur (RV)",
+    "village_census_code_2011": "645312",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kanchi Nallaha (EFA) & Bamboo Nallaha (EFA)",
+    "village_census_code_2011": "645340",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Karanch Khari (EFA)",
+    "village_census_code_2011": "645328",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Karmatang IX (EFA)",
+    "village_census_code_2011": "645321",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Karmatang (RV)",
+    "village_census_code_2011": "645298",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Karmatang X (EFA) incl.Bihari Plot (EFA)",
+    "village_census_code_2011": "645322",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Khukari Tabla (EFA)",
+    "village_census_code_2011": "645331",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lataw (RV)",
+    "village_census_code_2011": "645300",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lauki Nallaha (EFA)",
+    "village_census_code_2011": "645342",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lucknow (RV)",
+    "village_census_code_2011": "645299",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Luis-in-Let-Bay (JPPC)",
+    "village_census_code_2011": "645334",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mayabunder (RV)",
+    "village_census_code_2011": "645294",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pahalgaon (RV)",
+    "village_census_code_2011": "645303",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Paiket Bay (EFA)",
+    "village_census_code_2011": "645323",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Paresh Nagar (RV)",
+    "village_census_code_2011": "645311",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pather Tikry (EFA)",
+    "village_census_code_2011": "645341",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pinakinagar (RV)",
+    "village_census_code_2011": "645314",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pokadera (RV)",
+    "village_census_code_2011": "645295",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Profullya Nagar (RV)",
+    "village_census_code_2011": "645309",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pudumadurai (RV)",
+    "village_census_code_2011": "645307",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rampur (RV)",
+    "village_census_code_2011": "645297",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Santipur (RV)",
+    "village_census_code_2011": "645317",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shippi Tikry (EFA)",
+    "village_census_code_2011": "645335",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sundari Khari (EFA)",
+    "village_census_code_2011": "645327",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Swadesh Nagar (RV)",
+    "village_census_code_2011": "645318",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tugapur (RV)",
+    "village_census_code_2011": "645304",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Webi (RV)",
+    "village_census_code_2011": "645302",
+    "block": "Mayabunder",
+    "block_census_code": "5920",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Abaygarh (RV)",
+    "village_census_code_2011": "645380",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Adojig (RV) (including EFA)",
+    "village_census_code_2011": "645374",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Amkunj (RV)",
+    "village_census_code_2011": "645349",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bakultala (CT)",
+    "village_census_code_2011": "645439",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bamboo Tikry (JPPC)",
+    "village_census_code_2011": "645414",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bangaon (RV)",
+    "village_census_code_2011": "645367",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bejoygarh (RV)",
+    "village_census_code_2011": "645375",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Between Chotaligbang and Foul Bay (JA)",
+    "village_census_code_2011": "645418",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bharatpur (RV)",
+    "village_census_code_2011": "645359",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bolcha (EFA)",
+    "village_census_code_2011": "645430",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Boreham Valley (FS)",
+    "village_census_code_2011": "645410",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Boroinyol II (FC)",
+    "village_census_code_2011": "645402",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Charlungta (FC)",
+    "village_census_code_2011": "645400",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Charlungta II (FC)",
+    "village_census_code_2011": "645401",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chotaligbang (JA)",
+    "village_census_code_2011": "645419",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Cutbert Bay (EFA)",
+    "village_census_code_2011": "645386",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Desharatpur (RV)",
+    "village_census_code_2011": "645352",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dhani Nallaha (EFA)",
+    "village_census_code_2011": "645388",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dhani Nallaha (JA)",
+    "village_census_code_2011": "645404",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dharmapur (RV)",
+    "village_census_code_2011": "645343",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Elephenstone Harbour (FC)",
+    "village_census_code_2011": "645423",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Foster Valley (EFA)",
+    "village_census_code_2011": "645411",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Foul Bay (JA)",
+    "village_census_code_2011": "645416",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Gol Pahar (EFA)",
+    "village_census_code_2011": "645394",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Janakpur (RV)",
+    "village_census_code_2011": "645351",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Japan Tikri (EFA)",
+    "village_census_code_2011": "645393",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jermyvalley(FS)",
+    "village_census_code_2011": "645412",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kadamtala (RV)",
+    "village_census_code_2011": "645369",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalsi (JPPC)",
+    "village_census_code_2011": "645395",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalsi No. 3 (JPPC)",
+    "village_census_code_2011": "645399",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalsi No. 4 (JPPC)",
+    "village_census_code_2011": "645398",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalsi No. 6 (JPPC)",
+    "village_census_code_2011": "645397",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalsi (RV)",
+    "village_census_code_2011": "645364",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kanchangarh (RV)",
+    "village_census_code_2011": "645378",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kaushalyanagar (RV)",
+    "village_census_code_2011": "645365",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Khatta Khari (EFA)",
+    "village_census_code_2011": "645437",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Khatta Khari (RV)",
+    "village_census_code_2011": "645385",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lakra Lungta (JA)",
+    "village_census_code_2011": "645417",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lalajig Bay (AC)",
+    "village_census_code_2011": "645421",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Laxmanpur (RV)",
+    "village_census_code_2011": "645362",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Long Island (RV)",
+    "village_census_code_2011": "645372",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lorrojig (FC) & Vishnu Nallaha (APWDC)",
+    "village_census_code_2011": "645426",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Macarthy Valley (EFA)",
+    "village_census_code_2011": "645409",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Merk Bay (AC)",
+    "village_census_code_2011": "645422",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Middle Strait (JPPC)",
+    "village_census_code_2011": "645433",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mithila (RV)",
+    "village_census_code_2011": "645354",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nayagarh (RV)",
+    "village_census_code_2011": "645382",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nilambur (EFA)",
+    "village_census_code_2011": "645431",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nilambur (RV)",
+    "village_census_code_2011": "645379",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nimbutala (RV)",
+    "village_census_code_2011": "645350",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Padmanabhapuram (RV)",
+    "village_census_code_2011": "645347",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Panchawati (EFA)",
+    "village_census_code_2011": "645391",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Panchawati (RV)",
+    "village_census_code_2011": "645348",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Papita Dera (FC)",
+    "village_census_code_2011": "645428",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Parnasala II (FC)",
+    "village_census_code_2011": "645392",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Parnasala (RV)",
+    "village_census_code_2011": "645357",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pawajig (FC)",
+    "village_census_code_2011": "645424",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pawajig & Nayadera (FC)",
+    "village_census_code_2011": "645425",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Porlob Depot. (FC)",
+    "village_census_code_2011": "645420",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Porlobjig No.10 (FC & JPPC)",
+    "village_census_code_2011": "645405",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Porlobjig No. 15 (FC, APWDC & JPPC)",
+    "village_census_code_2011": "645403",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Porlobjig No. 3 (JPPC, APWDC & ANIFPDC)",
+    "village_census_code_2011": "645413",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Porlobjig No.9 (JPPC)",
+    "village_census_code_2011": "645406",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Raglachang (Nayadera) (FC)",
+    "village_census_code_2011": "645434",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Raglachang (RV)",
+    "village_census_code_2011": "645381",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rajatgarh (EFA)",
+    "village_census_code_2011": "645435",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rajatgarh (RV)",
+    "village_census_code_2011": "645383",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ramachandra Nagar (RV)",
+    "village_census_code_2011": "645344",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rampur (RV)",
+    "village_census_code_2011": "645356",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rangat (RV)",
+    "village_census_code_2011": "645355",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sabari (RV)",
+    "village_census_code_2011": "645358",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sagwan Nallaha (FC)",
+    "village_census_code_2011": "645396",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Saktigarh (RV)",
+    "village_census_code_2011": "645366",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sanker Nallaha (PWDC)",
+    "village_census_code_2011": "645429",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Santanu (RV)",
+    "village_census_code_2011": "645370",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sastri Nallah (FC)",
+    "village_census_code_2011": "645427",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shivapuram (RV)",
+    "village_census_code_2011": "645346",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shyamkund (RV)",
+    "village_census_code_2011": "645360",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sippi Tikry (EFA)",
+    "village_census_code_2011": "645389",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sitapur (RV)",
+    "village_census_code_2011": "645353",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "South Creek (EFA, FC & APWDC)",
+    "village_census_code_2011": "645432",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Spike Island (JA)",
+    "village_census_code_2011": "645438",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Strait Island (AS)",
+    "village_census_code_2011": "645373",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sukha Nallaha (EFA)",
+    "village_census_code_2011": "645390",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sundergarh (RV) (including EFA)",
+    "village_census_code_2011": "645377",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Thiruvanchikulam (RV)",
+    "village_census_code_2011": "645345",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Thoraktang (FC)",
+    "village_census_code_2011": "645387",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Udhaygarh (RV)",
+    "village_census_code_2011": "645376",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Urmilapur (RV)",
+    "village_census_code_2011": "645363",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Uttara (RV)",
+    "village_census_code_2011": "645371",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Vishnupur (RV)",
+    "village_census_code_2011": "645361",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Wrafter's Creek (EFA)",
+    "village_census_code_2011": "645436",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Wrafter's Creek (RV)",
+    "village_census_code_2011": "645384",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Yeratiljig No. 10 (JPPC)",
+    "village_census_code_2011": "645415",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Yeratiljig No. 11 (JPPC)",
+    "village_census_code_2011": "645408",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Yeratiljig No. 9 (JPPC)",
+    "village_census_code_2011": "645407",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Yeratiljig (RV)",
+    "village_census_code_2011": "645368",
+    "block": "Rangat",
+    "block_census_code": "5921",
+    "district": "North And Middle Andaman",
+    "district_census_code": "632",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Alipur (RV)",
+    "village_census_code_2011": "645448",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Aniket (RV)",
+    "village_census_code_2011": "645464",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Anjali Nallaha (JPPC)",
+    "village_census_code_2011": "645507",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Badmash Pahar (RV)",
+    "village_census_code_2011": "645478",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Balughat (RV)",
+    "village_census_code_2011": "645477",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bambooflat",
+    "village_census_code_2011": "910519",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bambooflat (CT)",
+    "village_census_code_2011": "645516",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Beach Dera (EFA)",
+    "village_census_code_2011": "645505",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Between Middle Strait (JPPC) & Jirkatang (JA)",
+    "village_census_code_2011": "645494",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bindraban (RV)",
+    "village_census_code_2011": "645459",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Caddlegunj (RV) (incl. Sona Pahar & Hazari Bagh (JPPC)",
+    "village_census_code_2011": "645465",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chouldari (RV)",
+    "village_census_code_2011": "645480",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Coffee Plot",
+    "village_census_code_2011": "645500",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Colinpur (RV)",
+    "village_census_code_2011": "645470",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Craikabad (RV)",
+    "village_census_code_2011": "645479",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dhanikhari (RV)",
+    "village_census_code_2011": "645481",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dundas Point (RV)",
+    "village_census_code_2011": "645467",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ferrargunj (RV)",
+    "village_census_code_2011": "645458",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Flat Bay (RV)",
+    "village_census_code_2011": "645491",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Govindapuram (RV)",
+    "village_census_code_2011": "645452",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Guptapara (RV)",
+    "village_census_code_2011": "645488",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hashmatabad (EFA)",
+    "village_census_code_2011": "645512",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hashmatabad (RV)",
+    "village_census_code_2011": "645485",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Herbertabad (RV)",
+    "village_census_code_2011": "645457",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hobdipur (RV)",
+    "village_census_code_2011": "645473",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Homfreygunj (RV)",
+    "village_census_code_2011": "645482",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hope Town (RV)",
+    "village_census_code_2011": "645461",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jhinga Nallaha (JPPC & APWDC)",
+    "village_census_code_2011": "645504",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jirkatang Camp No. 7 (FC)",
+    "village_census_code_2011": "645498",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jirkatang No.2 (EFA)",
+    "village_census_code_2011": "645499",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Jirkatang No. 2 (RV)",
+    "village_census_code_2011": "645441",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kadakachang (RV)",
+    "village_census_code_2011": "645460",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalatang (RV)",
+    "village_census_code_2011": "645442",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Knapuram (RV)",
+    "village_census_code_2011": "645453",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lohabarrack (WLS)",
+    "village_census_code_2011": "645510",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Madhuban (RV)",
+    "village_census_code_2011": "645444",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Malapuram (RV)",
+    "village_census_code_2011": "645445",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Manglutan (EFA)",
+    "village_census_code_2011": "645513",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Manglutan (RV)",
+    "village_census_code_2011": "645486",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Manjeri (RV) & Line Dera (FC)",
+    "village_census_code_2011": "645489",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mannarghat (RV)",
+    "village_census_code_2011": "645446",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Manpur (RV)",
+    "village_census_code_2011": "645471",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mathura (RV)",
+    "village_census_code_2011": "645454",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Maymyo (EFA)",
+    "village_census_code_2011": "645511",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Maymyo (RV)",
+    "village_census_code_2011": "645483",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Middle Strait (JPPC)",
+    "village_census_code_2011": "645492",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mile Tilek (ARF)",
+    "village_census_code_2011": "645502",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mile Tilek  (JPPC)",
+    "village_census_code_2011": "645501",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mile Tilek (RV) & Mile Tilek (EFA)",
+    "village_census_code_2011": "645447",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mithakhari (RV)",
+    "village_census_code_2011": "645468",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mohwa Dera (RV)",
+    "village_census_code_2011": "645472",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mount Harriet (RV)",
+    "village_census_code_2011": "645450",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Mrichi Dera (EFA)",
+    "village_census_code_2011": "645497",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Muslim Basti (RV)",
+    "village_census_code_2011": "645475",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Namunaghar (RV)",
+    "village_census_code_2011": "645466",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nayashahar (EFA)",
+    "village_census_code_2011": "645514",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Nayashahar (RV)",
+    "village_census_code_2011": "645487",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "North Bay (RV)",
+    "village_census_code_2011": "645462",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ograbraij (RV)",
+    "village_census_code_2011": "645474",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pongi Balu (FC) & Bada Balu (EFA)",
+    "village_census_code_2011": "645515",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Port Mouat (RV)",
+    "village_census_code_2011": "645476",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Potatang (FC)",
+    "village_census_code_2011": "645493",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shoal Bay 17 (FC)",
+    "village_census_code_2011": "645495",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shoal Bay 19 (FC)",
+    "village_census_code_2011": "645496",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shoal Bay (RV)",
+    "village_census_code_2011": "645440",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shore Point (RV)",
+    "village_census_code_2011": "645463",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Stewartgunj (RV)",
+    "village_census_code_2011": "645451",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Temple Myo (RV)",
+    "village_census_code_2011": "645455",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tirur I (JPPC)",
+    "village_census_code_2011": "645506",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tirur IV (JPPC)",
+    "village_census_code_2011": "645508",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tirur (JA)",
+    "village_census_code_2011": "645509",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tirur (JPPC)",
+    "village_census_code_2011": "645503",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tirur (RV)",
+    "village_census_code_2011": "645456",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Tusnabad (RV)",
+    "village_census_code_2011": "645469",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Viper Island (RV)",
+    "village_census_code_2011": "645490",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Wandur (RV)",
+    "village_census_code_2011": "645484",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Wimberlygunj (RV)",
+    "village_census_code_2011": "645449",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Wright Myo (RV)",
+    "village_census_code_2011": "645443",
+    "block": "Ferrargunj",
+    "block_census_code": "5922",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Butler Bay Forest Camp 4-I (FDCA)",
+    "village_census_code_2011": "645570",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Butler Bay Forest Camp 4-II (FDCA)",
+    "village_census_code_2011": "645569",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Butler Bay Forest Camp 4-III (FDCA)",
+    "village_census_code_2011": "645566",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Butler Bay Forest Camp 4-IV (FDCA)",
+    "village_census_code_2011": "645567",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dugong Creek (OS)",
+    "village_census_code_2011": "645552",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Forest Camp at 14 Km 5 - I (FDCA)",
+    "village_census_code_2011": "645565",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Forest Camp at 14 km. 5-II (FDCA)",
+    "village_census_code_2011": "645564",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Forest Camp at 14 km. 5-III (FDCA)",
+    "village_census_code_2011": "645563",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Forest Camp at 19 km. (FDCA)",
+    "village_census_code_2011": "645562",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Harmender Bay (NS)",
+    "village_census_code_2011": "645559",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Hut Bay (RV)",
+    "village_census_code_2011": "645558",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "M/s Asia & Company (Asia Timber Product)",
+    "village_census_code_2011": "645557",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Netaji Nagar (RV)",
+    "village_census_code_2011": "645556",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rabindra Nagar (RV)",
+    "village_census_code_2011": "645554",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ramakrishnapur (RV)",
+    "village_census_code_2011": "645555",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Red Oil Palm (Nursery Camp)",
+    "village_census_code_2011": "645568",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "South Bay (Light House Camp)",
+    "village_census_code_2011": "645560",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "South Bay (OS)",
+    "village_census_code_2011": "645561",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Vivekanandapuram (RV)",
+    "village_census_code_2011": "645553",
+    "block": "Little Andaman",
+    "block_census_code": "5924",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bada Khari (FC)",
+    "village_census_code_2011": "645547",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bada Nallaha/Bada Balu (EFA)",
+    "village_census_code_2011": "645542",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bamboo Nallaha(EFA) incl. Kichad Nallaha(EFA)",
+    "village_census_code_2011": "645546",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Beadnabad (RV)",
+    "village_census_code_2011": "645537",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bejoy Nagar (RV)",
+    "village_census_code_2011": "645518",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bharatpur (RV)",
+    "village_census_code_2011": "645523",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Bimilitan (RV) & Kodiyaghat",
+    "village_census_code_2011": "645535",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Brichgunj (RV)",
+    "village_census_code_2011": "645532",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Brookshabad part (RV)",
+    "village_census_code_2011": "645531",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Calicut (RV)",
+    "village_census_code_2011": "645536",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chidiyatapu (RV)",
+    "village_census_code_2011": "645539",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Chidiyatapu (WLS)",
+    "village_census_code_2011": "645543",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Cinque Island (WLS)",
+    "village_census_code_2011": "645549",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Dollygunj (RV)",
+    "village_census_code_2011": "645529",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Garacharma (CT)",
+    "village_census_code_2011": "645551",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Govinda Nagar (RV)",
+    "village_census_code_2011": "645517",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "John Lawrance (FC)",
+    "village_census_code_2011": "645541",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Kamraj Nagar",
+    "village_census_code_2011": "912468",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Krishna Nagar (RV)",
+    "village_census_code_2011": "645520",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Lakshmanpur (RV)",
+    "village_census_code_2011": "645525",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Minnie Bay part (RV)",
+    "village_census_code_2011": "645530",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Munda Pahar (EFA)",
+    "village_census_code_2011": "645544",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Neil Kendra (RV)",
+    "village_census_code_2011": "645524",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "North Sentinel Island (SA)",
+    "village_census_code_2011": "645548",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Pahargaon part (RV)",
+    "village_census_code_2011": "645527",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Prothrapur (CT)",
+    "village_census_code_2011": "645550",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Radha Nagar (RV)",
+    "village_census_code_2011": "645521",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Ram Nagar (RV)",
+    "village_census_code_2011": "645526",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rangachang (RV)",
+    "village_census_code_2011": "645538",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "R.M.Point (FC)",
+    "village_census_code_2011": "645545",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Rutland (RV)",
+    "village_census_code_2011": "645540",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "School Line part (RV)",
+    "village_census_code_2011": "645528",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Shyam Nagar (RV)",
+    "village_census_code_2011": "645519",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sippighat (RV)",
+    "village_census_code_2011": "645534",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Sitapur (RV)",
+    "village_census_code_2011": "645522",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  },
+  {
+    "village": "Teylorabad (RV)",
+    "village_census_code_2011": "645533",
+    "block": "Port Blair",
+    "block_census_code": "5923",
+    "district": "South Andamans",
+    "district_census_code": "602",
+    "state": "Andaman And Nicobar Islands",
+    "is_pesa": false
+  }
+]

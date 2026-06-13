@@ -1,0 +1,272 @@
+[
+  {
+    "village": "Agatti",
+    "village_census_code_2011": "627044",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Bangaram",
+    "village_census_code_2011": "627043",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalpitti",
+    "village_census_code_2011": "627045",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Parali (I)",
+    "village_census_code_2011": "627040",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Parali (II)",
+    "village_census_code_2011": "627041",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Parali (III)",
+    "village_census_code_2011": "627042",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Tinnakara",
+    "village_census_code_2011": "627039",
+    "block": "Agatti",
+    "block_census_code": "5626",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Amini (CT)",
+    "village_census_code_2011": "627030",
+    "block": "Amini",
+    "block_census_code": "5620",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Andrott (CT)",
+    "village_census_code_2011": "627046",
+    "block": "Andrott",
+    "block_census_code": "5627",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Bitra",
+    "village_census_code_2011": "627031",
+    "block": "Bitra",
+    "block_census_code": "5621",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Chetlat",
+    "village_census_code_2011": "627032",
+    "block": "Chetlat",
+    "block_census_code": "5622",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Kadmat (CT)",
+    "village_census_code_2011": "627034",
+    "block": "Kadmat",
+    "block_census_code": "5624",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Cheriyam",
+    "village_census_code_2011": "627047",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Kalpeni (CT)",
+    "village_census_code_2011": "627054",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Kodithala",
+    "village_census_code_2011": "627048",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Pitti (I)",
+    "village_census_code_2011": "627052",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Pitti (II)",
+    "village_census_code_2011": "627053",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Tilakkam (I)",
+    "village_census_code_2011": "627049",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Tilakkam (II)",
+    "village_census_code_2011": "627050",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Tilakkam (III)",
+    "village_census_code_2011": "627051",
+    "block": "Kalpeni",
+    "block_census_code": "5628",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Kavaratti (CT)",
+    "village_census_code_2011": "627038",
+    "block": "Kavaratti",
+    "block_census_code": "5625",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Pitti (Birds' Island)",
+    "village_census_code_2011": "627035",
+    "block": "Kavaratti",
+    "block_census_code": "5625",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Suheli Cheriyakara",
+    "village_census_code_2011": "627037",
+    "block": "Kavaratti",
+    "block_census_code": "5625",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Suheli Valiyakara",
+    "village_census_code_2011": "627036",
+    "block": "Kavaratti",
+    "block_census_code": "5625",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Kiltan",
+    "village_census_code_2011": "627033",
+    "block": "Kiltan",
+    "block_census_code": "5623",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Minicoy (CT)",
+    "village_census_code_2011": "627056",
+    "block": "Minicoy",
+    "block_census_code": "5629",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  },
+  {
+    "village": "Viringili",
+    "village_census_code_2011": "627055",
+    "block": "Minicoy",
+    "block_census_code": "5629",
+    "district": "Lakshadweep District",
+    "district_census_code": "553",
+    "state": "Lakshadweep",
+    "is_pesa": false
+  }
+]

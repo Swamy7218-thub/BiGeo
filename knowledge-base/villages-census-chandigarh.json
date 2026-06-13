@@ -1,0 +1,122 @@
+[
+  {
+    "village": "Behlana (CT)",
+    "village_census_code_2011": "40098",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Daria (CT)",
+    "village_census_code_2011": "40096",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Dhanas",
+    "village_census_code_2011": "40091",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Kaimbwala",
+    "village_census_code_2011": "40089",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Khuda Alisher (CT)",
+    "village_census_code_2011": "40094",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Khuda Jassu (OG)",
+    "village_census_code_2011": "40100",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Lahora (OG)",
+    "village_census_code_2011": "40099",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Mani Majra (R), Basti Kishangarh, Basti Bhagwanpura (CT)",
+    "village_census_code_2011": "40095",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Mauli Jagran (CT)",
+    "village_census_code_2011": "40097",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Raipur Kalan & Makhan Majra",
+    "village_census_code_2011": "40093",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Raipur Khurd",
+    "village_census_code_2011": "40092",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  },
+  {
+    "village": "Sarangpur",
+    "village_census_code_2011": "40090",
+    "block": "Chandigarh",
+    "block_census_code": "277",
+    "district": "Chandigarh",
+    "district_census_code": "44",
+    "state": "Chandigarh",
+    "is_pesa": false
+  }
+]

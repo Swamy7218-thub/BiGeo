@@ -1,0 +1,272 @@
+[
+  {
+    "village": "Bhamati",
+    "village_census_code_2011": "524918",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Bhenslore",
+    "village_census_code_2011": "912998",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Bhimpore (CT)",
+    "village_census_code_2011": "524928",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Dabhel (CT)",
+    "village_census_code_2011": "524930",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Damanwada (Dama O-De-Cima)",
+    "village_census_code_2011": "524916",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Deva Pardi",
+    "village_census_code_2011": "524922",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Devka",
+    "village_census_code_2011": "524911",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Dholar",
+    "village_census_code_2011": "524919",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Dunetha (CT)",
+    "village_census_code_2011": "524929",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Jampore",
+    "village_census_code_2011": "524920",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Janivankad",
+    "village_census_code_2011": "524912",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Kachigam (CT)",
+    "village_census_code_2011": "524931",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Kadaiya (CT)",
+    "village_census_code_2011": "524927",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Magarwada",
+    "village_census_code_2011": "524915",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Marwad (CT)",
+    "village_census_code_2011": "524926",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Naila Pardi",
+    "village_census_code_2011": "524923",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Palhit",
+    "village_census_code_2011": "524917",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Pariari",
+    "village_census_code_2011": "524921",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Patlara",
+    "village_census_code_2011": "912997",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Ringanwada",
+    "village_census_code_2011": "524914",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Thana Pardi",
+    "village_census_code_2011": "524924",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Varkund",
+    "village_census_code_2011": "524913",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Zari",
+    "village_census_code_2011": "524925",
+    "block": "Daman",
+    "block_census_code": "3948",
+    "district": "Daman",
+    "district_census_code": "463",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Bhucharvada",
+    "village_census_code_2011": "524909",
+    "block": "Diu",
+    "block_census_code": "3947",
+    "district": "Diu",
+    "district_census_code": "464",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Saudwadi",
+    "village_census_code_2011": "524910",
+    "block": "Diu",
+    "block_census_code": "3947",
+    "district": "Diu",
+    "district_census_code": "464",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Vanakbara",
+    "village_census_code_2011": "524907",
+    "block": "Diu",
+    "block_census_code": "3947",
+    "district": "Diu",
+    "district_census_code": "464",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  },
+  {
+    "village": "Zolawadi",
+    "village_census_code_2011": "524908",
+    "block": "Diu",
+    "block_census_code": "3947",
+    "district": "Diu",
+    "district_census_code": "464",
+    "state": "Daman And Diu",
+    "is_pesa": false
+  }
+]
