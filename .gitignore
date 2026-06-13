@@ -4,3 +4,8 @@ india-geodata/
 indian-pincodes-database/
 indian_village_boundaries/
 indian_village_directory/
+pmgsy-geosadak/
+opendata/
+external-data/
+knowledge-base/pmgsy-habitations-*.json
+knowledge-base/postoffices-india-*.json
