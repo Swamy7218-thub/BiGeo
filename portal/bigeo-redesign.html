@@ -704,13 +704,13 @@ footer {
   <div class="hero-content">
     <div class="pill-badge" role="status" aria-live="polite">
       <span class="pill-dot" aria-hidden="true"></span>
-      Now in private beta &thinsp;·&thinsp; Telangana, India
+      Live on AWS · 652,178 villages · Pan-India
     </div>
 
     <h1 id="hero-h1">Rural India's<br>Last-Mile OS</h1>
 
     <p class="hero-sub">
-      BiGeo parses any village address into GPS coordinates, optimizes delivery routes, and connects farmers to logistics — in Telugu, Hindi, and English.
+      BiGeo resolves any village address into GPS coordinates using AI + HERE Maps — across 652,178 villages in 36 Indian states. Telugu, Hindi, English.
     </p>
 
     <div class="hero-ctas">
@@ -739,8 +739,9 @@ footer {
             <div class="t-line">&nbsp; <span class="t-key">"lat"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-num">18.1018</span><span class="t-brace">,</span></div>
             <div class="t-line">&nbsp; <span class="t-key">"lng"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-num">78.8520</span><span class="t-brace">,</span></div>
             <div class="t-line">&nbsp; <span class="t-key">"confidence_score"</span><span class="t-brace">:&nbsp;</span><span class="t-val-num">0.94</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"model"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"gemini-2.0-flash"</span><span class="t-brace">,</span></div>
-            <div class="t-line">&nbsp; <span class="t-key">"detected_language"</span><span class="t-brace">:</span><span class="t-val-str">"en"</span></div>
+            <div class="t-line">&nbsp; <span class="t-key">"model"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"claude-sonnet-4-6"</span><span class="t-brace">,</span></div>
+            <div class="t-line">&nbsp; <span class="t-key">"detected_language"</span><span class="t-brace">:</span><span class="t-val-str">"en"</span><span class="t-brace">,</span></div>
+            <div class="t-line">&nbsp; <span class="t-key">"gps_source"</span><span class="t-brace">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val-str">"here_maps"</span><span class="t-brace">,</span></div>
             <div class="t-line"><span class="t-brace">}</span></div>
           </div>
         </div>
@@ -753,12 +754,13 @@ footer {
      PROOF BAR
      ================================================================ -->
 <div class="proof-bar" role="region" aria-label="Trusted by">
-  <span class="proof-label">Trusted by teams at</span>
+  <span class="proof-label">Powered by</span>
   <div class="proof-pills">
-    <span class="proof-pill">NVIDIA Inception</span>
-    <span class="proof-pill">IIT Hyderabad</span>
-    <span class="proof-pill">T-Hub</span>
-    <span class="proof-pill">AWS Activate</span>
+    <span class="proof-pill">Amazon Bedrock</span>
+    <span class="proof-pill">HERE Maps</span>
+    <span class="proof-pill">652K Villages</span>
+    <span class="proof-pill">36 States</span>
+    <span class="proof-pill">AWS ap-south-1</span>
   </div>
 </div>
 
@@ -778,7 +780,7 @@ footer {
     <div class="bento-card span2 obs-card" aria-label="Address Intelligence">
       <div class="bc-label">Address Intelligence</div>
       <div class="bc-title">Resolve any village address</div>
-      <div class="bc-sub">Parse fuzzy names, alternate spellings, and dialect variations across Telangana's 33 districts.</div>
+      <div class="bc-sub">652,178 census villages across 36 states. GPS centroids for 12 states. Powered by Bedrock Knowledge Base.</div>
       <div class="map-wrap" aria-hidden="true">
         <svg viewBox="0 0 320 180" width="320" height="180" xmlns="http://www.w3.org/2000/svg">
           <!-- Telangana outline (simplified) -->
@@ -805,9 +807,9 @@ footer {
         </svg>
       </div>
       <div class="map-stats">
-        <div class="map-stat"><strong class="bc-counter" data-target="112">0</strong>Addresses Parsed</div>
-        <div class="map-stat"><strong class="bc-counter" data-target="3">0</strong>Districts Live</div>
-        <div class="map-stat"><strong>33</strong>Districts Planned</div>
+        <div class="map-stat"><strong class="bc-counter" data-target="1284">0</strong>Addresses Parsed</div>
+        <div class="map-stat"><strong class="bc-counter" data-target="36">0</strong>States Covered</div>
+        <div class="map-stat"><strong>652K</strong>Villages Indexed</div>
       </div>
     </div>
 
@@ -836,7 +838,7 @@ footer {
     <div class="bento-card obs-card" aria-label="Dual AI Engine">
       <div class="bc-label">Dual AI Engine</div>
       <div class="bc-title">Gemini + Claude</div>
-      <div class="bc-sub">Two models validate every parse for maximum accuracy.</div>
+      <div class="bc-sub">4-layer pipeline: Knowledge Base → HERE Maps → Claude AI → DynamoDB cache.</div>
       <div class="ai-models">
         <div class="ai-model">
           <div class="ai-icon" style="background:rgba(66,133,244,.14)">
@@ -846,22 +848,22 @@ footer {
             </svg>
           </div>
           <div class="ai-info">
-            <div class="ai-name">Gemini 2.0 Flash</div>
-            <div class="ai-role">Primary parser · 94% accuracy</div>
-            <div class="conf-bar"><div class="conf-fill cf-g" data-w="94"></div></div>
+            <div class="ai-name">Claude Sonnet 4.6</div>
+            <div class="ai-role">Primary parser · Bedrock · 99% confidence</div>
+            <div class="conf-bar"><div class="conf-fill cf-g" data-w="99"></div></div>
           </div>
         </div>
         <div class="ai-model">
-          <div class="ai-icon" style="background:rgba(212,135,90,.14)">
+          <div class="ai-icon" style="background:rgba(34,197,94,.14)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" stroke="#d4875a" stroke-width="2"/>
-              <path d="M12 7v5l3.5 3.5" stroke="#c4622d" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 3C7.03 3 3 7.03 3 12s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" stroke="#22c55e" stroke-width="2"/>
+              <path d="M12 7v5l3.5 3.5" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </div>
           <div class="ai-info">
-            <div class="ai-name">Claude Sonnet</div>
-            <div class="ai-role">Validator · Cross-checks output</div>
-            <div class="conf-bar"><div class="conf-fill cf-c" data-w="88"></div></div>
+            <div class="ai-name">HERE Maps (Amazon)</div>
+            <div class="ai-role">GPS validation · Amazon Location Service</div>
+            <div class="conf-bar"><div class="conf-fill cf-c" data-w="95"></div></div>
           </div>
         </div>
       </div>
@@ -916,7 +918,7 @@ footer {
       <div class="bc-label">Live Performance</div>
       <div class="bc-title">
         <span class="pulse-dot" aria-hidden="true"></span>
-        API running — avg response 1.2s
+        API running — avg response 1.8s · HERE Maps GPS live
       </div>
       <div class="bc-sub">Production-ready. Regional deployment on AWS ap-south-1 (Mumbai).</div>
       <div class="api-counter-row">
@@ -1034,9 +1036,11 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
   <span class="hl-k">"mandal"</span>:            <span class="hl-s">"YELLAREDDY"</span>,
   <span class="hl-k">"lat"</span>:               <span class="hl-n">18.1018</span>,
   <span class="hl-k">"lng"</span>:               <span class="hl-n">78.8520</span>,
-  <span class="hl-k">"confidence_score"</span>:  <span class="hl-n">0.94</span>,
-  <span class="hl-k">"model"</span>:             <span class="hl-s">"gemini-2.0-flash"</span>,
-  <span class="hl-k">"detected_language"</span>: <span class="hl-s">"en"</span>
+  <span class="hl-k">"confidence_score"</span>:  <span class="hl-n">0.99</span>,
+  <span class="hl-k">"model"</span>:             <span class="hl-s">"claude-sonnet-4-6"</span>,
+  <span class="hl-k">"detected_language"</span>: <span class="hl-s">"en"</span>,
+  <span class="hl-k">"gps_source"</span>:          <span class="hl-s">"here_maps"</span>,
+  <span class="hl-k">"cached"</span>:               <span class="hl-n">false</span>,
 <span class="hl-m">}</span></pre>
       </div>
     </div>
@@ -1053,20 +1057,20 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
   </div>
   <div class="metrics-grid" role="list">
     <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num"><span class="cu" data-target="112">0</span></div>
+      <div class="metric-num"><span class="cu" data-target="1284">0</span></div>
       <div class="metric-label">Addresses Parsed</div>
     </div>
     <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num"><span class="cu" data-target="3">0</span></div>
-      <div class="metric-label">Districts Live</div>
+      <div class="metric-num"><span class="cu" data-target="36">0</span></div>
+      <div class="metric-label">States Covered</div>
     </div>
     <div class="metric-cell obs-metric" role="listitem">
-      <div class="metric-num"><span class="cu" data-target="94">0</span><span class="metric-suffix">%</span></div>
+      <div class="metric-num"><span class="cu" data-target="99">0</span><span class="metric-suffix">%</span></div>
       <div class="metric-label">Parse Accuracy</div>
     </div>
     <div class="metric-cell obs-metric" role="listitem">
       <div class="metric-num">&lt;<span class="cu" data-target="2">0</span>s</div>
-      <div class="metric-label">Avg Latency</div>
+      <div class="metric-label">Avg Latency (secs)</div>
     </div>
   </div>
 </section>
@@ -1089,7 +1093,7 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
     <div class="hiw-step obs-step">
       <div class="hiw-num" aria-hidden="true">2</div>
       <div class="hiw-step-title">AI resolves it</div>
-      <div class="hiw-step-sub">Gemini 2.0 Flash parses the address against Telangana's village database. Claude Sonnet cross-validates the result for confidence.</div>
+      <div class="hiw-step-sub">Bedrock KB searches 652K villages semantically. Claude Sonnet 4.6 structures the address. HERE Maps (Amazon Location Service) verifies GPS coordinates.</div>
     </div>
     <div class="hiw-step obs-step">
       <div class="hiw-num" aria-hidden="true">3</div>
@@ -1238,8 +1242,8 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
       <div class="pc-div"></div>
       <div class="pc-feats">
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>10,000 API calls / month</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>All 3 live districts</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Route optimization</div>
+        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>All 36 states (pan-India)</div>
+        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>HERE Maps GPS verification</div>
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>WhatsApp integration</div>
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Multilingual (3 langs)</div>
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Email support</div>
@@ -1254,8 +1258,8 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
       <div class="pc-div"></div>
       <div class="pc-feats">
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Unlimited API calls</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>All 33 districts (roadmap)</div>
-        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Custom model fine-tuning</div>
+        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>652K village Knowledge Base</div>
+        <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Bedrock AI + HERE Maps</div>
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>Dedicated infrastructure</div>
         <div class="pc-feat"><span class="pc-check" aria-hidden="true">✓</span>SLA + dedicated support</div>
       </div>
@@ -1296,7 +1300,7 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
   <nav class="footer-links" aria-label="Footer links">
     <a href="#features">Product</a>
     <a href="#code">Docs</a>
-    <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/Swamy7218-thub/BiGeo" target="_blank" rel="noopener">GitHub</a>
     <a href="mailto:admin@bigeo.in">Contact</a>
   </nav>
 </footer>
@@ -1478,7 +1482,7 @@ console.<span class="hl-m">log</span>(<span class="hl-s">`${district}: ${lat}, $
         // api calls counter
         var apiEl = e.target.querySelector('#api-calls');
         if (apiEl) {
-          var v = 0, t = 112;
+          var v = 0, t = 1284;
           var iv = setInterval(function() {
             v += 3;
             if (v >= t) { v = t; clearInterval(iv); }
