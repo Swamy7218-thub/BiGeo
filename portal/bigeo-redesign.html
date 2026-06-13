@@ -301,7 +301,7 @@ footer{border-top:1px solid var(--border2);padding:48px 24px;text-align:center}
       <div class="terminal-body">
         <div class="t-input-row">
           <input class="t-input" id="demo-input" type="text"
-            placeholder="Near the banyan tree, Yellareddyguda, Siddipet..."/>
+            placeholder="Beside Church, Bhoompally, Siddipet, Telangana..."/>
           <button class="t-btn" onclick="runDemo()" id="demo-btn">Parse →</button>
         </div>
         <div class="t-output" id="demo-output">
@@ -446,18 +446,18 @@ footer{border-top:1px solid var(--border2);padding:48px 24px;text-align:center}
       <div class="bento-card bc-span12 reveal">
         <div class="bc-label">API Response</div>
         <div style="font-family:var(--mono);font-size:12.5px;line-height:1.9;color:#888;overflow-x:auto">
-<span style="color:var(--muted2)">// POST /v1/parse · {"address": "Near banyan tree, Yellareddyguda, Siddipet"}</span><br/>
+<span style="color:var(--muted2)">// POST /v1/parse · {"address": "Beside Church, Bhoompally, Siddipet, Telangana"}</span><br/>
 {<br/>
-&nbsp;&nbsp;<span style="color:#666">"village"</span>: <span style="color:var(--orange)">"Yellareddyguda"</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"mandal"</span>: <span style="color:var(--orange)">"Dubbak"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"village"</span>: <span style="color:var(--orange)">"Khazipur"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"mandal"</span>: <span style="color:var(--orange)">"Bhoompally"</span>,<br/>
 &nbsp;&nbsp;<span style="color:#666">"district"</span>: <span style="color:var(--orange)">"Siddipet"</span>,<br/>
 &nbsp;&nbsp;<span style="color:#666">"state"</span>: <span style="color:var(--orange)">"Telangana"</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"pincode"</span>: <span style="color:#22c55e">502103</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"lat"</span>: <span style="color:#22c55e">18.1021</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"lng"</span>: <span style="color:#22c55e">78.8491</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"confidence_score"</span>: <span style="color:#22c55e">0.99</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"gps_source"</span>: <span style="color:var(--orange)">"google-maps+here-verified"</span>,<br/>
-&nbsp;&nbsp;<span style="color:#666">"latency_ms"</span>: <span style="color:#22c55e">1240</span><br/>
+&nbsp;&nbsp;<span style="color:#666">"pincode"</span>: <span style="color:#22c55e">502375</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"lat"</span>: <span style="color:#22c55e">18.10344</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"lng"</span>: <span style="color:#22c55e">78.84707</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"confidence_score"</span>: <span style="color:#22c55e">0.80</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"gps_source"</span>: <span style="color:var(--orange)">"here-maps"</span>,<br/>
+&nbsp;&nbsp;<span style="color:#666">"latency_ms"</span>: <span style="color:#22c55e">2961</span><br/>
 }
         </div>
       </div>
@@ -483,7 +483,7 @@ footer{border-top:1px solid var(--border2);padding:48px 24px;text-align:center}
 <span class="c-cmd">curl</span> -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \
   -H <span class="c-str">"x-api-key: YOUR_API_KEY"</span> \
   -H <span class="c-str">"Content-Type: application/json"</span> \
-  -d <span class="c-str">'{"address": "Yellareddyguda, Siddipet"}'</span>
+  -d <span class="c-str">'{"address": "Bhoompally, Siddipet, Telangana"}'</span>
       </div>
       <div class="code-block" id="tab-python">
         <button class="copy-btn" onclick="doCopy('python')">copy</button>
@@ -492,7 +492,7 @@ footer{border-top:1px solid var(--border2);padding:48px 24px;text-align:center}
 res = requests.post(
     <span class="c-str">"https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse"</span>,
     headers={<span class="c-str">"x-api-key"</span>: <span class="c-str">"YOUR_API_KEY"</span>},
-    json={<span class="c-str">"address"</span>: <span class="c-str">"Yellareddyguda, Siddipet"</span>}
+    json={<span class="c-str">"address"</span>: <span class="c-str">"Bhoompally, Siddipet, Telangana"</span>}
 )
 data = res.json()
 <span class="c-key">print</span>(data[<span class="c-str">"lat"</span>], data[<span class="c-str">"lng"</span>])  <span class="c-comment"># 18.1021 78.8491</span>
@@ -504,7 +504,7 @@ data = res.json()
   {
     method: <span class="c-str">"POST"</span>,
     headers: { <span class="c-str">"x-api-key"</span>: <span class="c-str">"YOUR_API_KEY"</span> },
-    body: JSON.stringify({ address: <span class="c-str">"Yellareddyguda, Siddipet"</span> })
+    body: JSON.stringify({ address: <span class="c-str">"Bhoompally, Siddipet, Telangana"</span> })
   }
 );
 <span class="c-key">const</span> { lat, lng, district } = <span class="c-key">await</span> res.json();
@@ -783,12 +783,6 @@ document.querySelectorAll('.bc-bar-fill').forEach(function(bar){
 });
 
 /* ── DEMO TERMINAL ── */
-var DEMO_RESULT = {
-  village:'Yellareddyguda', mandal:'Dubbak', district:'Siddipet',
-  state:'Telangana', pincode:502103, lat:18.1021, lng:78.8491,
-  confidence_score:0.99, gps_source:'google-maps+here-verified', latency_ms:1240
-};
-
 var DEMO_API = 'https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse';
 var DEMO_KEY = 'demo-public-readonly';
 
@@ -840,9 +834,9 @@ window.runDemo = function(){
 
 /* ── CODE TABS ── */
 var CODE = {
-  curl: 'curl -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"address": "Yellareddyguda, Siddipet"}\'',
-  python: 'import requests\n\nres = requests.post(\n    "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n    headers={"x-api-key": "YOUR_API_KEY"},\n    json={"address": "Yellareddyguda, Siddipet"}\n)\ndata = res.json()\nprint(data["lat"], data["lng"])',
-  node: 'const res = await fetch(\n  "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n  {\n    method: "POST",\n    headers: { "x-api-key": "YOUR_API_KEY" },\n    body: JSON.stringify({ address: "Yellareddyguda, Siddipet" })\n  }\n);\nconst { lat, lng, district } = await res.json();'
+  curl: 'curl -X POST https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"address": "Bhoompally, Siddipet, Telangana"}\'',
+  python: 'import requests\n\nres = requests.post(\n    "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n    headers={"x-api-key": "YOUR_API_KEY"},\n    json={"address": "Bhoompally, Siddipet, Telangana"}\n)\ndata = res.json()\nprint(data["lat"], data["lng"])  # 18.10344 78.84707',
+  node: 'const res = await fetch(\n  "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse",\n  {\n    method: "POST",\n    headers: { "x-api-key": "YOUR_API_KEY" },\n    body: JSON.stringify({ address: "Bhoompally, Siddipet, Telangana" })\n  }\n);\nconst { lat, lng, district } = await res.json();'
 };
 
 window.switchTab = function(lang, btn){
