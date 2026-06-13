@@ -7,6 +7,23 @@ import { LocationClient, SearchPlaceIndexForTextCommand } from "@aws-sdk/client-
 import { createHash } from "crypto";
 import https from "https";
 
+const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN || "da78fa74ae650b4ddd5b327a1be9511c";
+
+function trackMixpanel(event, properties) {
+  const data = Buffer.from(JSON.stringify({
+    event,
+    properties: { token: MIXPANEL_TOKEN, distinct_id: "server", ...properties },
+  })).toString("base64");
+  const req = https.request(
+    { hostname: "api.mixpanel.com", path: "/track", method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" } },
+    () => {}
+  );
+  req.on("error", () => {});
+  req.write("data=" + encodeURIComponent(data));
+  req.end();
+}
+
 const region = process.env.AWS_REGION || "ap-south-1";
 const TABLE_NAME = process.env.ADDRESS_TABLE || "bigeo-address-graph";
 const BEDROCK_MODEL = "global.anthropic.claude-sonnet-4-6";
@@ -375,6 +392,10 @@ export const handler = async (event) => {
   // 1. Cache check
   const cached = await getCached(cleanAddress);
   if (cached) {
+    trackMixpanel("Address Parsed", {
+      source: "cache", state: cached.state, district: cached.district,
+      confidence: cached.confidence_score, latency_ms: Date.now() - start,
+    });
     return { statusCode: 200, headers, body: JSON.stringify({
       input_address: cleanAddress, ...cached,
       latency_ms: Date.now() - start, source: "cache",
@@ -470,6 +491,12 @@ export const handler = async (event) => {
 
   // Write cache async
   writeCache(parsed, cleanAddress, modelUsed).catch(err => console.error("Cache write error:", err));
+
+  trackMixpanel("Address Parsed", {
+    source: "ai", model: modelUsed, state: parsed.state, district: parsed.district,
+    confidence: parsed.confidence_score, gps_source: gpsSource,
+    latency_ms: latencyMs, detected_language: detectedLang,
+  });
 
   return { statusCode: 200, headers, body: JSON.stringify({
     input_address: cleanAddress,

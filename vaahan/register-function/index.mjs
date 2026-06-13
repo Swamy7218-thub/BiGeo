@@ -2,6 +2,24 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 import { randomUUID } from "crypto";
+import https from "https";
+
+const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN || "da78fa74ae650b4ddd5b327a1be9511c";
+
+function trackMixpanel(event, properties) {
+  const data = Buffer.from(JSON.stringify({
+    event,
+    properties: { token: MIXPANEL_TOKEN, distinct_id: properties.email || "server", ...properties },
+  })).toString("base64");
+  const req = https.request(
+    { hostname: "api.mixpanel.com", path: "/track", method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" } },
+    () => {}
+  );
+  req.on("error", () => {});
+  req.write("data=" + encodeURIComponent(data));
+  req.end();
+}
 
 const region = process.env.AWS_REGION || "ap-south-1";
 const TABLE_NAME = process.env.KEYS_TABLE || "bigeo-api-keys";
@@ -120,6 +138,12 @@ export const handler = async (event) => {
   } catch (err) {
     console.warn("SES send failed (may need verification):", err.message);
   }
+
+  trackMixpanel("User Registered", {
+    email: email.toLowerCase().trim(),
+    company_name: company_name.trim(),
+    email_domain: email.split("@")[1],
+  });
 
   return {
     statusCode: 201,
