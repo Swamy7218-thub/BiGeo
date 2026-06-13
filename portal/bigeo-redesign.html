@@ -789,6 +789,9 @@ var DEMO_RESULT = {
   confidence_score:0.99, gps_source:'google-maps+here-verified', latency_ms:1240
 };
 
+var DEMO_API = 'https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse';
+var DEMO_KEY = 'demo-public-readonly';
+
 window.runDemo = function(){
   var input = document.getElementById('demo-input').value.trim();
   var out = document.getElementById('demo-output');
@@ -797,25 +800,42 @@ window.runDemo = function(){
   mixpanel.track('Demo Submitted', { address: input });
   btn.textContent = 'Parsing...';
   btn.disabled = true;
-  out.innerHTML = '<span style="color:var(--muted2)">// Detecting language...\n// Running Gemini 2.0 Flash...\n// Cross-checking with Claude Sonnet...\n// Fetching GPS from Google Maps...</span>';
-  setTimeout(function(){
+  out.innerHTML = '<span style="color:var(--muted2)">// Detecting language...\n// Running AI pipeline...\n// Fetching GPS coordinates...</span>';
+
+  var t0 = Date.now();
+  fetch(DEMO_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': DEMO_KEY },
+    body: JSON.stringify({ address: input })
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(r){
     btn.textContent = 'Parse →';
     btn.disabled = false;
-    var r = DEMO_RESULT;
+    if(r.error){
+      out.innerHTML = '<span style="color:#ff5f57">// Error: '+r.error+'</span>';
+      return;
+    }
+    var ms = r.latency_ms || (Date.now()-t0);
     out.innerHTML =
-      '<span class="label">// ✅ Parsed in '+r.latency_ms+'ms</span>\n' +
+      '<span class="label">// ✅ Parsed in '+ms+'ms · source: '+(r.source||'ai')+'</span>\n' +
       '{\n' +
-      '  <span class="key">"village"</span>: <span class="str">"'+r.village+'"</span>,\n' +
-      '  <span class="key">"mandal"</span>: <span class="str">"'+r.mandal+'"</span>,\n' +
-      '  <span class="key">"district"</span>: <span class="str">"'+r.district+'"</span>,\n' +
-      '  <span class="key">"state"</span>: <span class="str">"'+r.state+'"</span>,\n' +
-      '  <span class="key">"pincode"</span>: <span class="num">'+r.pincode+'</span>,\n' +
-      '  <span class="key">"lat"</span>: <span class="num">'+r.lat+'</span>,\n' +
-      '  <span class="key">"lng"</span>: <span class="num">'+r.lng+'</span>,\n' +
-      '  <span class="key">"confidence_score"</span>: <span class="num">'+r.confidence_score+'</span>,\n' +
-      '  <span class="key">"gps_source"</span>: <span class="str">"'+r.gps_source+'"</span>\n' +
+      '  <span class="key">"village"</span>: <span class="str">"'+(r.village||'—')+'"</span>,\n' +
+      '  <span class="key">"mandal"</span>: <span class="str">"'+(r.mandal||'—')+'"</span>,\n' +
+      '  <span class="key">"district"</span>: <span class="str">"'+(r.district||'—')+'"</span>,\n' +
+      '  <span class="key">"state"</span>: <span class="str">"'+(r.state||'—')+'"</span>,\n' +
+      '  <span class="key">"pincode"</span>: <span class="num">'+(r.pincode||'null')+'</span>,\n' +
+      '  <span class="key">"lat"</span>: <span class="num">'+(r.lat||'null')+'</span>,\n' +
+      '  <span class="key">"lng"</span>: <span class="num">'+(r.lng||'null')+'</span>,\n' +
+      '  <span class="key">"confidence_score"</span>: <span class="num">'+(r.confidence_score||'null')+'</span>,\n' +
+      '  <span class="key">"gps_source"</span>: <span class="str">"'+(r.gps_source||'ai')+'"</span>\n' +
       '}';
-  }, 1800);
+  })
+  .catch(function(err){
+    btn.textContent = 'Parse →';
+    btn.disabled = false;
+    out.innerHTML = '<span style="color:#ff5f57">// API error — get your API key at admin@bigeo.in</span>';
+  });
 };
 
 /* ── CODE TABS ── */
