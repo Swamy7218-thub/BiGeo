@@ -1,4 +1,5 @@
 import { BedrockRuntimeClient, InvokeModelCommand } from "@aws-sdk/client-bedrock-runtime";
+import { BedrockAgentRuntimeClient, RetrieveCommand } from "@aws-sdk/client-bedrock-agent-runtime";
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
@@ -13,11 +14,13 @@ const GCP_PROJECT = process.env.GCP_PROJECT_ID || "bigeo-491617";
 const GCP_SECRET_ARN = process.env.GCP_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1::secret:bigeo/gcp-service-account";
 const GMAPS_SECRET_ARN = process.env.GMAPS_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1:841162683979:secret:bigeo/google-maps-api-key-JseBtB";
 const PLACE_INDEX = process.env.LOCATION_PLACE_INDEX || "bigeo-place-index";
+const KB_ID = process.env.BEDROCK_KB_ID || "ZFLJ7NGEMF";
 
 // Route config: "gemini" | "claude" | "auto" (default: auto = gemini first, claude fallback)
 const MODEL_ROUTE = process.env.MODEL_ROUTE || "auto";
 
 const bedrockClient = new BedrockRuntimeClient({ region });
+const bedrockAgentRuntime = new BedrockAgentRuntimeClient({ region });
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region }));
 const smClient = new SecretsManagerClient({ region });
 const locationClient = new LocationClient({ region });
@@ -117,6 +120,26 @@ async function translateIfNeeded(text) {
     });
   } catch {
     return { text, detected_language: "en" };
+  }
+}
+
+// ── Bedrock Knowledge Base: semantic lookup for village/mandal resolution ──
+async function lookupInKnowledgeBase(query) {
+  try {
+    const cmd = new RetrieveCommand({
+      knowledgeBaseId: KB_ID,
+      retrievalQuery: { text: query },
+      retrievalConfiguration: {
+        vectorSearchConfiguration: { numberOfResults: 3 }
+      }
+    });
+    const res = await bedrockAgentRuntime.send(cmd);
+    const hits = (res.retrievalResults || [])
+      .filter(r => r.score > 0.5)
+      .map(r => ({ text: r.content.text, score: r.score }));
+    return hits.length > 0 ? hits[0].text : null;
+  } catch (e) {
+    return null;
   }
 }
 
