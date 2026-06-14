@@ -1,0 +1,15 @@
+# Web framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+pydantic==2.9.2
+pydantic-settings==2.6.1
+
+# Database — async driver for app, sync for ETL
+sqlalchemy==2.0.36
+asyncpg==0.30.0
+psycopg2-binary==2.9.10
+geoalchemy2==0.15.2
+alembic==1.14.0
+
+# Utilities
+python-multipart==0.0.17
