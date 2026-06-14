@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiGeo — Demo Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#080B14;--surface:#0E1320;--surface2:#141929;
+  --orange:#FF6600;--cyan:#00D1FF;--white:#F0F4FF;
+  --muted:rgba(240,244,255,0.45);--border:rgba(240,244,255,0.08);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--white);font-family:var(--font);overflow:hidden;height:100vh;width:100vw}
+
+/* 16:9 deck */
+.deck{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#000}
+.slide-wrap{position:relative;background:var(--bg);overflow:hidden}
+
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  padding:5% 7%;
+  opacity:0;visibility:hidden;transition:opacity .35s ease;
+}
+.slide.active{opacity:1;visibility:visible}
+
+/* Progress */
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--cyan));transition:width .3s;z-index:100}
+.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:18px;z-index:100}
+.nav button{background:rgba(255,255,255,0.08);border:1px solid var(--border);color:var(--white);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:16px;transition:background .2s}
+.nav button:hover{background:rgba(255,255,255,0.15)}
+.nav .counter{color:var(--muted);font-size:13px;font-weight:500;min-width:50px;text-align:center}
+.slide-num{position:fixed;top:20px;right:24px;font-size:12px;color:var(--muted);font-weight:500;z-index:100}
+
+/* ── Typography ── */
+.label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.label.cyan{color:var(--cyan)}
+.headline{font-size:clamp(28px,4.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-.02em}
+.subhead{font-size:clamp(14px,1.6vw,22px);color:var(--muted);font-weight:500;line-height:1.5;margin-top:14px}
+.accent{color:var(--orange)}
+.accent-cyan{color:var(--cyan)}
+
+/* ── Cards ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px 22px}
+.card.glow-orange{border-color:rgba(255,102,0,.3);box-shadow:0 0 24px rgba(255,102,0,.08)}
+.card.glow-cyan{border-color:rgba(0,209,255,.3);box-shadow:0 0 24px rgba(0,209,255,.08)}
+
+/* ── Grid helpers ── */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;width:100%}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px;width:100%}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;width:100%}
+.col{display:flex;flex-direction:column;gap:12px}
+
+/* ── Code block ── */
+.code-block{background:#0a0d16;border:1px solid var(--border);border-radius:10px;padding:16px 20px;font-family:var(--mono);font-size:clamp(10px,1.1vw,13px);line-height:1.7;text-align:left;width:100%}
+.code-block .k{color:var(--cyan)}.code-block .s{color:#98d982}.code-block .n{color:#ff9d5c}.code-block .c{color:var(--muted)}
+
+/* ── Flow steps ── */
+.flow{display:flex;align-items:stretch;gap:0;width:100%}
+.flow-step{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:0;padding:18px 16px;text-align:center;position:relative}
+.flow-step:first-child{border-radius:12px 0 0 12px}
+.flow-step:last-child{border-radius:0 12px 12px 0}
+.flow-arrow{display:flex;align-items:center;color:var(--orange);font-size:18px;padding:0 4px;flex-shrink:0}
+.step-num{width:28px;height:28px;border-radius:50%;background:rgba(255,102,0,.15);border:1px solid var(--orange);color:var(--orange);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.step-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--cyan);margin-bottom:6px}
+.step-body{font-size:clamp(10px,1vw,12px);color:var(--muted);line-height:1.5}
+
+/* ── Table ── */
+.comp-table{width:100%;border-collapse:collapse;font-size:clamp(11px,1.2vw,14px)}
+.comp-table th{padding:10px 14px;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600}
+.comp-table td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04)}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tr td:first-child{font-weight:600;color:var(--white)}
+.comp-table .yes{color:#4ade80}.comp-table .warn{color:#facc15}.comp-table .no{color:#f87171}
+.comp-table .bigeo-row td{background:rgba(255,102,0,.06)}
+.comp-table .bigeo-row td:first-child{color:var(--orange)}
+
+/* ── Stat big ── */
+.stat-big{font-size:clamp(36px,5vw,72px);font-weight:800;line-height:1;letter-spacing:-.03em}
+.stat-label{font-size:clamp(11px,1.2vw,14px);color:var(--muted);margin-top:6px;font-weight:500}
+
+/* ── Demo cards ── */
+.demo-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:left}
+.demo-in{font-size:clamp(10px,1vw,12px);color:var(--muted);font-family:var(--mono);margin-bottom:8px;line-height:1.4}
+.demo-in span{color:var(--white)}
+.demo-out{font-size:clamp(9px,.95vw,11px);font-family:var(--mono);line-height:1.7}
+
+/* ── Check lists ── */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:9px;text-align:left}
+.checklist li{font-size:clamp(11px,1.2vw,14px);color:var(--muted);display:flex;align-items:flex-start;gap:10px;line-height:1.4}
+.checklist li .icon{flex-shrink:0;margin-top:1px}
+.checklist li.done .icon{color:#4ade80}
+.checklist li.todo .icon{color:var(--border)}
+.checklist li.done{color:var(--white)}
+
+/* ── Quote ── */
+.quote{border-left:3px solid var(--orange);padding:14px 20px;background:rgba(255,102,0,.06);border-radius:0 10px 10px 0;font-size:clamp(12px,1.3vw,16px);color:var(--white);font-style:italic;text-align:left;line-height:1.6}
+
+/* ── Pill badge ── */
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,209,255,.1);border:1px solid rgba(0,209,255,.3);color:var(--cyan);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700}
+.badge.orange{background:rgba(255,102,0,.1);border-color:rgba(255,102,0,.3);color:var(--orange)}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.slide.active .animate{animation:fadeUp .5s ease-out forwards}
+.slide.active .a1{animation-delay:.05s;opacity:0}
+.slide.active .a2{animation-delay:.15s;opacity:0}
+.slide.active .a3{animation-delay:.25s;opacity:0}
+.slide.active .a4{animation-delay:.35s;opacity:0}
+.slide.active .a5{animation-delay:.45s;opacity:0}
+.slide.active .a6{animation-delay:.55s;opacity:0}
+
+/* ── Slide-specific ── */
+/* S1 Title */
+#s1{text-align:center}
+#s1 .logo-mark{width:64px;height:64px;background:linear-gradient(135deg,var(--orange),#ff3300);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;margin:0 auto 24px;box-shadow:0 0 40px rgba(255,102,0,.4)}
+#s1 .tagline{font-size:clamp(13px,1.4vw,18px);color:var(--muted);margin-top:20px;letter-spacing:.01em}
+#s1 .founder-tag{position:absolute;bottom:80px;right:7%;font-size:13px;color:var(--muted)}
+#s1 .bg-globe{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(255,102,0,.06) 0%,transparent 70%);pointer-events:none}
+
+/* S7 data moat grid */
+.data-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 16px;text-align:center}
+.data-num{font-size:clamp(20px,2.5vw,32px);font-weight:800;color:var(--cyan);margin-bottom:4px}
+.data-src{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:8px}
+.data-desc{font-size:clamp(10px,.95vw,12px);color:var(--muted);line-height:1.4}
+
+/* S12 CTA */
+#s12{text-align:center}
+#s12 .ask-amount{font-size:clamp(40px,6vw,80px);font-weight:800;background:linear-gradient(135deg,var(--orange),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:16px 0}
+#s12 .contact{position:absolute;bottom:80px;font-size:13px;color:var(--muted);display:flex;gap:32px}
+#s12 .contact a{color:var(--cyan);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<div class="slide-num"><span id="cur">1</span> / 12</div>
+
+<div class="deck">
+<div class="slide-wrap" id="wrap">
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 1 — TITLE
+════════════════════════════════════════════════════════ -->
+<div class="slide active" id="s1">
+  <div class="bg-globe"></div>
+  <div class="logo-mark animate a1">B</div>
+  <div class="label animate a2">Introducing</div>
+  <h1 class="headline animate a3" style="font-size:clamp(48px,7vw,96px)">BiGeo</h1>
+  <p class="subhead animate a4" style="font-size:clamp(16px,2vw,26px);color:var(--white)">Rural India's Last-Mile OS</p>
+  <p class="tagline animate a5">800M people. Zero addressable locations. Until now.</p>
+  <div class="founder-tag animate a6">Swamy · admin@bigeo.in · bigeo.in</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 2 — PROBLEM
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="label animate a1">The Problem</div>
+  <h2 class="headline animate a2">India's ₹2,800 Crore <span class="accent">Address Problem</span></h2>
+  <div class="grid-3 animate a3" style="margin-top:28px">
+    <div class="card" style="text-align:center">
+      <div class="stat-big accent">27%</div>
+      <div class="stat-label" style="margin-top:10px">Rural RTO rate vs 12% in metros.<br>Most caused by unresolvable addresses.</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-big accent">₹180</div>
+      <div class="stat-label" style="margin-top:10px">Wasted per failed delivery in reverse logistics — on a ₹400 order.</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="stat-big accent">800M</div>
+      <div class="stat-label" style="margin-top:10px">Rural Indians at addresses that exist nowhere in any digital database.</div>
+    </div>
+  </div>
+  <div class="quote animate a4" style="margin-top:20px;max-width:700px">
+    "Near banyan tree, behind Raju shop, Yellareddyguda, Siddipet"
+    <span style="color:var(--muted);font-style:normal;font-size:12px;display:block;margin-top:6px">— A real delivery address. Google Maps returns nothing.</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 3 — EXISTING SOLUTIONS FAIL
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="label animate a1">Competitive Landscape</div>
+  <h2 class="headline animate a2">Every Map API <span class="accent">Fails</span> at Rural India</h2>
+  <div class="animate a3" style="margin-top:24px;width:100%">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Urban accuracy</th>
+          <th>Rural structured</th>
+          <th>Rural unstructured</th>
+          <th>API-ready for logistics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Google Maps</td><td class="yes">✅ Excellent</td><td class="yes">✅ Good</td><td class="no">❌ Fails</td><td class="yes">✅ Yes</td></tr>
+        <tr><td>HERE Maps</td><td class="yes">✅ Excellent</td><td class="warn">⚠️ Partial</td><td class="no">❌ Fails</td><td class="yes">✅ Yes</td></tr>
+        <tr><td>MapMyIndia</td><td class="yes">✅ Good</td><td class="warn">⚠️ Partial</td><td class="no">❌ Fails</td><td class="warn">⚠️ Partial</td></tr>
+        <tr><td>India Post</td><td class="yes">✅ Yes</td><td class="yes">✅ Yes</td><td class="no">❌ Fails</td><td class="no">❌ No API</td></tr>
+        <tr class="bigeo-row"><td>⚡ BiGeo</td><td class="yes">✅ Excellent</td><td class="yes">✅ Excellent</td><td class="yes">✅ <strong>Solves it</strong></td><td class="yes">✅ <strong>Built for it</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="animate a4" style="font-size:13px;color:var(--muted);margin-top:16px">Nobody has cracked Tier 3/4 rural addresses at API quality. Until now.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 4 — SOLUTION
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="label animate a1">The Solution</div>
+  <h2 class="headline animate a2">BiGeo <span class="accent">VAAHAN API</span></h2>
+  <p class="subhead animate a3" style="margin-bottom:20px">Send any Indian address. Get GPS + structured data in under 2 seconds.</p>
+  <div class="grid-2 animate a4" style="align-items:start">
+    <div>
+      <div style="font-size:11px;color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">→ Input</div>
+      <div class="code-block">
+<span class="k">POST</span> /parse<br>
+{<br>
+&nbsp;&nbsp;<span class="n">"address"</span>: <span class="s">"Near banyan tree,<br>
+&nbsp;&nbsp;&nbsp;Yellareddyguda,<br>
+&nbsp;&nbsp;&nbsp;Siddipet, Telangana"</span><br>
+}
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">← Output (1.8s)</div>
+      <div class="code-block">
+{<br>
+&nbsp;&nbsp;<span class="n">"village"</span>: <span class="s">"Yellareddyguda"</span>,<br>
+&nbsp;&nbsp;<span class="n">"mandal"</span>: <span class="s">"Siddipet"</span>,<br>
+&nbsp;&nbsp;<span class="n">"district"</span>: <span class="s">"Siddipet"</span>,<br>
+&nbsp;&nbsp;<span class="n">"state"</span>: <span class="s">"Telangana"</span>,<br>
+&nbsp;&nbsp;<span class="n">"pincode"</span>: <span class="s">"502103"</span>,<br>
+&nbsp;&nbsp;<span class="n">"lat"</span>: <span class="k">18.10344</span>,<br>
+&nbsp;&nbsp;<span class="n">"lng"</span>: <span class="k">78.84707</span>,<br>
+&nbsp;&nbsp;<span class="n">"confidence_score"</span>: <span class="k">0.95</span>,<br>
+&nbsp;&nbsp;<span class="n">"gps_source"</span>: <span class="s">"here-maps"</span><br>
+}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 5 — HOW IT WORKS
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="label animate a1">Under the Hood</div>
+  <h2 class="headline animate a2">4-Layer <span class="accent">Resolution Pipeline</span></h2>
+  <div class="flow animate a3" style="margin-top:28px">
+    <div class="flow-step">
+      <div class="step-num">1</div>
+      <div class="step-title">Knowledge Base</div>
+      <div class="step-body">Vector search across 1M+ PMGSY habitations + India Post locations in AWS Bedrock</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">2</div>
+      <div class="step-title">LLM Parse</div>
+      <div class="step-body">Claude Sonnet reads address in context, ranks KB candidates, resolves ambiguity</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">3</div>
+      <div class="step-title">GPS Enrichment</div>
+      <div class="step-body">HERE Maps validates. 19,559 pincode centroids as guaranteed fallback — never returns null</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="step-num">4</div>
+      <div class="step-title">Structured Output</div>
+      <div class="step-body">village · mandal · district · state · pincode · lat · lng · confidence · source</div>
+    </div>
+  </div>
+  <div class="badge animate a4" style="margin-top:22px">&lt; 2 seconds end-to-end · Live on AWS ap-south-1</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 6 — WHAT WE BUILT
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="label animate a1">Built &amp; Live</div>
+  <h2 class="headline animate a2">What's <span class="accent">Shipped Today</span></h2>
+  <div class="grid-2 animate a3" style="margin-top:24px;align-items:start">
+    <div class="card glow-orange">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:14px">⚡ VAAHAN API — Production AWS</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> POST /parse — single address, &lt;2s</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> POST /parse/bulk — 1,000 addresses/request</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> POST /register — API key provisioning</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> Bedrock KB: 1M+ locations indexed</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> HERE Maps GPS + pincode fallback</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> AWS Lambda · DynamoDB · API Gateway</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--cyan);margin-right:8px">›</span> Mixpanel analytics · API key auth</li>
+      </ul>
+    </div>
+    <div class="card glow-cyan">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:14px">🗺 India Address Graph — Geocoding Backend</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> 649,529 villages (LGD directory)</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> 6,932 subdistricts across all states</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> 165,627 post offices with coordinates</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> 19,559 pincodes in DynamoDB</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> FastAPI + PostgreSQL/PostGIS</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> Forward geocode: locality_match 0.75+</li>
+        <li style="font-size:13px;color:var(--white)"><span style="color:var(--orange);margin-right:8px">›</span> Reverse geocode: KNN nearest pincode</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 7 — DATA MOAT
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s7">
+  <div class="label animate a1">Defensibility</div>
+  <h2 class="headline animate a2">The Data Nobody <span class="accent">Assembled Before Us</span></h2>
+  <div class="grid-5 animate a3" style="margin-top:26px">
+    <div class="data-card">
+      <div class="data-num">1M+</div>
+      <div class="data-src">PMGSY KB</div>
+      <div class="data-desc">Habitation GPS points from Ministry of Rural Development, vector-indexed in Bedrock</div>
+    </div>
+    <div class="data-card">
+      <div class="data-num">649K</div>
+      <div class="data-src">LGD Villages</div>
+      <div class="data-desc">All 36 states + UTs. Subdistrict hierarchy mapped. Fuzzy trigram search enabled.</div>
+    </div>
+    <div class="data-card">
+      <div class="data-num">165K</div>
+      <div class="data-src">India Post</div>
+      <div class="data-desc">Post offices with verified lat/lon. Every delivery zone in India covered.</div>
+    </div>
+    <div class="data-card">
+      <div class="data-num">19,559</div>
+      <div class="data-src">DynamoDB Pins</div>
+      <div class="data-desc">Pincode centroids averaged across all offices. GPS fallback that never fails.</div>
+    </div>
+    <div class="data-card">
+      <div class="data-num">6,932</div>
+      <div class="data-src">Subdistricts</div>
+      <div class="data-desc">Mandal/tehsil/taluk/block hierarchy. The layer every other API skips.</div>
+    </div>
+  </div>
+  <p class="animate a4" style="font-size:13px;color:var(--muted);margin-top:18px">5 government datasets · 3 months of ETL · Not downloadable from anywhere</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 8 — LIVE DEMO
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s8">
+  <div class="label animate a1">Live Demo</div>
+  <h2 class="headline animate a2">Try It <span class="accent-cyan">Right Now</span></h2>
+  <div class="animate a3" style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 18px;margin:14px 0;width:100%;text-align:left">
+    <span style="font-size:11px;color:var(--muted)">Endpoint:</span>
+    <span style="font-family:var(--mono);font-size:12px;color:var(--cyan);margin-left:8px">https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/parse</span>
+    <span style="font-size:11px;color:var(--muted);margin-left:16px">Key:</span>
+    <span style="font-family:var(--mono);font-size:12px;color:var(--orange);margin-left:8px">demo-public-readonly</span>
+  </div>
+  <div class="grid-3 animate a4">
+    <div class="demo-card">
+      <div class="demo-in">→ <span>"H.No 3-12, near Govt School,<br>Narsapur, Medak 502313"</span></div>
+      <div class="demo-out">
+        <span style="color:var(--muted)">village:</span> <span style="color:#4ade80">Narsapur</span><br>
+        <span style="color:var(--muted)">district:</span> Medak · TG<br>
+        <span style="color:var(--muted)">lat/lng:</span> <span style="color:var(--cyan)">17.772, 78.299</span><br>
+        <span style="color:var(--muted)">confidence:</span> <span style="color:var(--orange)">0.78</span>
+      </div>
+    </div>
+    <div class="demo-card">
+      <div class="demo-in">→ <span>"Opp water tank,<br>Bhoompally, Siddipet TG"</span></div>
+      <div class="demo-out">
+        <span style="color:var(--muted)">village:</span> <span style="color:#4ade80">Bhoompally</span><br>
+        <span style="color:var(--muted)">district:</span> Siddipet · TG<br>
+        <span style="color:var(--muted)">lat/lng:</span> <span style="color:var(--cyan)">18.103, 78.847</span><br>
+        <span style="color:var(--muted)">gps_source:</span> <span style="color:var(--orange)">here-maps</span>
+      </div>
+    </div>
+    <div class="demo-card">
+      <div class="demo-in">→ <span>"Opp ZP school,<br>Chinnakodur, Siddipet 502103"</span></div>
+      <div class="demo-out">
+        <span style="color:var(--muted)">village:</span> <span style="color:#4ade80">Chinnakodur</span><br>
+        <span style="color:var(--muted)">district:</span> Siddipet · TG<br>
+        <span style="color:var(--muted)">lat/lng:</span> <span style="color:var(--cyan)">17.996, 78.815</span><br>
+        <span style="color:var(--muted)">confidence:</span> <span style="color:var(--orange)">0.92</span>
+      </div>
+    </div>
+  </div>
+  <div class="badge animate a5" style="margin-top:14px">Test live at bigeo.in · 500 free calls/month</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 9 — WHO PAYS
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s9">
+  <div class="label animate a1">Business Model</div>
+  <h2 class="headline animate a2">3 Verticals. <span class="accent">Same API.</span></h2>
+  <div class="grid-3 animate a3" style="margin-top:24px">
+    <div class="card glow-orange">
+      <div style="font-size:22px;margin-bottom:10px">📦</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:10px">E-Commerce &amp; Logistics</div>
+      <p style="font-size:13px;color:var(--white);margin-bottom:12px;line-height:1.5">Reduce 27% rural RTO to under 10%.<br><strong style="color:var(--orange)">₹180 saved per delivery.</strong></p>
+      <p style="font-size:11px;color:var(--muted)">Delhivery · Shadowfax · Porter · Meesho · ONDC merchants</p>
+    </div>
+    <div class="card glow-cyan">
+      <div style="font-size:22px;margin-bottom:10px">🏦</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);margin-bottom:10px">Rural FinTech &amp; Banking</div>
+      <p style="font-size:13px;color:var(--white);margin-bottom:12px;line-height:1.5">Address verification for KYC, loan disbursement, insurance claims.</p>
+      <p style="font-size:11px;color:var(--muted)">Aye Finance · Spice Money · Avail Finance · Rural MFIs</p>
+    </div>
+    <div class="card">
+      <div style="font-size:22px;margin-bottom:10px">🏛️</div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--white);margin-bottom:10px">Government &amp; Public Services</div>
+      <p style="font-size:13px;color:var(--white);margin-bottom:12px;line-height:1.5">Geocode beneficiaries for PM-KISAN, PM Awas Yojana, ration card delivery.</p>
+      <p style="font-size:11px;color:var(--muted)">State NIC offices · CSC centres · eGovernance vendors</p>
+    </div>
+  </div>
+  <div class="animate a4" style="margin-top:18px;font-size:13px;color:var(--muted)">
+    Pricing: <span style="color:var(--white)">₹2–5 per call</span> at scale · 1M calls/month = <span style="color:var(--orange)">₹20–50L MRR</span> per enterprise customer
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 10 — MARKET SIZE
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s10">
+  <div class="label animate a1">Market Size</div>
+  <h2 class="headline animate a2">TAM That's <span class="accent">Not Going Away</span></h2>
+  <div class="grid-3 animate a3" style="margin-top:28px">
+    <div style="text-align:center">
+      <div class="stat-big" style="color:var(--orange)">₹2,800 Cr</div>
+      <div class="stat-label" style="margin-top:8px">Annual reverse logistics waste<br>from rural COD failures (2025)</div>
+    </div>
+    <div style="text-align:center">
+      <div class="stat-big" style="color:var(--cyan)">$1.89B</div>
+      <div class="stat-label" style="margin-top:8px">India Location-based<br>Services Market (2025)</div>
+    </div>
+    <div style="text-align:center">
+      <div class="stat-big" style="color:var(--white)">800M</div>
+      <div class="stat-label" style="margin-top:8px">Rural Indians with no<br>structured digital address</div>
+    </div>
+  </div>
+  <div class="quote animate a4" style="margin-top:24px;max-width:680px;text-align:center;border-left:none;border-top:2px solid var(--orange);padding:16px 20px;border-radius:10px">
+    ONDC mandate is making rural address resolution a <strong style="color:var(--orange)">compliance requirement</strong>, not a nice-to-have.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 11 — TRACTION & ROADMAP
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s11">
+  <div class="label animate a1">Traction &amp; Roadmap</div>
+  <h2 class="headline animate a2">3 Weeks In — <span class="accent">Here's the Proof</span></h2>
+  <div class="grid-2 animate a3" style="margin-top:22px;align-items:start">
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#4ade80;margin-bottom:14px">✓ Done</div>
+      <ul class="checklist">
+        <li class="done"><span class="icon">✅</span>VAAHAN API live on AWS (ap-south-1)</li>
+        <li class="done"><span class="icon">✅</span>Bulk endpoint: 1,000 addresses/request</li>
+        <li class="done"><span class="icon">✅</span>649K villages + 1M+ GPS points loaded</li>
+        <li class="done"><span class="icon">✅</span>HERE Maps GPS enrichment working</li>
+        <li class="done"><span class="icon">✅</span>API key registration + SES email provisioning</li>
+        <li class="done"><span class="icon">✅</span>bigeo.in website live with live demo terminal</li>
+        <li class="done"><span class="icon">✅</span>5 warm conversations with logistics &amp; fintech ops</li>
+        <li class="done"><span class="icon">✅</span>$10,000 AWS credits active — zero infra cost</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--orange);margin-bottom:14px">→ Next 60 Days</div>
+      <ul class="checklist">
+        <li class="todo"><span class="icon">◻</span>10,000 failed-delivery pilot with logistics partner</li>
+        <li class="todo"><span class="icon">◻</span>Google Maps enabled (GCP billing activation)</li>
+        <li class="todo"><span class="icon">◻</span>India Address Graph deployed to production ECS</li>
+        <li class="todo"><span class="icon">◻</span>First paying customer: ₹2–5/call at 1M calls/mo</li>
+        <li class="todo"><span class="icon">◻</span>DPIIT startup recognition filing</li>
+        <li class="todo"><span class="icon">◻</span>NVIDIA Inception + AWS Activate renewal</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDE 12 — ASK / CTA
+════════════════════════════════════════════════════════ -->
+<div class="slide" id="s12">
+  <div style="background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(255,102,0,.08) 0%,transparent 70%);position:absolute;inset:0;pointer-events:none"></div>
+  <div class="label animate a1">The Ask</div>
+  <h2 class="headline animate a2">What We're Looking For</h2>
+  <div class="ask-amount animate a3">Pre-seed · ₹1–2 Cr</div>
+  <div class="grid-3 animate a4" style="max-width:780px">
+    <div class="card" style="text-align:center">
+      <div style="font-size:20px;margin-bottom:8px">📡</div>
+      <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:6px">DATA</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.5">State polygon shapefiles · Expand KB to 5M locations · PMGSY habitation CSV</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:20px;margin-bottom:8px">🚀</div>
+      <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:6px">GTM</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.5">Pilot 3 logistics companies · Convert 1 to paid contract · DPIIT + NASSCOM</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div style="font-size:20px;margin-bottom:8px">👥</div>
+      <div style="font-size:12px;font-weight:700;color:var(--white);margin-bottom:6px">TEAM</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.5">First hire: backend engineer (ETL + API) · Second: sales/BD for logistics vertical</div>
+    </div>
+  </div>
+  <div class="contact animate a5">
+    <span>Swamy — Founder &amp; CEO</span>
+    <a href="mailto:admin@bigeo.in">admin@bigeo.in</a>
+    <a href="https://bigeo.in">bigeo.in</a>
+    <span style="font-family:var(--mono);font-size:11px">Key: demo-public-readonly</span>
+  </div>
+</div>
+
+</div><!-- /.slide-wrap -->
+</div><!-- /.deck -->
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="counter"><span id="cur2">1</span> / 12</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let cur = 0;
+
+function go(n) {
+  if (n < 0) n = 0;
+  if (n >= total) n = total - 1;
+  slides[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  document.getElementById('cur').textContent = cur + 1;
+  document.getElementById('cur2').textContent = cur + 1;
+  document.getElementById('prog').style.width = ((cur + 1) / total * 100) + '%';
+  // Re-trigger animations
+  slides[cur].querySelectorAll('.animate').forEach(el => {
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.style.animation = '';
+  });
+}
+
+function next() { go(cur + 1); }
+function prev() { go(cur - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+});
+
+// Resize slide-wrap to 16:9
+function resize() {
+  const wrap = document.getElementById('wrap');
+  const vw = window.innerWidth, vh = window.innerHeight;
+  let w = vw, h = vw * 9 / 16;
+  if (h > vh) { h = vh; w = vh * 16 / 9; }
+  wrap.style.width = w + 'px';
+  wrap.style.height = h + 'px';
+}
+window.addEventListener('resize', resize);
+resize();
+go(0);
+</script>
+</body>
+</html>
