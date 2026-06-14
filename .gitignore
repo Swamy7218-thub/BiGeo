@@ -9,3 +9,4 @@ opendata/
 external-data/
 knowledge-base/pmgsy-habitations-*.json
 knowledge-base/postoffices-india-*.json
+__pycache__/
