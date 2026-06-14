@@ -238,23 +238,25 @@ async function lookupWithLocationService(structuredAddress, district, state) {
 }
 
 // ── Gemini Flash address parser ──
-async function callGemini(address) {
+async function callGemini(address, kbContext) {
   const token = await getGCPAccessToken();
-  const url = `https://us-central1-aiplatform.googleapis.com/v1/projects/${GCP_PROJECT}/locations/us-central1/publishers/google/models/gemini-2.0-flash-001:generateContent`;
+  const contextBlock = kbContext
+    ? `\n\nKnowledge Base Match (verified government data — use this if it matches):\n${kbContext}\n`
+    : "";
   const prompt = `You are an expert at parsing Indian rural addresses, especially from Telangana, Andhra Pradesh, and other Tier-3/Tier-4 regions.
-
+${contextBlock}
 Parse this address and return ONLY valid JSON with these fields:
 - structured_address: cleaned readable version
-- village: village or locality name
-- mandal: mandal/tehsil/block name
+- village: village or locality name (use KB match if available)
+- mandal: mandal/tehsil/block name (use KB match if available)
 - district: district name
 - state: state name
 - pincode: 6-digit India Post pincode or null
-- lat: latitude decimal degrees (best estimate) or null
-- lng: longitude decimal degrees (best estimate) or null
-- confidence_score: 0.0-1.0
+- lat: null (GPS will be resolved separately)
+- lng: null (GPS will be resolved separately)
+- confidence_score: 0.0-1.0 (set >0.85 if KB match used)
 
-Rules: Return ONLY JSON. Normalize official spellings. For Telangana villages, use known geography.
+Rules: Return ONLY JSON. Normalize official spellings. Do NOT guess lat/lng — leave null.
 
 Address: "${address}"`;
 
@@ -295,25 +297,28 @@ Address: "${address}"`;
 // ── Claude Sonnet (Bedrock) — high-accuracy fallback ──
 const SYSTEM_PROMPT = `You are an expert at parsing Indian rural addresses, especially from Telangana, Andhra Pradesh, and other Tier 3/Tier 4 Indian regions.
 
-Given a raw, unstructured Indian address string, extract and return a JSON object with these fields:
+Given a raw, unstructured Indian address string (and optional knowledge base context from verified government data), extract and return a JSON object with these fields:
 - structured_address: cleaned, readable version of the full address
 - village: village or locality name
 - mandal: mandal/tehsil/block name
 - district: district name
 - state: state name
 - pincode: 6-digit pincode if mentioned or inferrable, else null
-- lat: latitude (decimal degrees) if you can confidently infer from the location, else null
-- lng: longitude (decimal degrees) if you can confidently infer from the location, else null
+- lat: null (GPS resolved externally — do not guess)
+- lng: null (GPS resolved externally — do not guess)
 - confidence_score: 0.0 to 1.0 — how confident you are in this parsing
 
 Rules:
 - Always return valid JSON, nothing else
-- If a field cannot be determined, use null
-- For Siddipet district villages, use your knowledge of Telangana geography
+- If a field cannot be determined, use null — never fabricate geographic details
+- When knowledge base context is provided, prioritize it over your training knowledge
 - Normalize district/mandal/state names to their official spellings
-- confidence_score: >0.8 if all key fields found, 0.5-0.8 if partial, <0.5 if very unclear`;
+- confidence_score: >0.85 if KB context used, >0.75 if all key fields found, 0.5-0.75 if partial, <0.5 if very unclear`;
 
-async function callClaude(address) {
+async function callClaude(address, kbContext) {
+  const contextBlock = kbContext
+    ? `\n\nKnowledge Base Match (verified government PMGSY/postal data):\n${kbContext}\n\nUse this context to improve accuracy.`
+    : "";
   const command = new InvokeModelCommand({
     modelId: BEDROCK_MODEL,
     contentType: "application/json",
@@ -322,7 +327,7 @@ async function callClaude(address) {
       anthropic_version: "bedrock-2023-05-31",
       max_tokens: 512,
       system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: `Parse this address:\n"${address}"\n\nReturn JSON only.` }],
+      messages: [{ role: "user", content: `Parse this address:\n"${address}"${contextBlock}\n\nReturn JSON only.` }],
     }),
   });
   const response = await bedrockClient.send(command);
@@ -413,26 +418,39 @@ export const handler = async (event) => {
     console.log(`Translated from ${detectedLang}: "${cleanAddress}" → "${processedAddress}"`);
   }
 
-  // 3. Model routing: gemini first (cheap+fast), claude fallback (accurate)
+  // 3. Knowledge Base lookup — parallel with model routing for speed
+  const kbContextPromise = lookupInKnowledgeBase(processedAddress);
+
+  // 4. Model routing: gemini first (cheap+fast), claude fallback (accurate)
   let parsed = null;
   let modelUsed = null;
 
   const gcpReady = GCP_SECRET_ARN && !GCP_SECRET_ARN.includes("::");
 
+  // Resolve KB context (cap wait at 2s to avoid slowing fast paths)
+  let kbContext = null;
+  try {
+    kbContext = await Promise.race([
+      kbContextPromise,
+      new Promise(res => setTimeout(() => res(null), 2000)),
+    ]);
+    if (kbContext) console.log("KB hit:", kbContext.slice(0, 120));
+  } catch { kbContext = null; }
+
   if (MODEL_ROUTE === "claude" || !gcpReady) {
-    parsed = await callClaude(processedAddress);
+    parsed = await callClaude(processedAddress, kbContext);
     modelUsed = "claude-sonnet";
   } else if (MODEL_ROUTE === "gemini") {
-    parsed = await callGemini(processedAddress);
+    parsed = await callGemini(processedAddress, kbContext);
     modelUsed = "gemini-2.0-flash";
   } else {
     // auto: try Gemini first, fallback to Claude if confidence low or error
     try {
-      parsed = await callGemini(processedAddress);
+      parsed = await callGemini(processedAddress, kbContext);
       modelUsed = "gemini-2.0-flash";
       if ((parsed?.confidence_score || 0) < 0.6) {
         console.log(`Gemini low confidence (${parsed?.confidence_score}), escalating to Claude`);
-        const claudeParsed = await callClaude(processedAddress);
+        const claudeParsed = await callClaude(processedAddress, kbContext);
         if ((claudeParsed?.confidence_score || 0) > (parsed?.confidence_score || 0)) {
           parsed = claudeParsed;
           modelUsed = "claude-sonnet-upgrade";
@@ -440,7 +458,7 @@ export const handler = async (event) => {
       }
     } catch (geminiErr) {
       console.warn("Gemini failed, falling back to Claude:", geminiErr.message);
-      parsed = await callClaude(processedAddress);
+      parsed = await callClaude(processedAddress, kbContext);
       modelUsed = "claude-sonnet-fallback";
     }
   }
@@ -496,6 +514,7 @@ export const handler = async (event) => {
     source: "ai", model: modelUsed, state: parsed.state, district: parsed.district,
     confidence: parsed.confidence_score, gps_source: gpsSource,
     latency_ms: latencyMs, detected_language: detectedLang,
+    kb_used: kbContext !== null,
   });
 
   return { statusCode: 200, headers, body: JSON.stringify({
@@ -504,6 +523,7 @@ export const handler = async (event) => {
     latency_ms: latencyMs,
     model: modelUsed,
     gps_source: gpsSource,
+    kb_used: kbContext !== null,
     detected_language: detectedLang !== "en" ? detectedLang : undefined,
     source: "ai",
   })};
