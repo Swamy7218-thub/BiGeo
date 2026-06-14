@@ -26,6 +26,7 @@ function trackMixpanel(event, properties) {
 
 const region = process.env.AWS_REGION || "ap-south-1";
 const TABLE_NAME = process.env.ADDRESS_TABLE || "bigeo-address-graph";
+const PINCODE_TABLE = process.env.PINCODE_TABLE || "bigeo-pincodes";
 const BEDROCK_MODEL = "global.anthropic.claude-sonnet-4-6";
 const GCP_PROJECT = process.env.GCP_PROJECT_ID || "bigeo-491617";
 const GCP_SECRET_ARN = process.env.GCP_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1::secret:bigeo/gcp-service-account";
@@ -337,6 +338,27 @@ async function callClaude(address, kbContext) {
   return JSON.parse(jsonMatch ? jsonMatch[0] : text);
 }
 
+// ── Pincode → GPS lookup (DynamoDB, always reliable) ──
+async function lookupPincodeGPS(pincode) {
+  if (!pincode || !/^[1-9]\d{5}$/.test(pincode)) return null;
+  try {
+    const result = await ddb.send(new GetCommand({
+      TableName: PINCODE_TABLE,
+      Key: { pincode: String(pincode) },
+    }));
+    if (!result.Item) return null;
+    return {
+      lat: Number(result.Item.lat),
+      lng: Number(result.Item.lon),
+      state: result.Item.state,
+      district: result.Item.district,
+    };
+  } catch (err) {
+    console.warn("Pincode DDB lookup failed:", err.message);
+    return null;
+  }
+}
+
 // ── Cache helpers ──
 function addressHash(address) {
   return createHash("sha256")
@@ -502,6 +524,19 @@ export const handler = async (event) => {
         parsed.confidence_score = Math.min(0.99, (parsed.confidence_score || 0.7) + 0.08);
         gpsSource = "here-maps";
       }
+    }
+  }
+
+  // Guaranteed fallback: pincode-based GPS from India Post data (19K pincodes with verified coords)
+  if ((!parsed.lat || !parsed.lng) && parsed.pincode) {
+    const pinGPS = await lookupPincodeGPS(parsed.pincode);
+    if (pinGPS) {
+      parsed.lat = pinGPS.lat;
+      parsed.lng = pinGPS.lng;
+      if (!parsed.state && pinGPS.state) parsed.state = pinGPS.state;
+      if (!parsed.district && pinGPS.district) parsed.district = pinGPS.district;
+      gpsSource = "pincode-centroid";
+      console.log(`Pincode GPS fallback: ${parsed.pincode} → ${parsed.lat},${parsed.lng}`);
     }
   }
 

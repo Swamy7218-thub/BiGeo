@@ -141,6 +141,7 @@ Resources:
       Environment:
         Variables:
           ADDRESS_TABLE: bigeo-address-graph
+          PINCODE_TABLE: bigeo-pincodes
           GCP_PROJECT_ID: bigeo-491617
           GCP_SECRET_ARN: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:bigeo/gcp-service-account-*"
           MODEL_ROUTE: auto
@@ -157,11 +158,23 @@ Resources:
                 - dynamodb:BatchWriteItem
               Resource:
                 - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-address-graph"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-pincodes"
             - Effect: Allow
               Action:
                 - secretsmanager:GetSecretValue
               Resource:
                 - !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:bigeo/gcp-service-account-*"
+                - !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:bigeo/google-maps-api-key-*"
+            - Effect: Allow
+              Action:
+                - bedrock:Retrieve
+              Resource:
+                - !Sub "arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:knowledge-base/ZFLJ7NGEMF"
+            - Effect: Allow
+              Action:
+                - location:SearchPlaceIndexForText
+              Resource:
+                - !Sub "arn:aws:geo:${AWS::Region}:${AWS::AccountId}:place-index/bigeo-place-index"
       Events:
         ParseApi:
           Type: HttpApi
