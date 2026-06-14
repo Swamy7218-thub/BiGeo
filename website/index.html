@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BiGeo — Every Indian Address, Found</title>
+  <meta name="description" content="BiGeo resolves Indian village addresses that no algorithm can find, using the Bharat Address Graph and Claude AI." />
+
+  <!-- Fonts: Space Grotesk + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Space Grotesk', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            bg: '#080C14',
+            surface: '#0D1525',
+            surfaceHigh: '#111D35',
+            teal: {
+              400: '#2DD4BF',
+              500: '#14B8A6',
+              DEFAULT: '#00D4FF',
+            },
+            navy: '#080C14',
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+            'draw': 'draw 2s ease forwards',
+            'fade-up': 'fadeUp 0.6s ease forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            fadeUp: {
+              from: { opacity: '0', transform: 'translateY(24px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    * { font-family: 'DM Sans', sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Dot-grid map background */
+    .map-grid {
+      background-image: radial-gradient(circle, rgba(0, 212, 255, 0.18) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    /* Glassmorphism card */
+    .glass {
+      background: rgba(13, 21, 37, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 212, 255, 0.12);
+    }
+    .glass-hover:hover {
+      background: rgba(13, 21, 37, 0.9);
+      border-color: rgba(0, 212, 255, 0.28);
+      transform: translateY(-2px);
+      transition: all 0.25s ease;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #00D4FF 0%, #2DD4BF 50%, #818CF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Glow effects */
+    .glow-teal { box-shadow: 0 0 40px rgba(0, 212, 255, 0.15); }
+    .glow-teal-sm { box-shadow: 0 0 16px rgba(0, 212, 255, 0.25); }
+    .text-glow { text-shadow: 0 0 30px rgba(0, 212, 255, 0.4); }
+
+    /* Pin animation */
+    @keyframes pinPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+    .pin-pulse { animation: pinPulse 2s ease-in-out infinite; }
+
+    /* Scroll bar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #080C14; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.3); border-radius: 2px; }
+
+    /* Nav blur */
+    .nav-blur {
+      background: rgba(8, 12, 20, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+    }
+
+    /* Code block */
+    .code-block {
+      background: #050810;
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      border-radius: 12px;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+    }
+
+    /* Step connector line */
+    .step-line::after {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: calc(50% + 32px);
+      width: calc(100% - 64px);
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0,212,255,0.4), rgba(0,212,255,0.1));
+    }
+
+    /* Pricing popular */
+    .pricing-popular {
+      background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(45,212,191,0.08) 100%);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+    }
+
+    /* CTA button */
+    .btn-primary {
+      background: linear-gradient(135deg, #00D4FF, #2DD4BF);
+      color: #080C14;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(0, 212, 255, 0.35);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-ghost {
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      color: #00D4FF;
+      font-weight: 500;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: all 0.2s ease;
+    }
+    .btn-ghost:hover {
+      background: rgba(0, 212, 255, 0.08);
+      border-color: rgba(0, 212, 255, 0.5);
+    }
+
+    /* Animated map dots (hero decoration) */
+    @keyframes mapDot {
+      0% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0); }
+    }
+    .map-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00D4FF;
+      animation: mapDot 3s ease-in-out infinite;
+    }
+    .map-dot::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 212, 255, 0.4);
+      animation: pinPulse 2s ease-in-out infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#080C14] text-slate-100 antialiased overflow-x-hidden">
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════════ -->
+  <nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 cursor-pointer" aria-label="BiGeo Home">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center glow-teal-sm flex-shrink-0">
+            <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#080C14"/>
+            </svg>
+          </div>
+          <span class="font-heading font-700 text-xl text-white tracking-tight">BiGeo</span>
+        </a>
+
+        <!-- Desktop nav links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#how-it-works" class="text-slate-400 hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer">How it works</a>
+          <a href="#use-cases" class="text-slate-400 hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer">Use cases</a>
+          <a href="#api" class="text-slate-400 hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer">API</a>
+          <a href="#pricing" class="text-slate-400 hover:text-white text-sm font-medium transition-colors duration-200 cursor-pointer">Pricing</a>
+        </div>
+
+        <!-- Nav CTA -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="hidden sm:inline-flex btn-ghost px-4 py-2 rounded-lg text-sm cursor-pointer">Sign in</a>
+          <a href="#pricing" class="btn-primary px-4 py-2 rounded-lg text-sm cursor-pointer">Get API key</a>
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+
+    <!-- Background: map grid + radial glow -->
+    <div class="absolute inset-0 map-grid opacity-40"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-cyan-500/5 via-transparent to-transparent" style="background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,212,255,0.1) 0%, transparent 70%)"></div>
+
+    <!-- Animated location pins -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="map-dot" style="top:28%; left:22%; animation-delay:0s;"></div>
+      <div class="map-dot" style="top:55%; left:38%; animation-delay:0.8s;"></div>
+      <div class="map-dot" style="top:40%; left:65%; animation-delay:1.6s;"></div>
+      <div class="map-dot" style="top:70%; left:72%; animation-delay:0.4s;"></div>
+      <div class="map-dot" style="top:20%; left:78%; animation-delay:2.1s;"></div>
+      <div class="map-dot" style="top:60%; left:15%; animation-delay:1.2s;"></div>
+      <div class="map-dot" style="top:35%; left:48%; animation-delay:2.8s;"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center">
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-medium text-cyan-400 mb-8 border border-cyan-400/20">
+          <span class="w-2 h-2 bg-cyan-400 rounded-full pin-pulse flex-shrink-0" aria-hidden="true"></span>
+          Powered by Bharat Address Graph + Claude AI
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-700 leading-tight mb-6 text-white">
+          Every Indian Village<br />
+          Address,&nbsp;<span class="gradient-text text-glow">Found.</span>
+        </h1>
+
+        <!-- Sub-headline -->
+        <p class="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
+          600,000+ Indian villages. 1.4 billion people. Most rural addresses are invisible to every mapping algorithm. BiGeo resolves them with <span class="text-slate-300 font-medium">centimeter-level precision</span>.
+        </p>
+
+        <!-- CTA group -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#pricing" class="btn-primary px-7 py-3.5 rounded-xl text-base cursor-pointer flex items-center gap-2">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Start resolving addresses
+          </a>
+          <a href="#how-it-works" class="btn-ghost px-7 py-3.5 rounded-xl text-base cursor-pointer flex items-center gap-2">
+            See how it works
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Social trust signals -->
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-teal-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            No credit card required
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-teal-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            1,000 free lookups/month
+          </span>
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-teal-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            REST API + Python SDK
+          </span>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass rounded-xl p-5 text-center glow-teal">
+          <div class="font-heading text-3xl font-700 gradient-text">640K+</div>
+          <div class="text-sm text-slate-400 mt-1">Villages indexed</div>
+        </div>
+        <div class="glass rounded-xl p-5 text-center">
+          <div class="font-heading text-3xl font-700 text-white">98.7%</div>
+          <div class="text-sm text-slate-400 mt-1">Resolution accuracy</div>
+        </div>
+        <div class="glass rounded-xl p-5 text-center">
+          <div class="font-heading text-3xl font-700 text-white">&lt;120ms</div>
+          <div class="text-sm text-slate-400 mt-1">P99 API latency</div>
+        </div>
+        <div class="glass rounded-xl p-5 text-center">
+          <div class="font-heading text-3xl font-700 text-white">28</div>
+          <div class="text-sm text-slate-400 mt-1">States + UTs covered</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       PROBLEM
+  ════════════════════════════════════════════ -->
+  <section class="py-24 relative">
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(239,68,68,0.04) 0%, transparent 70%)"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div class="text-center mb-16">
+        <p class="text-sm font-medium text-red-400 uppercase tracking-widest mb-4">The Problem</p>
+        <h2 class="font-heading text-4xl sm:text-5xl font-700 text-white leading-tight">
+          India's addresses are<br /><span style="color: #F87171;">broken by design.</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250">
+          <div class="w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="none">
+              <path d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-lg text-white mb-2">No Postal Codes</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Over 60% of Indian villages have no PIN code, ward number, or unique identifier that mapping APIs can geocode.</p>
+        </div>
+
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250">
+          <div class="w-10 h-10 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-5 h-5 text-orange-400" viewBox="0 0 24 24" fill="none">
+              <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21L8.5 10.5a11 11 0 005 5l1.113-1.724a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 15.72V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-lg text-white mb-2">Ambiguous Names</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Thousands of villages share identical or near-identical names across states — "Rampur" appears 347 times in official records.</p>
+        </div>
+
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250">
+          <div class="w-10 h-10 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center mb-4" aria-hidden="true">
+            <svg class="w-5 h-5 text-yellow-400" viewBox="0 0 24 24" fill="none">
+              <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-lg text-white mb-2">Fragmented Data</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Census, revenue, electoral, and postal records use different village codes — creating a labyrinth that kills last-mile delivery.</p>
+        </div>
+
+      </div>
+
+      <!-- Impact callout -->
+      <div class="mt-10 glass rounded-2xl p-8 border border-red-500/10">
+        <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+          <div class="flex-shrink-0 w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center" aria-hidden="true">
+            <svg class="w-8 h-8 text-red-400" viewBox="0 0 24 24" fill="none">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-heading text-2xl font-700 text-white mb-1">₹1.4 trillion lost annually</p>
+            <p class="text-slate-400">to failed deliveries, returned parcels, and manual address correction in India — a problem BiGeo eliminates at the API layer.</p>
+          </div>
+          <a href="#how-it-works" class="flex-shrink-0 btn-primary px-6 py-3 rounded-xl text-sm cursor-pointer ml-auto">See the solution</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+  ════════════════════════════════════════════ -->
+  <section id="how-it-works" class="py-24 relative">
+    <div class="absolute inset-0 map-grid opacity-20"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(0,212,255,0.04) 0%, transparent 70%)"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div class="text-center mb-16">
+        <p class="text-sm font-medium text-cyan-400 uppercase tracking-widest mb-4">How it works</p>
+        <h2 class="font-heading text-4xl sm:text-5xl font-700 text-white leading-tight">
+          Three steps.<br /><span class="gradient-text">Zero ambiguity.</span>
+        </h2>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto">BiGeo combines the Bharat Address Graph — a knowledge graph of every village relationship in India — with Claude AI's language understanding to resolve even the most ambiguous addresses.</p>
+      </div>
+
+      <!-- Steps -->
+      <div class="grid md:grid-cols-3 gap-8 relative">
+
+        <div class="relative">
+          <div class="glass glass-hover rounded-2xl p-7 cursor-default transition-all duration-250">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                <span class="font-heading font-700 text-cyan-400 text-lg">1</span>
+              </div>
+              <div class="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent hidden md:block"></div>
+            </div>
+            <h3 class="font-heading font-600 text-lg text-white mb-3">You send a raw address</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">Any format. Any script. Hindi, Tamil, Telugu, or romanised transliterations. Even "near the banyan tree, north of the school."</p>
+            <div class="code-block p-4 text-xs text-cyan-300 leading-relaxed">
+              <span class="text-slate-500">POST</span> /v1/resolve<br/>
+              <span class="text-slate-500">{</span><br/>
+              &nbsp;&nbsp;<span class="text-teal-400">"address"</span>: <span class="text-orange-300">"rampur village, near tehsil office, up"</span><br/>
+              <span class="text-slate-500">}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="glass glass-hover rounded-2xl p-7 cursor-default transition-all duration-250 border-cyan-400/20">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+                <span class="font-heading font-700 text-cyan-400 text-lg">2</span>
+              </div>
+              <div class="h-px flex-1 bg-gradient-to-r from-cyan-500/30 to-transparent hidden md:block"></div>
+            </div>
+            <h3 class="font-heading font-600 text-lg text-white mb-3">BiGeo graph + AI resolves it</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">The Bharat Address Graph traverses 4.2M village relationships — district, taluk, block, revenue circle — while Claude AI disambiguates language and context.</p>
+            <div class="grid grid-cols-2 gap-2 mt-4">
+              <div class="bg-cyan-500/5 border border-cyan-500/10 rounded-lg p-2.5 text-center">
+                <div class="text-xs text-cyan-400 font-medium">Graph hops</div>
+                <div class="font-heading text-lg font-700 text-white">4–7</div>
+              </div>
+              <div class="bg-cyan-500/5 border border-cyan-500/10 rounded-lg p-2.5 text-center">
+                <div class="text-xs text-cyan-400 font-medium">AI passes</div>
+                <div class="font-heading text-lg font-700 text-white">1–2</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="glass glass-hover rounded-2xl p-7 cursor-default transition-all duration-250">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-10 h-10 rounded-xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center flex-shrink-0">
+                <span class="font-heading font-700 text-teal-400 text-lg">3</span>
+              </div>
+            </div>
+            <h3 class="font-heading font-600 text-lg text-white mb-3">You get structured geocoordinates</h3>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">Lat/lng with confidence score, matched village entity, state hierarchy, and a canonical address you can store and ship to.</p>
+            <div class="code-block p-4 text-xs leading-relaxed">
+              <span class="text-teal-400">"lat"</span>: <span class="text-orange-300">26.8467</span>, <br/>
+              <span class="text-teal-400">"lng"</span>: <span class="text-orange-300">80.9462</span>,<br/>
+              <span class="text-teal-400">"confidence"</span>: <span class="text-green-400">0.97</span>,<br/>
+              <span class="text-teal-400">"village"</span>: <span class="text-cyan-300">"Rampur Mathura"</span>,<br/>
+              <span class="text-teal-400">"district"</span>: <span class="text-cyan-300">"Lucknow, UP"</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       USE CASES
+  ════════════════════════════════════════════ -->
+  <section id="use-cases" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <p class="text-sm font-medium text-cyan-400 uppercase tracking-widest mb-4">Use cases</p>
+        <h2 class="font-heading text-4xl sm:text-5xl font-700 text-white leading-tight">
+          Built for India's<br />most critical&nbsp;<span class="gradient-text">industries.</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Logistics -->
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250 group">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/15 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-orange-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2"/>
+              <circle cx="18.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-white text-lg mb-2">Logistics & E-commerce</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Route last-mile deliveries to exact village centroids. Cut RTO rates by 40%+ with accurate geocoding for Bharat-tier customers.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm text-orange-400 font-medium group-hover:gap-3 transition-all duration-200">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Healthcare -->
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250 group">
+          <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/15 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-green-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-white text-lg mb-2">Healthcare & Insurance</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Link patient records to precise village locations. Power field-health worker routing, telemedicine triage, and PMJAY coverage mapping.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm text-green-400 font-medium group-hover:gap-3 transition-all duration-200">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Fintech -->
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250 group">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/15 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-white text-lg mb-2">Fintech & Lending</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Verify rural borrower addresses for KYC. Enrich loan applications with district-level socioeconomic context from the address graph.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm text-purple-400 font-medium group-hover:gap-3 transition-all duration-200">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Government -->
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250 group">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/15 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-blue-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-white text-lg mb-2">Government & NGOs</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Map beneficiary records to villages for PM Awas Yojana, MGNREGS, and digital public goods — eliminating duplicate and ghost entries.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm text-blue-400 font-medium group-hover:gap-3 transition-all duration-200">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Agriculture -->
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250 group">
+          <div class="w-12 h-12 rounded-xl bg-lime-500/10 border border-lime-500/15 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-lime-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2a9 9 0 000 18v0M12 2v18M2 9h10M2 15h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-white text-lg mb-2">Agritech & Rural Credit</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Geolocate farm holdings, map kisan ID to land parcel, and enable precision agriculture logistics from procurement to warehouse.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm text-lime-400 font-medium group-hover:gap-3 transition-all duration-200">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Telecom -->
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250 group">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/15 flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-pink-400" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M1.5 8.5s3.5-5.5 10.5-5.5 10.5 5.5 10.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M5 12.5s2-3.5 7-3.5 7 3.5 7 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="2" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 class="font-heading font-600 text-white text-lg mb-2">Telecom & Digital India</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">Identify unconnected villages at exact coordinates for BharatNet tower planning, SIM delivery, and coverage gap analysis.</p>
+          <div class="mt-5 flex items-center gap-1.5 text-sm text-pink-400 font-medium group-hover:gap-3 transition-all duration-200">
+            Learn more
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       API / DEVELOPER SECTION
+  ════════════════════════════════════════════ -->
+  <section id="api" class="py-24 relative">
+    <div class="absolute inset-0 map-grid opacity-15"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 50% at 30% 50%, rgba(0,212,255,0.05) 0%, transparent 70%)"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: text -->
+        <div>
+          <p class="text-sm font-medium text-cyan-400 uppercase tracking-widest mb-4">Developer API</p>
+          <h2 class="font-heading text-4xl sm:text-5xl font-700 text-white leading-tight mb-6">
+            Integrate in<br /><span class="gradient-text">minutes.</span>
+          </h2>
+          <p class="text-slate-400 leading-relaxed mb-8">
+            RESTful JSON API with a Python SDK. Single endpoint. Predictable pricing. No infrastructure to manage. Resolves addresses at 120ms p99, whether you send 1 or 1 million.
+          </p>
+
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">Batch geocoding</p>
+                <p class="text-slate-400 text-sm">Send up to 1,000 addresses per request</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">Multilingual input</p>
+                <p class="text-slate-400 text-sm">Hindi, Tamil, Telugu, Kannada, Bengali + 11 more scripts</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">Confidence scoring</p>
+                <p class="text-slate-400 text-sm">Every result includes a 0–1 confidence score so you can route edge cases</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 rounded-full bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <p class="text-white text-sm font-medium">Webhooks + async mode</p>
+                <p class="text-slate-400 text-sm">Fire-and-forget for large batch jobs, results pushed to your endpoint</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-3">
+            <a href="#" class="btn-primary px-6 py-3 rounded-xl text-sm cursor-pointer">View API docs</a>
+            <a href="#" class="btn-ghost px-6 py-3 rounded-xl text-sm cursor-pointer">Python SDK</a>
+          </div>
+        </div>
+
+        <!-- Right: code block -->
+        <div class="code-block p-6 rounded-2xl glow-teal overflow-x-auto">
+          <div class="flex items-center gap-2 mb-5">
+            <div class="w-3 h-3 rounded-full bg-red-500/60" aria-hidden="true"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500/60" aria-hidden="true"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500/60" aria-hidden="true"></div>
+            <span class="ml-2 text-xs text-slate-500 font-mono">bigeo_example.py</span>
+          </div>
+          <pre class="text-sm leading-7 font-mono overflow-x-auto"><code><span class="text-purple-400">import</span> <span class="text-white">bigeo</span>
+
+<span class="text-slate-500"># Initialize client</span>
+<span class="text-white">client</span> = <span class="text-cyan-400">bigeo</span>.<span class="text-teal-300">Client</span>(<span class="text-orange-300">api_key</span>=<span class="text-green-300">"bge_live_..."</span>)
+
+<span class="text-slate-500"># Resolve a single address</span>
+<span class="text-white">result</span> = <span class="text-white">client</span>.<span class="text-teal-300">resolve</span>(
+  <span class="text-orange-300">address</span>=<span class="text-green-300">"Rampur village, near tehsil</span>
+<span class="text-green-300">           office, Lucknow, UP"</span>,
+  <span class="text-orange-300">language</span>=<span class="text-green-300">"en"</span>
+)
+
+<span class="text-purple-400">print</span>(<span class="text-white">result</span>.<span class="text-cyan-300">lat</span>)      <span class="text-slate-500"># 26.8467</span>
+<span class="text-purple-400">print</span>(<span class="text-white">result</span>.<span class="text-cyan-300">lng</span>)      <span class="text-slate-500"># 80.9462</span>
+<span class="text-purple-400">print</span>(<span class="text-white">result</span>.<span class="text-cyan-300">confidence</span>) <span class="text-slate-500"># 0.97</span>
+<span class="text-purple-400">print</span>(<span class="text-white">result</span>.<span class="text-cyan-300">village</span>)  <span class="text-slate-500"># "Rampur Mathura"</span>
+
+<span class="text-slate-500"># Batch resolve</span>
+<span class="text-white">results</span> = <span class="text-white">client</span>.<span class="text-teal-300">resolve_batch</span>(
+  <span class="text-orange-300">addresses</span>=<span class="text-white">address_list</span>,  <span class="text-slate-500"># up to 1000</span>
+  <span class="text-orange-300">async_mode</span>=<span class="text-purple-400">True</span>
+)</code></pre>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       PRICING
+  ════════════════════════════════════════════ -->
+  <section id="pricing" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <p class="text-sm font-medium text-cyan-400 uppercase tracking-widest mb-4">Pricing</p>
+        <h2 class="font-heading text-4xl sm:text-5xl font-700 text-white leading-tight">
+          Start free.<br /><span class="gradient-text">Scale with India.</span>
+        </h2>
+        <p class="text-slate-400 mt-4">No per-seat pricing. No surprise bills. Pay per resolution.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+
+        <!-- Free -->
+        <div class="glass rounded-2xl p-7 flex flex-col">
+          <div class="mb-6">
+            <p class="font-heading font-600 text-slate-300 text-sm uppercase tracking-widest mb-3">Sandbox</p>
+            <div class="flex items-end gap-1">
+              <span class="font-heading text-4xl font-700 text-white">Free</span>
+            </div>
+            <p class="text-slate-400 text-sm mt-2">Perfect for prototyping and evaluation</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              1,000 resolutions/month
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              REST API access
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Python SDK
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-400">
+              <svg class="w-4 h-4 text-slate-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Batch processing
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-400">
+              <svg class="w-4 h-4 text-slate-600 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              SLA guarantee
+            </li>
+          </ul>
+          <a href="#" class="btn-ghost px-5 py-3 rounded-xl text-sm text-center cursor-pointer">Get API key</a>
+        </div>
+
+        <!-- Growth — popular -->
+        <div class="pricing-popular rounded-2xl p-7 flex flex-col relative glow-teal">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+            <span class="bg-gradient-to-r from-cyan-500 to-teal-400 text-[#080C14] text-xs font-heading font-700 px-4 py-1 rounded-full">Most popular</span>
+          </div>
+          <div class="mb-6">
+            <p class="font-heading font-600 text-cyan-400 text-sm uppercase tracking-widest mb-3">Growth</p>
+            <div class="flex items-end gap-1">
+              <span class="font-heading text-4xl font-700 text-white">₹4,999</span>
+              <span class="text-slate-400 text-sm mb-1">/month</span>
+            </div>
+            <p class="text-slate-400 text-sm mt-2">For startups scaling across Bharat</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-cyan-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              100,000 resolutions/month
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-cyan-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Batch API (1,000/req)
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-cyan-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Multilingual input (14 scripts)
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-cyan-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Webhooks + async mode
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-cyan-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              99.5% uptime SLA
+            </li>
+          </ul>
+          <a href="#" class="btn-primary px-5 py-3 rounded-xl text-sm text-center cursor-pointer">Start free trial</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="glass rounded-2xl p-7 flex flex-col border-slate-700/50">
+          <div class="mb-6">
+            <p class="font-heading font-600 text-slate-300 text-sm uppercase tracking-widest mb-3">Enterprise</p>
+            <div class="flex items-end gap-1">
+              <span class="font-heading text-4xl font-700 text-white">Custom</span>
+            </div>
+            <p class="text-slate-400 text-sm mt-2">For government, large logistics & banks</p>
+          </div>
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Unlimited resolutions
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              On-premise / private cloud
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Custom SLAs (99.99%)
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Dedicated support engineer
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-slate-300">
+              <svg class="w-4 h-4 text-teal-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              NDA + data residency
+            </li>
+          </ul>
+          <a href="mailto:enterprise@bigeo.in" class="btn-ghost px-5 py-3 rounded-xl text-sm text-center cursor-pointer">Contact sales</a>
+        </div>
+
+      </div>
+
+      <!-- Per-lookup note -->
+      <p class="text-center text-slate-500 text-sm mt-8">Overage: ₹0.05 per resolution beyond plan limit &middot; Annual plans save 20%</p>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS / TRUST
+  ════════════════════════════════════════════ -->
+  <section class="py-24 relative">
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 60% 40% at 70% 50%, rgba(45,212,191,0.04) 0%, transparent 70%)"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div class="text-center mb-12">
+        <p class="text-sm font-medium text-cyan-400 uppercase tracking-widest mb-4">Trusted by builders</p>
+        <h2 class="font-heading text-3xl font-700 text-white">What teams say about BiGeo</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250">
+          <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote class="text-slate-300 text-sm leading-relaxed mb-5 italic">"Our RTO rate for Bharat-tier shipments dropped from 34% to under 11% in 6 weeks of using BiGeo. The confidence score alone lets us auto-route ambiguous addresses to human review."</blockquote>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-sm font-heading font-700">AS</span>
+            </div>
+            <div>
+              <p class="text-white text-sm font-medium">Arjun Sharma</p>
+              <p class="text-slate-500 text-xs">CTO, RuralCart Logistics</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250">
+          <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote class="text-slate-300 text-sm leading-relaxed mb-5 italic">"We integrate BiGeo for ASHA worker routing across 3 states. The multilingual support — especially for UP and Bihar Hindi dialects — is unlike anything we've seen from Google Maps or Mapbox."</blockquote>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-sm font-heading font-700">PM</span>
+            </div>
+            <div>
+              <p class="text-white text-sm font-medium">Priya Menon</p>
+              <p class="text-slate-500 text-xs">Head of Engineering, SevaMitra Health</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass glass-hover rounded-2xl p-6 cursor-default transition-all duration-250">
+          <div class="flex items-center gap-1 mb-4" aria-label="5 out of 5 stars">
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote class="text-slate-300 text-sm leading-relaxed mb-5 italic">"BiGeo is solving a problem that's been ignored for 30 years. The Bharat Address Graph is genuinely novel — it understands revenue village hierarchies that no external dataset has ever mapped."</blockquote>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-indigo-400 flex items-center justify-center flex-shrink-0">
+              <span class="text-white text-sm font-heading font-700">RK</span>
+            </div>
+            <div>
+              <p class="text-white text-sm font-medium">Rahul Krishnan</p>
+              <p class="text-slate-500 text-xs">Partner, Blume Ventures</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       CTA BANNER
+  ════════════════════════════════════════════ -->
+  <section class="py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative glass rounded-3xl p-12 text-center overflow-hidden glow-teal">
+        <!-- Radial background -->
+        <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,212,255,0.07) 0%, transparent 70%)" aria-hidden="true"></div>
+        <!-- Map grid -->
+        <div class="absolute inset-0 map-grid opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+        <div class="relative">
+          <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-medium text-cyan-400 mb-6 border border-cyan-400/20">
+            <span class="w-2 h-2 bg-cyan-400 rounded-full pin-pulse flex-shrink-0" aria-hidden="true"></span>
+            Early access — limited slots available
+          </div>
+          <h2 class="font-heading text-4xl sm:text-5xl font-700 text-white mb-4">
+            India has 640,000 villages.<br /><span class="gradient-text">We've mapped every one.</span>
+          </h2>
+          <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">Join the infrastructure layer that makes Bharat addressable. Start free, no credit card needed.</p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#" class="btn-primary px-8 py-4 rounded-xl text-base cursor-pointer flex items-center gap-2">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Get your free API key
+            </a>
+            <a href="mailto:founders@bigeo.in" class="btn-ghost px-8 py-4 rounded-xl text-base cursor-pointer">Talk to founders</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-10">
+
+        <!-- Brand -->
+        <div class="md:col-span-1">
+          <a href="#" class="flex items-center gap-2.5 mb-4 cursor-pointer" aria-label="BiGeo Home">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#080C14"/>
+              </svg>
+            </div>
+            <span class="font-heading font-700 text-white">BiGeo</span>
+          </a>
+          <p class="text-slate-500 text-sm leading-relaxed">India's address resolution infrastructure. Powered by the Bharat Address Graph.</p>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <p class="font-heading font-600 text-white text-sm mb-4">Product</p>
+          <ul class="space-y-2.5">
+            <li><a href="#how-it-works" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">How it works</a></li>
+            <li><a href="#api" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">API Reference</a></li>
+            <li><a href="#pricing" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Pricing</a></li>
+            <li><a href="#" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Changelog</a></li>
+          </ul>
+        </div>
+
+        <!-- Use cases -->
+        <div>
+          <p class="font-heading font-600 text-white text-sm mb-4">Use cases</p>
+          <ul class="space-y-2.5">
+            <li><a href="#use-cases" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Logistics & e-commerce</a></li>
+            <li><a href="#use-cases" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Healthcare</a></li>
+            <li><a href="#use-cases" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Fintech & KYC</a></li>
+            <li><a href="#use-cases" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Government</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <p class="font-heading font-600 text-white text-sm mb-4">Company</p>
+          <ul class="space-y-2.5">
+            <li><a href="#" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">About</a></li>
+            <li><a href="mailto:founders@bigeo.in" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Contact</a></li>
+            <li><a href="mailto:enterprise@bigeo.in" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Enterprise</a></li>
+            <li><a href="#" class="text-slate-400 hover:text-white text-sm cursor-pointer transition-colors duration-200">Privacy policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-slate-600 text-sm">© 2026 BiGeo. Made in India.</p>
+        <p class="text-slate-600 text-sm">admin@bigeo.in</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
