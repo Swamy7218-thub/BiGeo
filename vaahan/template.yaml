@@ -143,7 +143,7 @@ Resources:
           ADDRESS_TABLE: bigeo-address-graph
           PINCODE_TABLE: bigeo-pincodes
           GCP_PROJECT_ID: bigeo-491617
-          GCP_SECRET_ARN: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:bigeo/gcp-service-account-*"
+          GCP_SECRET_ARN: bigeo/gcp-service-account
           MODEL_ROUTE: auto
       Policies:
         - Statement:
@@ -187,6 +187,48 @@ Resources:
           Properties:
             ApiId: !Ref VaahanApi
             Path: /parse
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Bulk Parse Lambda ─────────────────────────────────────────────────────────
+  BulkParseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-bulk-parse
+      CodeUri: bulk-function/
+      Handler: index.handler
+      Description: Bulk address parse — up to 1000 addresses per request, parallel batches of 20
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          PARSE_FUNCTION_NAME: vaahan-parse-address
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource:
+                - !Sub "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:vaahan-parse-address"
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+      Events:
+        BulkParseApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /parse/bulk
+            Method: POST
+        BulkParseOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /parse/bulk
             Method: OPTIONS
             Auth:
               Authorizer: NONE

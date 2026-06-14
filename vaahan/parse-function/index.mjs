@@ -29,8 +29,8 @@ const TABLE_NAME = process.env.ADDRESS_TABLE || "bigeo-address-graph";
 const PINCODE_TABLE = process.env.PINCODE_TABLE || "bigeo-pincodes";
 const BEDROCK_MODEL = "global.anthropic.claude-sonnet-4-6";
 const GCP_PROJECT = process.env.GCP_PROJECT_ID || "bigeo-491617";
-const GCP_SECRET_ARN = process.env.GCP_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1::secret:bigeo/gcp-service-account";
-const GMAPS_SECRET_ARN = process.env.GMAPS_SECRET_ARN || "arn:aws:secretsmanager:ap-south-1:841162683979:secret:bigeo/google-maps-api-key-JseBtB";
+const GCP_SECRET_NAME = process.env.GCP_SECRET_ARN || "bigeo/gcp-service-account";
+const GMAPS_SECRET_NAME = process.env.GMAPS_SECRET_ARN || "bigeo/google-maps-api-key";
 const PLACE_INDEX = process.env.LOCATION_PLACE_INDEX || "bigeo-place-index";
 const KB_ID = process.env.BEDROCK_KB_ID || "ZFLJ7NGEMF";
 
@@ -47,7 +47,7 @@ const locationClient = new LocationClient({ region });
 let _gmapsApiKey = null;
 async function getGMapsKey() {
   if (_gmapsApiKey) return _gmapsApiKey;
-  const secret = await smClient.send(new GetSecretValueCommand({ SecretId: GMAPS_SECRET_ARN }));
+  const secret = await smClient.send(new GetSecretValueCommand({ SecretId: GMAPS_SECRET_NAME }));
   _gmapsApiKey = secret.SecretString.trim();
   return _gmapsApiKey;
 }
@@ -58,7 +58,7 @@ let _gcpTokenExpiry = 0;
 
 async function getGCPAccessToken() {
   if (_gcpAccessToken && Date.now() < _gcpTokenExpiry - 60000) return _gcpAccessToken;
-  const secret = await smClient.send(new GetSecretValueCommand({ SecretId: GCP_SECRET_ARN }));
+  const secret = await smClient.send(new GetSecretValueCommand({ SecretId: GCP_SECRET_NAME }));
   const key = JSON.parse(secret.SecretString);
   const token = await fetchGCPTokenFromKey(key);
   _gcpAccessToken = token.access_token;
@@ -180,6 +180,7 @@ async function geocodeWithGoogleMaps(structuredAddress, district, state) {
           try {
             const parsed = JSON.parse(data);
             if (parsed.status !== "OK" || !parsed.results?.length) {
+              console.log(`Google Maps: status=${parsed.status} results=${parsed.results?.length || 0}`);
               resolve(null);
               return;
             }
@@ -447,7 +448,7 @@ export const handler = async (event) => {
   let parsed = null;
   let modelUsed = null;
 
-  const gcpReady = GCP_SECRET_ARN && !GCP_SECRET_ARN.includes("::");
+  const gcpReady = GCP_SECRET_NAME && !GCP_SECRET_NAME.startsWith("arn:");
 
   // Resolve KB context (cap wait at 2s to avoid slowing fast paths)
   let kbContext = null;
