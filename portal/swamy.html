@@ -1313,9 +1313,8 @@
   </ul>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.js"></script>
-<script>
-  const { animate, inView, stagger, spring } = Motion;
+<script type="module">
+  import { animate, inView, stagger, spring } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
