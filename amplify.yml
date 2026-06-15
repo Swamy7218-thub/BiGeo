@@ -1,0 +1,19 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - cd acquaht-website && npm ci
+        build:
+          commands:
+            - cd acquaht-website && npm run build
+      artifacts:
+        baseDirectory: acquaht-website/.next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - acquaht-website/node_modules/**/*
+          - acquaht-website/.next/cache/**/*
+    appRoot: acquaht-website
