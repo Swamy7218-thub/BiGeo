@@ -4,16 +4,16 @@ applications:
       phases:
         preBuild:
           commands:
-            - cd acquaht-website && npm ci
+            - npm ci
         build:
           commands:
-            - cd acquaht-website && npm run build
+            - npm run build
       artifacts:
-        baseDirectory: acquaht-website/.next
+        baseDirectory: .next
         files:
           - '**/*'
       cache:
         paths:
-          - acquaht-website/node_modules/**/*
-          - acquaht-website/.next/cache/**/*
+          - node_modules/**/*
+          - .next/cache/**/*
     appRoot: acquaht-website
