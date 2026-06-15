@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #0A1628;
+    color: #ffffff;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-cyan-500 to-cyan-400 text-navy-900 font-semibold px-6 py-3 rounded-full hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-105;
+  }
+  .btn-outline {
+    @apply border border-cyan-500/50 text-cyan-400 font-semibold px-6 py-3 rounded-full hover:bg-cyan-500/10 transition-all duration-300;
+  }
+  .section-tag {
+    @apply inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium px-4 py-1.5 rounded-full mb-4;
+  }
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold text-white mb-4 leading-tight;
+  }
+  .section-subtitle {
+    @apply text-lg text-slate-400 max-w-2xl;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #06B6D4;
+  border-radius: 3px;
+}
