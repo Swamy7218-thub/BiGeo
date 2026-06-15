@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
 <!-- Mixpanel -->
 <script>(function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(f){d[f]=function(){call2_args=arguments;call2=[f].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
@@ -42,8 +43,10 @@ body.hovering #cursor{width:12px;height:12px}
 body.hovering #cursor-ring{width:44px;height:44px;border-color:rgba(255,102,0,0.8)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,transform .35s cubic-bezier(0.22,1,0.36,1)}
 nav.scrolled{background:rgba(8,11,20,0.93);backdrop-filter:blur(20px);border-color:var(--border2)}
+nav.nav-hidden{transform:translateY(-100%)}
+.split-char{display:inline-block;opacity:0}
 .nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.2rem;letter-spacing:-0.02em}
 .nav-logo-mark{width:32px;height:32px;background:var(--orange);border-radius:7px;display:grid;place-items:center}
 .nav-logo-mark svg{width:17px;height:17px}
@@ -314,6 +317,19 @@ footer{background:var(--bg);border-top:1px solid var(--border2);padding:2.5rem 2
 </head>
 <body>
 
+<!-- PRELOADER -->
+<div id="preloader" style="position:fixed;inset:0;background:#080B14;z-index:99999;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+  <div id="preloader-logo" style="display:flex;align-items:center;gap:10px;opacity:0;">
+    <div style="width:36px;height:36px;background:#FF6600;border-radius:8px;display:grid;place-items:center;">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+    </div>
+    <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:#fff;letter-spacing:-0.02em;">BiGeo</span>
+  </div>
+</div>
+
+<!-- GRAIN OVERLAY -->
+<canvas id="grain" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9000;opacity:0.03;"></canvas>
+
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 
@@ -347,7 +363,7 @@ footer{background:var(--bg);border-top:1px solid var(--border2);padding:2.5rem 2
   <div class="hero-gradient"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="hero-badge-dot"></span>Now in Private Beta &mdash; 500 Free API Calls</div>
-    <h1 class="hero-h1">The Operating System for<br/><span class="grad">Rural India's Last Mile</span></h1>
+    <h1 class="hero-h1" id="hero-h1">The Operating System for<br/><span class="grad" id="hero-h1-grad">Rural India's Last Mile</span></h1>
     <p class="hero-sub">BiGeo resolves any Indian village address into precision GPS coordinates in under 2 seconds &mdash; powering logistics, fintech, and government delivery for 800M+ rural citizens.</p>
     <div class="hero-ctas">
       <button class="btn btn-primary btn-xl" onclick="openModal();mixpanel.track('CTA Clicked',{location:'hero',btn:'api_key'})">
@@ -1071,6 +1087,145 @@ function submitCTAForm(e){
 }
 
 mixpanel.track('Page Viewed',{page:'homepage',referrer:document.referrer});
+</script>
+
+<script type="module">
+import { animate, inView, stagger, spring } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
+
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ── 1. LENIS SMOOTH SCROLL ──────────────────────────────────────────────────
+const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+function lenisRaf(t) { lenis.raf(t); requestAnimationFrame(lenisRaf); }
+requestAnimationFrame(lenisRaf);
+
+// Pass lenis scroll to existing nav scroll handler
+lenis.on('scroll', ({ scroll }) => {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('scrolled', scroll > 10);
+});
+
+// ── 2. NAV HIDE/SHOW ────────────────────────────────────────────────────────
+let lastScroll = 0;
+const nav = document.querySelector('nav');
+lenis.on('scroll', ({ scroll }) => {
+  if (scroll > lastScroll && scroll > 80) nav.classList.add('nav-hidden');
+  else nav.classList.remove('nav-hidden');
+  lastScroll = scroll;
+});
+
+// ── 3. GRAIN CANVAS ─────────────────────────────────────────────────────────
+const canvas = document.getElementById('grain');
+const ctx = canvas.getContext('2d');
+function resizeGrain() { canvas.width = innerWidth; canvas.height = innerHeight; }
+function drawGrain() {
+  const { width, height } = canvas;
+  const img = ctx.createImageData(width, height);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = Math.random() * 255 | 0;
+    img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  requestAnimationFrame(drawGrain);
+}
+resizeGrain();
+window.addEventListener('resize', resizeGrain);
+drawGrain();
+
+// ── 4. PRELOADER ─────────────────────────────────────────────────────────────
+const preloader = document.getElementById('preloader');
+const preloaderLogo = document.getElementById('preloader-logo');
+if (!reduced) {
+  animate(preloaderLogo, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
+  setTimeout(() => {
+    animate(preloader, { opacity: [1, 0] }, {
+      duration: 0.5, easing: [0.22,1,0.36,1],
+      onComplete: () => { preloader.style.display = 'none'; startAnimations(); }
+    });
+  }, 900);
+} else {
+  preloader.style.display = 'none';
+  startAnimations();
+}
+
+// ── 5. CURSOR (enhance existing) ─────────────────────────────────────────────
+const cursorDot = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mx = -200, my = -200, rx = -200, ry = -200;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function moveCursor() {
+  cursorDot.style.left = mx + 'px'; cursorDot.style.top = my + 'px';
+  rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
+  cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
+  requestAnimationFrame(moveCursor);
+}
+moveCursor();
+
+function startAnimations() {
+
+  // ── 6. SPLIT TEXT — hero h1 ─────────────────────────────────────────────
+  function splitEl(el, delayStart, isGrad) {
+    const text = el.textContent;
+    el.innerHTML = [...text].map(ch =>
+      `<span class="split-char"${isGrad ? ' style="color:inherit"' : ''}>${ch === ' ' ? '&nbsp;' : ch}</span>`
+    ).join('');
+    animate(el.querySelectorAll('.split-char'),
+      { opacity: [0,1], y: ['40%','0%'], filter: ['blur(8px)','blur(0px)'] },
+      { delay: stagger(0.035, { start: delayStart }), duration: 0.5, easing: [0.22,1,0.36,1] }
+    );
+  }
+
+  const h1 = document.getElementById('hero-h1');
+  const firstText = h1.firstChild; // text node "The Operating System for"
+  // Wrap first text node
+  const span1 = document.createElement('span');
+  span1.textContent = firstText.textContent;
+  h1.replaceChild(span1, firstText);
+  splitEl(span1, 0.05, false);
+  splitEl(document.getElementById('hero-h1-grad'), 0.05 + span1.textContent.length * 0.035 + 0.06, true);
+
+  // Hero sub + badge stagger in
+  animate(
+    [document.querySelector('.hero-badge'), document.querySelector('.hero-sub'), document.querySelector('.hero-ctas')],
+    { opacity: [0,1], y: [20,0] },
+    { delay: stagger(0.12, { start: 0.7 }), duration: 0.55, easing: [0.22,1,0.36,1] }
+  );
+
+  // ── 7. EXISTING .rev REVEALS via Motion ──────────────────────────────────
+  document.querySelectorAll('.rev').forEach(el => {
+    inView(el, () => {
+      animate(el, { opacity: [0,1], y: [28,0] }, { duration: 0.55, easing: [0.22,1,0.36,1] });
+    }, { margin: '-60px' });
+  });
+
+  // ── 8. SPRING HOVER — cards ──────────────────────────────────────────────
+  document.querySelectorAll('.feat-card, .uc-card, .price-card').forEach(card => {
+    card.addEventListener('mouseenter', () =>
+      animate(card, { scale: 1.015 }, { easing: spring({ stiffness: 280, damping: 20 }) }));
+    card.addEventListener('mouseleave', () =>
+      animate(card, { scale: 1 }, { easing: spring({ stiffness: 280, damping: 20 }) }));
+  });
+
+  // ── 9. BUTTON PRESS SPRING ───────────────────────────────────────────────
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousedown', () =>
+      animate(btn, { scale: 0.96 }, { easing: spring({ stiffness: 500, damping: 15 }) }));
+    ['mouseup','mouseleave'].forEach(ev =>
+      btn.addEventListener(ev, () =>
+        animate(btn, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 18 }) })));
+  });
+
+  // ── 10. PIPELINE STEPS STAGGER ───────────────────────────────────────────
+  document.querySelectorAll('.pipeline').forEach(pipe => {
+    const steps = pipe.querySelectorAll('.pstep');
+    steps.forEach(el => { el.style.opacity = '0'; });
+    inView(pipe, () => {
+      animate(steps, { opacity: [0,1], x: [-20,0] },
+        { delay: stagger(0.12, { start: 0.1 }), duration: 0.45, easing: [0.22,1,0.36,1] });
+    }, { margin: '-40px' });
+  });
+
+} // end startAnimations
 </script>
 </body>
 </html>
