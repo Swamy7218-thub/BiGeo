@@ -1103,18 +1103,29 @@ window.addEventListener('scroll', () => {
 // ── PRELOADER ───────────────────────────────────────────────────────────────
 const preloader = document.getElementById('preloader');
 const preloaderLogo = document.getElementById('preloader-logo');
-if (!reduced) {
-  animate(preloaderLogo, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
-  setTimeout(() => {
-    animate(preloader, { opacity: [1, 0] }, {
-      duration: 0.5, easing: [0.22,1,0.36,1],
-      onComplete: () => { preloader.style.display = 'none'; startAnimations(); }
-    });
-  }, 900);
-} else {
+let animStarted = false;
+function runAnimations() {
+  if (animStarted) return;
+  animStarted = true;
   preloader.style.display = 'none';
   startAnimations();
 }
+if (!reduced) {
+  animate(preloaderLogo, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
+  setTimeout(() => {
+    animate(preloader, { opacity: [1, 0] }, { duration: 0.5, easing: [0.22,1,0.36,1] });
+    setTimeout(runAnimations, 520);
+  }, 900);
+} else {
+  runAnimations();
+}
+// Hard safety net: force all hidden elements visible after 4s
+setTimeout(() => {
+  runAnimations();
+  document.querySelectorAll('.split-char,.rev').forEach(el => {
+    el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none';
+  });
+}, 4000);
 
 function startAnimations() {
 
@@ -1144,12 +1155,7 @@ function startAnimations() {
     if (el) animate(el, { opacity: [0,1], y: [16,0] }, { delay: 0.75 + i * 0.1, duration: 0.5, easing: [0.22,1,0.36,1] });
   });
 
-  // SECTION REVEALS
-  document.querySelectorAll('.rev').forEach(el => {
-    inView(el, () => {
-      animate(el, { opacity: [0,1], y: [24,0] }, { duration: reduced ? 0 : 0.5, easing: [0.22,1,0.36,1] });
-    }, { margin: '-60px' });
-  });
+  // SECTION REVEALS — handled by native IntersectionObserver above (adds .in class)
 
   // SPRING HOVER — cards
   if (!reduced) {

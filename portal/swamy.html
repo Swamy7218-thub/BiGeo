@@ -1436,18 +1436,30 @@
   // ── PRELOADER ─────────────────────────────────────────────────────────────
   const preloader = document.getElementById('preloader');
   const initials = document.getElementById('preloader-initials');
-  if (!reduced) {
-    animate(initials, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
-    setTimeout(() => {
-      animate(preloader, { opacity: [1, 0] }, {
-        duration: 0.5, easing: [0.22,1,0.36,1],
-        onComplete: () => { preloader.style.display = 'none'; startAnimations(); }
-      });
-    }, 800);
-  } else {
+  let animStarted = false;
+  function runAnimations() {
+    if (animStarted) return;
+    animStarted = true;
     preloader.style.display = 'none';
     startAnimations();
   }
+  if (!reduced) {
+    animate(initials, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
+    setTimeout(() => {
+      animate(preloader, { opacity: [1, 0] }, { duration: 0.5, easing: [0.22,1,0.36,1] });
+      setTimeout(runAnimations, 520);
+    }, 800);
+  } else {
+    runAnimations();
+  }
+  // Hard safety net: force everything visible after 3.5s if animations failed
+  setTimeout(() => {
+    runAnimations();
+    document.querySelectorAll('.split-char,.hero-tag,.hero h1,.hero-sub,.hero-stats,.hero-actions,.scroll-hint,.reveal')
+      .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; });
+    document.querySelectorAll('.ach-card,.fellowship-card,.tech-block,.venture-card,.grant-row')
+      .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  }, 3500);
 
   function startAnimations() {
 
