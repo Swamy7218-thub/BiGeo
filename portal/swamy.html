@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -923,8 +922,6 @@
 <div id="cursor"></div>
 <div id="cursor-dot"></div>
 
-<!-- GRAIN OVERLAY -->
-<canvas id="grain"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -1414,36 +1411,36 @@
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── 1. LENIS SMOOTH SCROLL ────────────────────────────────────────────────
-  const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
-  function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
-  requestAnimationFrame(lenisRaf);
+  // ── CURSOR ────────────────────────────────────────────────────────────────
+  const cursor = document.getElementById('cursor');
+  const dot = document.getElementById('cursor-dot');
+  let mx = -100, my = -100, cx = -100, cy = -100;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  (function moveCursor() {
+    cx += (mx - cx) * 0.1; cy += (my - cy) * 0.1;
+    cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    requestAnimationFrame(moveCursor);
+  })();
 
-  // ── 2. GRAIN CANVAS — static, redraws only on resize (no flicker) ─────────
-  const canvas = document.getElementById('grain');
-  const ctx = canvas.getContext('2d');
-  function drawGrain() {
-    canvas.width = innerWidth; canvas.height = innerHeight;
-    const img = ctx.createImageData(canvas.width, canvas.height);
-    for (let i = 0; i < img.data.length; i += 4) {
-      const v = Math.random() * 255 | 0;
-      img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255;
-    }
-    ctx.putImageData(img, 0, 0);
-  }
-  drawGrain();
-  window.addEventListener('resize', drawGrain);
+  // ── NAV HIDE / SHOW ───────────────────────────────────────────────────────
+  const nav = document.querySelector('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const s = scrollY;
+    if (s > lastScroll && s > 80) nav.classList.add('hidden');
+    else nav.classList.remove('hidden');
+    lastScroll = s;
+  }, { passive: true });
 
-  // ── 3. PRELOADER ─────────────────────────────────────────────────────────
+  // ── PRELOADER ─────────────────────────────────────────────────────────────
   const preloader = document.getElementById('preloader');
   const initials = document.getElementById('preloader-initials');
-
   if (!reduced) {
     animate(initials, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
     setTimeout(() => {
-      animate(preloader, { opacity: [1, 0], scale: [1, 1.04] }, {
-        duration: 0.5,
-        easing: [0.22,1,0.36,1],
+      animate(preloader, { opacity: [1, 0] }, {
+        duration: 0.5, easing: [0.22,1,0.36,1],
         onComplete: () => { preloader.style.display = 'none'; startAnimations(); }
       });
     }, 800);
@@ -1452,141 +1449,94 @@
     startAnimations();
   }
 
-  // ── 4. CUSTOM CURSOR ─────────────────────────────────────────────────────
-  const cursor = document.getElementById('cursor');
-  const dot = document.getElementById('cursor-dot');
-  let mx = -100, my = -100, cx = -100, cy = -100;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
-  ;(function moveCursor() {
-    cx += (mx - cx) * 0.1;
-    cy += (my - cy) * 0.1;
-    cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
-    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-    requestAnimationFrame(moveCursor);
-  })();
-
-  // ── 5. NAV HIDE ON SCROLL DOWN, SHOW ON SCROLL UP ────────────────────────
-  const nav = document.querySelector('nav');
-  let lastScroll = 0;
-  lenis.on('scroll', ({ scroll }) => {
-    if (scroll > lastScroll && scroll > 80) {
-      nav.classList.add('hidden');
-    } else {
-      nav.classList.remove('hidden');
-    }
-    lastScroll = scroll;
-  });
-
-  // ── MAIN ANIMATIONS (run after preloader) ─────────────────────────────────
   function startAnimations() {
 
-    // 6. SPLIT TEXT — hero name character by character ──────────────────────
+    // SPLIT TEXT
     function splitAndAnimate(el, delayStart = 0) {
-      const text = el.textContent;
       const isAccent = el.classList.contains('accent');
-      el.innerHTML = text.split('').map(ch =>
+      el.innerHTML = [...el.textContent].map(ch =>
         `<span class="split-char" style="color:${isAccent ? 'var(--accent)' : 'inherit'}">${ch === ' ' ? '&nbsp;' : ch}</span>`
       ).join('');
-      const chars = el.querySelectorAll('.split-char');
-      animate(
-        chars,
-        { opacity: [0, 1], y: ['40%', '0%'], filter: ['blur(6px)', 'blur(0px)'] },
-        {
-          delay: stagger(0.04, { start: delayStart }),
-          duration: 0.5,
-          easing: [0.22, 1, 0.36, 1],
-        }
+      if (reduced) { el.querySelectorAll('.split-char').forEach(c => c.style.opacity = 1); return; }
+      animate(el.querySelectorAll('.split-char'),
+        { opacity: [0,1], y: ['40%','0%'], filter: ['blur(6px)','blur(0px)'] },
+        { delay: stagger(0.04, { start: delayStart }), duration: 0.5, easing: [0.22,1,0.36,1] }
       );
     }
-
     splitAndAnimate(document.getElementById('word1'), 0.1);
     splitAndAnimate(document.getElementById('word2'), 0.1 + 11 * 0.04 + 0.05);
 
-    // Hero other elements stagger in
-    animate(
-      '.hero-tag, .hero-sub, .hero-stats, .hero-actions, .scroll-hint',
-      { opacity: [0, 1], y: [20, 0] },
-      { delay: stagger(0.1, { start: 0.6 }), duration: 0.55, easing: [0.22, 1, 0.36, 1] }
+    // Hero elements stagger
+    animate('.hero-tag, .hero-sub, .hero-stats, .hero-actions, .scroll-hint',
+      { opacity: [0,1], y: [20,0] },
+      { delay: stagger(0.1, { start: 0.65 }), duration: 0.5, easing: [0.22,1,0.36,1] }
     );
 
-    // 7. STAT NUMBER COUNTERS ───────────────────────────────────────────────
+    // STAT COUNTERS
     const counters = [
-      { el: document.querySelector('.stat-value.orange'), target: 10, prefix: '₹', suffix: 'L+', decimals: 0 },
-      { el: document.querySelector('.stat-value.cyan'),   target: 10, prefix: '',  suffix: '+',  decimals: 0 },
-      { el: document.querySelectorAll('.stat-value')[2],  target: 2,  prefix: '',  suffix: '',   decimals: 0 },
+      { el: document.querySelector('.stat-value.orange'), target: 10, prefix: '₹', suffix: 'L+' },
+      { el: document.querySelector('.stat-value.cyan'),   target: 10, prefix: '',  suffix: '+' },
+      { el: document.querySelectorAll('.stat-value')[2],  target: 2,  prefix: '',  suffix: '' },
     ];
-
     inView('.hero-stats', () => {
-      counters.forEach(({ el, target, prefix, suffix, decimals }) => {
+      if (reduced) return;
+      counters.forEach(({ el, target, prefix, suffix }) => {
         if (!el) return;
         let start = null;
-        const dur = 1200;
-        function tick(ts) {
+        (function tick(ts) {
           if (!start) start = ts;
-          const progress = Math.min((ts - start) / dur, 1);
-          const ease = 1 - Math.pow(1 - progress, 3);
-          el.textContent = prefix + (ease * target).toFixed(decimals) + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
+          const p = Math.min((ts - start) / 1200, 1);
+          el.textContent = prefix + Math.round((1 - Math.pow(1-p, 3)) * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(performance.now());
       });
     }, { margin: '-40px' });
 
-    // 8. SECTION REVEALS ────────────────────────────────────────────────────
+    // SECTION REVEALS
     document.querySelectorAll('.reveal').forEach(el => {
       el.style.opacity = '0';
       inView(el, () => {
-        animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.55, easing: [0.22, 1, 0.36, 1] });
+        animate(el, { opacity: [0,1], y: [20,0] }, { duration: reduced ? 0 : 0.5, easing: [0.22,1,0.36,1] });
       }, { margin: '-80px' });
     });
 
-    // 9. GRID STAGGER ───────────────────────────────────────────────────────
-    [
-      { sel: '.ach-grid',         ch: '.ach-card',         d: 0.04 },
-      { sel: '.fellowships-grid', ch: '.fellowship-card',  d: 0.05 },
-      { sel: '.tech-grid',        ch: '.tech-block',       d: 0.04 },
-      { sel: '.ventures-grid',    ch: '.venture-card',     d: 0.08 },
-      { sel: '.grants-list',      ch: '.grant-row',        d: 0.06 },
-    ].forEach(({ sel, ch, d }) => {
-      const grid = document.querySelector(sel);
-      if (!grid) return;
-      const items = grid.querySelectorAll(ch);
-      items.forEach(el => { el.style.opacity = '0'; });
-      inView(grid, () => {
-        animate(items, { opacity: [0, 1], y: [20, 0] }, {
-          delay: stagger(d, { start: 0.05 }),
-          duration: 0.4,
-          easing: [0.22, 1, 0.36, 1],
-        });
-      }, { margin: '-60px' });
-    });
+    // GRID STAGGER
+    if (!reduced) {
+      [
+        { sel: '.ach-grid',         ch: '.ach-card',        d: 0.04 },
+        { sel: '.fellowships-grid', ch: '.fellowship-card', d: 0.05 },
+        { sel: '.tech-grid',        ch: '.tech-block',      d: 0.04 },
+        { sel: '.ventures-grid',    ch: '.venture-card',    d: 0.08 },
+        { sel: '.grants-list',      ch: '.grant-row',       d: 0.06 },
+      ].forEach(({ sel, ch, d }) => {
+        const grid = document.querySelector(sel);
+        if (!grid) return;
+        const items = grid.querySelectorAll(ch);
+        items.forEach(el => { el.style.opacity = '0'; });
+        inView(grid, () => {
+          animate(items, { opacity: [0,1], y: [20,0] }, { delay: stagger(d, { start: 0.05 }), duration: 0.4, easing: [0.22,1,0.36,1] });
+        }, { margin: '-60px' });
+      });
 
-    // 10. SPRING HOVER — cards ──────────────────────────────────────────────
-    document.querySelectorAll('.venture-card, .fellowship-card').forEach(card => {
-      card.addEventListener('mouseenter', () =>
-        animate(card, { scale: 1.012 }, { easing: spring({ stiffness: 300, damping: 20 }) }));
-      card.addEventListener('mouseleave', () =>
-        animate(card, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 20 }) }));
-    });
+      // SPRING HOVER
+      document.querySelectorAll('.venture-card, .fellowship-card').forEach(card => {
+        card.addEventListener('mouseenter', () => animate(card, { scale: 1.012 }, { easing: spring({ stiffness: 300, damping: 22 }) }));
+        card.addEventListener('mouseleave', () => animate(card, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 22 }) }));
+      });
 
-    // 11. BUTTON PRESS SPRING ───────────────────────────────────────────────
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.addEventListener('mousedown', () =>
-        animate(btn, { scale: 0.96 }, { easing: spring({ stiffness: 500, damping: 15 }) }));
-      ['mouseup', 'mouseleave'].forEach(ev =>
-        btn.addEventListener(ev, () =>
-          animate(btn, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 18 }) })));
-    });
+      // BUTTON PRESS
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousedown', () => animate(btn, { scale: 0.96 }, { easing: spring({ stiffness: 500, damping: 18 }) }));
+        ['mouseup','mouseleave'].forEach(ev => btn.addEventListener(ev, () => animate(btn, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 20 }) })));
+      });
 
-    // 12. CONTACT LINK SPRING SLIDE ─────────────────────────────────────────
-    document.querySelectorAll('.contact-link').forEach(link => {
-      link.addEventListener('mouseenter', () =>
-        animate(link, { x: 5 }, { easing: spring({ stiffness: 400, damping: 25 }) }));
-      link.addEventListener('mouseleave', () =>
-        animate(link, { x: 0 }, { easing: spring({ stiffness: 400, damping: 25 }) }));
-    });
-
-  } // end startAnimations
+      // CONTACT SLIDE
+      document.querySelectorAll('.contact-link').forEach(link => {
+        link.addEventListener('mouseenter', () => animate(link, { x: 5 }, { easing: spring({ stiffness: 400, damping: 25 }) }));
+        link.addEventListener('mouseleave', () => animate(link, { x: 0 }, { easing: spring({ stiffness: 400, damping: 25 }) }));
+      });
+    }
+  }
 </script>
 </body>
 </html>
