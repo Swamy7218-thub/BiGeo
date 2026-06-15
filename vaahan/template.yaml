@@ -2,6 +2,16 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Vaahan - Address Intelligence API by BiGeo
 
+Parameters:
+  HereApiKey:
+    Type: String
+    NoEcho: true
+    Description: HERE Maps API key for routing matrix
+  VaahanInternalKey:
+    Type: String
+    NoEcho: true
+    Description: Internal API key used by route-function to call /parse/bulk
+
 Globals:
   Function:
     Timeout: 30
@@ -388,6 +398,41 @@ Resources:
           Properties:
             ApiId: !Ref VaahanApi
             Path: /producer-webhook
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Route Optimize Lambda ─────────────────────────────────────────────────────
+  RouteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-route
+      CodeUri: route-function/
+      Handler: handler.lambda_handler
+      Runtime: python3.12
+      MemorySize: 1024
+      Timeout: 60
+      Tags:
+        Project: BiGeo
+        Env: prod
+      Description: VRP route optimisation — greedy NN + 2-opt, up to 150 stops
+      Environment:
+        Variables:
+          HERE_API_KEY: !Ref HereApiKey
+          VAAHAN_API_URL: !Sub "https://${VaahanApi}.execute-api.${AWS::Region}.amazonaws.com/v1"
+          VAAHAN_INTERNAL_KEY: !Ref VaahanInternalKey
+      Events:
+        RouteOptimize:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /route/optimize
+            Method: POST
+        RouteOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /route/optimize
             Method: OPTIONS
             Auth:
               Authorizer: NONE
