@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -818,6 +819,89 @@
     .scroll-hint { left: 20px; }
   }
 
+  /* ── PRELOADER ── */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    background: #1a1a1a;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  #preloader-initials {
+    font-family: var(--font-sans);
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CUSTOM CURSOR ── */
+  #cursor {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(26,26,26,0.35);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  #cursor-dot {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+  }
+
+  body:has(a:hover) #cursor,
+  body:has(button:hover) #cursor {
+    width: 56px;
+    height: 56px;
+    border-color: var(--accent);
+    background: rgba(255,64,0,0.06);
+  }
+
+  /* Hide custom cursor on touch devices */
+  @media (hover: none) {
+    #cursor, #cursor-dot { display: none; }
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  #grain {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9000;
+    opacity: 0.035;
+  }
+
+  /* ── SPLIT TEXT ── */
+  .split-char {
+    display: inline-block;
+    opacity: 0;
+  }
+
+  /* ── NAV HIDE/SHOW ── */
+  nav {
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), padding 0.3s ease;
+  }
+
+  nav.hidden {
+    transform: translateY(-100%);
+  }
+
   /* ── DIVIDER ── */
   .divider {
     width: 100%;
@@ -829,6 +913,18 @@
 </style>
 </head>
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <span id="preloader-initials">SJ</span>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
+
+<!-- GRAIN OVERLAY -->
+<canvas id="grain"></canvas>
 
 <!-- NAV -->
 <nav>
@@ -846,7 +942,7 @@
 <div class="hero">
   <div class="hero-tag">Hyderabad, India · Open to co-founder conversations</div>
 
-  <h1>Swamynathan<br><span class="accent">Jerra.</span></h1>
+  <h1><span class="split-word" id="word1">Swamynathan</span><br><span class="split-word accent" id="word2">Jerra.</span></h1>
 
   <p class="hero-sub">
     Deep-tech founder building rural India's missing infrastructure — from address intelligence to atmospheric water. Grant-backed by MeitY, IIT Hyderabad & IIM Shillong.
@@ -1314,109 +1410,194 @@
 </footer>
 
 <script type="module">
-  import { animate, inView, stagger, spring } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm"
+  import { animate, inView, stagger, spring } from "https://cdn.jsdelivr.net/npm/motion@11.11.13/+esm";
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── Hero entrance — stagger each child ────────────────────────────────────
+  // ── 1. LENIS SMOOTH SCROLL ────────────────────────────────────────────────
+  const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+  function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
+  requestAnimationFrame(lenisRaf);
+
+  // ── 2. GRAIN CANVAS ───────────────────────────────────────────────────────
+  const canvas = document.getElementById('grain');
+  const ctx = canvas.getContext('2d');
+  let grainFrame;
+  function resizeGrain() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  function drawGrain() {
+    const { width, height } = canvas;
+    const imageData = ctx.createImageData(width, height);
+    const data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const v = Math.random() * 255 | 0;
+      data[i] = data[i+1] = data[i+2] = v;
+      data[i+3] = 255;
+    }
+    ctx.putImageData(imageData, 0, 0);
+    grainFrame = requestAnimationFrame(drawGrain);
+  }
+  resizeGrain();
+  window.addEventListener('resize', resizeGrain);
+  drawGrain();
+
+  // ── 3. PRELOADER ─────────────────────────────────────────────────────────
+  const preloader = document.getElementById('preloader');
+  const initials = document.getElementById('preloader-initials');
+
   if (!reduced) {
-    animate(
-      '.hero-tag, .hero h1, .hero-sub, .hero-stats, .hero-actions, .scroll-hint',
-      { opacity: [0, 1], y: [20, 0] },
-      { delay: stagger(0.1, { start: 0.05 }), duration: 0.6, easing: [0.22, 1, 0.36, 1] }
-    );
+    animate(initials, { opacity: [0, 1] }, { duration: 0.4, easing: [0.22,1,0.36,1] });
+    setTimeout(() => {
+      animate(preloader, { opacity: [1, 0], scale: [1, 1.04] }, {
+        duration: 0.5,
+        easing: [0.22,1,0.36,1],
+        onComplete: () => { preloader.style.display = 'none'; startAnimations(); }
+      });
+    }, 800);
+  } else {
+    preloader.style.display = 'none';
+    startAnimations();
   }
 
-  // ── Section reveals (section-tag, title, sub, reveal elements) ───────────
-  document.querySelectorAll('.reveal').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    inView(el, () => {
-      animate(
-        el,
-        { opacity: [0, 1], y: [24, 0] },
-        { duration: reduced ? 0 : 0.55, easing: [0.22, 1, 0.36, 1] }
-      );
-    }, { margin: '-80px' });
+  // ── 4. CUSTOM CURSOR ─────────────────────────────────────────────────────
+  const cursor = document.getElementById('cursor');
+  const dot = document.getElementById('cursor-dot');
+  let mx = -100, my = -100, cx = -100, cy = -100;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function moveCursor() {
+    cx += (mx - cx) * 0.12;
+    cy += (my - cy) * 0.12;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+    requestAnimationFrame(moveCursor);
+  }
+  moveCursor();
+
+  // ── 5. NAV HIDE ON SCROLL DOWN, SHOW ON SCROLL UP ────────────────────────
+  const nav = document.querySelector('nav');
+  let lastScroll = 0;
+  lenis.on('scroll', ({ scroll }) => {
+    if (scroll > lastScroll && scroll > 80) {
+      nav.classList.add('hidden');
+    } else {
+      nav.classList.remove('hidden');
+    }
+    lastScroll = scroll;
   });
 
-  // ── Grid stagger — achievements, fellowships, tech, ventures, grants ──────
-  const grids = [
-    { sel: '.ach-grid',        children: '.ach-card',        delay: 0.04 },
-    { sel: '.fellowships-grid',children: '.fellowship-card', delay: 0.05 },
-    { sel: '.tech-grid',       children: '.tech-block',      delay: 0.05 },
-    { sel: '.ventures-grid',   children: '.venture-card',    delay: 0.08 },
-    { sel: '.grants-list',     children: '.grant-row',       delay: 0.06 },
-  ];
+  // ── MAIN ANIMATIONS (run after preloader) ─────────────────────────────────
+  function startAnimations() {
 
-  grids.forEach(({ sel, children, delay }) => {
-    const grid = document.querySelector(sel);
-    if (!grid) return;
-    const items = grid.querySelectorAll(children);
-    items.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
-
-    inView(grid, () => {
+    // 6. SPLIT TEXT — hero name character by character ──────────────────────
+    function splitAndAnimate(el, delayStart = 0) {
+      const text = el.textContent;
+      const isAccent = el.classList.contains('accent');
+      el.innerHTML = text.split('').map(ch =>
+        `<span class="split-char" style="color:${isAccent ? 'var(--accent)' : 'inherit'}">${ch === ' ' ? '&nbsp;' : ch}</span>`
+      ).join('');
+      const chars = el.querySelectorAll('.split-char');
       animate(
-        items,
-        { opacity: [0, 1], y: [20, 0] },
+        chars,
+        { opacity: [0, 1], y: ['40%', '0%'], filter: ['blur(6px)', 'blur(0px)'] },
         {
-          delay: stagger(reduced ? 0 : delay, { start: 0.05 }),
-          duration: reduced ? 0 : 0.45,
+          delay: stagger(0.04, { start: delayStart }),
+          duration: 0.5,
           easing: [0.22, 1, 0.36, 1],
         }
       );
-    }, { margin: '-60px' });
-  });
+    }
 
-  // ── Card spring hover — venture cards ────────────────────────────────────
-  document.querySelectorAll('.venture-card, .fellowship-card').forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (reduced) return;
-      animate(card, { scale: 1.012 }, { duration: 0.3, easing: spring({ stiffness: 300, damping: 20 }) });
-    });
-    card.addEventListener('mouseleave', () => {
-      if (reduced) return;
-      animate(card, { scale: 1 }, { duration: 0.3, easing: spring({ stiffness: 300, damping: 20 }) });
-    });
-  });
+    splitAndAnimate(document.getElementById('word1'), 0.1);
+    splitAndAnimate(document.getElementById('word2'), 0.1 + 11 * 0.04 + 0.05);
 
-  // ── Button press spring ───────────────────────────────────────────────────
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('mousedown', () => {
-      if (reduced) return;
-      animate(btn, { scale: 0.96 }, { duration: 0.12, easing: spring({ stiffness: 400, damping: 15 }) });
-    });
-    btn.addEventListener('mouseup', () => {
-      if (reduced) return;
-      animate(btn, { scale: 1 }, { duration: 0.2, easing: spring({ stiffness: 300, damping: 18 }) });
-    });
-    btn.addEventListener('mouseleave', () => {
-      animate(btn, { scale: 1 }, { duration: 0.15 });
-    });
-  });
+    // Hero other elements stagger in
+    animate(
+      '.hero-tag, .hero-sub, .hero-stats, .hero-actions, .scroll-hint',
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.1, { start: 0.6 }), duration: 0.55, easing: [0.22, 1, 0.36, 1] }
+    );
 
-  // ── Contact link slide on hover ───────────────────────────────────────────
-  document.querySelectorAll('.contact-link').forEach(link => {
-    link.addEventListener('mouseenter', () => {
-      if (reduced) return;
-      animate(link, { x: 4 }, { duration: 0.2, easing: spring({ stiffness: 400, damping: 25 }) });
-    });
-    link.addEventListener('mouseleave', () => {
-      if (reduced) return;
-      animate(link, { x: 0 }, { duration: 0.2, easing: spring({ stiffness: 400, damping: 25 }) });
-    });
-  });
+    // 7. STAT NUMBER COUNTERS ───────────────────────────────────────────────
+    const counters = [
+      { el: document.querySelector('.stat-value.orange'), target: 10, prefix: '₹', suffix: 'L+', decimals: 0 },
+      { el: document.querySelector('.stat-value.cyan'),   target: 10, prefix: '',  suffix: '+',  decimals: 0 },
+      { el: document.querySelectorAll('.stat-value')[2],  target: 2,  prefix: '',  suffix: '',   decimals: 0 },
+    ];
 
-  // ── Stat counter animation ────────────────────────────────────────────────
-  inView('.hero-stats', () => {
-    if (reduced) return;
-    document.querySelectorAll('.stat-value').forEach(el => {
-      animate(el, { opacity: [0, 1], scale: [0.85, 1] }, {
-        duration: 0.5,
-        easing: spring({ stiffness: 200, damping: 18 }),
+    inView('.hero-stats', () => {
+      counters.forEach(({ el, target, prefix, suffix, decimals }) => {
+        if (!el) return;
+        let start = null;
+        const dur = 1200;
+        function tick(ts) {
+          if (!start) start = ts;
+          const progress = Math.min((ts - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = prefix + (ease * target).toFixed(decimals) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
       });
+    }, { margin: '-40px' });
+
+    // 8. SECTION REVEALS ────────────────────────────────────────────────────
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.opacity = '0';
+      inView(el, () => {
+        animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.55, easing: [0.22, 1, 0.36, 1] });
+      }, { margin: '-80px' });
     });
-  }, { margin: '-40px' });
+
+    // 9. GRID STAGGER ───────────────────────────────────────────────────────
+    [
+      { sel: '.ach-grid',         ch: '.ach-card',         d: 0.04 },
+      { sel: '.fellowships-grid', ch: '.fellowship-card',  d: 0.05 },
+      { sel: '.tech-grid',        ch: '.tech-block',       d: 0.04 },
+      { sel: '.ventures-grid',    ch: '.venture-card',     d: 0.08 },
+      { sel: '.grants-list',      ch: '.grant-row',        d: 0.06 },
+    ].forEach(({ sel, ch, d }) => {
+      const grid = document.querySelector(sel);
+      if (!grid) return;
+      const items = grid.querySelectorAll(ch);
+      items.forEach(el => { el.style.opacity = '0'; });
+      inView(grid, () => {
+        animate(items, { opacity: [0, 1], y: [20, 0] }, {
+          delay: stagger(d, { start: 0.05 }),
+          duration: 0.4,
+          easing: [0.22, 1, 0.36, 1],
+        });
+      }, { margin: '-60px' });
+    });
+
+    // 10. SPRING HOVER — cards ──────────────────────────────────────────────
+    document.querySelectorAll('.venture-card, .fellowship-card').forEach(card => {
+      card.addEventListener('mouseenter', () =>
+        animate(card, { scale: 1.012 }, { easing: spring({ stiffness: 300, damping: 20 }) }));
+      card.addEventListener('mouseleave', () =>
+        animate(card, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 20 }) }));
+    });
+
+    // 11. BUTTON PRESS SPRING ───────────────────────────────────────────────
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mousedown', () =>
+        animate(btn, { scale: 0.96 }, { easing: spring({ stiffness: 500, damping: 15 }) }));
+      ['mouseup', 'mouseleave'].forEach(ev =>
+        btn.addEventListener(ev, () =>
+          animate(btn, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 18 }) })));
+    });
+
+    // 12. CONTACT LINK SPRING SLIDE ─────────────────────────────────────────
+    document.querySelectorAll('.contact-link').forEach(link => {
+      link.addEventListener('mouseenter', () =>
+        animate(link, { x: 5 }, { easing: spring({ stiffness: 400, damping: 25 }) }));
+      link.addEventListener('mouseleave', () =>
+        animate(link, { x: 0 }, { easing: spring({ stiffness: 400, damping: 25 }) }));
+    });
+
+  } // end startAnimations
 </script>
 </body>
 </html>
