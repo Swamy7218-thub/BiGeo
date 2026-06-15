@@ -1419,26 +1419,20 @@
   function lenisRaf(time) { lenis.raf(time); requestAnimationFrame(lenisRaf); }
   requestAnimationFrame(lenisRaf);
 
-  // ── 2. GRAIN CANVAS ───────────────────────────────────────────────────────
+  // ── 2. GRAIN CANVAS — static, redraws only on resize (no flicker) ─────────
   const canvas = document.getElementById('grain');
   const ctx = canvas.getContext('2d');
-  let grainFrame;
-  function resizeGrain() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   function drawGrain() {
-    const { width, height } = canvas;
-    const imageData = ctx.createImageData(width, height);
-    const data = imageData.data;
-    for (let i = 0; i < data.length; i += 4) {
+    canvas.width = innerWidth; canvas.height = innerHeight;
+    const img = ctx.createImageData(canvas.width, canvas.height);
+    for (let i = 0; i < img.data.length; i += 4) {
       const v = Math.random() * 255 | 0;
-      data[i] = data[i+1] = data[i+2] = v;
-      data[i+3] = 255;
+      img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255;
     }
-    ctx.putImageData(imageData, 0, 0);
-    grainFrame = requestAnimationFrame(drawGrain);
+    ctx.putImageData(img, 0, 0);
   }
-  resizeGrain();
-  window.addEventListener('resize', resizeGrain);
   drawGrain();
+  window.addEventListener('resize', drawGrain);
 
   // ── 3. PRELOADER ─────────────────────────────────────────────────────────
   const preloader = document.getElementById('preloader');
@@ -1462,19 +1456,14 @@
   const cursor = document.getElementById('cursor');
   const dot = document.getElementById('cursor-dot');
   let mx = -100, my = -100, cx = -100, cy = -100;
-
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-  function moveCursor() {
-    cx += (mx - cx) * 0.12;
-    cy += (my - cy) * 0.12;
-    cursor.style.left = cx + 'px';
-    cursor.style.top  = cy + 'px';
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  ;(function moveCursor() {
+    cx += (mx - cx) * 0.1;
+    cy += (my - cy) * 0.1;
+    cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
     requestAnimationFrame(moveCursor);
-  }
-  moveCursor();
+  })();
 
   // ── 5. NAV HIDE ON SCROLL DOWN, SHOW ON SCROLL UP ────────────────────────
   const nav = document.querySelector('nav');

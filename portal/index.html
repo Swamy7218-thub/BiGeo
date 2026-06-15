@@ -1095,44 +1095,38 @@ import { animate, inView, stagger, spring } from "https://cdn.jsdelivr.net/npm/m
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ── 1. LENIS SMOOTH SCROLL ──────────────────────────────────────────────────
-const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+// Remove native scroll listener conflict — Lenis owns scroll now
+window.removeEventListener('scroll', window.__navScroll);
+const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
 function lenisRaf(t) { lenis.raf(t); requestAnimationFrame(lenisRaf); }
 requestAnimationFrame(lenisRaf);
 
-// Pass lenis scroll to existing nav scroll handler
-lenis.on('scroll', ({ scroll }) => {
-  const nav = document.querySelector('nav');
-  nav.classList.toggle('scrolled', scroll > 10);
-});
-
-// ── 2. NAV HIDE/SHOW ────────────────────────────────────────────────────────
+// Sync nav scrolled state + hide/show via Lenis
 let lastScroll = 0;
-const nav = document.querySelector('nav');
+const navbar = document.getElementById('navbar');
 lenis.on('scroll', ({ scroll }) => {
-  if (scroll > lastScroll && scroll > 80) nav.classList.add('nav-hidden');
-  else nav.classList.remove('nav-hidden');
+  navbar.classList.toggle('scrolled', scroll > 40);
+  if (scroll > lastScroll && scroll > 100) navbar.classList.add('nav-hidden');
+  else navbar.classList.remove('nav-hidden');
   lastScroll = scroll;
 });
 
-// ── 3. GRAIN CANVAS ─────────────────────────────────────────────────────────
+// ── 2. GRAIN — static, not animated (no flicker) ───────────────────────────
 const canvas = document.getElementById('grain');
 const ctx = canvas.getContext('2d');
-function resizeGrain() { canvas.width = innerWidth; canvas.height = innerHeight; }
 function drawGrain() {
-  const { width, height } = canvas;
-  const img = ctx.createImageData(width, height);
+  canvas.width = innerWidth; canvas.height = innerHeight;
+  const img = ctx.createImageData(canvas.width, canvas.height);
   for (let i = 0; i < img.data.length; i += 4) {
     const v = Math.random() * 255 | 0;
     img.data[i] = img.data[i+1] = img.data[i+2] = v; img.data[i+3] = 255;
   }
   ctx.putImageData(img, 0, 0);
-  requestAnimationFrame(drawGrain);
 }
-resizeGrain();
-window.addEventListener('resize', resizeGrain);
 drawGrain();
+window.addEventListener('resize', drawGrain);
 
-// ── 4. PRELOADER ─────────────────────────────────────────────────────────────
+// ── 3. PRELOADER ────────────────────────────────────────────────────────────
 const preloader = document.getElementById('preloader');
 const preloaderLogo = document.getElementById('preloader-logo');
 if (!reduced) {
@@ -1148,80 +1142,65 @@ if (!reduced) {
   startAnimations();
 }
 
-// ── 5. CURSOR (enhance existing) ─────────────────────────────────────────────
-const cursorDot = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursor-ring');
-let mx = -200, my = -200, rx = -200, ry = -200;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-function moveCursor() {
-  cursorDot.style.left = mx + 'px'; cursorDot.style.top = my + 'px';
-  rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1;
-  cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
-  requestAnimationFrame(moveCursor);
-}
-moveCursor();
-
 function startAnimations() {
 
-  // ── 6. SPLIT TEXT — hero h1 ─────────────────────────────────────────────
-  function splitEl(el, delayStart, isGrad) {
+  // ── 4. SPLIT TEXT — hero h1 ─────────────────────────────────────────────
+  function splitEl(el, delayStart) {
     const text = el.textContent;
     el.innerHTML = [...text].map(ch =>
-      `<span class="split-char"${isGrad ? ' style="color:inherit"' : ''}>${ch === ' ' ? '&nbsp;' : ch}</span>`
+      `<span class="split-char">${ch === ' ' ? '&nbsp;' : ch}</span>`
     ).join('');
     animate(el.querySelectorAll('.split-char'),
-      { opacity: [0,1], y: ['40%','0%'], filter: ['blur(8px)','blur(0px)'] },
-      { delay: stagger(0.035, { start: delayStart }), duration: 0.5, easing: [0.22,1,0.36,1] }
+      { opacity: [0,1], y: ['40%','0%'], filter: ['blur(6px)','blur(0px)'] },
+      { delay: stagger(0.03, { start: delayStart }), duration: 0.45, easing: [0.22,1,0.36,1] }
     );
   }
 
   const h1 = document.getElementById('hero-h1');
-  const firstText = h1.firstChild; // text node "The Operating System for"
-  // Wrap first text node
+  const firstNode = h1.firstChild;
   const span1 = document.createElement('span');
-  span1.textContent = firstText.textContent;
-  h1.replaceChild(span1, firstText);
-  splitEl(span1, 0.05, false);
-  splitEl(document.getElementById('hero-h1-grad'), 0.05 + span1.textContent.length * 0.035 + 0.06, true);
+  span1.textContent = firstNode.textContent;
+  h1.replaceChild(span1, firstNode);
+  splitEl(span1, 0.05);
+  splitEl(document.getElementById('hero-h1-grad'), 0.05 + span1.textContent.length * 0.03 + 0.05);
 
-  // Hero sub + badge stagger in
-  animate(
-    [document.querySelector('.hero-badge'), document.querySelector('.hero-sub'), document.querySelector('.hero-ctas')],
-    { opacity: [0,1], y: [20,0] },
-    { delay: stagger(0.12, { start: 0.7 }), duration: 0.55, easing: [0.22,1,0.36,1] }
-  );
+  // Hero badge / sub / ctas
+  ['.hero-badge', '.hero-sub', '.hero-ctas'].forEach((sel, i) => {
+    const el = document.querySelector(sel);
+    if (el) animate(el, { opacity: [0,1], y: [16,0] }, { delay: 0.75 + i * 0.1, duration: 0.5, easing: [0.22,1,0.36,1] });
+  });
 
-  // ── 7. EXISTING .rev REVEALS via Motion ──────────────────────────────────
+  // ── 5. SECTION REVEALS ───────────────────────────────────────────────────
   document.querySelectorAll('.rev').forEach(el => {
     inView(el, () => {
-      animate(el, { opacity: [0,1], y: [28,0] }, { duration: 0.55, easing: [0.22,1,0.36,1] });
+      animate(el, { opacity: [0,1], y: [24,0] }, { duration: 0.5, easing: [0.22,1,0.36,1] });
     }, { margin: '-60px' });
   });
 
-  // ── 8. SPRING HOVER — cards ──────────────────────────────────────────────
+  // ── 6. SPRING HOVER — cards ──────────────────────────────────────────────
   document.querySelectorAll('.feat-card, .uc-card, .price-card').forEach(card => {
     card.addEventListener('mouseenter', () =>
-      animate(card, { scale: 1.015 }, { easing: spring({ stiffness: 280, damping: 20 }) }));
+      animate(card, { scale: 1.015 }, { easing: spring({ stiffness: 280, damping: 22 }) }));
     card.addEventListener('mouseleave', () =>
-      animate(card, { scale: 1 }, { easing: spring({ stiffness: 280, damping: 20 }) }));
+      animate(card, { scale: 1 }, { easing: spring({ stiffness: 280, damping: 22 }) }));
   });
 
-  // ── 9. BUTTON PRESS SPRING ───────────────────────────────────────────────
+  // ── 7. BUTTON PRESS SPRING ───────────────────────────────────────────────
   document.querySelectorAll('.btn').forEach(btn => {
     btn.addEventListener('mousedown', () =>
-      animate(btn, { scale: 0.96 }, { easing: spring({ stiffness: 500, damping: 15 }) }));
+      animate(btn, { scale: 0.96 }, { easing: spring({ stiffness: 500, damping: 18 }) }));
     ['mouseup','mouseleave'].forEach(ev =>
       btn.addEventListener(ev, () =>
-        animate(btn, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 18 }) })));
+        animate(btn, { scale: 1 }, { easing: spring({ stiffness: 300, damping: 20 }) })));
   });
 
-  // ── 10. PIPELINE STEPS STAGGER ───────────────────────────────────────────
+  // ── 8. PIPELINE STAGGER ──────────────────────────────────────────────────
   document.querySelectorAll('.pipeline').forEach(pipe => {
     const steps = pipe.querySelectorAll('.pstep');
     steps.forEach(el => { el.style.opacity = '0'; });
     inView(pipe, () => {
-      animate(steps, { opacity: [0,1], x: [-20,0] },
-        { delay: stagger(0.12, { start: 0.1 }), duration: 0.45, easing: [0.22,1,0.36,1] });
+      animate(steps, { opacity: [0,1], x: [-16,0] },
+        { delay: stagger(0.1, { start: 0.05 }), duration: 0.4, easing: [0.22,1,0.36,1] });
     }, { margin: '-40px' });
   });
 
