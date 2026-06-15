@@ -119,8 +119,6 @@
     text-transform: uppercase;
     margin-bottom: 28px;
     opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.6s ease 0.1s forwards;
   }
 
   .hero-tag::before {
@@ -139,8 +137,6 @@
     color: var(--text);
     margin-bottom: 28px;
     opacity: 0;
-    transform: translateY(16px);
-    animation: fadeUp 0.7s ease 0.2s forwards;
   }
 
   .hero h1 .accent { color: var(--accent); }
@@ -152,8 +148,6 @@
     line-height: 1.7;
     margin-bottom: 48px;
     opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.7s ease 0.35s forwards;
   }
 
   .hero-stats {
@@ -164,8 +158,6 @@
     padding-bottom: 56px;
     border-bottom: 1px solid var(--border);
     opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.7s ease 0.45s forwards;
   }
 
   .stat {
@@ -197,8 +189,6 @@
     gap: 12px;
     flex-wrap: wrap;
     opacity: 0;
-    transform: translateY(12px);
-    animation: fadeUp 0.7s ease 0.55s forwards;
   }
 
   .btn {
@@ -246,7 +236,6 @@
     text-transform: uppercase;
     font-family: var(--font-mono);
     opacity: 0;
-    animation: fadeUp 0.7s ease 0.8s forwards;
   }
 
   .scroll-line {
@@ -1324,42 +1313,111 @@
   </ul>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/motion@11/dist/motion.js"></script>
 <script>
-  // Intersection observer for reveal animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 0);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  const { animate, inView, stagger, spring } = Motion;
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Staggered reveals for grid children
-  document.querySelectorAll('.ach-grid, .fellowships-grid, .tech-grid, .ventures-grid, .grants-list').forEach(grid => {
-    const observer2 = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const children = entry.target.children;
-          Array.from(children).forEach((child, i) => {
-            child.style.opacity = '0';
-            child.style.transform = 'translateY(16px)';
-            child.style.transition = `opacity 0.4s ease ${i * 40}ms, transform 0.4s ease ${i * 40}ms`;
-            setTimeout(() => {
-              child.style.opacity = '1';
-              child.style.transform = 'translateY(0)';
-            }, 100 + i * 40);
-          });
-          observer2.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05 });
-    observer2.observe(grid);
+  // ── Hero entrance — stagger each child ────────────────────────────────────
+  if (!reduced) {
+    animate(
+      '.hero-tag, .hero h1, .hero-sub, .hero-stats, .hero-actions, .scroll-hint',
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.1, { start: 0.05 }), duration: 0.6, easing: [0.22, 1, 0.36, 1] }
+    );
+  }
+
+  // ── Section reveals (section-tag, title, sub, reveal elements) ───────────
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    inView(el, () => {
+      animate(
+        el,
+        { opacity: [0, 1], y: [24, 0] },
+        { duration: reduced ? 0 : 0.55, easing: [0.22, 1, 0.36, 1] }
+      );
+    }, { margin: '-80px' });
   });
+
+  // ── Grid stagger — achievements, fellowships, tech, ventures, grants ──────
+  const grids = [
+    { sel: '.ach-grid',        children: '.ach-card',        delay: 0.04 },
+    { sel: '.fellowships-grid',children: '.fellowship-card', delay: 0.05 },
+    { sel: '.tech-grid',       children: '.tech-block',      delay: 0.05 },
+    { sel: '.ventures-grid',   children: '.venture-card',    delay: 0.08 },
+    { sel: '.grants-list',     children: '.grant-row',       delay: 0.06 },
+  ];
+
+  grids.forEach(({ sel, children, delay }) => {
+    const grid = document.querySelector(sel);
+    if (!grid) return;
+    const items = grid.querySelectorAll(children);
+    items.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; });
+
+    inView(grid, () => {
+      animate(
+        items,
+        { opacity: [0, 1], y: [20, 0] },
+        {
+          delay: stagger(reduced ? 0 : delay, { start: 0.05 }),
+          duration: reduced ? 0 : 0.45,
+          easing: [0.22, 1, 0.36, 1],
+        }
+      );
+    }, { margin: '-60px' });
+  });
+
+  // ── Card spring hover — venture cards ────────────────────────────────────
+  document.querySelectorAll('.venture-card, .fellowship-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (reduced) return;
+      animate(card, { scale: 1.012 }, { duration: 0.3, easing: spring({ stiffness: 300, damping: 20 }) });
+    });
+    card.addEventListener('mouseleave', () => {
+      if (reduced) return;
+      animate(card, { scale: 1 }, { duration: 0.3, easing: spring({ stiffness: 300, damping: 20 }) });
+    });
+  });
+
+  // ── Button press spring ───────────────────────────────────────────────────
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousedown', () => {
+      if (reduced) return;
+      animate(btn, { scale: 0.96 }, { duration: 0.12, easing: spring({ stiffness: 400, damping: 15 }) });
+    });
+    btn.addEventListener('mouseup', () => {
+      if (reduced) return;
+      animate(btn, { scale: 1 }, { duration: 0.2, easing: spring({ stiffness: 300, damping: 18 }) });
+    });
+    btn.addEventListener('mouseleave', () => {
+      animate(btn, { scale: 1 }, { duration: 0.15 });
+    });
+  });
+
+  // ── Contact link slide on hover ───────────────────────────────────────────
+  document.querySelectorAll('.contact-link').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      if (reduced) return;
+      animate(link, { x: 4 }, { duration: 0.2, easing: spring({ stiffness: 400, damping: 25 }) });
+    });
+    link.addEventListener('mouseleave', () => {
+      if (reduced) return;
+      animate(link, { x: 0 }, { duration: 0.2, easing: spring({ stiffness: 400, damping: 25 }) });
+    });
+  });
+
+  // ── Stat counter animation ────────────────────────────────────────────────
+  inView('.hero-stats', () => {
+    if (reduced) return;
+    document.querySelectorAll('.stat-value').forEach(el => {
+      animate(el, { opacity: [0, 1], scale: [0.85, 1] }, {
+        duration: 0.5,
+        easing: spring({ stiffness: 200, damping: 18 }),
+      });
+    });
+  }, { margin: '-40px' });
 </script>
 </body>
 </html>
