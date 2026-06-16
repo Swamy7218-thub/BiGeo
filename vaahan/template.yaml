@@ -11,6 +11,11 @@ Parameters:
     Type: String
     NoEcho: true
     Description: Internal API key used by route-function to call /parse/bulk
+  ShiprocketToken:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Shiprocket Bearer token for logistics API
 
 Globals:
   Function:
@@ -475,6 +480,64 @@ Resources:
           KeyType: HASH
         - AttributeName: SK
           KeyType: RANGE
+      Tags:
+        - Key: Project
+          Value: BiGeo
+        - Key: Env
+          Value: prod
+
+  # ── Setu Pickup Lambda ────────────────────────────────────────────────────────
+  SetuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-setu-pickup
+      CodeUri: setu-function/
+      Handler: handler.lambda_handler
+      Runtime: python3.12
+      MemorySize: 512
+      Timeout: 45
+      Tags:
+        Project: BiGeo
+        Env: prod
+      Description: Setu — village-to-city pickup booking via Shiprocket + VAAHAN address resolution
+      Environment:
+        Variables:
+          HERE_API_KEY: !Ref HereApiKey
+          VAAHAN_API_URL: !Sub "https://${VaahanApi}.execute-api.${AWS::Region}.amazonaws.com/v1"
+          VAAHAN_INTERNAL_KEY: !Ref VaahanInternalKey
+          SHIPROCKET_TOKEN: !Ref ShiprocketToken
+          SETU_TABLE: !Ref SetuPickupsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SetuPickupsTable
+      Events:
+        SetuBookPickup:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /setu/book-pickup
+            Method: POST
+        SetuOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /setu/book-pickup
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── DynamoDB: Setu Pickups Table ──────────────────────────────────────────────
+  SetuPickupsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SetuPickups
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pickup_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pickup_id
+          KeyType: HASH
       Tags:
         - Key: Project
           Value: BiGeo
