@@ -1,99 +1,75 @@
 'use client'
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-const solutions = [
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M12 3c-1.5 2-5 6-5 9a5 5 0 0010 0c0-3-3.5-7-5-9z"/>
-      </svg>
-    ),
-    title: 'Atmospheric Water Harvesting',
-    desc: 'Harnessing cutting-edge technology to extract clean water directly from the air in just 5-7 days — no plastic, no pipelines, 100% renewable.',
-    tag: 'Core Technology',
-    color: 'from-cyan-500 to-cyan-700',
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-      </svg>
-    ),
-    title: 'Smart Water Management',
-    desc: 'Real-time monitoring of water production, quality, and consumption via our smart dashboard. Track usage, optimize efficiency, reduce wastage.',
-    tag: 'IoT Platform',
-    color: 'from-blue-500 to-blue-700',
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707"/>
-      </svg>
-    ),
-    title: 'Solar-Powered AWG Units',
-    desc: 'Pioneering solar-powered atmospheric water generators that deliver pure, safe water anywhere — off-grid, remote, or urban.',
-    tag: 'Green Energy',
-    color: 'from-yellow-500 to-orange-600',
-  },
-  {
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/>
-      </svg>
-    ),
-    title: 'Education & Sustainability',
-    desc: 'Empowering communities through education on sustainable water practices and hygiene — promoting lasting impact and environmental stewardship.',
-    tag: 'Community',
-    color: 'from-green-500 to-emerald-700',
-  },
+const steps = [
+  { num: '01', title: 'Air Intake & Filtration', desc: 'Draws ambient air through pre-filters removing dust, bacteria, pollen, and VOCs. Works at 30–95% RH, 10–45°C.' },
+  { num: '02', title: 'Condensation Cycle', desc: 'Refrigeration-based condensation cools air below dew point. COP up to 4.0 L/kWh — 40% more efficient than industry average.' },
+  { num: '03', title: 'Multi-Stage Purification', desc: 'Sediment → Pre-Carbon → RO → UF → Post-Carbon → Mineral → Ozonization. Exceeds WHO and BIS standards.' },
+  { num: '04', title: 'Storage & Delivery', desc: 'Food-grade SS304 tank (20L). Optional biodegradable sugarcane-pulp bottles. Zero plastic. Zero nanoplastics.' },
+  { num: '05', title: 'IoT Smart Monitoring', desc: 'ESP32 + cloud dashboard. Real-time TDS, RH, temperature, water level, fault alerts. Remote servicing cuts maintenance cost 60%.' },
+]
+
+const edge = [
+  { label: '≤260 Wh/L', desc: 'vs. 500–600 Wh/L industry average' },
+  { label: '4.0 L/kWh', desc: 'COP — best-in-class condensation efficiency' },
+  { label: '30% RH', desc: 'lowest operating humidity in India' },
+  { label: '221 L/day', desc: 'max water output per unit' },
 ]
 
 export default function Solutions() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
-
+  const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="solutions" ref={ref} className="py-24 bg-navy-900 relative overflow-hidden">
-      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
-        >
-          <div className="section-tag mx-auto">Our Solutions</div>
-          <h2 className="section-title">Amazing Services</h2>
-          <p className="section-subtitle mx-auto text-center">
-            From harvesting water out of thin air to intelligent monitoring — we cover every drop of your water journey.
+    <section id="solution" ref={ref} className="py-20 bg-teal-950 text-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} className="mb-14">
+          <div className="section-label text-teal-400/60">The Solution</div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
+            Air in. Safe water out.
+          </h2>
+          <p className="text-teal-100/70 text-lg max-w-2xl">
+            We pull water directly from air. No pipes. No plastic. No groundwater extraction.
+            Just solar energy and atmospheric humidity.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {solutions.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="glass-card p-8 group hover:border-cyan-500/30 transition-all duration-300 hover:bg-white/[0.08]"
-            >
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${s.color} p-0.5 mb-5`}>
-                <div className="w-full h-full rounded-2xl bg-navy-800 flex items-center justify-center text-white group-hover:bg-navy-700 transition-colors">
-                  {s.icon}
+        <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
+          {/* Steps */}
+          <div className="space-y-5">
+            {steps.map((s, i) => (
+              <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: i * 0.1 }}
+                className="flex gap-4">
+                <div className="text-teal-400 font-bold text-sm w-7 flex-shrink-0 pt-0.5">{s.num}</div>
+                <div>
+                  <div className="font-bold text-white mb-1">{s.title}</div>
+                  <div className="text-teal-100/60 text-sm leading-relaxed">{s.desc}</div>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Edge stats */}
+          <motion.div initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.3 }}
+            className="bg-white/5 border border-white/10 rounded-2xl p-8">
+            <div className="section-label text-teal-400/60 mb-6">Our Technology Edge</div>
+            <div className="space-y-6">
+              {edge.map((e, i) => (
+                <div key={i} className="border-b border-white/5 pb-5 last:border-0 last:pb-0">
+                  <div className="text-3xl font-extrabold text-teal-400 mb-1">{e.label}</div>
+                  <div className="text-teal-100/60 text-sm">{e.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 pt-6 border-t border-white/10">
+              <div className="text-xs text-teal-300/50 leading-relaxed">
+                Key moat: The only Indian AWG operating natively at 30% RH with solar-hybrid power — the conditions defining 60% of our target geography.
               </div>
-              <div className="text-xs font-medium text-cyan-400 mb-2 tracking-wider uppercase">{s.tag}</div>
-              <h3 className="text-xl font-bold text-white mb-3">{s.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{s.desc}</p>
-            </motion.div>
-          ))}
+              <div className="mt-3 text-xs text-teal-400/40">
+                Validated at ISB AIC · MeitY TIDE 2.0 · IIM Calcutta · IIM Shillong International Water Conference (1st Prize)
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

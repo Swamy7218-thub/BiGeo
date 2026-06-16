@@ -1,85 +1,76 @@
 'use client'
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
-const faqs = [
+const team = [
   {
-    q: 'How does the atmospheric water generator work?',
-    a: 'Our AWG unit draws in ambient air and passes it through a proprietary condensation system that extracts moisture from humidity. The captured water is then purified through multi-stage filtration — removing impurities, bacteria, and contaminants — and finally mineralized to perfect drinking quality. No groundwater, no pipelines required.',
+    name: 'Swamynathan Jerra',
+    role: 'Founder & CEO',
+    detail: 'EiR IIMCIP · Mercedes-Benz beVisioneers · Ex: TGIC, inSIG 2025. B.Tech Mechanical Engineering. Grew up in Siddipet, Telangana — lived the water problem firsthand.',
+    initials: 'SJ',
+    color: 'bg-teal-600',
   },
   {
-    q: 'What humidity levels are needed for the system to work?',
-    a: 'Our systems are optimized to operate efficiently at humidity levels as low as 30%. For best results and maximum output, environments with 50%+ relative humidity are ideal. We offer models tailored for arid, semi-arid, and tropical climates across India.',
+    name: 'Vaidhatri Sanugula',
+    role: 'Co-Founder — Water Quality',
+    detail: 'M.Sc Biotechnology. Leads purification R&D and WHO compliance. Designed multi-stage filtration with >6-log pathogen kill. Oversees quality assurance across all models.',
+    initials: 'VS',
+    color: 'bg-blue-600',
   },
   {
-    q: 'How much maintenance does the device require?',
-    a: 'AcquaHT is designed for low-maintenance operation. Users only need to replace filters periodically and perform occasional cleaning. The system includes remote diagnostics and a smart dashboard that notifies you of upcoming maintenance needs, filter health, and performance issues — ensuring consistent operation without daily checks.',
+    name: 'Sumanth Malyala',
+    role: 'Co-Founder — R&D',
+    detail: 'B.Tech Mechanical Engineering. Optimised AWG COP from 2.5 → 4.0 L/kWh in 18 months. Designed AcquaHT-80 specs. Manages STPI IoT OpenLab and MeitY lab partnerships.',
+    initials: 'SM',
+    color: 'bg-purple-600',
   },
   {
-    q: 'Where can the device be installed?',
-    a: 'Our technology adapts to your unique needs. Whether for homes, offices, schools, hospitals, or remote locations — we ensure seamless installation and personalized water solutions tailored just for you. Our team guides you through the entire setup process.',
-  },
-  {
-    q: 'How do I get in touch or place an order?',
-    a: 'You can reach us via our contact form below, through live chat on our website, or directly on WhatsApp and phone. Our team is available to help you choose the perfect model, guide installation, and ensure you are fully supported from day one.',
+    name: 'Sai Smaran Nalla',
+    role: 'Co-Founder — BD & IoT',
+    detail: 'B.Tech Computer Science. Built ESP32-based cloud monitoring stack from scratch. Manages T-Hub, NVIDIA Inception, Microsoft Founders Hub. Drives NGO/CSR pipeline.',
+    initials: 'SN',
+    color: 'bg-orange-600',
   },
 ]
 
-export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(null)
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+const logos = ['IIT Hyderabad', 'T-Hub', 'NVIDIA Inception', 'Microsoft Founders Hub', 'STPI IoT OpenLab', 'MeitY TIDE 2.0']
 
+export default function FAQ() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="faq" ref={ref} className="py-24 bg-navy-800 relative overflow-hidden">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-14"
-        >
-          <div className="section-tag mx-auto">FAQ</div>
-          <h2 className="section-title">Frequently Asked Questions</h2>
-          <p className="section-subtitle mx-auto text-center">Everything you need to know about AcquaHT Labs.</p>
+    <section id="team" ref={ref} className="py-20 bg-white border-b border-gray-100">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} className="mb-12">
+          <div className="section-label">Team</div>
+          <h2 className="h2 mb-3">Founder-market fit at every position.</h2>
+          <p className="body max-w-xl">A team that has lived the problem, built the hardware, and won the rooms that matter.</p>
         </motion.div>
 
-        <div className="flex flex-col gap-4">
-          {faqs.map((f, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.08 }}
-              className="glass-card overflow-hidden"
-            >
-              <button
-                className="w-full text-left p-6 flex items-center justify-between gap-4"
-                onClick={() => setOpen(open === i ? null : i)}
-              >
-                <span className="font-semibold text-white">{f.q}</span>
-                <span className={`text-cyan-400 transition-transform duration-300 flex-shrink-0 ${open === i ? 'rotate-45' : ''}`}>
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4"/>
-                  </svg>
-                </span>
-              </button>
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="px-6 pb-6 text-slate-400 leading-relaxed border-t border-white/5 pt-4">
-                      {f.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+        <div className="grid sm:grid-cols-2 gap-5 mb-12">
+          {team.map((t, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: i * 0.1 }}
+              className="border border-gray-100 rounded-2xl p-6 flex gap-4">
+              <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center text-white font-bold text-sm flex-shrink-0`}>
+                {t.initials}
+              </div>
+              <div>
+                <div className="font-bold text-gray-900">{t.name}</div>
+                <div className="text-sm text-teal-600 font-medium mb-2">{t.role}</div>
+                <div className="text-sm text-gray-500 leading-relaxed">{t.detail}</div>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5 }}>
+          <div className="section-label mb-4">Institutional Support</div>
+          <div className="flex flex-wrap gap-2">
+            {logos.map((l, i) => (
+              <span key={i} className="text-xs font-semibold text-gray-600 border border-gray-200 bg-gray-50 px-3 py-1.5 rounded-full">{l}</span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

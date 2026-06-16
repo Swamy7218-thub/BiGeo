@@ -1,50 +1,43 @@
 export default function Footer() {
   return (
-    <footer className="bg-navy-900 border-t border-white/5 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-10 mb-10">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-cyan-600 flex items-center justify-center">
-                <svg className="w-5 h-5 text-navy-900" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                </svg>
+    <footer className="bg-gray-950 text-white py-12 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-3 gap-10 mb-10">
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
+                <svg viewBox="0 0 24 24" fill="white" className="w-5 h-5"><path d="M12 2C8 8 5 12 5 16a7 7 0 0014 0c0-4-3-8-7-14z"/></svg>
               </div>
-              <span className="font-bold text-lg text-white">Acqua<span className="text-cyan-400">HT</span> Labs</span>
+              <span className="font-extrabold text-white">AcquaHT Labs</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
-              Making safe drinking water accessible, sustainable, and affordable through atmospheric water harvesting technology.
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Water from Air. Powered by Sun. Driven by Data.
             </p>
+            <p className="text-gray-600 text-xs mt-3">CIN: U36000TS2023PTC179371</p>
           </div>
 
-          {/* Links */}
           <div>
-            <div className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Company</div>
+            <div className="text-xs font-bold tracking-widest text-gray-600 uppercase mb-4">Navigation</div>
             <div className="flex flex-col gap-2">
-              {['About', 'Solutions', 'How It Works', 'FAQ'].map((l) => (
-                <a key={l} href={`#${l.toLowerCase().replace(/ /g, '-')}`} className="text-sm text-slate-400 hover:text-cyan-400 transition-colors">
-                  {l}
-                </a>
+              {['Problem', 'Solution', 'Products', 'Traction', 'Team', 'Contact'].map(l => (
+                <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-gray-500 hover:text-teal-400 transition-colors">{l}</a>
               ))}
             </div>
           </div>
 
-          {/* Contact */}
           <div>
-            <div className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Contact</div>
-            <div className="flex flex-col gap-2 text-sm text-slate-400">
-              <span>jerraswamynathan@gmail.com</span>
-              <span>Siddipet, Telangana</span>
-              <span>India — 502102</span>
-              <span className="text-xs mt-1 text-slate-500">CIN: U36000TS2023PTC179371</span>
+            <div className="text-xs font-bold tracking-widest text-gray-600 uppercase mb-4">Contact</div>
+            <div className="flex flex-col gap-2 text-sm text-gray-500">
+              <a href="mailto:admin@acquahtlabs.in" className="hover:text-teal-400 transition-colors">admin@acquahtlabs.in</a>
+              <span>Hyderabad, Telangana, India</span>
+              <span>Incorporated Nov 24, 2023</span>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+        <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-600">
           <span>© {new Date().getFullYear()} AcquaHT Labs Private Limited. All rights reserved.</span>
-          <span>Incorporated Nov 24, 2023 · RoC-Hyderabad</span>
+          <span>Atmospheric water replenishes in 5–7 days. Groundwater takes 75,000 years.</span>
         </div>
       </div>
     </footer>
