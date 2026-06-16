@@ -32,6 +32,14 @@
 - 8 Lambda functions in production
 - AWS Credits: $10,000 active (ap-south-1)
 
+## Tool & Platform Credits Active
+| Tool | Plan | Notes |
+|------|------|-------|
+| AWS | $10,000 credits | ap-south-1, active |
+| Miro | Pro + Prototyping Add-On | Use for product wireframes, user journey maps, investor pitch flows |
+| Miro AI | 350× AI credits | Miro AI for flowcharts, diagrams, auto-layout |
+| GitHub Enterprise | 14-day trial | Active |
+
 ## Security Rules (Never Violate)
 - Never purchase/activate paid services using personal card without explicit approval
 - Never provision RDS — DynamoDB only (exception: India Address Graph uses PostGIS by design)
