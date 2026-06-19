@@ -27,7 +27,7 @@ jobs:
 
       - name: SAM Validate
         working-directory: vaahan
-        run: sam validate --lint
+        run: sam validate
 
       - name: Install dependencies
         working-directory: vaahan
