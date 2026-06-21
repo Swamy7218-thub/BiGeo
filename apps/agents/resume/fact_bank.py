@@ -72,7 +72,7 @@ def extract_facts(resume_path: str | Path) -> list[Fact]:
     text = _extract_text(path)
 
     facts: list[Fact] = []
-    current_category = "experience"  # sensible default if no header seen yet
+    current_category = "header"  # name/title/contact lines before the first section
 
     for raw_line in text.splitlines():
         line = raw_line.strip().lstrip("•-*").strip()
