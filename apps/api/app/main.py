@@ -1,8 +1,10 @@
 from fastapi import Depends, FastAPI
+from pydantic import BaseModel
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
+from agents.packet.generate_packet import create_packet
 
 app = FastAPI(title="AI Job Application Agent API")
 
@@ -80,3 +82,29 @@ def reject_application(application_id: str, db: Session = Depends(get_db)) -> di
     row = result.first()
     db.commit()
     return {"rejected": row is not None}
+
+
+class PacketRequest(BaseModel):
+    user_id: str
+    company: str
+    title: str
+    description: str
+    apply_url: str
+    location: str | None = None
+
+
+@app.post("/packets")
+def create_packet_endpoint(req: PacketRequest, db: Session = Depends(get_db)) -> dict:
+    """For LinkedIn/Indeed/Wellfound-style listings: paste in the job details
+    you found manually, and the agent prepares a tailored resume + cover
+    letter and hands back the apply_url as a one-click deep link. This
+    endpoint never submits anything -- see architecture doc section 6."""
+    return create_packet(
+        db=db,
+        user_id=req.user_id,
+        company=req.company,
+        title=req.title,
+        description=req.description,
+        apply_url=req.apply_url,
+        location=req.location,
+    )

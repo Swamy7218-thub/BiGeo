@@ -73,6 +73,11 @@ PYTHONPATH=../../../apps/api:.. python run.py <user_id> <years_of_experience>
 - `apps/agents/submission/tracking.py` — classifies inbound status-update emails (rejected/interview/offer) and updates `applications.status`
 - `apps/api/app/main.py` — added `GET /applications`, `POST /applications/{id}/approve`, `POST /applications/{id}/reject` — the manual-mode human gate
 
+**Phase 4**
+- `infra/sql/003_manual_sources.sql` — adds `manual` as a job source, plus `packet_only`/file-url columns on `applications`
+- `apps/agents/packet/generate_packet.py` — "ready to apply" packet for LinkedIn/Indeed/Wellfound: you paste in a job's title/company/description/URL (discovery there stays manual since automated scraping/submission would violate their ToS), the agent generates the tailored resume + cover letter and an ATS self-check, and hands back the original `apply_url` as a one-click deep link. Submission is always a human click here -- never automated.
+- `POST /packets` API endpoint wraps this flow
+
 ## Generate a tailored resume + cover letter
 
 Requires `ANTHROPIC_API_KEY` in addition to the embedding provider key.
@@ -111,6 +116,17 @@ run(SubmissionPayload(first_name='Jane', last_name='Doe', email='jane@example.co
 "
 ```
 
+## Generate a packet for LinkedIn/Indeed/Wellfound
+
+```bash
+curl -X POST localhost:8000/packets -H "Content-Type: application/json" -d '{
+  "user_id": "<uuid>",
+  "company": "Acme Inc",
+  "title": "Backend Engineer",
+  "description": "...paste the job description here...",
+  "apply_url": "https://www.linkedin.com/jobs/view/12345"
+}'
+```
+
 Not yet implemented (next phases): browser-automation fallback for Workday-style
-company portals, "ready to apply" packet for LinkedIn/Indeed/Wellfound, dashboard UI,
-daily reporting digest, learning loop.
+company portals, dashboard UI, daily reporting digest, learning loop.
