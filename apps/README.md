@@ -78,6 +78,12 @@ PYTHONPATH=../../../apps/api:.. python run.py <user_id> <years_of_experience>
 - `apps/agents/packet/generate_packet.py` — "ready to apply" packet for LinkedIn/Indeed/Wellfound: you paste in a job's title/company/description/URL (discovery there stays manual since automated scraping/submission would violate their ToS), the agent generates the tailored resume + cover letter and an ATS self-check, and hands back the original `apply_url` as a one-click deep link. Submission is always a human click here -- never automated.
 - `POST /packets` API endpoint wraps this flow
 
+**Phase 5**
+- `infra/sql/004_reporting.sql` — `daily_reports` + `lessons_learned` tables
+- `apps/agents/reporting/daily_report.py`, `run.py` — builds the daily digest (applied/interviews/rejections/recommended-pending) and emails it via SES (falls back to stdout if `REPORTS_FROM_EMAIL` isn't set)
+- `apps/agents/learning/learning_loop.py` — weekly statistical reweighting (not fine-tuning): correlates role-type with interview rate and writes short, auditable "lessons" that get fed into the Resume Agent's system prompt as soft guidance
+- `GET /reports/{user_id}/latest`, `GET /lessons/{user_id}` API endpoints
+
 ## Generate a tailored resume + cover letter
 
 Requires `ANTHROPIC_API_KEY` in addition to the embedding provider key.
@@ -128,5 +134,22 @@ curl -X POST localhost:8000/packets -H "Content-Type: application/json" -d '{
 }'
 ```
 
-Not yet implemented (next phases): browser-automation fallback for Workday-style
-company portals, dashboard UI, daily reporting digest, learning loop.
+## Daily report + learning loop
+
+```bash
+cd apps/agents/reporting
+PYTHONPATH=../../../apps/api:.. python run.py <user_id> you@example.com
+```
+
+```python
+from agents.learning.learning_loop import run_weekly, get_recent_lessons_context
+from datetime import date, timedelta
+run_weekly(db, user_id, week_start=date.today() - timedelta(days=7))
+
+# fed into resume generation automatically:
+lessons = get_recent_lessons_context(db, user_id)
+resume_text = tailor_resume(job_title, job_description, facts, lessons_context=lessons)
+```
+
+Not yet implemented (next phase): browser-automation fallback for Workday-style
+company portals, and the dashboard UI (everything above is currently API/CLI only).

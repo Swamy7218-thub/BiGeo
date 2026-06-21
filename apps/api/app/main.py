@@ -93,6 +93,31 @@ class PacketRequest(BaseModel):
     location: str | None = None
 
 
+@app.get("/reports/{user_id}/latest")
+def latest_report(user_id: str, db: Session = Depends(get_db)) -> dict:
+    row = db.execute(
+        text(
+            "SELECT report_date, applied_count, interview_count, rejection_count, "
+            "pending_approval_count, summary_text FROM daily_reports "
+            "WHERE user_id = :uid ORDER BY report_date DESC LIMIT 1"
+        ),
+        {"uid": user_id},
+    ).first()
+    return dict(row._mapping) if row else {}
+
+
+@app.get("/lessons/{user_id}")
+def list_lessons(user_id: str, db: Session = Depends(get_db)) -> list[dict]:
+    rows = db.execute(
+        text(
+            "SELECT week_start, insight_text, sample_size FROM lessons_learned "
+            "WHERE user_id = :uid ORDER BY week_start DESC LIMIT 12"
+        ),
+        {"uid": user_id},
+    )
+    return [dict(row._mapping) for row in rows]
+
+
 @app.post("/packets")
 def create_packet_endpoint(req: PacketRequest, db: Session = Depends(get_db)) -> dict:
     """For LinkedIn/Indeed/Wellfound-style listings: paste in the job details

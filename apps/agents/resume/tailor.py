@@ -49,7 +49,9 @@ def retrieve_top_facts(
     return [f for _, f in scored[:top_k]]
 
 
-def tailor_resume(job_title: str, job_description: str, facts: list[FactRecord]) -> str:
+def tailor_resume(
+    job_title: str, job_description: str, facts: list[FactRecord], lessons_context: str = ""
+) -> str:
     top_facts = retrieve_top_facts(job_description, facts)
     facts_block = "\n".join(f"[{f.id}] ({f.category}) {f.text}" for f in top_facts)
 
@@ -59,4 +61,4 @@ def tailor_resume(job_title: str, job_description: str, facts: list[FactRecord])
         f"FACTS:\n{facts_block}\n\n"
         "Compose the tailored resume now."
     )
-    return complete(prompt=prompt, system=SYSTEM_PROMPT)
+    return complete(prompt=prompt, system=SYSTEM_PROMPT + lessons_context)
