@@ -197,3 +197,20 @@ After `apply`, push images to the printed ECR repo URLs, fill in the real
 values in the `app-api-keys` secret via the AWS console/CLI (Terraform only
 seeds placeholders and never overwrites them on subsequent applies), and
 verify the SES sender address via the email AWS sends.
+
+`github_oidc.tf` creates a GitHub Actions OIDC trust role
+(`github_actions_deploy_role_arn` output) scoped to this repo, so CI can push
+to ECR and redeploy the API service without storing long-lived AWS keys —
+set that ARN as the `AWS_DEPLOY_ROLE_ARN` repo secret.
+
+## CI/CD
+
+- `.github/workflows/ci.yml` — on every PR: Python lint (`ruff`) + import
+  compile check for `apps/api` and `apps/agents`, dashboard typecheck + build,
+  `terraform fmt -check` + `terraform validate`
+- `.github/workflows/release.yml` — on pushing a `v*` tag: builds
+  `apps/api/Dockerfile` and `apps/agents/Dockerfile` (shared image for all
+  batch agents, entrypoint selected by the ECS task definition's `command`),
+  pushes each to its ECR repo as `latest` and the tag, then forces a new
+  deployment of the `api` ECS service. Scheduled batch agents pick up the new
+  `latest` image automatically on their next EventBridge-triggered run.
