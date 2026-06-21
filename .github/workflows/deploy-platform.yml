@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       service:
-        description: "Service to deploy (all|api-gateway|hub-optimizer|route-optimizer)"
+        description: "Service to deploy (all|api-gateway|hub-optimizer|route-optimizer|booking-service|customer-web)"
         required: false
         default: "all"
       environment:
@@ -75,6 +75,8 @@ jobs:
       api_gateway_image: ${{ steps.meta.outputs.api_gateway }}
       hub_optimizer_image: ${{ steps.meta.outputs.hub_optimizer }}
       route_optimizer_image: ${{ steps.meta.outputs.route_optimizer }}
+      booking_service_image: ${{ steps.meta.outputs.booking_service }}
+      customer_web_image: ${{ steps.meta.outputs.customer_web }}
     steps:
       - uses: actions/checkout@v4
 
@@ -95,6 +97,8 @@ jobs:
           echo "api_gateway=$ECR_REGISTRY/bigeo-platform-api-gateway:$SHA" >> $GITHUB_OUTPUT
           echo "hub_optimizer=$ECR_REGISTRY/bigeo-platform-hub-optimizer:$SHA" >> $GITHUB_OUTPUT
           echo "route_optimizer=$ECR_REGISTRY/bigeo-platform-route-optimizer:$SHA" >> $GITHUB_OUTPUT
+          echo "booking_service=$ECR_REGISTRY/bigeo-platform-booking-service:$SHA" >> $GITHUB_OUTPUT
+          echo "customer_web=$ECR_REGISTRY/bigeo-platform-customer-web:$SHA" >> $GITHUB_OUTPUT
           echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       - name: Set up Docker Buildx
@@ -136,6 +140,30 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Build & push Booking Service
+        if: github.event.inputs.service == 'all' || github.event.inputs.service == 'booking-service' || github.event_name == 'push'
+        uses: docker/build-push-action@v5
+        with:
+          context: platform/services/booking-service
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.booking_service }}
+            ${{ env.ECR_REGISTRY }}/bigeo-platform-booking-service:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & push Customer Web
+        if: github.event.inputs.service == 'all' || github.event.inputs.service == 'customer-web' || github.event_name == 'push'
+        uses: docker/build-push-action@v5
+        with:
+          context: platform/apps/customer-web
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.customer_web }}
+            ${{ env.ECR_REGISTRY }}/bigeo-platform-customer-web:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
   # ── Terraform Plan ────────────────────────────────────────────────────────────
   terraform-plan:
     name: Terraform Plan
@@ -171,6 +199,10 @@ jobs:
         run: |
           terraform plan \
             -var="app_image=${{ needs.build.outputs.api_gateway_image }}" \
+            -var="booking_service_image=${{ needs.build.outputs.booking_service_image }}" \
+            -var="customer_web_image=${{ needs.build.outputs.customer_web_image }}" \
+            -var="razorpay_key_id=${{ secrets.RAZORPAY_KEY_ID }}" \
+            -var="razorpay_key_secret=${{ secrets.RAZORPAY_KEY_SECRET }}" \
             -out=tfplan \
             -no-color 2>&1 | tee plan.txt
 
@@ -235,11 +267,55 @@ jobs:
             --task-definition "$NEW_ARN" \
             --force-new-deployment
 
+      - name: Deploy Booking Service to ECS
+        run: |
+          TASK_DEF=$(aws ecs describe-task-definition \
+            --task-definition bigeo-platform-booking-service \
+            --query 'taskDefinition' --output json)
+
+          NEW_TASK_DEF=$(echo "$TASK_DEF" | jq \
+            --arg IMAGE "${{ needs.build.outputs.booking_service_image }}" \
+            '.containerDefinitions[0].image = $IMAGE |
+             del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .registeredAt, .registeredBy, .compatibilities)')
+
+          NEW_ARN=$(aws ecs register-task-definition \
+            --cli-input-json "$NEW_TASK_DEF" \
+            --query 'taskDefinition.taskDefinitionArn' \
+            --output text)
+
+          aws ecs update-service \
+            --cluster $ECS_CLUSTER \
+            --service bigeo-platform-booking-service \
+            --task-definition "$NEW_ARN" \
+            --force-new-deployment
+
+      - name: Deploy Customer Web to ECS
+        run: |
+          TASK_DEF=$(aws ecs describe-task-definition \
+            --task-definition bigeo-platform-customer-web \
+            --query 'taskDefinition' --output json)
+
+          NEW_TASK_DEF=$(echo "$TASK_DEF" | jq \
+            --arg IMAGE "${{ needs.build.outputs.customer_web_image }}" \
+            '.containerDefinitions[0].image = $IMAGE |
+             del(.taskDefinitionArn, .revision, .status, .requiresAttributes, .registeredAt, .registeredBy, .compatibilities)')
+
+          NEW_ARN=$(aws ecs register-task-definition \
+            --cli-input-json "$NEW_TASK_DEF" \
+            --query 'taskDefinition.taskDefinitionArn' \
+            --output text)
+
+          aws ecs update-service \
+            --cluster $ECS_CLUSTER \
+            --service bigeo-platform-customer-web \
+            --task-definition "$NEW_ARN" \
+            --force-new-deployment
+
       - name: Wait for deployment
         run: |
           aws ecs wait services-stable \
             --cluster $ECS_CLUSTER \
-            --services bigeo-platform-api-gateway
+            --services bigeo-platform-api-gateway bigeo-platform-booking-service bigeo-platform-customer-web
           echo "Deployment stable"
 
       - name: Smoke test
@@ -250,7 +326,12 @@ jobs:
             --output text)
           for i in 1 2 3; do
             STATUS=$(curl -s -o /dev/null -w "%{http_code}" "http://$ALB_DNS/health")
-            [ "$STATUS" = "200" ] && echo "Health check passed" && exit 0
+            [ "$STATUS" = "200" ] && echo "API Gateway health check passed" && break
+            sleep 10
+          done
+          for i in 1 2 3; do
+            STATUS=$(curl -sk -o /dev/null -w "%{http_code}" -H "Host: book.bigeo.in" "https://$ALB_DNS/health")
+            [ "$STATUS" = "200" ] && echo "Booking service health check passed" && exit 0
             sleep 10
           done
           echo "Smoke test failed" && exit 1
