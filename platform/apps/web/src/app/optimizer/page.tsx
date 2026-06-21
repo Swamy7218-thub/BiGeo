@@ -9,7 +9,7 @@ export default function OptimizerPage() {
   const [mode, setMode] = useState<"hubs" | "routes">("hubs");
   const [numHubs, setNumHubs] = useState(5);
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<unknown>(null);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [error, setError] = useState("");
 
   const samplePoints = [
@@ -28,7 +28,7 @@ export default function OptimizerPage() {
     setError("");
     setResult(null);
     try {
-      const res = await api.post("/v2/hubs/optimize", {
+      const res = await api.post<Record<string, unknown>>("/v2/hubs/optimize", {
         delivery_points: samplePoints,
         num_hubs: numHubs,
       });
