@@ -151,5 +151,19 @@ lessons = get_recent_lessons_context(db, user_id)
 resume_text = tailor_resume(job_title, job_description, facts, lessons_context=lessons)
 ```
 
+**Dashboard**
+- `apps/dashboard` — Next.js 16 app with three pages:
+  - `/` — applications by status (pending approval / queued / submitted / interview / rejected), with one-click Approve/Skip on the pending-approval queue (the human gate from sections 0 and 4)
+  - `/packets` — paste a LinkedIn/Indeed/Wellfound job's details, generate a packet, get a deep link to apply manually
+  - `/reports` — today's digest (applied/interviews/rejections/awaiting approval) and the learning loop's weekly lessons
+
+```bash
+cd apps/dashboard
+npm install
+cp .env.example .env.local   # set NEXT_PUBLIC_API_BASE_URL and NEXT_PUBLIC_DEFAULT_USER_ID
+npm run dev
+```
+
 Not yet implemented (next phase): browser-automation fallback for Workday-style
-company portals, and the dashboard UI (everything above is currently API/CLI only).
+company portals, and an auth/preferences UI (the dashboard currently assumes a
+single hardcoded user id from env, matching the single-tenant MVP scope).
