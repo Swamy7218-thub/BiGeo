@@ -167,3 +167,33 @@ npm run dev
 Not yet implemented (next phase): browser-automation fallback for Workday-style
 company portals, and an auth/preferences UI (the dashboard currently assumes a
 single hardcoded user id from env, matching the single-tenant MVP scope).
+
+## Deployment (AWS, Terraform)
+
+`infra/terraform/` provisions the AWS architecture from section 14 of the
+architecture doc:
+
+- `network.tf` — VPC, 2 public + 2 private subnets, single NAT gateway
+- `security_groups.tf` — ALB (80/443 public) → ECS service (8000, ALB-only) → RDS (5432, ECS-only)
+- `rds.tf` — Postgres 16, single-AZ, encrypted, credentials in Secrets Manager
+- `s3.tf` — `documents` bucket (resumes/cover letters/packets), encrypted, blocked public access, lifecycle to Glacier after 1 year
+- `ecr.tf` — one repository per service image (`api`, `sourcing-agent`, `scoring-agent`, `resume-agent`, `submission-agent`, `reporting-agent`)
+- `iam.tf` — ECS task execution role (pull images, read secrets) and task role (least-privilege: S3 documents bucket, Secrets Manager, SES)
+- `secrets.tf` — `app-api-keys` secret (Anthropic/OpenAI/Gemini/Greenhouse/Ashby) — values must be set out-of-band, never via `terraform apply`
+- `alb.tf` — public ALB + target group for the API service (HTTP only until a domain + ACM cert are available)
+- `ecs.tf` — Fargate cluster + the always-on `api` service behind the ALB
+- `agents.tf` — Fargate task definitions for each batch agent, run on a schedule via EventBridge Scheduler (sourcing/scoring/resume every 6h, submission hourly, reporting daily at 13:00 UTC) instead of as long-running services, since they're short batch jobs
+- `monitoring.tf` — SNS alert topic (emails `var.alert_email`), CloudWatch alarms (ALB 5xx, low RDS free storage), SES sender identity for `var.reports_from_email`
+- `outputs.tf` — ALB DNS name, ECR repo URLs, DB endpoint, documents bucket name, secret ARNs
+
+```bash
+cd infra/terraform
+terraform init
+terraform plan -var="alert_email=you@example.com" -var="reports_from_email=reports@example.com"
+terraform apply
+```
+
+After `apply`, push images to the printed ECR repo URLs, fill in the real
+values in the `app-api-keys` secret via the AWS console/CLI (Terraform only
+seeds placeholders and never overwrites them on subsequent applies), and
+verify the SES sender address via the email AWS sends.
