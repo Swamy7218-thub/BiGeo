@@ -28,7 +28,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: platform/apps/${{ matrix.app }}
-        run: npm install
+        run: npm ci
 
       - name: Lint
         working-directory: platform/apps/${{ matrix.app }}
