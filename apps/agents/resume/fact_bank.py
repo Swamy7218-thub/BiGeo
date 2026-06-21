@@ -16,10 +16,17 @@ from docx import Document
 
 CATEGORY_HEADERS = {
     "skill": ["skills", "technical skills", "technologies"],
-    "experience": ["experience", "work experience", "employment"],
+    "experience": [
+        "experience", "work experience", "employment",
+        "founder experience",
+    ],
     "project": ["projects", "personal projects"],
     "education": ["education"],
-    "achievement": ["achievements", "awards", "certifications"],
+    "achievement": [
+        "achievements", "awards", "certifications", "selected achievements",
+    ],
+    "grant": ["grants & institutional funding", "grants and institutional funding"],
+    "fellowship": ["fellowships & global recognition", "fellowships and global recognition"],
 }
 
 
@@ -40,11 +47,22 @@ def _extract_text(path: Path) -> str:
     raise ValueError(f"Unsupported resume format: {path.suffix}")
 
 
+def _despace(text: str) -> str:
+    return text.replace(" ", "")
+
+
 def _classify_section(line: str) -> str | None:
     lowered = line.strip().lower().rstrip(":")
+    despaced = _despace(lowered)
     for category, headers in CATEGORY_HEADERS.items():
-        if lowered in headers:
-            return category
+        for header in headers:
+            # Direct match, or match against letter-spaced headers (e.g.
+            # "S K I L L S") that some PDF designs render as individually
+            # spaced glyphs -- pypdf extracts those verbatim, word
+            # boundaries and all, so comparing fully despaced strings is
+            # the only reliable way to recognize them.
+            if lowered == header or despaced == _despace(header):
+                return category
     return None
 
 
