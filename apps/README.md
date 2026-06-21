@@ -67,6 +67,12 @@ cd apps/agents/scoring
 PYTHONPATH=../../../apps/api:.. python run.py <user_id> <years_of_experience>
 ```
 
+**Phase 3**
+- `apps/agents/submission/ats_submitters.py` — Greenhouse/Lever/Ashby application-submission adapters using each platform's own documented API (employer-opt-in required); raises `NotSupportedError` when a posting doesn't support it
+- `apps/agents/submission/run.py` — Submission Agent: only acts on applications already at status `queued` (the human-approval boundary). Falls back to `pending_approval` + manual `apply_url` note when API submission isn't available
+- `apps/agents/submission/tracking.py` — classifies inbound status-update emails (rejected/interview/offer) and updates `applications.status`
+- `apps/api/app/main.py` — added `GET /applications`, `POST /applications/{id}/approve`, `POST /applications/{id}/reject` — the manual-mode human gate
+
 ## Generate a tailored resume + cover letter
 
 Requires `ANTHROPIC_API_KEY` in addition to the embedding provider key.
@@ -89,5 +95,22 @@ check = check_resume(docx_path)  # check.passed must be True before submission
 letter = generate_cover_letter(company, job_title, job_description, facts)
 ```
 
-Not yet implemented (next phases): form-fill agent, dashboard UI, reporting,
-tracking/learning loop.
+## Approve and submit
+
+```bash
+# human approves a pending_approval row (or auto mode already queued it)
+curl -X POST localhost:8000/applications/<id>/approve
+
+# Submission Agent picks up everything at status='queued'
+cd apps/agents/submission
+PYTHONPATH=../../../apps/api:.. python -c "
+from agents.submission.run import run
+from agents.submission.ats_submitters import SubmissionPayload
+run(SubmissionPayload(first_name='Jane', last_name='Doe', email='jane@example.com',
+    phone=None, resume_path='out/resume.docx', cover_letter_text=open('out/letter.txt').read()))
+"
+```
+
+Not yet implemented (next phases): browser-automation fallback for Workday-style
+company portals, "ready to apply" packet for LinkedIn/Indeed/Wellfound, dashboard UI,
+daily reporting digest, learning loop.

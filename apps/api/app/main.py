@@ -31,3 +31,52 @@ def list_facts(user_id: str, db: Session = Depends(get_db)) -> list[dict]:
         {"uid": user_id},
     )
     return [dict(row._mapping) for row in rows]
+
+
+@app.get("/applications")
+def list_applications(status: str | None = None, db: Session = Depends(get_db)) -> list[dict]:
+    query = (
+        "SELECT a.id, a.status, a.score, a.score_breakdown, a.submitted_at, a.notes, "
+        "j.company, j.title, j.apply_url "
+        "FROM applications a JOIN jobs j ON j.id = a.job_id"
+    )
+    params: dict = {}
+    if status:
+        query += " WHERE a.status = :status"
+        params["status"] = status
+    query += " ORDER BY a.created_at DESC"
+    rows = db.execute(text(query), params)
+    return [dict(row._mapping) for row in rows]
+
+
+@app.post("/applications/{application_id}/approve")
+def approve_application(application_id: str, db: Session = Depends(get_db)) -> dict:
+    """Human-gate: moves an application from pending_approval to queued so
+    the Submission Agent will pick it up. This is the manual-mode click
+    referenced throughout the architecture doc -- it never auto-fires."""
+    result = db.execute(
+        text(
+            "UPDATE applications SET status = 'queued' "
+            "WHERE id = :id AND status = 'pending_approval' RETURNING id"
+        ),
+        {"id": application_id},
+    )
+    row = result.first()
+    db.commit()
+    if row is None:
+        return {"approved": False, "reason": "not found or not in pending_approval"}
+    return {"approved": True, "application_id": application_id}
+
+
+@app.post("/applications/{application_id}/reject")
+def reject_application(application_id: str, db: Session = Depends(get_db)) -> dict:
+    result = db.execute(
+        text(
+            "UPDATE applications SET status = 'withdrawn' "
+            "WHERE id = :id AND status = 'pending_approval' RETURNING id"
+        ),
+        {"id": application_id},
+    )
+    row = result.first()
+    db.commit()
+    return {"rejected": row is not None}
