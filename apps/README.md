@@ -17,6 +17,15 @@ Implements the first milestones of the AI Job Application Agent
 - `apps/agents/scoring/embeddings.py` — pluggable embedding client (OpenAI or Gemini via `EMBEDDING_PROVIDER`)
 - `apps/agents/scoring/run.py` — scoring run loop: pulls unscored jobs, applies filters + scorer, creates `applications` rows at `queued` / `pending_approval` / discards below threshold
 
+**Phase 2**
+- `apps/agents/common/llm.py` — shared Claude API client (Sonnet default, Opus for high-stakes calls)
+- `apps/agents/resume/store.py` — loads/embeds fact_bank rows into retrievable `FactRecord`s
+- `apps/agents/resume/tailor.py` — retrieves top-matching facts for a job, LLM composes a resume constrained to *only* those facts (each bullet traceable to a fact_id — the anti-hallucination guardrail)
+- `apps/agents/resume/render.py` — renders the tailored resume into an ATS-safe `.docx` (single column, standard headers, no tables/graphics)
+- `apps/agents/resume/ats_check.py` — round-trip parse self-check: re-parses the generated `.docx` and flags missing sections or parse failures before submission
+- `apps/agents/cover_letter/generate.py` — template-constrained cover letter generation (hook → 2 achievement-to-requirement mappings → close), fact-bank-only
+- `apps/agents/cover_letter/genericness_check.py` — flags a new letter as too templated if it's near-duplicate (cosine > 0.9) of a previous one
+
 ## Setup
 
 ```bash
@@ -58,5 +67,27 @@ cd apps/agents/scoring
 PYTHONPATH=../../../apps/api:.. python run.py <user_id> <years_of_experience>
 ```
 
-Not yet implemented (next phases): resume tailoring generation, cover letters,
-form-fill, dashboard UI, reporting.
+## Generate a tailored resume + cover letter
+
+Requires `ANTHROPIC_API_KEY` in addition to the embedding provider key.
+
+```python
+from app.db.session import SessionLocal
+from agents.resume.store import load_facts
+from agents.resume.tailor import tailor_resume
+from agents.resume.render import render_docx
+from agents.resume.ats_check import check_resume
+from agents.cover_letter.generate import generate_cover_letter
+
+db = SessionLocal()
+facts = load_facts(db, user_id="<uuid>")
+
+resume_text = tailor_resume(job_title, job_description, facts)
+docx_path = render_docx(resume_text, "out/resume.docx")
+check = check_resume(docx_path)  # check.passed must be True before submission
+
+letter = generate_cover_letter(company, job_title, job_description, facts)
+```
+
+Not yet implemented (next phases): form-fill agent, dashboard UI, reporting,
+tracking/learning loop.
