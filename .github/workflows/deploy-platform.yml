@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        service: [api-gateway, hub-optimizer, route-optimizer]
+        service: [api-gateway, hub-optimizer, route-optimizer, booking-service]
     steps:
       - uses: actions/checkout@v4
 
