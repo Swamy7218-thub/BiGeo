@@ -46,7 +46,7 @@ def submit_greenhouse(board_token: str, job_external_id: str, payload: Submissio
     if not api_key:
         raise NotSupportedError("Greenhouse API submission not configured for this board")
 
-    url = f"https://harvest.greenhouse.io/v1/candidates"
+    url = "https://harvest.greenhouse.io/v1/candidates"
     with open(payload.resume_path, "rb") as resume_file:
         files = {"resume": (os.path.basename(payload.resume_path), resume_file, "application/octet-stream")}
         data = {

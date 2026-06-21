@@ -33,7 +33,7 @@ def render_docx(tailored_text: str, output_path: str | Path) -> Path:
 
         lowered = line.lower().rstrip(":")
         if lowered in SECTION_HEADERS:
-            heading = doc.add_heading(line.rstrip(":").title(), level=2)
+            doc.add_heading(line.rstrip(":").title(), level=2)
             continue
 
         clean_line = _strip_source_tags(line.lstrip("•-*").strip())
