@@ -20,7 +20,7 @@ from xml.etree import ElementTree as ET
 
 import boto3
 
-BEDROCK_MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "anthropic.claude-3-5-sonnet-20241022-v2:0")
+BEDROCK_MODEL_ID = os.environ.get("BEDROCK_MODEL_ID", "apac.anthropic.claude-3-5-sonnet-20241022-v2:0")
 SES_SENDER = os.environ["SES_SENDER"]
 SES_RECIPIENT = os.environ["SES_RECIPIENT"]
 DDB_TABLE = os.environ["SEEN_ITEMS_TABLE"]
