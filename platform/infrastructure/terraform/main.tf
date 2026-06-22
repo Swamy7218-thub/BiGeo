@@ -5,6 +5,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.50"
     }
+    archive = {
+      source  = "hashicorp/archive"
+      version = "~> 2.4"
+    }
   }
   backend "s3" {
     bucket         = "bigeo-terraform-state"
@@ -425,8 +429,8 @@ resource "aws_ecs_task_definition" "api_gateway" {
     }]
 
     environment = [
-      { name = "AWS_REGION",     value = var.aws_region },
-      { name = "ENVIRONMENT",    value = var.environment },
+      { name = "AWS_REGION", value = var.aws_region },
+      { name = "ENVIRONMENT", value = var.environment },
       { name = "EVENT_BUS_NAME", value = aws_cloudwatch_event_bus.logistics.name }
     ]
 
