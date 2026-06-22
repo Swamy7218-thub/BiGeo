@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -10,7 +10,7 @@ interface StatCardProps {
   value: string;
   delta?: string;
   positive?: boolean;
-  variants?: object;
+  variants?: Variants;
 }
 
 export function StatCard({ icon: Icon, label, value, delta, positive, variants }: StatCardProps) {

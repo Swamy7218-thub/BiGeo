@@ -1,0 +1,43 @@
+name: CI Frontend
+
+on:
+  pull_request:
+    paths:
+      - "platform/apps/**"
+  push:
+    branches: [main]
+    paths:
+      - "platform/apps/**"
+
+jobs:
+  build:
+    name: Lint & Build (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [web, customer-web]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: platform/apps/${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: platform/apps/${{ matrix.app }}
+        run: npm ci
+
+      - name: Lint
+        working-directory: platform/apps/${{ matrix.app }}
+        run: npm run lint
+
+      - name: Type check
+        working-directory: platform/apps/${{ matrix.app }}
+        run: npm run type-check
+
+      - name: Build
+        working-directory: platform/apps/${{ matrix.app }}
+        run: npm run build

@@ -31,7 +31,7 @@ const mockDistrictData = [
 export default function Dashboard() {
   const { data: health } = useQuery({
     queryKey: ["health"],
-    queryFn: () => api.get("/health"),
+    queryFn: () => api.get<{ status: string }>("/health"),
     refetchInterval: 30000,
   });
 
