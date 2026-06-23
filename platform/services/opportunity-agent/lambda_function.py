@@ -95,9 +95,11 @@ PROMPT_TEMPLATE = """You are a dedicated global opportunity analyst working excl
 this founder. Use the web_search tool repeatedly to find REAL, CURRENTLY
 VERIFIABLE opportunities — do not invent names, deadlines, or amounts. If
 you cannot verify eligibility for an Indian founder from a search result,
-mark it "Eligibility Unverified" rather than guessing. Search at least
-8-10 distinct queries across the categories below before writing the
-final briefing.
+mark it "Eligibility Unverified" rather than guessing. You have a strict
+budget of AT MOST 5 web_search calls total — pick your 5 queries
+deliberately to cover the highest-value categories below, don't spend
+them narrating your plan. After your 5th search, immediately write the
+final briefing with whatever you've found.
 
 Founder & company context:
 {profile}
@@ -162,8 +164,8 @@ def synthesize(bedrock) -> str:
     )
     messages = [{"role": "user", "content": [{"text": prompt}]}]
 
-    text_parts = []
-    for i in range(8):  # bounded tool-use loop; quota-limited to 2 req/min
+    final_text = None
+    for i in range(6):  # at most 5 searches + 1 final-answer turn; quota-limited to 2 req/min
         if i > 0:
             time.sleep(32)
         resp = _converse_with_backoff(
@@ -177,11 +179,10 @@ def synthesize(bedrock) -> str:
         messages.append(output_message)
 
         tool_uses = [b["toolUse"] for b in output_message["content"] if "toolUse" in b]
-        for b in output_message["content"]:
-            if "text" in b:
-                text_parts.append(b["text"])
+        turn_text = "\n".join(b["text"] for b in output_message["content"] if "text" in b)
 
         if resp.get("stopReason") != "tool_use" or not tool_uses:
+            final_text = turn_text
             break
 
         tool_results = []
@@ -193,7 +194,22 @@ def synthesize(bedrock) -> str:
             )
         messages.append({"role": "user", "content": tool_results})
 
-    return "\n".join(text_parts) if text_parts else "<p>No synthesis produced today.</p>"
+    if final_text is None:
+        # Ran out of turns mid-search — force one last call with no tools
+        # so Claude must write the final answer with what it already has.
+        time.sleep(32)
+        messages.append(
+            {"role": "user", "content": [{"text": "Stop searching now. Write the final HTML briefing immediately using only the information already gathered above."}]}
+        )
+        resp = _converse_with_backoff(
+            bedrock,
+            modelId=BEDROCK_MODEL_ID,
+            messages=messages,
+            inferenceConfig={"maxTokens": 4000},
+        )
+        final_text = "\n".join(b["text"] for b in resp["output"]["message"]["content"] if "text" in b)
+
+    return final_text or "<p>No synthesis produced today.</p>"
 
 
 EMAIL_WRAPPER = """<!DOCTYPE html>
