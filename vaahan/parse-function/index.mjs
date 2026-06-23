@@ -9,10 +9,10 @@ import https from "https";
 
 const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN || "da78fa74ae650b4ddd5b327a1be9511c";
 
-function trackMixpanel(event, properties) {
+function trackMixpanel(event, properties, distinctId = "anonymous") {
   const data = Buffer.from(JSON.stringify({
     event,
-    properties: { token: MIXPANEL_TOKEN, distinct_id: "server", ...properties },
+    properties: { token: MIXPANEL_TOKEN, distinct_id: distinctId, ...properties },
   })).toString("base64");
   const req = https.request(
     { hostname: "api.mixpanel.com", path: "/track", method: "POST",
@@ -27,6 +27,7 @@ function trackMixpanel(event, properties) {
 const region = process.env.AWS_REGION || "ap-south-1";
 const TABLE_NAME = process.env.ADDRESS_TABLE || "bigeo-address-graph";
 const PINCODE_TABLE = process.env.PINCODE_TABLE || "bigeo-pincodes";
+const KEYS_TABLE = process.env.KEYS_TABLE || "bigeo-api-keys";
 const BEDROCK_MODEL = "global.anthropic.claude-sonnet-4-6";
 const GCP_PROJECT = process.env.GCP_PROJECT_ID || "bigeo-491617";
 const GCP_SECRET_NAME = process.env.GCP_SECRET_ARN || "bigeo/gcp-service-account";
@@ -367,6 +368,17 @@ function addressHash(address) {
     .digest("hex").slice(0, 16);
 }
 
+async function lookupCustomer(apiKey) {
+  if (!apiKey) return null;
+  try {
+    const result = await ddb.send(new GetCommand({
+      TableName: KEYS_TABLE,
+      Key: { PK: `KEY#${apiKey}` },
+    }));
+    return result.Item || null;
+  } catch { return null; }
+}
+
 async function getCached(rawAddress) {
   const hash = addressHash(rawAddress);
   try {
@@ -417,13 +429,21 @@ export const handler = async (event) => {
   const start = Date.now();
   const cleanAddress = address.trim();
 
+  const apiKey = event.headers?.["x-api-key"] || event.headers?.["X-Api-Key"];
+  const customer = await lookupCustomer(apiKey);
+  const distinctId = customer?.email || "anonymous";
+  const customerProps = customer
+    ? { company_name: customer.company_name, email: customer.email }
+    : {};
+
   // 1. Cache check
   const cached = await getCached(cleanAddress);
   if (cached) {
     trackMixpanel("Address Parsed", {
       source: "cache", state: cached.state, district: cached.district,
       confidence: cached.confidence_score, latency_ms: Date.now() - start,
-    });
+      ...customerProps,
+    }, distinctId);
     return { statusCode: 200, headers, body: JSON.stringify({
       input_address: cleanAddress, ...cached,
       latency_ms: Date.now() - start, source: "cache",
@@ -551,7 +571,8 @@ export const handler = async (event) => {
     confidence: parsed.confidence_score, gps_source: gpsSource,
     latency_ms: latencyMs, detected_language: detectedLang,
     kb_used: kbContext !== null,
-  });
+    ...customerProps,
+  }, distinctId);
 
   return { statusCode: 200, headers, body: JSON.stringify({
     input_address: cleanAddress,
