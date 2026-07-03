@@ -1,0 +1,29 @@
+ABC ROAD CARRIERS
+Freight Rate Agreement - FY 2025-26
+Effective: 01-Apr-2025 to 31-Mar-2026
+
+Party B (Transporter): ABC Road Carriers, Hyderabad
+Party A (Shipper): Sample Pharma Pvt Ltd
+
+Rates agreed as below (all rates inclusive of loading, exclusive of GST):
+
+Hyderabad to Vijayawada - 20ft container / 9MT - Rs 18000 per trip
+Hyderabad to Vijayawada - 32ft SXL / 16MT - Rs 24500 per trip
+Hyderabad to Bengaluru - 32ft SXL / 16MT - Rs 32000 per trip
+Hyderabad to Chennai - 32ft SXL / 16MT - Rs 38000 per trip
+Hyderabad to Nagpur - 20ft container / 9MT - Rs 21000 per trip
+
+Detention: First 1 day free at loading point and 1 day free at unloading point
+for all lanes above. Beyond free days, detention chargeable at Rs 1500 per day
+per vehicle, subject to proof of arrival/departure timestamp at both ends
+(gate-in / gate-out register or POD remark).
+
+Diesel escalation: Base diesel price considered Rs 92/litre (Hyderabad).
+For every Rs 5/litre increase over base, add 2% to all per-trip rates above.
+Escalation applied quarterly based on average IOCL retail price.
+
+Loading/unloading charges included in above rates. Toll extra as per actuals
+against receipts.
+
+This agreement supersedes all prior verbal rate understandings between the
+parties for the above lanes.

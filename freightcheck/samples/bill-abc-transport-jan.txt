@@ -1,0 +1,19 @@
+ABC ROAD CARRIERS
+Bill No: ABC/2526/0114
+Bill Date: 05-01-2026
+Billed To: Sample Pharma Pvt Ltd, Hyderabad
+
+Trip-wise statement for December 2025:
+
+1. LR 4821 | 02-Dec-2025 | Hyderabad to Vijayawada | 32ft SXL | Veh No TS09UD1234 | Rs 24500
+2. LR 4830 | 05-Dec-2025 | Hyderabad to Bengaluru | 32ft SXL | Veh No TS09UD1234 | Rs 32000
+3. LR 4841 | 09-Dec-2025 | Hyderabad to Chennai | 32ft SXL | Veh No TS08UB4477 | Rs 41500
+   (Note in margin, handwritten: "rate revised - pls check")
+4. LR 4855 | 14-Dec-2025 | Hyderabad to Nagpur | 20ft container | Veh No TS07UA9981 | Rs 21000
+   + Detention charges Rs 4500 (vehicle held up 3 days at Nagpur warehouse, no
+   gate register slip attached, driver states verbally)
+5. LR 48XX (last two digits smudged/illegible) | 18-Dec-2025 | Hyderabad to
+   Vijayawada | 20ft container | Veh No TS09UD1234 | Rs 18000
+6. LR 4879 | 22-Dec-2025 | Hyderabad to Bengaluru | 32ft SXL | Veh No TS08UB4477 | Rs 32000
+
+Total claimed: Rs 173,500
