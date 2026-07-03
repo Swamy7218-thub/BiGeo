@@ -1,4 +1,4 @@
-import { anthropic, documentContentBlock, EXTRACTION_MODEL, SourceDocument } from "@/lib/anthropic";
+import { claudeClient, documentContentBlock, extractionModel, SourceDocument } from "@/lib/anthropic";
 import { billExtractionSchema, type BillExtraction } from "./schema";
 
 const RECORD_BILL_TOOL = {
@@ -75,8 +75,8 @@ lines you find hard to read. If a field is illegible, set it to null and lower e
 for that line rather than guessing. Report every rupee figure exactly as printed.`;
 
 export async function extractBillTrips(doc: SourceDocument): Promise<BillExtraction> {
-  const response = await anthropic().messages.create({
-    model: EXTRACTION_MODEL,
+  const response = await claudeClient().messages.create({
+    model: extractionModel(),
     max_tokens: 8000,
     system: SYSTEM_PROMPT,
     tools: [RECORD_BILL_TOOL],

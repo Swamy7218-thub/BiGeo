@@ -1,4 +1,4 @@
-import { anthropic, documentContentBlock, EXTRACTION_MODEL, SourceDocument } from "@/lib/anthropic";
+import { claudeClient, documentContentBlock, extractionModel, SourceDocument } from "@/lib/anthropic";
 import { rateContractExtractionSchema, type RateContractExtraction } from "./schema";
 
 const RECORD_CONTRACT_TOOL = {
@@ -51,8 +51,8 @@ section — read the whole document before concluding a lane has no detention te
 lane/vehicle-type combination as its own rate line.`;
 
 export async function extractRateContract(doc: SourceDocument): Promise<RateContractExtraction> {
-  const response = await anthropic().messages.create({
-    model: EXTRACTION_MODEL,
+  const response = await claudeClient().messages.create({
+    model: extractionModel(),
     max_tokens: 8000,
     system: SYSTEM_PROMPT,
     tools: [RECORD_CONTRACT_TOOL],

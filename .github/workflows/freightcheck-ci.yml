@@ -1,0 +1,29 @@
+name: FreightCheck CI
+
+on:
+  push:
+    branches: [main]
+    paths: ["freightcheck/**"]
+  pull_request:
+    paths: ["freightcheck/**"]
+
+defaults:
+  run:
+    working-directory: freightcheck
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: freightcheck/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npx tsc --noEmit
+      - run: npm run build

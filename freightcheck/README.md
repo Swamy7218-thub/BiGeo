@@ -60,7 +60,10 @@ cp .env.example .env.local   # fill in ANTHROPIC_API_KEY, Supabase keys
 1. Create a Supabase project, then run `supabase/migrations/0001_init.sql`
    against it (SQL editor, or `supabase db push` if using the CLI).
 2. Create a **private** Storage bucket named `documents` in that project.
-3. Get an Anthropic API key from https://console.anthropic.com/.
+3. Get an Anthropic API key from https://console.anthropic.com/ — or, to bill
+   inference against AWS credits instead, set `CLAUDE_PROVIDER=bedrock` plus
+   AWS credentials and `BEDROCK_MODEL_ID` (see `.env.example`). Same code
+   path either way — `lib/anthropic.ts` picks the provider at runtime.
 4. `npm run dev` → http://localhost:3000
 
 ## Testing the extraction pipeline against samples
