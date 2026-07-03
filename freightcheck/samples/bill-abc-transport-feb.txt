@@ -1,0 +1,16 @@
+ABC ROAD CARRIERS
+Bill No: ABC/2526/0139
+Bill Date: 04-02-2026
+Billed To: Sample Pharma Pvt Ltd, Hyderabad
+
+Trip-wise statement for January 2026:
+
+1. LR 4901 | 03-Jan-2026 | Hyderabad to Vijayawada | 32ft SXL | Veh No TS09UD1234 | Rs 24500
+2. LR 4915 | 08-Jan-2026 | Hyderabad to Nagpur | 20ft container | Veh No TS07UA9981 | Rs 21000
+3. LR 4821 | 02-Dec-2025 | Hyderabad to Vijayawada | 32ft SXL | Veh No TS09UD1234 | Rs 24500
+   (carried forward from last month's reconciliation, please clear)
+4. LR 5002 | 22-Dec-2025 | Hyderabad to Bengaluru | 32ft SXL | Veh No TS08UB4477 | Rs 32000
+5. LR 4930 | 15-Jan-2026 | Hyderabad to Pune | 32ft SXL | Veh No TS09UD1234 | Rs 36000
+6. LR 4944 | 20-Jan-2026 | Hyderabad to Chennai | 32ft SXL | Veh No TS08UB4477 | Rs 41000
+
+Total claimed: Rs 179,000
