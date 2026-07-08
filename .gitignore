@@ -4,3 +4,6 @@
 *.tfstate
 *.tfstate.backup
 crash.log
+.build/
+__pycache__/
+*.pyc
