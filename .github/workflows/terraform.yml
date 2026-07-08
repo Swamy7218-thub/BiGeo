@@ -1,0 +1,62 @@
+name: Terraform
+
+on:
+  pull_request:
+    paths:
+      - "terraform/**"
+  push:
+    branches: [main]
+    paths:
+      - "terraform/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    defaults:
+      run:
+        working-directory: terraform/envs/dev
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEV_ROLE_ARN }}
+          aws-region: ap-south-1
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform fmt -check -recursive
+      - run: terraform init
+      - run: terraform validate
+      - run: terraform plan -out=tfplan
+
+      - if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve tfplan
+
+  prod:
+    needs: dev
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: prod
+    defaults:
+      run:
+        working-directory: terraform/envs/prod
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_PROD_ROLE_ARN }}
+          aws-region: ap-south-1
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform init
+      - run: terraform validate
+      - run: terraform plan -out=tfplan
+      - run: terraform apply -auto-approve tfplan
