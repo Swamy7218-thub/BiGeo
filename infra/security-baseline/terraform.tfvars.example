@@ -1,0 +1,11 @@
+# Copy this file to terraform.tfvars and fill in real values
+# NEVER commit terraform.tfvars to git
+
+project                 = "bigeo"
+environment             = "prod"
+aws_region              = "ap-south-1"
+alert_email             = "admin@bigeo.in"
+cloudtrail_bucket_name  = "bigeo-cloudtrail-logs-841162683979"
+waf_rate_limit          = 2000
+break_glass_external_id = "CHANGE-ME-USE-A-RANDOM-UUID"
+trusted_account_id      = "841162683979"

@@ -1,0 +1,27 @@
+# Terraform sensitive files — NEVER commit
+terraform.tfvars
+*.tfvars
+!terraform.tfvars.example
+
+# Terraform state
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Secrets
+*.pem
+*.key
+*.p12
+.env
+secrets/
