@@ -99,6 +99,20 @@ h1{font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:800;line-height:1.06;letter-
 .hstat-label{font-size:0.8rem;color:var(--muted);font-weight:500;margin-top:2px}
 .hero-divider{width:1px;height:36px;background:var(--border2)}
 
+/* CONTACT SECTION */
+#contact{background:var(--surface2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-left{padding-top:0.5rem}
+.contact-points{display:flex;flex-direction:column;gap:1.25rem;margin-top:2.5rem}
+.cpoint{display:flex;align-items:flex-start;gap:1rem}
+.cpoint-icon{width:40px;height:40px;background:var(--accent-dim);border:1px solid rgba(34,197,94,0.2);border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+.cpoint-icon svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cpoint-title{font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.cpoint-sub{font-size:0.8rem;color:var(--muted)}
+.contact-right{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:2rem}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:2.5rem}.form-row-2{grid-template-columns:1fr}}
+
 /* ADDRESS CARD */
 .address-demo{max-width:680px;margin:3rem auto 0;background:var(--surface);border:1px solid var(--border2);border-radius:16px;overflow:hidden}
 .addr-top{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
@@ -293,6 +307,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0}
       <a href="#data" role="listitem">Data</a>
       <a href="#verticals" role="listitem">Use cases</a>
       <a href="#pricing" role="listitem">Pricing</a>
+      <a href="#contact" role="listitem">Contact</a>
     </div>
     <div class="nav-cta">
       <a href="/swamy.html" class="btn btn-ghost" style="display:none" id="nav-docs">Docs</a>
@@ -711,7 +726,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0}
           <li>Priority email support</li>
           <li>Usage analytics dashboard</li>
         </ul>
-        <button class="btn btn-primary" style="width:100%" onclick="openModal();mixpanel.track('Pricing CTA',{tier:'growth'})">Contact for Pricing</button>
+        <a href="#contact" class="btn btn-primary" style="width:100%;display:flex" onclick="mixpanel.track('Pricing CTA',{tier:'growth'})">Talk to Us — Get Pilot Access</a>
       </div>
       <div class="pricec" role="listitem">
         <div class="price-tier">Enterprise</div>
@@ -726,6 +741,100 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:3rem 0}
           <li>Custom model fine-tuning for regional dialects</li>
         </ul>
         <a href="mailto:admin@bigeo.in" class="btn btn-ghost" style="width:100%;display:flex" onclick="mixpanel.track('Pricing CTA',{tier:'enterprise'})">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / LEAD FORM -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="section-badge"><span class="section-badge-dot" aria-hidden="true"></span>Talk to Us</div>
+        <h2 class="section-title" id="contact-heading">Ready to Cut Your<br/><span style="color:var(--accent)">Rural RTO Rate?</span></h2>
+        <p class="section-sub">Tell us your use case. We'll set up a pilot — 10,000 addresses, real delivery data, measurable results.</p>
+        <div class="contact-points">
+          <div class="cpoint">
+            <div class="cpoint-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="cpoint-title">Logistics & E-Commerce</div>
+              <div class="cpoint-sub">Reduce rural RTO from 27% to under 10%</div>
+            </div>
+          </div>
+          <div class="cpoint">
+            <div class="cpoint-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+              <div class="cpoint-title">Fintech & Banking</div>
+              <div class="cpoint-sub">Address verification for KYC, loans, insurance</div>
+            </div>
+          </div>
+          <div class="cpoint">
+            <div class="cpoint-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <div class="cpoint-title">Government & eGov Vendors</div>
+              <div class="cpoint-sub">Geocode PM-KISAN, PM Awas, ration card beneficiaries</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <form id="contact-form" novalidate onsubmit="submitContact(event)">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="c-name">Your Name</label>
+              <input type="text" id="c-name" placeholder="Ravi Kumar" required minlength="2" autocomplete="name"/>
+              <div class="form-error" id="cerr-name" role="alert">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Work Email</label>
+              <input type="email" id="c-email" placeholder="ravi@delhivery.com" required autocomplete="email"/>
+              <div class="form-error" id="cerr-email" role="alert">Please enter a valid email</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="c-company">Company</label>
+            <input type="text" id="c-company" placeholder="Delhivery / Aye Finance / State NIC" autocomplete="organization"/>
+          </div>
+          <div class="form-group">
+            <label for="c-usecase">Use Case <span style="color:var(--red)">*</span></label>
+            <select id="c-usecase" required style="width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:0.75rem 1rem;font-size:0.875rem;color:var(--text);font-family:var(--font);min-height:48px;appearance:none;-webkit-appearance:none">
+              <option value="" disabled selected style="color:var(--muted2)">Select your use case</option>
+              <option value="last-mile-logistics">Last-mile logistics / delivery</option>
+              <option value="rto-reduction">RTO reduction / address validation</option>
+              <option value="kyc-fintech">KYC / loan address verification</option>
+              <option value="government-egov">Government / eGovernance geocoding</option>
+              <option value="ondc-ecommerce">ONDC / e-commerce seller platform</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="form-error" id="cerr-usecase" role="alert">Please select a use case</div>
+          </div>
+          <div class="form-group">
+            <label for="c-volume">Monthly Address Volume</label>
+            <select id="c-volume" style="width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:0.75rem 1rem;font-size:0.875rem;color:var(--text);font-family:var(--font);min-height:48px;appearance:none;-webkit-appearance:none">
+              <option value="" disabled selected style="color:var(--muted2)">How many addresses/month?</option>
+              <option value="under-10k">Under 10,000</option>
+              <option value="10k-100k">10,000 – 1,00,000</option>
+              <option value="100k-1m">1,00,000 – 10,00,000</option>
+              <option value="above-1m">Above 10,00,000</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="c-message">Anything specific? (optional)</label>
+            <textarea id="c-message" rows="3" placeholder="e.g. We have 50,000 failed deliveries in Telangana and need GPS for all of them..." style="width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:0.75rem 1rem;font-size:0.875rem;color:var(--text);font-family:var(--font);resize:vertical;min-height:88px;line-height:1.6;transition:border-color .2s" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border2)'"></textarea>
+          </div>
+          <button type="submit" id="contact-btn" class="btn btn-primary btn-lg" style="width:100%">
+            <span id="contact-btn-text">Send Message →</span>
+          </button>
+          <div id="contact-error" style="color:var(--red);font-size:0.8rem;margin-top:0.75rem;display:none" role="alert"></div>
+          <div id="contact-success" style="color:var(--accent);font-size:0.875rem;margin-top:0.75rem;display:none;text-align:center;padding:1rem;background:var(--accent-dim);border:1px solid rgba(34,197,94,0.2);border-radius:8px" role="status"></div>
+        </form>
       </div>
     </div>
   </div>
@@ -940,6 +1049,56 @@ function copyCurl(){
 document.getElementById('demo-input').addEventListener('keydown',function(e){
   if(e.key==='Enter')runDemo();
 });
+
+// ── CONTACT FORM ──
+var CURL='https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/contact';
+function submitContact(e){
+  e.preventDefault();
+  var name=document.getElementById('c-name').value.trim();
+  var email=document.getElementById('c-email').value.trim();
+  var company=document.getElementById('c-company').value.trim();
+  var usecase=document.getElementById('c-usecase').value;
+  var volume=document.getElementById('c-volume').value;
+  var message=document.getElementById('c-message').value.trim();
+
+  ['cerr-name','cerr-email','cerr-usecase'].forEach(function(id){document.getElementById(id).style.display='none';});
+  document.getElementById('contact-error').style.display='none';
+  document.getElementById('contact-success').style.display='none';
+
+  var valid=true;
+  if(name.length<2){document.getElementById('cerr-name').style.display='block';valid=false;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('cerr-email').style.display='block';valid=false;}
+  if(!usecase){document.getElementById('cerr-usecase').style.display='block';valid=false;}
+  if(!valid)return;
+
+  var btn=document.getElementById('contact-btn');
+  var txt=document.getElementById('contact-btn-text');
+  btn.disabled=true;txt.textContent='Sending…';
+  mixpanel.track('Contact Form Submitted',{use_case:usecase,volume:volume});
+
+  fetch(CURL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:name,email:email,company:company,use_case:usecase,monthly_volume:volume,message:message})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    if(d.success){
+      document.getElementById('contact-success').textContent='Thanks '+name.split(' ')[0]+'! Swamy will reach out within 24 hours.';
+      document.getElementById('contact-success').style.display='block';
+      document.getElementById('contact-form').reset();
+      mixpanel.track('Contact Form Success',{use_case:usecase,email:email});
+    } else {
+      document.getElementById('contact-error').textContent=d.error||'Something went wrong. Email admin@bigeo.in directly.';
+      document.getElementById('contact-error').style.display='block';
+    }
+  })
+  .catch(function(){
+    document.getElementById('contact-error').textContent='Network error. Email admin@bigeo.in directly.';
+    document.getElementById('contact-error').style.display='block';
+  })
+  .finally(function(){btn.disabled=false;txt.textContent='Send Message →';});
+}
 </script>
 </body>
 </html>

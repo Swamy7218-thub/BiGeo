@@ -544,6 +544,66 @@ Resources:
         - Key: Env
           Value: prod
 
+  # ── Contact / Lead Capture Lambda ────────────────────────────────────────────
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-contact
+      CodeUri: contact-function/
+      Handler: index.handler
+      Description: Capture B2B leads from bigeo.in contact form — stores to DynamoDB, emails Swamy
+      Environment:
+        Variables:
+          LEADS_TABLE: bigeo-leads
+          SES_FROM_EMAIL: admin@bigeo.in
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-leads"
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        ContactApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /contact
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        ContactOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /contact
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── DynamoDB: Leads Table ─────────────────────────────────────────────────────
+  LeadsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: bigeo-leads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: lead_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: lead_id
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: BiGeo
+        - Key: Env
+          Value: prod
+
   # ── CloudWatch Dashboard ──────────────────────────────────────────────────────
   VaahanDashboard:
     Type: AWS::CloudWatch::Dashboard
