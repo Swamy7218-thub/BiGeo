@@ -23,7 +23,7 @@ fi
 # Launch r6g.xlarge — needs 16GB RAM for Nominatim India import
 INSTANCE_ID=$(aws ec2 run-instances \
   --image-id $AMI \
-  --instance-type r6g.xlarge \
+  --instance-type r6i.xlarge \
   --key-name "$KEY_NAME" \
   --region $REGION \
   --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$INSTANCE_NAME},{Key=Project,Value=BiGeo},{Key=Env,Value=dev}]" \

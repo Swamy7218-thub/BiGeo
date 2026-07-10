@@ -52,7 +52,7 @@ if ! aws ec2 describe-key-pairs --key-names "bigeo-nominatim-key" --region $REGI
 fi
 
 NOMINATIM_ID=$(aws ec2 run-instances \
-  --image-id $AMI --instance-type r6g.xlarge \
+  --image-id $AMI --instance-type r6i.xlarge \
   --key-name "bigeo-nominatim-key" --region $REGION \
   --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=bigeo-nominatim},{Key=Project,Value=BiGeo},{Key=Env,Value=dev}]" \
   --block-device-mappings '[{"DeviceName":"/dev/sda1","Ebs":{"VolumeSize":120,"VolumeType":"gp3","Iops":3000}}]' \
