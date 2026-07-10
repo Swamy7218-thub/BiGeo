@@ -17,6 +17,7 @@ const PARSE_FUNCTION = process.env.PARSE_FUNCTION_NAME || "vaahan-parse-address"
 const KEYS_TABLE = process.env.KEYS_TABLE || "bigeo-api-keys";
 const MAX_ADDRESSES = 1000;
 const BATCH_SIZE = 20;
+const FREE_TIER_LIMIT = 500;
 
 const lambda = new LambdaClient({ region });
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({ region }));
@@ -26,7 +27,12 @@ const CORS = {
   "Access-Control-Allow-Origin": "*",
 };
 
-// ── API key validation ─────────────────────────────────────────────────────
+// ── API key validation + quota check ──────────────────────────────────────
+function monthKey() {
+  const d = new Date();
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
 async function validateApiKey(key) {
   if (!key) return null;
   try {
@@ -38,6 +44,12 @@ async function validateApiKey(key) {
   } catch {
     return null;
   }
+}
+
+function remainingQuota(keyRecord) {
+  const mk = monthKey();
+  const used = keyRecord.month_key === mk ? (keyRecord.calls_this_month || 0) : 0;
+  return Math.max(0, FREE_TIER_LIMIT - used);
 }
 
 // ── Invoke single parse ────────────────────────────────────────────────────
@@ -111,6 +123,21 @@ export const handler = async (event) => {
       statusCode: 400,
       headers: CORS,
       body: JSON.stringify({ error: `Maximum ${MAX_ADDRESSES} addresses per request. Split into multiple requests.` }),
+    };
+  }
+
+  // Quota guard — bulk calls must not exceed remaining free tier allowance
+  const remaining = remainingQuota(keyRecord);
+  if (addresses.length > remaining) {
+    return {
+      statusCode: 429,
+      headers: CORS,
+      body: JSON.stringify({
+        error: "Bulk request exceeds remaining monthly quota",
+        addresses_requested: addresses.length,
+        calls_remaining: remaining,
+        message: `You have ${remaining} calls left this month. Reduce batch size or upgrade at bigeo.in/api`,
+      }),
     };
   }
 

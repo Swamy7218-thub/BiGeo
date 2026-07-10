@@ -4,9 +4,10 @@ import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 import { randomUUID } from "crypto";
 import https from "https";
 
-const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN || "da78fa74ae650b4ddd5b327a1be9511c";
+const MIXPANEL_TOKEN = process.env.MIXPANEL_TOKEN;
 
 function trackMixpanel(event, properties) {
+  if (!MIXPANEL_TOKEN) return;
   const data = Buffer.from(JSON.stringify({
     event,
     properties: { token: MIXPANEL_TOKEN, distinct_id: properties.email || "server", ...properties },
