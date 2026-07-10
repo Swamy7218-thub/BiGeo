@@ -39,7 +39,7 @@ const KB_ID = process.env.BEDROCK_KB_ID || "ZFLJ7NGEMF";
 // aws bedrock list-inference-profiles --region ap-south-1 \
 //   --query "inferenceProfileSummaries[?contains(inferenceProfileId,'fable')].[inferenceProfileId]" \
 //   --output text
-const BEDROCK_MODEL = process.env.BEDROCK_MODEL || "us.anthropic.claude-fable-5-20260801-v1:0";
+const BEDROCK_MODEL = process.env.BEDROCK_MODEL || "global.anthropic.claude-fable-5";
 
 const MAX_ADDRESS_LENGTH = 1000;
 
