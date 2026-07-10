@@ -1,14 +1,14 @@
 
-# cloned data source repos (raw, processed versions are in knowledge-base/)
+# raw geodata — all data is already indexed in Bedrock KB + DynamoDB
 india-geodata/
+india-address-graph/
 indian-pincodes-database/
 indian_village_boundaries/
 indian_village_directory/
 pmgsy-geosadak/
 opendata/
 external-data/
-knowledge-base/pmgsy-habitations-*.json
-knowledge-base/postoffices-india-*.json
+knowledge-base/
 __pycache__/
 .claude/worktrees/
 node_modules/
