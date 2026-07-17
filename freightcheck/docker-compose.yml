@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      - S3_BUCKET=${S3_BUCKET}
+      - SQS_QUEUE_URL=${SQS_QUEUE_URL}
+      - AWS_REGION=${AWS_REGION:-ap-south-1}
+    restart: unless-stopped
