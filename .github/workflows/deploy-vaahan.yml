@@ -1,0 +1,84 @@
+name: Deploy VAAHAN API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "vaahan/**"
+      - ".github/workflows/deploy-vaahan.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "vaahan/**"
+  workflow_dispatch: {}
+
+env:
+  AWS_REGION: ap-south-1
+
+jobs:
+  validate:
+    name: Validate & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: SAM Validate
+        working-directory: vaahan
+        run: sam validate
+
+      - name: Install dependencies
+        working-directory: vaahan
+        run: npm install --omit=dev 2>/dev/null || echo "no package.json at root"
+
+      - name: SAM Build
+        working-directory: vaahan
+        run: sam build
+
+  deploy:
+    name: Deploy to AWS
+    needs: validate
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment: prod
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Set up SAM CLI
+        uses: aws-actions/setup-sam@v2
+
+      - name: SAM Build
+        working-directory: vaahan
+        run: sam build
+
+      - name: SAM Deploy
+        working-directory: vaahan
+        run: |
+          sam deploy \
+            --no-confirm-changeset \
+            --no-fail-on-empty-changeset \
+            --capabilities CAPABILITY_IAM \
+            --parameter-overrides \
+              HereApiKey=${{ secrets.HERE_API_KEY }} \
+              VaahanInternalKey=${{ secrets.VAAHAN_INTERNAL_KEY }} \
+              ShiprocketToken=${{ secrets.SHIPROCKET_TOKEN }}
+
+      - name: Smoke test /health
+        run: |
+          for i in 1 2 3; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1/health")
+            [ "$STATUS" = "200" ] && echo "Health check passed" && exit 0
+            sleep 10
+          done
+          echo "Smoke test failed" && exit 1
