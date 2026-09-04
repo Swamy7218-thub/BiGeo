@@ -2,19 +2,19 @@
 import { motion } from 'framer-motion'
 
 const keyStats = [
-  { num: '163M', label: 'Indians lack safe water' },
-  { num: '40%', label: 'less energy than rivals' },
-  { num: '₹2/L', label: 'delivered cost' },
-  { num: '$15B', label: 'market by 2030' },
+  { num: '210 L', label: 'measured across 2 field pilots' },
+  { num: '56–222', label: 'LPD, at 30–80% RH' },
+  { num: '₹25.9L', label: 'raised, non-dilutive' },
+  { num: '30% RH', label: 'lowest air we make water from' },
 ]
 
 const awards = [
-  'ISB AIC Social Impact 3.0',
+  'Emergent Ventures',
   'MeitY TIDE 2.0 · IIM Calcutta',
+  'IIM Shillong',
   'Mercedes-Benz beVisioneers 2025',
-  'IIM Shillong — 1st Prize',
-  'UN Habitat Youth Assembly — Top 40',
-  'T-Hub · NVIDIA Inception',
+  'AIC AKASH Cohort 5 · IIIT Hyderabad',
+  'Bala Vikasa — MoU',
 ]
 
 export default function Hero() {
@@ -25,24 +25,23 @@ export default function Hero() {
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
           className="flex flex-wrap gap-2 mb-8">
           <span className="tag">Climate-Tech</span>
-          <span className="tag">Water Innovation</span>
           <span className="tag">Deep-Tech Hardware</span>
+          <span className="tag">Dry-Climate AWG</span>
           <span className="tag">India First</span>
         </motion.div>
 
         {/* Main headline */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
           <h1 className="h1 mb-6 max-w-4xl">
-            We pull{' '}
-            <span className="text-teal-600">clean water</span>
-            {' '}directly from air.
+            Atmospheric water,{' '}
+            <span className="text-teal-600">engineered for dry climates.</span>
           </h1>
           <p className="body max-w-2xl mb-4">
-            Solar-powered Atmospheric Water Generators for a water-scarce world — starting with India.
-            No pipes. No plastic. No groundwater extraction.
+            Most machines that pull water from air only work where the air is already humid.
+            AcquaHT is built for the dry half — where water is scarcest and existing machines fail.
           </p>
           <p className="text-gray-500 text-base mb-8 max-w-xl">
-            <span className="font-semibold text-gray-700">Swamynathan Jerra</span>, Founder & CEO ·{' '}
+            <span className="font-semibold text-gray-700">Swamynathan Jerra</span>, Founder & CEO · Hyderabad, India · Founded November 2023 ·{' '}
             <a href="mailto:admin@acquahtlabs.in" className="text-teal-600 hover:underline">admin@acquahtlabs.in</a>
           </p>
         </motion.div>
@@ -67,7 +66,7 @@ export default function Hero() {
 
         {/* Social proof strip */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-          <div className="section-label">Validated by</div>
+          <div className="section-label">Backed & validated by</div>
           <div className="flex flex-wrap gap-2">
             {awards.map((a, i) => (
               <span key={i} className="text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-full">{a}</span>

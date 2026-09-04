@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'AcquaHT Labs — Clean Water From Air',
+  title: 'AcquaHT Labs — Atmospheric Water, Engineered for Dry Climates',
   description:
-    'AcquaHT Labs makes safe drinking water accessible, sustainable, and affordable using atmospheric water harvesting technology. No pipelines. No groundwater dependency.',
-  keywords: 'atmospheric water generator, clean water, AWG, AcquaHT Labs, water technology India',
+    'AcquaHT Labs builds atmospheric water generators engineered for dry air, not just humid climates — where existing machines fail and water is scarcest. No pipelines. No groundwater dependency.',
+  keywords: 'atmospheric water generator, dry climate AWG, clean water, AcquaHT Labs, water technology India',
   openGraph: {
-    title: 'AcquaHT Labs — Clean Water From Air',
+    title: 'AcquaHT Labs — Atmospheric Water, Engineered for Dry Climates',
     description: 'Your access to clean water shouldn\'t depend on your pin code.',
     url: 'https://acquahtlabs.in',
     siteName: 'AcquaHT Labs',

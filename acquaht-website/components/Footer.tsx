@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="font-extrabold text-white">AcquaHT Labs</span>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Water from Air. Powered by Sun. Driven by Data.
+              Atmospheric water, engineered for dry climates.
             </p>
             <p className="text-gray-600 text-xs mt-3">CIN: U36000TS2023PTC179371</p>
           </div>
@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <div className="text-xs font-bold tracking-widest text-gray-600 uppercase mb-4">Navigation</div>
             <div className="flex flex-col gap-2">
-              {['Problem', 'Solution', 'Products', 'Traction', 'Team', 'Contact'].map(l => (
+              {['Problem', 'Solution', 'Economics', 'Traction', 'Team', 'Contact'].map(l => (
                 <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-gray-500 hover:text-teal-400 transition-colors">{l}</a>
               ))}
             </div>
@@ -30,7 +30,7 @@ export default function Footer() {
             <div className="flex flex-col gap-2 text-sm text-gray-500">
               <a href="mailto:admin@acquahtlabs.in" className="hover:text-teal-400 transition-colors">admin@acquahtlabs.in</a>
               <span>Hyderabad, Telangana, India</span>
-              <span>Incorporated Nov 24, 2023</span>
+              <span>Founded November 2023</span>
             </div>
           </div>
         </div>

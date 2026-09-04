@@ -2,28 +2,24 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const impact = [
-  { num: '40,150 L', label: 'safe water produced per unit per year' },
-  { num: '40,000+', label: 'single-use plastic bottles eliminated' },
-  { num: '~50', label: 'people given reliable water access' },
-  { num: '₹3–6L', label: 'saved vs. bottled water over 3 years' },
-  { num: '1.2 tCO₂e', label: 'carbon offset vs. diesel pumping' },
-  { num: '5–7 days', label: 'for atmospheric water to replenish' },
+const gaps = [
+  { num: '0', label: 'Sorbent cycles run in the machine' },
+  { num: '0', label: 'Patents filed' },
+  { num: 'Unconfirmed', label: 'Selling price (₹3,75,000 / $3.95K)' },
 ]
 
-const sdgs = [
-  { num: '6', label: 'Clean Water & Sanitation' },
-  { num: '3', label: 'Good Health' },
-  { num: '13', label: 'Climate Action' },
-  { num: '11', label: 'Sustainable Cities' },
-  { num: '10', label: 'Reduced Inequalities' },
+const roadmap = [
+  { year: 'FY26 — actual', units: '1 unit', revenue: '₹0.75L ($791) revenue' },
+  { year: 'FY27', units: '45 units', revenue: '₹1.69 Cr ($178.2K) + ₹6.8L ($7.17K) service' },
+  { year: 'FY28', units: '120 units', revenue: '₹4.50 Cr ($474.2K) + ₹25L ($26.4K) service' },
+  { year: 'FY29', units: '250 units', revenue: '₹9.38 Cr ($989.7K) + ₹56L ($59.0K) service' },
 ]
 
 const ask = [
-  { pct: '40%', amt: '₹4.0L', use: 'IP & Patents', desc: 'Provisional + utility filings on solar-hybrid AWG architecture and IoT stack.' },
-  { pct: '30%', amt: '₹3.0L', use: 'Integrations & MVP-to-Pilot', desc: 'ESP32 cloud stack, sensor calibration, sugarcane-bottle line integration.' },
-  { pct: '20%', amt: '₹2.0L', use: 'Compliance & Testing', desc: 'BIS certification, WHO water-quality lab testing, field validation protocols.' },
-  { pct: '10%', amt: '₹1.0L', use: 'First Pilot Deployment', desc: '1 anchor unit deployed with NGO/institutional partner. Live field data.' },
+  { pct: '40%', amt: '₹2.37Cr ($250K)', use: 'Sorbent', desc: 'Development and testing.' },
+  { pct: '20%', amt: '₹1.19Cr ($125K)', use: 'Waste-Heat Loop', desc: 'Waste-heat regeneration loop.' },
+  { pct: '25%', amt: '₹1.48Cr ($156.3K)', use: 'Manufacturing & Certification', desc: 'Certification.' },
+  { pct: '15%', amt: '₹88.9L ($93.8K)', use: 'Deployment', desc: 'Operations.' },
 ]
 
 export default function ContactCTA() {
@@ -39,29 +35,32 @@ export default function ContactCTA() {
 
   return (
     <>
-      {/* Impact */}
+      {/* Honest gaps + Roadmap */}
       <section className="py-20 bg-gray-950 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="section-label text-gray-500 mb-3">Impact</div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-2">Every unit is a measurable development outcome.</h2>
-          <p className="text-gray-400 mb-10">1 unit. 1 year.</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-            {impact.map((s, i) => (
+          <div className="section-label text-gray-500 mb-3">What Hasn't Been Proven Yet</div>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-2">Stated plainly, because it is exactly what this round funds.</h2>
+          <div className="grid sm:grid-cols-3 gap-4 mb-4 mt-10">
+            {gaps.map((g, i) => (
               <div key={i} className="border border-white/10 rounded-xl p-5">
-                <div className="text-2xl font-extrabold text-teal-400 mb-1">{s.num}</div>
-                <div className="text-gray-400 text-sm">{s.label}</div>
+                <div className="text-2xl font-extrabold text-amber-400 mb-1">{g.num}</div>
+                <div className="text-gray-400 text-sm">{g.label}</div>
               </div>
             ))}
           </div>
-          <div className="section-label text-gray-500 mb-4">UN SDG Alignment</div>
-          <div className="flex flex-wrap gap-3">
-            {sdgs.map((s, i) => (
-              <div key={i} className="flex items-center gap-2 border border-white/10 rounded-full px-4 py-2">
-                <span className="text-xs font-bold text-teal-400">SDG {s.num}</span>
-                <span className="text-xs text-gray-400">{s.label}</span>
+          <p className="text-gray-500 text-sm mb-14">This round funds the first sorbent cycle.</p>
+
+          <div className="section-label text-gray-500 mb-4">Roadmap</div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            {roadmap.map((r, i) => (
+              <div key={i} className="border border-white/10 rounded-xl p-5 bg-white/[0.03]">
+                <div className="text-xs font-bold tracking-widest text-teal-400 uppercase mb-2">{r.year}</div>
+                <div className="text-2xl font-extrabold text-white mb-1">{r.units}</div>
+                <div className="text-gray-400 text-sm leading-snug">{r.revenue}</div>
               </div>
             ))}
           </div>
+          <p className="text-gray-500 text-sm">Breakeven ~90 units. Projected, except FY26 which is actual.</p>
         </div>
       </section>
 
@@ -69,8 +68,8 @@ export default function ContactCTA() {
       <section className="py-20 bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="section-label mb-3">The Ask</div>
-          <h2 className="h2 mb-2">Raising ₹10 Lakh Seed Round.</h2>
-          <p className="body max-w-xl mb-10">To complete IP filings, finish integrations, and ship our first pilot — unlocking a milestone-linked growth-stage tranche of ₹50L–₹1Cr.</p>
+          <h2 className="h2 mb-2">Raising $500K–$750K.</h2>
+          <p className="body max-w-xl mb-10">Pre-Seed round. 24 months of runway to a proven desiccant unit.</p>
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
             {ask.map((a, i) => (
               <div key={i} className="border border-gray-100 rounded-xl p-5">
@@ -83,7 +82,8 @@ export default function ContactCTA() {
             ))}
           </div>
           <div className="bg-teal-50 border border-teal-100 rounded-xl p-5 text-sm text-teal-800">
-            <span className="font-bold">Growth-stage triggers (6–9 months):</span> 1–2 pilot units live · ≥1 patent filed · ≥1 institutional LOI · Indicative tranche ₹50L–₹1Cr
+            <span className="font-bold">Next raise unlocks when:</span> the desiccant unit beats 90 LPD at 30% RH,
+            75 customers have paid full price, and per-unit cost is under ₹1.5L.
           </div>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function ContactCTA() {
             <motion.div initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}}>
               <div className="section-label mb-3">Contact</div>
               <h2 className="h2 mb-4">Clean water shouldn't depend on your pin code.</h2>
-              <p className="body mb-8">We are solving India's water crisis from the air down. Whether you're an investor, institutional partner, NGO, or government body — let's talk.</p>
+              <p className="body mb-8">We're closing the dry-air gap in atmospheric water — backed by Emergent Ventures, MeitY TIDE 2.0, and IIM Shillong. Whether you're an investor, a food-processing operator, or an NGO partner — let's talk.</p>
               <div className="space-y-4">
                 {[
                   { label: 'Email', val: 'admin@acquahtlabs.in', href: 'mailto:admin@acquahtlabs.in' },

@@ -3,18 +3,22 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const steps = [
-  { num: '01', title: 'Air Intake & Filtration', desc: 'Draws ambient air through pre-filters removing dust, bacteria, pollen, and VOCs. Works at 30–95% RH, 10–45°C.' },
-  { num: '02', title: 'Condensation Cycle', desc: 'Refrigeration-based condensation cools air below dew point. COP up to 4.0 L/kWh — 40% more efficient than industry average.' },
-  { num: '03', title: 'Multi-Stage Purification', desc: 'Sediment → Pre-Carbon → RO → UF → Post-Carbon → Mineral → Ozonization. Exceeds WHO and BIS standards.' },
-  { num: '04', title: 'Storage & Delivery', desc: 'Food-grade SS304 tank (20L). Optional biodegradable sugarcane-pulp bottles. Zero plastic. Zero nanoplastics.' },
-  { num: '05', title: 'IoT Smart Monitoring', desc: 'ESP32 + cloud dashboard. Real-time TDS, RH, temperature, water level, fault alerts. Remote servicing cuts maintenance cost 60%.' },
+  { num: '01', title: 'Dry air in', desc: '35°C, 30% RH — the exact condition where refrigeration alone struggles.' },
+  { num: '02', title: 'Stage 1 — Desiccant bed captures', desc: 'A desiccant bed captures moisture at room temperature, before the air ever reaches the condenser.' },
+  { num: '03', title: 'Stage 2 — Waste heat regenerates the bed', desc: 'Heat the compressor already rejects dries out the desiccant, so it can capture again — no external heat source needed.' },
+  { num: '04', title: 'Existing refrigeration condenses it', desc: 'The refrigeration cycle AcquaHT already sells today condenses the recovered moisture into water.' },
 ]
 
-const edge = [
-  { label: '≤260 Wh/L', desc: 'vs. 500–600 Wh/L industry average' },
-  { label: '4.0 L/kWh', desc: 'COP — best-in-class condensation efficiency' },
-  { label: '30% RH', desc: 'lowest operating humidity in India' },
-  { label: '221 L/day', desc: 'max water output per unit' },
+const target = [
+  { label: '93 LPD', desc: 'target output at 30% RH' },
+  { label: '1.43 L/kWh', desc: 'target efficiency' },
+  { label: '+66%', desc: 'more water, same power' },
+]
+
+const heatRecovery = [
+  { label: '147 kg/h', desc: 'R407C refrigerant flow' },
+  { label: '8.92 kW', desc: 'total condenser rejection' },
+  { label: '0', desc: 'external heat source needed' },
 ]
 
 export default function Solutions() {
@@ -26,11 +30,11 @@ export default function Solutions() {
         <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} className="mb-14">
           <div className="section-label text-teal-400/60">The Solution</div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
-            Air in. Safe water out.
+            Dry air in. Water out.
           </h2>
           <p className="text-teal-100/70 text-lg max-w-2xl">
-            We pull water directly from air. No pipes. No plastic. No groundwater extraction.
-            Just solar energy and atmospheric humidity.
+            Two stages recover water the refrigeration cycle alone cannot — desiccant capture, then
+            waste-heat regeneration, feeding the same refrigeration core AcquaHT already sells today.
           </p>
         </motion.div>
 
@@ -49,12 +53,12 @@ export default function Solutions() {
             ))}
           </div>
 
-          {/* Edge stats */}
+          {/* Target stats */}
           <motion.div initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.3 }}
             className="bg-white/5 border border-white/10 rounded-2xl p-8">
-            <div className="section-label text-teal-400/60 mb-6">Our Technology Edge</div>
+            <div className="section-label text-teal-400/60 mb-6">Design Target</div>
             <div className="space-y-6">
-              {edge.map((e, i) => (
+              {target.map((e, i) => (
                 <div key={i} className="border-b border-white/5 pb-5 last:border-0 last:pb-0">
                   <div className="text-3xl font-extrabold text-teal-400 mb-1">{e.label}</div>
                   <div className="text-teal-100/60 text-sm">{e.desc}</div>
@@ -62,15 +66,40 @@ export default function Solutions() {
               ))}
             </div>
             <div className="mt-8 pt-6 border-t border-white/10">
+              <div className="text-xs text-amber-300/70 font-semibold tracking-wide uppercase mb-2">Projected — not yet built</div>
               <div className="text-xs text-teal-300/50 leading-relaxed">
-                Key moat: The only Indian AWG operating natively at 30% RH with solar-hybrid power — the conditions defining 60% of our target geography.
-              </div>
-              <div className="mt-3 text-xs text-teal-400/40">
-                Validated at ISB AIC · MeitY TIDE 2.0 · IIM Calcutta · IIM Shillong International Water Conference (1st Prize)
+                Design target, not yet built. Up from 56.1 LPD / 0.86 L/kWh today. This round funds the
+                first sorbent cycle.
               </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Waste heat recovery */}
+        <motion.div initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.4 }}
+          className="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div className="section-label text-teal-400/60 mb-3">The heat was already there</div>
+          <p className="text-white text-lg font-semibold mb-2 max-w-2xl">
+            1.29 kW of usable heat the compressor already rejects — enough to dry a desiccant.
+          </p>
+          <p className="text-teal-100/60 text-sm mb-6 max-w-2xl">
+            Compressor discharge gas, on its way to the condenser, runs at ~80°C. Heat recovery pulls
+            1.29 kW of usable heat before it reaches the condenser, which still runs at its normal 45°C
+            condensing temperature.
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {heatRecovery.map((h, i) => (
+              <div key={i} className="border border-white/10 rounded-xl p-5 bg-white/[0.03]">
+                <div className="text-2xl font-extrabold text-teal-400 mb-1">{h.label}</div>
+                <div className="text-teal-100/60 text-sm">{h.desc}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-teal-300/40 mt-5 leading-relaxed max-w-2xl">
+            CALCULATED — MOF harvesters and salt-in-matrix composites are already published; none built
+            at Indian cost, none using a compressor's own waste heat.
+          </p>
+        </motion.div>
       </div>
     </section>
   )
