@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub Portal — Siddipet SDP-01 | BiGeo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #07090F;
+      --surface:       #0D1117;
+      --surface2:      #111827;
+      --surface3:      #161E2E;
+      --border:        #1C2840;
+      --border-sub:    #111D30;
+
+      --green:         #22C55E;
+      --green-bg:      rgba(34,197,94,.10);
+      --green-bd:      rgba(34,197,94,.22);
+      --cyan:          #00D4FF;
+      --cyan-bg:       rgba(0,212,255,.08);
+      --cyan-bd:       rgba(0,212,255,.20);
+      --orange:        #FF6B35;
+      --orange-bg:     rgba(255,107,53,.10);
+      --orange-bd:     rgba(255,107,53,.24);
+      --red:           #F87171;
+      --red-bg:        rgba(248,113,113,.10);
+      --red-bd:        rgba(248,113,113,.24);
+      --yellow:        #FBBF24;
+      --yellow-bg:     rgba(251,191,36,.10);
+      --yellow-bd:     rgba(251,191,36,.22);
+
+      --t1:  #E8EDF5;
+      --t2:  #8896B3;
+      --t3:  #55668A;
+      --t4:  #3A4A66;
+
+      --sw:  220px;
+      --th:  60px;
+      --r:   8px;
+      --rl:  12px;
+
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── SIDEBAR ─────────────────────────────────── */
+    .sidebar {
+      position: fixed; left: 0; top: 0;
+      width: var(--sw); height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      z-index: 100; overflow-y: auto;
+    }
+    .sb-logo {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--border-sub);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sb-mark svg { display: block; }
+    .sb-name { font-size: 15px; font-weight: 700; letter-spacing: -.3px; }
+    .sb-sub  { font-size: 10px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--t3); }
+
+    .sb-nav { flex: 1; padding: 10px 0; }
+    .nav-a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 18px;
+      font-size: 13px; font-weight: 500;
+      color: var(--t2);
+      cursor: pointer; text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color .14s, background .14s;
+    }
+    .nav-a:hover { color: var(--t1); background: var(--surface2); }
+    .nav-a.on   { color: var(--cyan); background: var(--cyan-bg); border-left-color: var(--cyan); }
+    .nav-a svg  { width: 15px; height: 15px; flex-shrink: 0; opacity: .7; }
+    .nav-a.on svg { opacity: 1; }
+    .nav-badge {
+      margin-left: auto;
+      font-size: 10px; font-weight: 700; line-height: 1.4;
+      padding: 1px 6px; border-radius: 10px; color: #fff;
+    }
+    .nb-red  { background: var(--red); }
+    .nb-org  { background: var(--orange); }
+
+    .sb-user {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border-sub);
+    }
+    .sb-hub  { font-size: 12px; font-weight: 600; margin-bottom: 5px; }
+    .sb-role {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 600; letter-spacing: .4px;
+      color: var(--cyan);
+      background: var(--cyan-bg); border: 1px solid var(--cyan-bd);
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .dot-live { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+
+    /* ─── MAIN ────────────────────────────────────── */
+    .main { margin-left: var(--sw); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ─── TOPBAR ──────────────────────────────────── */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      height: var(--th);
+      background: rgba(7,9,15,.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; gap: 16px;
+    }
+    .tb-title { font-size: 16px; font-weight: 700; letter-spacing: -.3px; }
+    .tb-meta  { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--t2); margin-top: 2px; }
+    .shift-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600;
+      color: var(--yellow); background: var(--yellow-bg); border: 1px solid var(--yellow-bd);
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .tb-right { display: flex; align-items: center; gap: 12px; }
+    .live-ind {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 500; color: var(--t3);
+    }
+    .dot-green { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+    .btn-scan {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--green); color: #031A0A;
+      font-size: 13px; font-weight: 700;
+      padding: 8px 18px; border-radius: var(--r); border: none; cursor: pointer;
+      font-family: inherit; transition: opacity .14s, transform .1s;
+    }
+    .btn-scan:hover  { opacity: .88; transform: translateY(-1px); }
+    .btn-scan:active { transform: translateY(0); }
+    .btn-scan:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+    /* ─── CONTENT ─────────────────────────────────── */
+    .content { flex: 1; padding: 24px 28px 48px; display: flex; flex-direction: column; gap: 26px; }
+
+    .sec-eye   { font-size: 10px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--t3); margin-bottom: 2px; }
+    .sec-title { font-size: 13px; font-weight: 700; }
+    .sec-hd    { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 14px; }
+    .sec-link  { font-size: 12px; font-weight: 500; color: var(--cyan); background: none; border: none; cursor: pointer; font-family: inherit; padding-bottom: 1px; }
+    .sec-link:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 2px; }
+
+    /* ─── KPI ROW ─────────────────────────────────── */
+    .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .kpi {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--rl);
+      padding: 18px 20px; position: relative; overflow: hidden;
+    }
+    .kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+    .kpi-c::before  { background: var(--cyan); }
+    .kpi-g::before  { background: var(--green); }
+    .kpi-o::before  { background: var(--orange); }
+    .kpi-r::before  { background: var(--red); }
+
+    .kpi-lbl { font-size: 11px; font-weight: 600; letter-spacing: .5px; text-transform: uppercase; color: var(--t3); margin-bottom: 10px; }
+    .kpi-val {
+      font-size: 38px; font-weight: 800; letter-spacing: -2px; line-height: 1;
+      font-variant-numeric: tabular-nums; margin-bottom: 8px;
+    }
+    .kpi-c .kpi-val { color: var(--cyan); }
+    .kpi-g .kpi-val { color: var(--green); }
+    .kpi-o .kpi-val { color: var(--orange); }
+    .kpi-r .kpi-val { color: var(--red); }
+    .kpi-sub { font-size: 12px; color: var(--t2); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .kpi-chip {
+      font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+    }
+    .chip-o { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bd); }
+    .chip-r { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bd); }
+    .chip-g { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+    .kpi-trend { color: var(--green); font-weight: 600; }
+
+    /* ─── ACTIVITY ────────────────────────────────── */
+    .act-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .act-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rl); overflow: hidden; }
+    .act-hd {
+      padding: 13px 18px; border-bottom: 1px solid var(--border-sub);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .act-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .lbl-in  { color: var(--cyan); }
+    .lbl-out { color: var(--green); }
+    .act-ct  { font-size: 11px; font-weight: 600; color: var(--t3); background: var(--surface2); padding: 2px 8px; border-radius: 4px; }
+
+    .scan-wrap { max-height: 275px; overflow-y: auto; }
+    .scan-wrap::-webkit-scrollbar { width: 3px; }
+    .scan-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .scan-list { list-style: none; }
+    .scan-item {
+      padding: 11px 18px; border-bottom: 1px solid var(--border-sub);
+      display: grid; grid-template-columns: 8px 1fr auto; gap: 0 10px; align-items: start;
+    }
+    .scan-item:last-child { border-bottom: none; }
+    .scan-item:hover { background: var(--surface2); }
+
+    @keyframes flash-in  { 0%{background:rgba(0,212,255,.18)} 100%{background:transparent} }
+    @keyframes flash-out { 0%{background:rgba(34,197,94,.18)} 100%{background:transparent} }
+    .scan-item.new-in  { animation: flash-in  4s ease-out forwards; }
+    .scan-item.new-out { animation: flash-out 4s ease-out forwards; }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .dot-s { width: 7px; height: 7px; border-radius: 50%; margin-top: 4px; }
+    .ds-c { background: var(--cyan); }
+    .ds-g { background: var(--green); }
+
+    .sc-awb   { font-size: 12px; font-weight: 600; font-family: 'Fira Code','SF Mono',Consolas,monospace; letter-spacing: .3px; }
+    .sc-route { font-size: 11px; color: var(--t2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sc-r     { text-align: right; flex-shrink: 0; }
+    .sc-wt    { font-size: 11px; font-weight: 500; color: var(--t2); font-variant-numeric: tabular-nums; }
+    .sc-time  { font-size: 10px; color: var(--t3); font-variant-numeric: tabular-nums; margin-top: 1px; }
+    .sc-badge { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 3px; display: inline-block; margin-top: 3px; }
+    .sb-c { background: var(--cyan-bg);  color: var(--cyan); }
+    .sb-g { background: var(--green-bg); color: var(--green); }
+
+    /* ─── VEHICLES ────────────────────────────────── */
+    .veh-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .veh-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rl); padding: 16px 18px; }
+    .veh-top  { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 11px; }
+    .veh-num  { font-size: 12px; font-weight: 700; font-family: 'Fira Code','SF Mono',Consolas,monospace; letter-spacing: .5px; color: var(--t1); }
+    .veh-st   { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; letter-spacing: .3px; }
+    .vs-loading { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bd); }
+    .vs-ready   { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+    .vs-gone    { background: var(--surface2);  color: var(--t3);     border: 1px solid var(--border); }
+    .veh-rider  { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .veh-route  { font-size: 11px; color: var(--t2); margin-bottom: 14px; }
+    .cap-lbl    { display: flex; justify-content: space-between; font-size: 11px; color: var(--t2); margin-bottom: 6px; }
+    .cap-n      { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .cap-track  { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-bottom: 10px; }
+    .cap-fill   { height: 100%; border-radius: 3px; }
+    .cf-low  { background: var(--green); }
+    .cf-mid  { background: var(--orange); }
+    .cf-full { background: var(--green); }
+    .cf-gone { background: var(--t4); }
+    .veh-dep { font-size: 11px; color: var(--t3); }
+    .veh-dep strong { color: var(--t2); font-variant-numeric: tabular-nums; }
+
+    /* ─── ZONE + SLA ROW ──────────────────────────── */
+    .zs-row { display: grid; grid-template-columns: 1fr 370px; gap: 14px; align-items: start; }
+
+    .zone-panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rl); overflow: hidden; }
+    .zone-ph    { padding: 13px 18px; border-bottom: 1px solid var(--border-sub); display: flex; align-items: center; justify-content: space-between; }
+    .zone-leg   { display: flex; gap: 12px; align-items: center; font-size: 11px; color: var(--t3); }
+    .leg-dot    { width: 7px; height: 7px; border-radius: 50%; }
+
+    .zone-grid  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border-sub); }
+    .zone-cell  { background: var(--surface); padding: 14px 16px; border-left: 3px solid transparent; }
+    .zc-ok      { border-left-color: var(--green); }
+    .zc-risk    { border-left-color: var(--yellow); }
+    .zc-breach  { border-left-color: var(--red); }
+    .zc-name    { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+    .zc-rider   { font-size: 11px; color: var(--t2); margin-bottom: 8px; }
+    .zc-count   { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: -.5px; margin-bottom: 5px; }
+    .zc-ok    .zc-count { color: var(--green); }
+    .zc-risk  .zc-count { color: var(--yellow); }
+    .zc-breach .zc-count { color: var(--red); }
+    .zc-chip { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 3px; }
+    .zchip-ok     { background: var(--green-bg);  color: var(--green); }
+    .zchip-risk   { background: var(--yellow-bg); color: var(--yellow); }
+    .zchip-breach { background: var(--red-bg);    color: var(--red); }
+
+    /* ─── SLA PANEL ───────────────────────────────── */
+    .sla-panel { background: var(--surface); border: 1px solid var(--red-bd); border-left: 3px solid var(--red); border-radius: var(--rl); overflow: hidden; }
+    .sla-ph    { padding: 13px 18px; border-bottom: 1px solid rgba(248,113,113,.14); display: flex; align-items: center; gap: 10px; }
+    .sla-ptitle { font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--red); flex: 1; }
+    .sla-nbadge { background: var(--red); color:#fff; font-size:11px; font-weight:800; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+    .sla-alert  { padding: 13px 18px; border-bottom: 1px solid rgba(248,113,113,.09); }
+    .sla-alert:last-child { border-bottom: none; }
+    .sla-row    { display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px; }
+    .sla-awb    { font-size: 12px; font-weight: 600; font-family: 'Fira Code','SF Mono',Consolas,monospace; }
+    .sla-over   { font-size: 11px; font-weight: 700; color: var(--red); font-variant-numeric: tabular-nums; }
+    .sla-merch  { font-size: 12px; color: var(--t2); margin-bottom: 3px; }
+    .sla-dl     { font-size: 11px; color: var(--t3); margin-bottom: 9px; }
+    .btn-esc {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bd);
+      font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: var(--r);
+      cursor: pointer; font-family: inherit; transition: background .14s;
+    }
+    .btn-esc:hover { background: rgba(248,113,113,.18); }
+    .btn-esc:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+    /* ─── STAFF TABLE ─────────────────────────────── */
+    .staff-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rl); overflow: hidden; }
+    .tbl-scroll { overflow-x: auto; }
+    table.staff {
+      width: 100%; border-collapse: collapse;
+    }
+    .staff th {
+      padding: 10px 18px; text-align: left;
+      font-size: 10px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase;
+      color: var(--t3); background: var(--surface2); border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .staff td {
+      padding: 12px 18px; font-size: 13px; color: var(--t1);
+      border-bottom: 1px solid var(--border-sub); vertical-align: middle; white-space: nowrap;
+    }
+    .staff tr:last-child td { border-bottom: none; }
+    .staff tr:hover td { background: var(--surface2); }
+    .r-chip { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .rc-scan { background: var(--cyan-bg);   color: var(--cyan); }
+    .rc-sort { background: var(--yellow-bg); color: var(--yellow); }
+    .rc-load { background: var(--orange-bg); color: var(--orange); }
+    .s-chip  { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .sc-on   { background: var(--green-bg);  color: var(--green); }
+    .sc-brk  { background: var(--yellow-bg); color: var(--yellow); }
+    .tnum    { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+    /* ─── PULSE ANIMATIONS ────────────────────────── */
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.25} }
+    .anim-pulse { animation: pulse 2s infinite; }
+    .anim-pulse-slow { animation: pulse 3s infinite; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-mark">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <polygon points="14,2 25,8.5 25,19.5 14,26 3,19.5 3,8.5"
+          fill="rgba(0,212,255,.10)" stroke="#00D4FF" stroke-width="1.4"/>
+        <circle cx="14" cy="14" r="3.5" fill="#00D4FF"/>
+        <line x1="14" y1="10.5" x2="14" y2="4" stroke="#00D4FF" stroke-width="1.2" opacity=".45"/>
+        <circle cx="14" cy="3.5" r="1.2" fill="#00D4FF" opacity=".6"/>
+      </svg>
+    </div>
+    <div>
+      <div class="sb-name">BiGeo</div>
+      <div class="sb-sub">Hub Portal</div>
+    </div>
+  </div>
+
+  <nav class="sb-nav">
+    <a class="nav-a on" href="#">
+      <svg viewBox="0 0 15 15" fill="currentColor"><rect x="1" y="1" width="5.5" height="5.5" rx=".8"/><rect x="8.5" y="1" width="5.5" height="5.5" rx=".8"/><rect x="1" y="8.5" width="5.5" height="5.5" rx=".8"/><rect x="8.5" y="8.5" width="5.5" height="5.5" rx=".8"/></svg>
+      Overview
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 7.5h11M7.5 3L12 7.5 7.5 12"/></svg>
+      Inbound
+      <span class="nav-badge nb-org">842</span>
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M13 7.5H2M7.5 3L3 7.5l4.5 4.5"/></svg>
+      Outbound
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="11" height="11" rx="1"/><path d="M5 7.5h5M7.5 5v5"/></svg>
+      Inventory
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="8" width="13" height="5" rx="1"/><path d="M3 8V6a1 1 0 011-1h7a1 1 0 011 1v2"/><circle cx="4" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="11" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg>
+      Vehicles
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7.5" cy="7.5" r="5.5"/><path d="M7.5 4.5v3l2 1.5"/></svg>
+      SLA Monitor
+      <span class="nav-badge nb-red">3</span>
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="5.5" cy="4.5" r="2"/><path d="M1 13c0-2.5 2-4.5 4.5-4.5h4A4.5 4.5 0 0114 13"/></svg>
+      Staff
+    </a>
+    <a class="nav-a" href="#">
+      <svg viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="11" height="11" rx="1"/><path d="M5 5h5M5 7.5h4M5 10h3"/></svg>
+      Reports
+    </a>
+  </nav>
+
+  <div class="sb-user">
+    <div class="sb-hub">Siddipet Hub — SDP-01</div>
+    <div class="sb-role"><span class="dot-live"></span> Hub Operator</div>
+  </div>
+</aside>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div>
+      <div class="tb-title">Siddipet Sorting Hub</div>
+      <div class="tb-meta">
+        <span id="js-date">Thursday, 10 July 2026</span>
+        <span style="color:var(--border)">|</span>
+        <span class="shift-pill">
+          <span class="dot-live anim-pulse-slow"></span>
+          Morning Shift: 6AM–2PM
+        </span>
+      </div>
+    </div>
+    <div class="tb-right">
+      <div class="live-ind">
+        <span class="dot-green anim-pulse"></span>
+        Live&ensp;<span id="js-time" style="font-variant-numeric:tabular-nums">06:14 AM</span>
+      </div>
+      <button class="btn-scan" onclick="alert('Scan Package — connect to scanner hardware')">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor">
+          <rect x="0" y="2.5" width="1.5" height="8"/><rect x="3" y="2.5" width="1" height="8"/>
+          <rect x="5.5" y="2.5" width="2" height="8"/><rect x="9" y="2.5" width="1" height="8"/>
+          <rect x="11.5" y="2.5" width="1.5" height="8"/>
+        </svg>
+        Scan Package
+      </button>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- ── KPI ROW ───────────────────────────────── -->
+    <div class="kpi-row">
+      <div class="kpi kpi-c">
+        <div class="kpi-lbl">Inbound Today</div>
+        <div class="kpi-val">842</div>
+        <div class="kpi-sub">packages received <span class="kpi-trend">↑ 6%</span></div>
+      </div>
+      <div class="kpi kpi-g">
+        <div class="kpi-lbl">Outbound Today</div>
+        <div class="kpi-val">796</div>
+        <div class="kpi-sub">dispatched to field riders</div>
+      </div>
+      <div class="kpi kpi-o">
+        <div class="kpi-lbl">In Hub Now</div>
+        <div class="kpi-val">46</div>
+        <div class="kpi-sub"><span class="kpi-chip chip-o">Needs Action</span> awaiting sort</div>
+      </div>
+      <div class="kpi kpi-r">
+        <div class="kpi-lbl">SLA Breaches</div>
+        <div class="kpi-val">3</div>
+        <div class="kpi-sub"><span class="kpi-chip chip-r">Urgent</span> escalate now</div>
+      </div>
+    </div>
+
+    <!-- ── LIVE ACTIVITY ─────────────────────────── -->
+    <div>
+      <div class="sec-hd">
+        <div>
+          <div class="sec-eye">Live Feed</div>
+          <div class="sec-title">Hub Activity — Real-time Scans</div>
+        </div>
+        <button class="sec-link">View all scans →</button>
+      </div>
+      <div class="act-grid">
+
+        <!-- INBOUND -->
+        <div class="act-panel">
+          <div class="act-hd">
+            <div class="act-label lbl-in">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5.5 1v8M2 6l3.5 3.5L9 6"/></svg>
+              Inbound
+            </div>
+            <span class="act-ct">842 today</span>
+          </div>
+          <div class="scan-wrap">
+            <ul class="scan-list">
+              <li class="scan-item new-in">
+                <span class="dot-s ds-c"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-08421</div>
+                  <div class="sc-route">Meesho WH, Hyderabad → Siddipet Hub</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">2.4 kg</div>
+                  <div class="sc-time">06:12 AM</div>
+                  <span class="sc-badge sb-c">Scanned</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-c"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-08420</div>
+                  <div class="sc-route">Amazon FC, Secunderabad → Siddipet Hub</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">0.8 kg</div>
+                  <div class="sc-time">06:11 AM</div>
+                  <span class="sc-badge sb-c">Scanned</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-08419</div>
+                  <div class="sc-route">Flipkart Hub, Kompally → Siddipet Hub</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">3.1 kg</div>
+                  <div class="sc-time">06:09 AM</div>
+                  <span class="sc-badge sb-g">Sorted</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-08418</div>
+                  <div class="sc-route">D-Mart, Medak → Siddipet Hub</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">1.5 kg</div>
+                  <div class="sc-time">06:07 AM</div>
+                  <span class="sc-badge sb-g">Sorted</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-08417</div>
+                  <div class="sc-route">Blinkit DC, Gajwel → Siddipet Hub</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">0.6 kg</div>
+                  <div class="sc-time">06:04 AM</div>
+                  <span class="sc-badge sb-g">Sorted</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- OUTBOUND -->
+        <div class="act-panel">
+          <div class="act-hd">
+            <div class="act-label lbl-out">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5.5 10V2M2 5l3.5-3.5L9 5"/></svg>
+              Outbound
+            </div>
+            <span class="act-ct">796 today</span>
+          </div>
+          <div class="scan-wrap">
+            <ul class="scan-list">
+              <li class="scan-item new-out">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-07834</div>
+                  <div class="sc-route">Siddipet Hub → Siddipet-N Zone</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">1.2 kg</div>
+                  <div class="sc-time">06:10 AM</div>
+                  <span class="sc-badge sb-g">Loaded · Ravi K</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-07833</div>
+                  <div class="sc-route">Siddipet Hub → Yellareddyguda</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">2.8 kg</div>
+                  <div class="sc-time">06:08 AM</div>
+                  <span class="sc-badge sb-g">Loaded · Suresh M</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-07832</div>
+                  <div class="sc-route">Siddipet Hub → Narsapur Route</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">0.9 kg</div>
+                  <div class="sc-time">06:06 AM</div>
+                  <span class="sc-badge sb-g">Loaded · Venkat R</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-07831</div>
+                  <div class="sc-route">Siddipet Hub → Medak-E Zone</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">1.7 kg</div>
+                  <div class="sc-time">06:05 AM</div>
+                  <span class="sc-badge sb-g">Loaded · Prasad G</span>
+                </div>
+              </li>
+              <li class="scan-item">
+                <span class="dot-s ds-g"></span>
+                <div>
+                  <div class="sc-awb">BGO-2407-07830</div>
+                  <div class="sc-route">Siddipet Hub → Siddipet-S Zone</div>
+                </div>
+                <div class="sc-r">
+                  <div class="sc-wt">0.5 kg</div>
+                  <div class="sc-time">06:03 AM</div>
+                  <span class="sc-badge sb-g">Loaded · Kiran T</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── VEHICLES ───────────────────────────────── -->
+    <div>
+      <div class="sec-hd">
+        <div>
+          <div class="sec-eye">Fleet Status</div>
+          <div class="sec-title">Vehicle Loading — Morning Dispatch</div>
+        </div>
+        <button class="sec-link">Manage fleet →</button>
+      </div>
+      <div class="veh-grid">
+
+        <div class="veh-card">
+          <div class="veh-top">
+            <div class="veh-num">TS-09-EX-4521</div>
+            <span class="veh-st vs-loading">Loading</span>
+          </div>
+          <div class="veh-rider">Rajesh Kumar</div>
+          <div class="veh-route">Siddipet-N + Yellareddyguda</div>
+          <div class="cap-lbl"><span>Capacity</span><span class="cap-n">28 / 32 pkgs</span></div>
+          <div class="cap-track"><div class="cap-fill cf-mid" style="width:87.5%"></div></div>
+          <div class="veh-dep">Departs <strong>7:00 AM</strong></div>
+        </div>
+
+        <div class="veh-card">
+          <div class="veh-top">
+            <div class="veh-num">TS-09-FF-8834</div>
+            <span class="veh-st vs-ready">Ready</span>
+          </div>
+          <div class="veh-rider">Suresh Maloth</div>
+          <div class="veh-route">Medak-E + Medak-W</div>
+          <div class="cap-lbl"><span>Capacity</span><span class="cap-n">32 / 32 pkgs</span></div>
+          <div class="cap-track"><div class="cap-fill cf-full" style="width:100%"></div></div>
+          <div class="veh-dep">Departs <strong>6:45 AM</strong></div>
+        </div>
+
+        <div class="veh-card">
+          <div class="veh-top">
+            <div class="veh-num">TS-09-GK-2277</div>
+            <span class="veh-st vs-loading">Loading</span>
+          </div>
+          <div class="veh-rider">Venkat Reddy</div>
+          <div class="veh-route">Narsapur Route</div>
+          <div class="cap-lbl"><span>Capacity</span><span class="cap-n">19 / 32 pkgs</span></div>
+          <div class="cap-track"><div class="cap-fill cf-low" style="width:59.4%"></div></div>
+          <div class="veh-dep">Departs <strong>7:15 AM</strong></div>
+        </div>
+
+        <div class="veh-card">
+          <div class="veh-top">
+            <div class="veh-num">TS-09-HB-5593</div>
+            <span class="veh-st vs-gone">Departed</span>
+          </div>
+          <div class="veh-rider">Prasad Goud</div>
+          <div class="veh-route">Siddipet-S + Central</div>
+          <div class="cap-lbl"><span>Capacity</span><span class="cap-n">32 / 32 pkgs</span></div>
+          <div class="cap-track"><div class="cap-fill cf-gone" style="width:100%"></div></div>
+          <div class="veh-dep">Left at <strong>6:30 AM</strong></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ZONE MAP + SLA ALERTS ──────────────────── -->
+    <div class="zs-row">
+
+      <!-- ZONE MAP -->
+      <div>
+        <div class="sec-hd">
+          <div>
+            <div class="sec-eye">Delivery Zones</div>
+            <div class="sec-title">Zone Capacity &amp; SLA Status</div>
+          </div>
+        </div>
+        <div class="zone-panel">
+          <div class="zone-ph">
+            <span style="font-size:12px;font-weight:600;color:var(--t2)">6 active zones · 592 packages total</span>
+            <div class="zone-leg">
+              <span style="display:flex;align-items:center;gap:4px"><span class="leg-dot" style="background:var(--green)"></span>On Track</span>
+              <span style="display:flex;align-items:center;gap:4px"><span class="leg-dot" style="background:var(--yellow)"></span>At Risk</span>
+              <span style="display:flex;align-items:center;gap:4px"><span class="leg-dot" style="background:var(--red)"></span>Breach</span>
+            </div>
+          </div>
+          <div class="zone-grid">
+            <div class="zone-cell zc-ok">
+              <div class="zc-name">Siddipet-N</div>
+              <div class="zc-rider">Ravi Kumar</div>
+              <div class="zc-count">142</div>
+              <span class="zc-chip zchip-ok">On Track</span>
+            </div>
+            <div class="zone-cell zc-ok">
+              <div class="zc-name">Siddipet-S</div>
+              <div class="zc-rider">Kiran Teja</div>
+              <div class="zc-count">128</div>
+              <span class="zc-chip zchip-ok">On Track</span>
+            </div>
+            <div class="zone-cell zc-risk">
+              <div class="zc-name">Medak-E</div>
+              <div class="zc-rider">Arjun Rao</div>
+              <div class="zc-count">97</div>
+              <span class="zc-chip zchip-risk">At Risk</span>
+            </div>
+            <div class="zone-cell zc-ok">
+              <div class="zc-name">Medak-W</div>
+              <div class="zc-rider">Suresh Maloth</div>
+              <div class="zc-count">84</div>
+              <span class="zc-chip zchip-ok">On Track</span>
+            </div>
+            <div class="zone-cell zc-breach">
+              <div class="zc-name">Narsapur</div>
+              <div class="zc-rider">Venkat Reddy</div>
+              <div class="zc-count">63</div>
+              <span class="zc-chip zchip-breach">Breach</span>
+            </div>
+            <div class="zone-cell zc-risk">
+              <div class="zc-name">Yellareddyguda</div>
+              <div class="zc-rider">Ramu Yadav</div>
+              <div class="zc-count">78</div>
+              <span class="zc-chip zchip-risk">At Risk</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLA ALERTS -->
+      <div>
+        <div class="sec-hd">
+          <div>
+            <div class="sec-eye">Urgent</div>
+            <div class="sec-title">SLA Breach Alerts</div>
+          </div>
+        </div>
+        <div class="sla-panel">
+          <div class="sla-ph">
+            <span class="sla-ptitle">Active Breaches</span>
+            <span class="sla-nbadge">3</span>
+          </div>
+          <div class="sla-alert">
+            <div class="sla-row">
+              <span class="sla-awb">BGO-2407-06234</span>
+              <span class="sla-over">+42 min overdue</span>
+            </div>
+            <div class="sla-merch">Meesho — Hyderabad Hub</div>
+            <div class="sla-dl">SLA deadline: 5:30 AM · Narsapur delivery</div>
+            <button class="btn-esc" onclick="alert('Escalating BGO-2407-06234 to cluster manager')">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor"><path d="M4.5 0L9 4.5H6v4.5H3V4.5H0L4.5 0z"/></svg>
+              Escalate
+            </button>
+          </div>
+          <div class="sla-alert">
+            <div class="sla-row">
+              <span class="sla-awb">BGO-2407-05891</span>
+              <span class="sla-over">+27 min overdue</span>
+            </div>
+            <div class="sla-merch">Amazon — Secunderabad FC</div>
+            <div class="sla-dl">SLA deadline: 5:45 AM · Yellareddyguda</div>
+            <button class="btn-esc" onclick="alert('Escalating BGO-2407-05891 to cluster manager')">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor"><path d="M4.5 0L9 4.5H6v4.5H3V4.5H0L4.5 0z"/></svg>
+              Escalate
+            </button>
+          </div>
+          <div class="sla-alert">
+            <div class="sla-row">
+              <span class="sla-awb">BGO-2407-07124</span>
+              <span class="sla-over">+12 min overdue</span>
+            </div>
+            <div class="sla-merch">Flipkart — Kompally Hub</div>
+            <div class="sla-dl">SLA deadline: 6:00 AM · Medak-E zone</div>
+            <button class="btn-esc" onclick="alert('Escalating BGO-2407-07124 to cluster manager')">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor"><path d="M4.5 0L9 4.5H6v4.5H3V4.5H0L4.5 0z"/></svg>
+              Escalate
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── STAFF TABLE ────────────────────────────── -->
+    <div>
+      <div class="sec-hd">
+        <div>
+          <div class="sec-eye">Personnel</div>
+          <div class="sec-title">Staff On Duty — Morning Shift</div>
+        </div>
+        <button class="sec-link">Manage staff →</button>
+      </div>
+      <div class="staff-wrap">
+        <div class="tbl-scroll">
+          <table class="staff">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Shift</th>
+                <th>Pkgs Handled</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lakshmi Devi</td>
+                <td><span class="r-chip rc-scan">Scanner</span></td>
+                <td style="color:var(--t2)">6:00 AM – 2:00 PM</td>
+                <td class="tnum">234</td>
+                <td><span class="s-chip sc-on">Active</span></td>
+              </tr>
+              <tr>
+                <td>Ramu Yadav</td>
+                <td><span class="r-chip rc-sort">Sorter</span></td>
+                <td style="color:var(--t2)">6:00 AM – 2:00 PM</td>
+                <td class="tnum">198</td>
+                <td><span class="s-chip sc-brk">Break · back 6:35</span></td>
+              </tr>
+              <tr>
+                <td>Bhaskar Rao</td>
+                <td><span class="r-chip rc-sort">Sorter</span></td>
+                <td style="color:var(--t2)">6:00 AM – 2:00 PM</td>
+                <td class="tnum">211</td>
+                <td><span class="s-chip sc-on">Active</span></td>
+              </tr>
+              <tr>
+                <td>Fatima Begum</td>
+                <td><span class="r-chip rc-load">Loader</span></td>
+                <td style="color:var(--t2)">6:00 AM – 2:00 PM</td>
+                <td class="tnum">156</td>
+                <td><span class="s-chip sc-on">Active</span></td>
+              </tr>
+              <tr>
+                <td>Venkata Swamy</td>
+                <td><span class="r-chip rc-scan">Scanner</span></td>
+                <td style="color:var(--t2)">6:00 AM – 2:00 PM</td>
+                <td class="tnum">183</td>
+                <td><span class="s-chip sc-on">Active</span></td>
+              </tr>
+              <tr>
+                <td>Naresh Goud</td>
+                <td><span class="r-chip rc-load">Loader</span></td>
+                <td style="color:var(--t2)">6:00 AM – 2:00 PM</td>
+                <td class="tnum">149</td>
+                <td><span class="s-chip sc-on">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  (function () {
+    var days   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+    function tick() {
+      var n = new Date();
+      var h = n.getHours(), m = n.getMinutes();
+      var ap = h >= 12 ? 'PM' : 'AM';
+      var h12 = h % 12 || 12;
+      document.getElementById('js-time').textContent =
+        h12 + ':' + (m < 10 ? '0' : '') + m + ' ' + ap;
+      document.getElementById('js-date').textContent =
+        days[n.getDay()] + ', ' + n.getDate() + ' ' + months[n.getMonth()] + ' ' + n.getFullYear();
+    }
+    tick();
+    setInterval(tick, 15000);
+  })();
+</script>
+
+</body>
+</html>

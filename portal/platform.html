@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BiGeo Platform — India's Complete Logistics OS, 2026</title>
+<meta name="description" content="Every tool a 2026 Indian logistics company needs. Live tracking, AI routing, rural address intelligence, WhatsApp booking, fleet management, COD reconciliation, ONDC integration and more."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090F;--surface:#0D1117;--surface2:#111827;--surface3:#1A2235;
+  --border:#1C2840;--border2:#243352;
+  --text:#F0F4FC;--muted:#8899B4;--muted2:#526080;
+  --green:#22C55E;--cyan:#00D4FF;--orange:#FF6B35;--purple:#A78BFA;--yellow:#FBBF24;--red:#F87171;
+  --green-glow:rgba(34,197,94,0.12);--cyan-glow:rgba(0,212,255,0.12);--orange-glow:rgba(255,107,53,0.12);
+  --font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+  --r:14px;--nav-h:66px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}button{font-family:var(--font);cursor:pointer}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:4px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav-h);display:flex;align-items:center;padding:0 1.5rem;background:rgba(7,9,15,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{width:100%;max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.05rem;letter-spacing:-.03em}
+.logo-mark{width:32px;height:32px;background:var(--green);border-radius:8px;display:grid;place-items:center;flex-shrink:0}
+.logo-mark svg{width:16px;height:16px;fill:none;stroke:#07090F;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.nav-links{display:flex;gap:1.75rem;align-items:center}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);transition:color .18s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:.6rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.55rem 1.2rem;border-radius:9px;font-size:.875rem;font-weight:600;border:none;transition:all .18s;line-height:1}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.btn-green{background:var(--green);color:#07090F}
+.btn-green:hover{background:#16a34a;transform:translateY(-1px)}
+.btn-cyan{background:var(--cyan);color:#07090F}
+.btn-cyan:hover{background:#00b8d9;transform:translateY(-1px)}
+@media(max-width:900px){.nav-links{display:none}}
+
+/* LAYOUT */
+section{padding:5rem 1.5rem}
+.container{max-width:1320px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:1.1rem}
+.section-label::before{content:'';width:20px;height:2px;background:var(--green);border-radius:2px}
+h1,h2,h3,h4{letter-spacing:-.03em;line-height:1.2}
+h2{font-size:clamp(2rem,4vw,3rem);font-weight:800}
+h3{font-size:1.4rem;font-weight:700}
+.subtext{font-size:1.1rem;color:var(--muted);max-width:600px;line-height:1.7}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+@media(max-width:1024px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.card-icon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;margin-bottom:1.1rem;font-size:1.25rem}
+.card h4{font-size:1rem;font-weight:700;margin-bottom:.4rem}
+.card p{font-size:.875rem;color:var(--muted);line-height:1.6}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .65rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.badge-green{background:var(--green-glow);color:var(--green);border:1px solid rgba(34,197,94,.25)}
+.badge-cyan{background:var(--cyan-glow);color:var(--cyan);border:1px solid rgba(0,212,255,.25)}
+.badge-orange{background:var(--orange-glow);color:var(--orange);border:1px solid rgba(255,107,53,.25)}
+.badge-purple{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.25)}
+
+/* HERO */
+#hero{min-height:100vh;padding:0 1.5rem;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:var(--nav-h)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1320px;margin:0 auto;width:100%;padding:5rem 0}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.5rem;text-align:center}}
+.hero-eyebrow{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;flex-wrap:wrap}
+@media(max-width:900px){.hero-eyebrow{justify-content:center}}
+.hero-h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.08;letter-spacing:-.04em;margin-bottom:1.5rem}
+.hero-h1 span{color:var(--green)}
+.hero-sub{font-size:1.1rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:2.5rem}
+@media(max-width:900px){.hero-sub{margin:0 auto 2rem}}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+@media(max-width:900px){.hero-actions{justify-content:center}}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;flex-wrap:wrap}
+@media(max-width:900px){.hero-stats{justify-content:center}}
+.hstat{border-left:2px solid var(--border2);padding-left:1rem}
+.hstat-n{font-size:1.6rem;font-weight:800;letter-spacing:-.04em;color:var(--green)}
+.hstat-l{font-size:.75rem;color:var(--muted);margin-top:.1rem}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-bg-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(34,197,94,.07),transparent);pointer-events:none}
+.phone-shell{width:260px;background:var(--surface);border:2px solid var(--border2);border-radius:36px;overflow:hidden;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.phone-notch{height:28px;background:var(--surface);display:flex;justify-content:center;align-items:flex-end;padding-bottom:4px}
+.phone-notch-pill{width:80px;height:5px;background:#1E2D45;border-radius:999px}
+.phone-screen{background:#07090F;padding:1rem;min-height:460px}
+.p-header{font-size:.7rem;font-weight:700;color:var(--muted2);margin-bottom:.75rem;letter-spacing:.06em;text-transform:uppercase}
+.p-map{height:130px;background:linear-gradient(135deg,#0D1927 0%,#0A1520 100%);border-radius:10px;position:relative;margin-bottom:.75rem;overflow:hidden}
+.p-map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(34,197,94,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.05) 1px,transparent 1px);background-size:20px 20px}
+.p-dot{position:absolute;width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 0 4px rgba(34,197,94,.25)}
+.p-dot-pulse{animation:pulse 2s ease-in-out infinite}
+.p-route-line{position:absolute;top:35%;left:20%;width:60%;height:2px;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:2px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(34,197,94,.25)}50%{box-shadow:0 0 0 10px rgba(34,197,94,.05)}}
+.p-shipment{background:var(--surface2);border-radius:8px;padding:.6rem .75rem;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.7rem}
+.p-ship-left{display:flex;align-items:center;gap:.5rem}
+.p-ship-icon{width:26px;height:26px;border-radius:6px;display:grid;place-items:center;font-size:.8rem;flex-shrink:0}
+.p-ship-id{font-weight:700;font-size:.72rem;color:var(--text);display:block}
+.p-ship-loc{color:var(--muted2);font-size:.65rem;display:block}
+.p-eta{color:var(--green);font-weight:700;font-size:.72rem}
+.p-progress{height:2px;background:var(--border);border-radius:999px;margin:.35rem 0 .6rem;overflow:hidden}
+.p-progress-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:999px;width:0;transition:width 1.5s ease}
+.p-actions{display:flex;gap:.4rem;margin-top:.5rem}
+.p-action-btn{flex:1;padding:.45rem;background:var(--surface3);border-radius:7px;font-size:.62rem;font-weight:600;color:var(--muted);text-align:center;border:1px solid var(--border)}
+
+/* Floating badges */
+.float-badge{position:absolute;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:.5rem .9rem;font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:.4rem;box-shadow:0 8px 32px rgba(0,0,0,.4);animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.fb1{top:10%;right:-2rem;animation-delay:0s}
+.fb2{bottom:20%;left:-3rem;animation-delay:1.5s}
+.fb3{top:45%;right:-4rem;animation-delay:.8s}
+
+/* SECTION: WHAT WE DO */
+#what{border-top:1px solid var(--border)}
+.what-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:3rem}
+.what-cell{background:var(--surface);padding:2rem 1.5rem;transition:background .2s}
+.what-cell:hover{background:var(--surface2)}
+.what-cell-icon{font-size:1.8rem;margin-bottom:.75rem}
+.what-cell-title{font-size:.9rem;font-weight:700;margin-bottom:.35rem}
+.what-cell-desc{font-size:.78rem;color:var(--muted);line-height:1.55}
+@media(max-width:1100px){.what-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.what-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* TABS */
+.tabs-nav{display:flex;gap:.4rem;margin-bottom:2.5rem;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:0}
+.tab-btn{padding:.65rem 1.2rem;font-size:.85rem;font-weight:600;color:var(--muted);background:transparent;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .18s;cursor:pointer}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green)}
+.tab-btn:hover:not(.active){color:var(--text)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* FEATURE LISTS */
+.feat-list{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+.feat-item{display:flex;align-items:flex-start;gap:.65rem;font-size:.875rem;color:var(--muted);line-height:1.5}
+.feat-item::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0;margin-top:.05rem}
+
+/* TRACKING DEMO */
+.track-demo{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.track-header{background:var(--surface2);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.track-id{font-size:.8rem;font-weight:700;font-family:var(--mono);color:var(--cyan)}
+.track-steps{display:flex;flex-direction:column;gap:0;padding:1.5rem}
+.track-step{display:flex;align-items:flex-start;gap:1rem;padding-bottom:1.5rem;position:relative}
+.track-step:last-child{padding-bottom:0}
+.track-step::after{content:'';position:absolute;left:11px;top:26px;width:2px;height:calc(100% - 20px);background:var(--border)}
+.track-step:last-child::after{display:none}
+.ts-dot{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:.65rem;font-weight:800;z-index:1}
+.ts-dot.done{background:var(--green);color:#07090F}
+.ts-dot.active{background:var(--cyan-glow);border:2px solid var(--cyan);color:var(--cyan)}
+.ts-dot.pending{background:var(--surface3);border:2px solid var(--border2);color:var(--muted2)}
+.ts-info{}
+.ts-title{font-size:.85rem;font-weight:700;color:var(--text)}
+.ts-meta{font-size:.75rem;color:var(--muted2);margin-top:.1rem}
+
+/* DASHBOARD */
+.dash-shell{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.dash-topbar{background:var(--surface);padding:.75rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dash-title{font-size:.85rem;font-weight:700}
+.dash-body{display:grid;grid-template-columns:200px 1fr;min-height:420px}
+@media(max-width:600px){.dash-body{grid-template-columns:1fr}}
+.dash-sidebar{border-right:1px solid var(--border);padding:1rem 0}
+.dash-nav-item{padding:.55rem 1.1rem;font-size:.78rem;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:.6rem;cursor:pointer;transition:background .15s}
+.dash-nav-item:hover,.dash-nav-item.active{background:var(--surface3);color:var(--text)}
+.dash-nav-item.active{border-right:2px solid var(--green);color:var(--green)}
+.dash-main{padding:1.25rem}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.25rem}
+@media(max-width:800px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem}
+.kpi-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted2);margin-bottom:.3rem;font-weight:600}
+.kpi-value{font-size:1.4rem;font-weight:800;letter-spacing:-.04em}
+.kpi-change{font-size:.7rem;margin-top:.2rem}
+.kpi-up{color:var(--green)}.kpi-dn{color:var(--red)}
+
+/* CHART */
+.chart-area{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem;height:160px;display:flex;align-items:flex-end;gap:6px}
+.bar{flex:1;border-radius:4px 4px 0 0;min-width:0;position:relative;transition:height 1s ease}
+.bar-tip{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:.6rem;font-weight:700;white-space:nowrap;color:var(--muted)}
+
+/* WHATSAPP */
+.wa-shell{background:#0b1117;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.wa-header{background:#1f2c34;padding:.75rem 1rem;display:flex;align-items:center;gap:.75rem;border-bottom:1px solid #2a3942}
+.wa-avatar{width:38px;height:38px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-weight:800;font-size:.9rem;color:#07090F;flex-shrink:0}
+.wa-name{font-size:.85rem;font-weight:600}
+.wa-status{font-size:.7rem;color:#8696a0}
+.wa-msgs{padding:1rem;display:flex;flex-direction:column;gap:.6rem;max-height:340px;overflow-y:auto}
+.wa-msg{max-width:80%;border-radius:10px;padding:.55rem .85rem;font-size:.8rem;line-height:1.5;position:relative}
+.wa-msg.bot{background:#1f2c34;color:#e9edef;border-radius:0 10px 10px 10px;align-self:flex-start}
+.wa-msg.user{background:#005c4b;color:#e9edef;border-radius:10px 0 10px 10px;align-self:flex-end}
+.wa-time{font-size:.6rem;color:#8696a0;margin-top:.2rem;text-align:right}
+.wa-chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.25rem}
+.wa-chip{background:#2a3942;border-radius:6px;padding:.3rem .6rem;font-size:.72rem;color:#00a884;font-weight:600;cursor:pointer}
+
+/* AI SECTION */
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start}
+@media(max-width:768px){.ai-grid{grid-template-columns:1fr}}
+.code-block{background:#050810;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.code-header{background:var(--surface);padding:.6rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.code-dots{display:flex;gap:.3rem}
+.code-dot{width:10px;height:10px;border-radius:50%}
+.code-lang{font-size:.7rem;font-family:var(--mono);color:var(--muted2)}
+.code-body{padding:1.25rem;font-family:var(--mono);font-size:.78rem;line-height:1.8;color:#a8b8d0;overflow-x:auto}
+.c-key{color:#7dd3fc}.c-str{color:#86efac}.c-num{color:#fbbf24}.c-cmt{color:#475569}
+
+/* FLEET */
+.fleet-map{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;height:280px;position:relative;overflow:hidden}
+.fleet-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D1927,#091520);opacity:.8}
+.fleet-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(34,197,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,197,94,.04) 1px,transparent 1px);background-size:28px 28px}
+.fleet-vehicle{position:absolute;display:flex;flex-direction:column;align-items:center;gap:2px}
+.fleet-icon{font-size:1.1rem}
+.fleet-tag{background:var(--surface2);border:1px solid var(--border2);border-radius:4px;font-size:.6rem;font-weight:700;font-family:var(--mono);padding:.1rem .3rem;color:var(--cyan);white-space:nowrap}
+.fleet-pulse{position:absolute;width:40px;height:40px;border-radius:50%;border:2px solid rgba(34,197,94,.3);animation:fleetpulse 2.5s ease-out infinite}
+@keyframes fleetpulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(2);opacity:0}}
+
+/* INTEGRATIONS */
+.integ-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin-top:2rem}
+@media(max-width:1024px){.integ-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.integ-grid{grid-template-columns:repeat(3,1fr)}}
+.integ-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;transition:border-color .2s}
+.integ-card:hover{border-color:var(--border2)}
+.integ-logo{width:36px;height:36px;border-radius:8px;display:grid;place-items:center;font-size:1rem;font-weight:800}
+.integ-name{font-size:.68rem;font-weight:600;color:var(--muted);text-align:center}
+
+/* COMPLIANCE */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+@media(max-width:768px){.comp-grid{grid-template-columns:1fr}}
+.comp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;position:relative;overflow:hidden}
+.comp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.comp-card.c-green::before{background:var(--green)}
+.comp-card.c-cyan::before{background:var(--cyan)}
+.comp-card.c-purple::before{background:var(--purple)}
+.comp-icon{font-size:2rem;margin-bottom:1rem}
+.comp-title{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.comp-items{display:flex;flex-direction:column;gap:.35rem;margin-top:.75rem}
+.comp-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--muted)}
+.comp-item::before{content:'✓';color:var(--green);font-weight:800;font-size:.8rem}
+
+/* RURAL */
+.rural-banner{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(0,212,255,.06));border:1px solid rgba(34,197,94,.2);border-radius:var(--r);padding:2.5rem;margin-top:2rem;position:relative;overflow:hidden}
+.rural-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2322C55E' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.rural-inner{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;position:relative;z-index:1}
+@media(max-width:768px){.rural-inner{grid-template-columns:1fr}}
+.rural-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.rural-stat{background:rgba(0,0,0,.3);border-radius:10px;padding:1rem;border:1px solid rgba(34,197,94,.15)}
+.rural-stat-n{font-size:1.6rem;font-weight:800;letter-spacing:-.04em;color:var(--green)}
+.rural-stat-l{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;align-items:start}
+@media(max-width:900px){.price-grid{grid-template-columns:1fr}}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2rem;position:relative;overflow:hidden}
+.price-card.featured{border-color:var(--green);background:linear-gradient(180deg,rgba(34,197,94,.06) 0%,var(--surface) 100%)}
+.price-rec{position:absolute;top:1.2rem;right:1.2rem;background:var(--green);color:#07090F;font-size:.65rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px}
+.price-tier{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.75rem}
+.price-amount{font-size:2.5rem;font-weight:900;letter-spacing:-.05em;margin-bottom:.25rem}
+.price-amount span{font-size:1rem;font-weight:500;color:var(--muted)}
+.price-desc{font-size:.85rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5}
+.price-feats{display:flex;flex-direction:column;gap:.55rem;margin-bottom:2rem}
+.price-feat{display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:var(--muted)}
+.price-feat::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}
+.price-feat.na{color:var(--muted2)}.price-feat.na::before{content:'–';color:var(--muted2)}
+
+/* API */
+.api-demo{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+@media(max-width:768px){.api-demo{grid-template-columns:1fr}}
+
+/* SECURITY */
+.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2rem}
+@media(max-width:900px){.sec-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.sec-grid{grid-template-columns:1fr}}
+.sec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;text-align:center}
+.sec-icon{font-size:2rem;margin-bottom:.75rem}
+.sec-title{font-size:.9rem;font-weight:700;margin-bottom:.35rem}
+.sec-desc{font-size:.78rem;color:var(--muted)}
+
+/* LANGUAGE */
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+@media(max-width:900px){.lang-grid{grid-template-columns:repeat(2,1fr)}}
+.lang-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;display:flex;align-items:center;gap:.75rem}
+.lang-flag{font-size:1.5rem}
+.lang-name{font-size:.85rem;font-weight:600}
+.lang-native{font-size:.78rem;color:var(--muted)}
+
+/* CTA */
+#cta{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(0,212,255,.05));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cta-inner{text-align:center;max-width:700px;margin:0 auto}
+.cta-inner h2{margin-bottom:1rem}
+.cta-inner p{color:var(--muted);margin-bottom:2rem;font-size:1.05rem}
+.cta-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{padding:3rem 1.5rem 2rem;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1320px;margin:0 auto;margin-bottom:3rem}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand p{font-size:.85rem;color:var(--muted);margin:.75rem 0 1.25rem;line-height:1.6;max-width:280px}
+.footer-col h5{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);margin-bottom:.9rem}
+.footer-col a{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.45rem;transition:color .15s}
+.footer-col a:hover{color:var(--green)}
+.footer-bottom{max-width:1320px;margin:0 auto;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;font-size:.78rem;color:var(--muted2)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:var(--surface)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ACCORDION */
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-q{width:100%;background:none;border:none;text-align:left;padding:1.1rem 0;font-size:.95rem;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.acc-q:hover{color:var(--green)}
+.acc-icon{color:var(--muted);font-size:1.1rem;transition:transform .2s}
+.acc-item.open .acc-icon{transform:rotate(45deg);color:var(--green)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.acc-body p{font-size:.875rem;color:var(--muted);padding-bottom:1.1rem;line-height:1.7}
+
+/* METRIC BAR */
+.metric-bar-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.65rem}
+.metric-bar-label{font-size:.78rem;color:var(--muted);width:160px;flex-shrink:0}
+.metric-bar-track{flex:1;height:6px;background:var(--border);border-radius:999px;overflow:hidden}
+.metric-bar-fill{height:100%;border-radius:999px;width:0;transition:width 1.2s ease}
+.metric-bar-val{font-size:.78rem;font-weight:700;width:40px;text-align:right;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/index.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      </div>
+      BiGeo
+    </a>
+    <div class="nav-links">
+      <a href="#tracking">Tracking</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#ai">AI Engine</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#rural">Rural</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="/index.html" class="btn btn-ghost">API Docs</a>
+      <a href="/index.html#contact" class="btn btn-green">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="badge badge-green">🇮🇳 Made for India</span>
+        <span class="badge badge-cyan">2026 Platform</span>
+        <span class="badge badge-orange">ONDC Ready</span>
+      </div>
+      <h1 class="hero-h1">India's Complete<br/><span>Logistics OS</span><br/>— Built for 2026</h1>
+      <p class="hero-sub">From 800M rural addresses with no GPS to last-mile delivery in under 2 seconds. Live tracking, AI routing, WhatsApp booking, fleet management, COD reconciliation and everything in between.</p>
+      <div class="hero-actions">
+        <a href="/index.html#contact" class="btn btn-green" style="font-size:.95rem;padding:.7rem 1.5rem">Start Free Trial →</a>
+        <a href="#tracking" class="btn btn-ghost" style="font-size:.95rem;padding:.7rem 1.5rem">See Platform</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n">649K+</div><div class="hstat-l">Villages indexed</div></div>
+        <div class="hstat"><div class="hstat-n">&lt;2s</div><div class="hstat-l">Address resolution</div></div>
+        <div class="hstat"><div class="hstat-n">22</div><div class="hstat-l">Indian languages</div></div>
+        <div class="hstat"><div class="hstat-n">91%</div><div class="hstat-l">Rural delivery success</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-shell">
+        <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+        <div class="phone-screen">
+          <div class="p-header">Live Shipments</div>
+          <div class="p-map">
+            <div class="p-map-grid"></div>
+            <div class="p-dot p-dot-pulse" style="top:30%;left:25%"></div>
+            <div class="p-dot" style="top:55%;left:65%;background:var(--cyan);box-shadow:0 0 0 4px rgba(0,212,255,.2)"></div>
+            <div class="p-dot" style="top:70%;left:40%;background:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,.2)"></div>
+            <div class="p-route-line"></div>
+          </div>
+          <div class="p-shipment">
+            <div class="p-ship-left">
+              <div class="p-ship-icon" style="background:rgba(34,197,94,.15)">📦</div>
+              <div><span class="p-ship-id">BG-2847</span><span class="p-ship-loc">Yellareddyguda → Siddipet</span></div>
+            </div>
+            <div class="p-eta">ETA 14 min</div>
+          </div>
+          <div class="p-progress"><div class="p-progress-bar" id="pb1" style="width:72%"></div></div>
+          <div class="p-shipment">
+            <div class="p-ship-left">
+              <div class="p-ship-icon" style="background:rgba(0,212,255,.15)">🛵</div>
+              <div><span class="p-ship-id">BG-2901</span><span class="p-ship-loc">Narsapur → Medak</span></div>
+            </div>
+            <div class="p-eta" style="color:var(--cyan)">ETA 38 min</div>
+          </div>
+          <div class="p-progress"><div class="p-progress-bar" id="pb2" style="width:41%;background:linear-gradient(90deg,var(--cyan),var(--purple))"></div></div>
+          <div class="p-actions">
+            <div class="p-action-btn">📍 Track</div>
+            <div class="p-action-btn">📞 Call</div>
+            <div class="p-action-btn">✏️ Reschedule</div>
+          </div>
+        </div>
+      </div>
+      <div class="float-badge fb1"><span style="color:var(--green)">✓</span> POD Captured</div>
+      <div class="float-badge fb2">🤖 AI Route Saved ₹340</div>
+      <div class="float-badge fb3" style="font-family:var(--mono);font-size:.68rem;color:var(--cyan)">confidence: 0.95</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section id="what" style="padding:3rem 1.5rem">
+  <div class="container">
+    <div class="what-grid reveal">
+      <div class="what-cell"><div class="what-cell-icon">📍</div><div class="what-cell-title">Address Intelligence</div><div class="what-cell-desc">Resolve any Indian address — even "near banyan tree" — to GPS in &lt;2s</div></div>
+      <div class="what-cell"><div class="what-cell-icon">📦</div><div class="what-cell-title">Live Order Tracking</div><div class="what-cell-desc">Real-time updates via SMS, WhatsApp and app for every shipment</div></div>
+      <div class="what-cell"><div class="what-cell-icon">🛣️</div><div class="what-cell-title">AI Route Optimization</div><div class="what-cell-desc">OSRM + OR-Tools cut fuel costs by 23% on rural delivery runs</div></div>
+      <div class="what-cell"><div class="what-cell-icon">💰</div><div class="what-cell-title">COD Reconciliation</div><div class="what-cell-desc">Automated cash collection, remittance and dispute resolution</div></div>
+      <div class="what-cell"><div class="what-cell-icon">🚚</div><div class="what-cell-title">Fleet Management</div><div class="what-cell-desc">Live GPS, driver app, fuel tracking, maintenance alerts</div></div>
+      <div class="what-cell"><div class="what-cell-icon">📊</div><div class="what-cell-title">Business Analytics</div><div class="what-cell-desc">RTO analysis, NPS, revenue per route, team performance dashboards</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE TRACKING -->
+<section id="tracking" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">Live Tracking</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start" class="reveal">
+      <div>
+        <h2>Every shipment.<br/>Every moment.<br/><span style="color:var(--cyan)">Real-time.</span></h2>
+        <p class="subtext" style="margin:1.25rem 0 2rem">Your customers can track their order live on a map — not just a status text. Your ops team sees all 1,000 shipments on one screen.</p>
+        <div class="tabs-nav" style="margin-bottom:1.5rem">
+          <button class="tab-btn active" onclick="switchTab('track','customer')">Customer View</button>
+          <button class="tab-btn" onclick="switchTab('track','ops')">Ops Dashboard</button>
+          <button class="tab-btn" onclick="switchTab('track','driver')">Driver App</button>
+        </div>
+        <div id="track-customer" class="tab-panel active">
+          <div class="feat-list">
+            <div class="feat-item">Live map with vehicle location updating every 30 seconds</div>
+            <div class="feat-item">AI-powered ETA accurate to ±8 minutes for rural routes</div>
+            <div class="feat-item">WhatsApp + SMS notifications at each stage — pickup, in-transit, out-for-delivery, delivered</div>
+            <div class="feat-item">One-tap reschedule and delivery preference (gate, neighbour, locker)</div>
+            <div class="feat-item">Digital POD with photo + signature + GPS timestamp</div>
+            <div class="feat-item">NPS survey on delivery with auto-flag for low-score investigation</div>
+            <div class="feat-item">Missed delivery auto-reattempt scheduling</div>
+            <div class="feat-item">Return request directly from tracking page — no call centre</div>
+          </div>
+        </div>
+        <div id="track-ops" class="tab-panel">
+          <div class="feat-list">
+            <div class="feat-item">Bird's-eye view: all active shipments on a single live map</div>
+            <div class="feat-item">Colour-coded alerts — delayed, undeliverable, failed attempt</div>
+            <div class="feat-item">SLA breach prediction 45 minutes before it happens</div>
+            <div class="feat-item">Drag-and-drop reassignment to nearest available rider</div>
+            <div class="feat-item">Bulk status updates via CSV upload or API</div>
+            <div class="feat-item">Custom webhook push for every status change to your WMS/ERP</div>
+            <div class="feat-item">COD-pending and remittance-due views</div>
+          </div>
+        </div>
+        <div id="track-driver" class="tab-panel">
+          <div class="feat-list">
+            <div class="feat-item">Works on ₹6,000 Android phones — no data connection required in transit</div>
+            <div class="feat-item">Turn-by-turn navigation with offline India road maps</div>
+            <div class="feat-item">Voice guidance in Telugu, Hindi, Tamil, Kannada, Bengali</div>
+            <div class="feat-item">Smart delivery sequence — AI sorts stops by road network, not crow-fly</div>
+            <div class="feat-item">COD cash collection with UPI QR fallback</div>
+            <div class="feat-item">Photo POD, failed-delivery reason capture, customer call button</div>
+            <div class="feat-item">Earnings summary, attendance, incentive tracker</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="track-demo">
+          <div class="track-header">
+            <div><div class="track-id">BG-84921</div><div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">Medak → Siddipet — ₹1,240 COD</div></div>
+            <span class="badge badge-cyan">In Transit</span>
+          </div>
+          <div class="track-steps">
+            <div class="track-step">
+              <div class="ts-dot done">✓</div>
+              <div class="ts-info"><div class="ts-title">Order Picked Up</div><div class="ts-meta">Hub: Medak • Today, 7:42 AM • Rider: Raju K.</div></div>
+            </div>
+            <div class="track-step">
+              <div class="ts-dot done">✓</div>
+              <div class="ts-info"><div class="ts-title">Departed Hub</div><div class="ts-meta">Route: MED-SDP-04 • 12 stops loaded • Fuel: 100%</div></div>
+            </div>
+            <div class="track-step">
+              <div class="ts-dot done">✓</div>
+              <div class="ts-info"><div class="ts-title">Address Verified</div><div class="ts-meta">BiGeo resolved "near water tank, Bhoompally" → 18.103°N, 78.847°E (conf: 0.92)</div></div>
+            </div>
+            <div class="track-step">
+              <div class="ts-dot active">●</div>
+              <div class="ts-info"><div class="ts-title">Out for Delivery</div><div class="ts-meta">3.2 km away • AI ETA: 11:24 AM • WhatsApp sent ✓</div></div>
+            </div>
+            <div class="track-step">
+              <div class="ts-dot pending">○</div>
+              <div class="ts-info"><div class="ts-title">Delivered</div><div class="ts-meta">Awaiting POD capture</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS DASHBOARD -->
+<section id="dashboard" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Business Tools</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-bottom:2.5rem" class="reveal">
+      <div>
+        <h2>Your entire operation<br/>on <span style="color:var(--green)">one screen</span></h2>
+        <p class="subtext" style="margin:1.25rem 0 1.75rem">Shipper portal, ops console, finance reconciliation, MIS reports — all consolidated. No more juggling 4 Excel sheets and 2 WhatsApp groups.</p>
+        <div class="feat-list">
+          <div class="feat-item">Bulk order upload — CSV, Excel, API or direct Shopify/WooCommerce sync</div>
+          <div class="feat-item">Auto-assign orders to cheapest/fastest carrier by pincode</div>
+          <div class="feat-item">AWB generation, label printing (thermal + A4) in one click</div>
+          <div class="feat-item">COD remittance tracking — know exactly which orders are unpaid</div>
+          <div class="feat-item">RTO prediction per order before dispatch (save ₹180/failed delivery)</div>
+          <div class="feat-item">NDR (Non-Delivery Report) management — call centre notes, re-attempt scheduling</div>
+          <div class="feat-item">Invoice auto-generation with GST — send to customer in one click</div>
+          <div class="feat-item">Team accounts — ops, accounts, sales with role-based access</div>
+          <div class="feat-item">MIS reports: daily/weekly/monthly PDF export to email</div>
+          <div class="feat-item">Billing dispute module — contest courier overcharges with evidence</div>
+        </div>
+      </div>
+      <div class="dash-shell reveal">
+        <div class="dash-topbar">
+          <div class="dash-title">Operations Dashboard — Today</div>
+          <span class="badge badge-green">● Live</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-sidebar">
+            <div class="dash-nav-item active">📊 Overview</div>
+            <div class="dash-nav-item">📦 Shipments</div>
+            <div class="dash-nav-item">💰 COD</div>
+            <div class="dash-nav-item">🔄 Returns</div>
+            <div class="dash-nav-item">🚚 Fleet</div>
+            <div class="dash-nav-item">📈 Analytics</div>
+            <div class="dash-nav-item">⚙️ Settings</div>
+          </div>
+          <div class="dash-main">
+            <div class="kpi-row">
+              <div class="kpi"><div class="kpi-label">Deliveries</div><div class="kpi-value">1,284</div><div class="kpi-change kpi-up">↑ 12% vs yesterday</div></div>
+              <div class="kpi"><div class="kpi-label">Success Rate</div><div class="kpi-value" style="color:var(--green)">91.4%</div><div class="kpi-change kpi-up">↑ 2.1pp</div></div>
+              <div class="kpi"><div class="kpi-label">RTO Rate</div><div class="kpi-value" style="color:var(--red)">8.6%</div><div class="kpi-change kpi-up">↓ 1.4pp</div></div>
+              <div class="kpi"><div class="kpi-label">COD Pending</div><div class="kpi-value" style="color:var(--yellow)">₹4.2L</div><div class="kpi-change" style="color:var(--muted2)">12 orders</div></div>
+            </div>
+            <div class="chart-area" id="dashChart" style="margin-bottom:.75rem">
+              <!-- bars rendered by JS -->
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+              <span class="badge badge-green">✓ 1173 delivered</span>
+              <span class="badge badge-orange">⟳ 68 in transit</span>
+              <span class="badge" style="background:rgba(248,113,113,.1);color:var(--red);border-color:rgba(248,113,113,.25)">✕ 43 RTO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI ENGINE -->
+<section id="ai" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">AI Engine</div>
+    <div style="display:flex;gap:3rem;align-items:flex-start;flex-wrap:wrap" class="reveal">
+      <div style="flex:1;min-width:300px">
+        <h2>AI that actually<br/>works in <span style="color:var(--purple)">rural India</span></h2>
+        <p class="subtext" style="margin:1.25rem 0 1.75rem">Not a chatbot bolted on. Intelligence embedded at every step — from resolving "near banyan tree" to predicting a delay before the rider even leaves.</p>
+        <div style="margin-bottom:2rem">
+          <div class="metric-bar-row"><div class="metric-bar-label">Rural address resolution</div><div class="metric-bar-track"><div class="metric-bar-fill" data-w="92" style="background:var(--green)"></div></div><div class="metric-bar-val" style="color:var(--green)">92%</div></div>
+          <div class="metric-bar-row"><div class="metric-bar-label">RTO prediction accuracy</div><div class="metric-bar-track"><div class="metric-bar-fill" data-w="87" style="background:var(--cyan)"></div></div><div class="metric-bar-val" style="color:var(--cyan)">87%</div></div>
+          <div class="metric-bar-row"><div class="metric-bar-label">Route cost savings</div><div class="metric-bar-track"><div class="metric-bar-fill" data-w="23" style="background:var(--orange)"></div></div><div class="metric-bar-val" style="color:var(--orange)">23%</div></div>
+          <div class="metric-bar-row"><div class="metric-bar-label">Delay prediction lead time</div><div class="metric-bar-track"><div class="metric-bar-fill" data-w="78" style="background:var(--purple)"></div></div><div class="metric-bar-val" style="color:var(--purple)">78%</div></div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:300px">
+        <div class="ai-grid">
+          <div class="code-block">
+            <div class="code-header">
+              <div class="code-dots"><div class="code-dot" style="background:#ff5f56"></div><div class="code-dot" style="background:#ffbd2e"></div><div class="code-dot" style="background:#27c93f"></div></div>
+              <div class="code-lang">Address → GPS (Fable 5)</div>
+            </div>
+            <div class="code-body"><span class="c-cmt">// Input: unstructured address</span>
+<span class="c-key">"Near water tank,</span>
+<span class="c-key"> Bhoompally, Siddipet"</span>
+
+<span class="c-cmt">// BiGeo resolves →</span>
+{
+  <span class="c-str">village</span>: <span class="c-key">"Bhoompally"</span>,
+  <span class="c-str">lat</span>: <span class="c-num">18.1032</span>,
+  <span class="c-str">lng</span>: <span class="c-num">78.8471</span>,
+  <span class="c-str">confidence</span>: <span class="c-num">0.92</span>,
+  <span class="c-str">source</span>: <span class="c-key">"here-maps"</span>
+}</div>
+          </div>
+          <div class="code-block">
+            <div class="code-header">
+              <div class="code-dots"><div class="code-dot" style="background:#ff5f56"></div><div class="code-dot" style="background:#ffbd2e"></div><div class="code-dot" style="background:#27c93f"></div></div>
+              <div class="code-lang">RTO Risk Score</div>
+            </div>
+            <div class="code-body"><span class="c-cmt">// Before dispatch</span>
+<span class="c-str">order_id</span>: <span class="c-key">"ORD-9821"</span>
+<span class="c-str">pincode</span>: <span class="c-num">502103</span>
+<span class="c-str">cod_amount</span>: ₹<span class="c-num">1840</span>
+
+<span class="c-cmt">// AI scores →</span>
+{
+  <span class="c-str">rto_risk</span>: <span class="c-key">"HIGH"</span>,
+  <span class="c-str">score</span>: <span class="c-num">0.73</span>,
+  <span class="c-str">reason</span>: <span class="c-key">"COD &gt;₹1500,</span>
+<span class="c-key">   new customer,</span>
+<span class="c-key">   rural pincode"</span>
+}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-4" style="margin-top:2rem">
+      <div class="card reveal reveal-delay-1"><div class="card-icon" style="background:rgba(34,197,94,.1)">🧠</div><h4>Address Correction AI</h4><p>Claude Fable 5 + 649K village KB resolves typos, incomplete addresses and non-standard rural descriptions to verified GPS.</p></div>
+      <div class="card reveal reveal-delay-2"><div class="card-icon" style="background:rgba(0,212,255,.1)">🛣️</div><h4>Route Optimisation</h4><p>OSRM on India road network + OR-Tools VRP solver. Reduces daily delivery distance by 23% on 50-stop rural runs.</p></div>
+      <div class="card reveal reveal-delay-3"><div class="card-icon" style="background:rgba(167,139,250,.1)">⚠️</div><h4>Delay Prediction</h4><p>Flags shipments likely to miss SLA 45 minutes in advance — based on traffic, weather, rider history and pincode difficulty.</p></div>
+      <div class="card reveal"><div class="card-icon" style="background:rgba(255,107,53,.1)">🛡️</div><h4>Fraud Detection</h4><p>Detects fake POD, address manipulation, COD misappropriation and repeat-return fraud before remittance.</p></div>
+    </div>
+    <div class="grid-4" style="margin-top:1.25rem">
+      <div class="card reveal"><div class="card-icon" style="background:rgba(251,191,36,.1)">📊</div><h4>Demand Forecasting</h4><p>Predicts shipment volume per hub 7 days ahead. Plan rider headcount and vehicle allocation before the peak hits.</p></div>
+      <div class="card reveal reveal-delay-1"><div class="card-icon" style="background:rgba(34,197,94,.1)">🌐</div><h4>IndicBERT NER</h4><p>Named Entity Recognition for 22 Indian languages — extracts village, mandal, district from Hindi/Telugu/Tamil addresses.</p></div>
+      <div class="card reveal reveal-delay-2"><div class="card-icon" style="background:rgba(0,212,255,.1)">📞</div><h4>Smart IVR</h4><p>Automated voice call in customer's language when delivery is 20 minutes away. No rider needs to dial manually.</p></div>
+      <div class="card reveal reveal-delay-3"><div class="card-icon" style="background:rgba(167,139,250,.1)">🔮</div><h4>NDR Automation</h4><p>When delivery fails, AI predicts best re-attempt time based on customer's location and past behaviour patterns.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET MANAGEMENT -->
+<section id="fleet" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Fleet Management</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start" class="reveal">
+      <div>
+        <h2>Your fleet.<br/><span style="color:var(--orange)">Live. Optimised.<br/>Accountable.</span></h2>
+        <p class="subtext" style="margin:1.25rem 0 1.75rem">From 3-wheeler autos to 20-footer trucks. BiGeo fleet works on any vehicle — real-time GPS, fuel analytics, maintenance alerts and driver scorecards.</p>
+        <div class="feat-list">
+          <div class="feat-item">Live GPS tracking — 10-second location refresh for every vehicle</div>
+          <div class="feat-item">Geofence alerts — know when a rider leaves their assigned zone</div>
+          <div class="feat-item">Fuel consumption per route with mileage anomaly detection</div>
+          <div class="feat-item">Maintenance scheduler — service reminders by km or date</div>
+          <div class="feat-item">Driver scorecard: speed, harsh braking, idle time, on-time %</div>
+          <div class="feat-item">Digital document vault — RC, insurance, PUC, driving licence with expiry alerts</div>
+          <div class="feat-item">Vehicle capacity planning — never send a half-empty truck to a full zone</div>
+          <div class="feat-item">FASTag integration for toll tracking and auto-reconciliation</div>
+          <div class="feat-item">Breakdown SOS — rider alert → dispatch nearest backup in 3 minutes</div>
+        </div>
+      </div>
+      <div>
+        <div class="fleet-map">
+          <div class="fleet-bg"></div>
+          <div class="fleet-grid-lines"></div>
+          <div class="fleet-vehicle" style="top:25%;left:20%"><div class="fleet-pulse"></div><div class="fleet-icon">🛵</div><div class="fleet-tag">TS-09-1234</div></div>
+          <div class="fleet-vehicle" style="top:50%;left:55%"><div class="fleet-pulse" style="animation-delay:.8s;border-color:rgba(0,212,255,.3)"></div><div class="fleet-icon">🚐</div><div class="fleet-tag">TS-11-5678</div></div>
+          <div class="fleet-vehicle" style="top:70%;left:30%"><div class="fleet-pulse" style="animation-delay:1.6s;border-color:rgba(255,107,53,.3)"></div><div class="fleet-icon">🚚</div><div class="fleet-tag">TS-02-9012</div></div>
+          <div class="fleet-vehicle" style="top:35%;left:75%"><div class="fleet-icon">🛵</div><div class="fleet-tag">TS-09-3456</div></div>
+        </div>
+        <div class="grid-3" style="margin-top:1rem">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:var(--green)">24</div>
+            <div style="font-size:.72rem;color:var(--muted)">Active Vehicles</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:var(--cyan)">8.2 km/L</div>
+            <div style="font-size:.72rem;color:var(--muted)">Avg Mileage</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center">
+            <div style="font-size:1.3rem;font-weight:800;color:var(--orange)">94%</div>
+            <div style="font-size:.72rem;color:var(--muted)">On-Time Pickup</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COD & PAYMENTS -->
+<section id="cod" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">COD & Payments</div>
+    <h2 class="reveal" style="margin-bottom:1rem">Cash is still king<br/>in rural India.<br/><span style="color:var(--yellow)">We make it digital.</span></h2>
+    <p class="subtext reveal" style="margin-bottom:2.5rem">55% of rural orders are COD. BiGeo tracks every rupee — from rider collection to merchant remittance — with zero manual reconciliation.</p>
+    <div class="grid-3 reveal">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(251,191,36,.1)">💵</div>
+        <h4>COD Collection</h4>
+        <p>Rider collects cash, scans QR, amount confirmed to merchant and customer instantly. UPI fallback if customer prefers digital.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(34,197,94,.1)">🏦</div>
+        <h4>Automated Remittance</h4>
+        <p>T+1 or T+2 bank transfer to merchant account. No calling the courier to chase money. Auto-deduct COD charges.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(0,212,255,.1)">📋</div>
+        <h4>Dispute Resolution</h4>
+        <p>Customer says delivered, merchant says not paid. Timestamp, GPS photo POD and rider signature resolve it in 24 hours.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(167,139,250,.1)">📊</div>
+        <h4>COD Analytics</h4>
+        <p>Which pincodes have highest COD acceptance? Which products convert from COD to prepaid? Data-driven insights.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(255,107,53,.1)">🔒</div>
+        <h4>Fraud Prevention</h4>
+        <p>AI flags fake delivery attempts, mismatched amounts, unusual remittance patterns before money leaves the system.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(34,197,94,.1)">🧾</div>
+        <h4>GST Invoicing</h4>
+        <p>Auto-generate GST invoices for every shipment. TDS calculation, GSTR-1 ready export, e-way bill integration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RURAL-FIRST -->
+<section id="rural" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Rural-First Features</div>
+    <div class="rural-banner reveal">
+      <div class="rural-inner">
+        <div>
+          <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem)">800M people.<br/>Zero formal addresses.<br/><span style="color:var(--green)">Until BiGeo.</span></h2>
+          <p style="color:var(--muted);margin:1.25rem 0 1.75rem;line-height:1.7">Rural India isn't a last-mile problem. It's a first-mile problem. Nobody has built the address infrastructure layer. We did.</p>
+          <div class="feat-list">
+            <div class="feat-item">Resolve "opp govt school, Narsapur, Medak" to GPS in 1.8 seconds</div>
+            <div class="feat-item">WhatsApp booking in local language — no app install needed</div>
+            <div class="feat-item">Offline delivery app for areas with no 4G</div>
+            <div class="feat-item">Local agent network — neighbours, kirana stores as pickup points</div>
+            <div class="feat-item">Voice instructions for riders who can't read maps</div>
+            <div class="feat-item">Cash-first COD flow — no UPI required from customer</div>
+          </div>
+        </div>
+        <div class="rural-stat-grid">
+          <div class="rural-stat"><div class="rural-stat-n">649K</div><div class="rural-stat-l">Villages indexed</div></div>
+          <div class="rural-stat"><div class="rural-stat-n">1M+</div><div class="rural-stat-l">GPS points loaded</div></div>
+          <div class="rural-stat"><div class="rural-stat-n">91%</div><div class="rural-stat-l">Rural resolution rate</div></div>
+          <div class="rural-stat"><div class="rural-stat-n">27%→8%</div><div class="rural-stat-l">RTO reduction</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP BOOKING -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:3rem" class="reveal">
+      <div>
+        <h3 style="margin-bottom:.75rem">WhatsApp Booking<br/>in <span style="color:var(--green)">Your Customer's Language</span></h3>
+        <p style="color:var(--muted);font-size:.9rem;margin-bottom:1.5rem;line-height:1.7">A farmer in Yellareddyguda books a courier by WhatsApp in Telugu. No app. No form. No English. Works on a ₹5,000 phone with 2G.</p>
+        <div class="feat-list">
+          <div class="feat-item">Available in Telugu, Hindi, Tamil, Kannada, Bengali, Marathi, Odia, Punjabi</div>
+          <div class="feat-item">Address capture via natural language — no structured form</div>
+          <div class="feat-item">Real-time tracking updates over WhatsApp</div>
+          <div class="feat-item">COD confirmation message with UPI QR link</div>
+          <div class="feat-item">Return request via WhatsApp — no IVR needed</div>
+          <div class="feat-item">Delivery feedback in 2-tap emoji survey</div>
+        </div>
+      </div>
+      <div class="wa-shell">
+        <div class="wa-header">
+          <div class="wa-avatar">B</div>
+          <div>
+            <div class="wa-name">BiGeo Delivery</div>
+            <div class="wa-status">● Online</div>
+          </div>
+        </div>
+        <div class="wa-msgs" id="waMsgs">
+          <div class="wa-msg bot">నమస్కారం! BiGeo Delivery కి స్వాగతం. మీరు ఏ సేవ కోసం వచ్చారు?<div class="wa-time">10:14 AM</div><div class="wa-chips"><span class="wa-chip">📦 పార్సెల్ పంపండి</span><span class="wa-chip">📍 ట్రాక్ చేయి</span><span class="wa-chip">↩ రిటర్న్</span></div></div>
+          <div class="wa-msg user">పార్సెల్ పంపండి<div class="wa-time">10:15 AM</div></div>
+          <div class="wa-msg bot">తప్పకుండా! పంపేవారి పేరు మరియు ఊరు చెప్పండి 👇<div class="wa-time">10:15 AM</div></div>
+          <div class="wa-msg user">రాజు, నర్సాపూర్ మెదక్<div class="wa-time">10:16 AM</div></div>
+          <div class="wa-msg bot">✓ రాజు — నర్సాపూర్, మెదక్ (GPS: 17.772°N, 78.299°E)<br/>ఇప్పుడు గమ్యస్థానం చెప్పండి<div class="wa-time">10:16 AM</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGE SUPPORT -->
+<section id="languages" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">22 Indian Languages</div>
+    <h2 class="reveal" style="margin-bottom:.75rem">Speaks India's<br/><span style="color:var(--cyan)">every language</span></h2>
+    <p class="subtext reveal" style="margin-bottom:.25rem">Customer-facing UI, driver app, WhatsApp bot, voice IVR and address parsing — all localised. No English required anywhere in the flow.</p>
+    <div class="lang-grid reveal">
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Telugu</div><div class="lang-native">తెలుగు</div></div></div>
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Hindi</div><div class="lang-native">हिन्दी</div></div></div>
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Tamil</div><div class="lang-native">தமிழ்</div></div></div>
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Kannada</div><div class="lang-native">ಕನ್ನಡ</div></div></div>
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Bengali</div><div class="lang-native">বাংলা</div></div></div>
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Marathi</div><div class="lang-native">मराठी</div></div></div>
+      <div class="lang-card"><div class="lang-flag">🔤</div><div><div class="lang-name">Odia</div><div class="lang-native">ଓଡ଼ିଆ</div></div></div>
+      <div class="lang-card"><div class="lang-flag">+14</div><div><div class="lang-name">14 More</div><div class="lang-native">Punjabi, Gujarati, Malayalam…</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Integrations</div>
+    <h2 class="reveal" style="margin-bottom:.75rem">Plug in to<br/><span style="color:var(--orange)">everything you already use</span></h2>
+    <p class="subtext reveal">BiGeo connects with your existing stack — eCommerce, WMS, ERP, payment gateways — via pre-built connectors or REST API.</p>
+    <div class="integ-grid reveal">
+      <div class="integ-card"><div class="integ-logo" style="background:#96bf48;color:#fff">S</div><div class="integ-name">Shopify</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#7c4dff;color:#fff">W</div><div class="integ-name">WooCommerce</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#ff6900;color:#fff">U</div><div class="integ-name">Unicommerce</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#005baa;color:#fff">S</div><div class="integ-name">SAP</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#1b3d6e;color:#fff">T</div><div class="integ-name">Tally</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#00c4b4;color:#fff">Z</div><div class="integ-name">Zoho</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#f16529;color:#fff">O</div><div class="integ-name">ONDC</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#0a66c2;color:#fff">I</div><div class="integ-name">Increff</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#003087;color:#fff">P</div><div class="integ-name">PayPal</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#072654;color:#fff">R</div><div class="integ-name">Razorpay</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:#25d366;color:#fff">W</div><div class="integ-name">WhatsApp</div></div>
+      <div class="integ-card"><div class="integ-logo" style="background:var(--surface3);color:var(--muted)">+</div><div class="integ-name">REST API</div></div>
+    </div>
+    <div class="api-demo reveal" style="margin-top:2rem">
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><div class="code-dot" style="background:#ff5f56"></div><div class="code-dot" style="background:#ffbd2e"></div><div class="code-dot" style="background:#27c93f"></div></div><div class="code-lang">POST /parse — Address Resolution</div></div>
+        <div class="code-body"><span class="c-key">curl</span> -X POST https://v34s17v3h2.execute-api.<br/>  ap-south-1.amazonaws.com/v1/parse \
+  -H <span class="c-str">'x-api-key: your-key'</span> \
+  -d <span class="c-str">'{"address":"Near water tank,</span>
+<span class="c-str">       Bhoompally, Siddipet, Telangana"}'</span>
+
+<span class="c-cmt">// Response in &lt;2s:</span>
+{
+  <span class="c-str">"village"</span>: <span class="c-key">"Bhoompally"</span>,
+  <span class="c-str">"district"</span>: <span class="c-key">"Siddipet"</span>,
+  <span class="c-str">"pincode"</span>: <span class="c-num">"502103"</span>,
+  <span class="c-str">"lat"</span>: <span class="c-num">18.1032</span>,
+  <span class="c-str">"lng"</span>: <span class="c-num">78.8471</span>,
+  <span class="c-str">"confidence"</span>: <span class="c-num">0.92</span>
+}</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><div class="code-dots"><div class="code-dot" style="background:#ff5f56"></div><div class="code-dot" style="background:#ffbd2e"></div><div class="code-dot" style="background:#27c93f"></div></div><div class="code-lang">POST /parse/bulk — 1000 addresses</div></div>
+        <div class="code-body"><span class="c-key">curl</span> -X POST .../v1/parse/bulk \
+  -H <span class="c-str">'x-api-key: your-key'</span> \
+  -d <span class="c-str">'{"addresses": [</span>
+<span class="c-str">    "Near banyan tree, Yellareddyguda",</span>
+<span class="c-str">    "H.No 3-12, Narsapur, Medak",</span>
+<span class="c-str">    ... up to 1000 addresses</span>
+<span class="c-str">  ]}'</span>
+
+<span class="c-cmt">// Bulk response: array of resolved</span>
+<span class="c-cmt">// GPS points with confidence scores</span>
+<span class="c-cmt">// Quota: 500 calls/month free</span>
+<span class="c-cmt">// Speed: ~2s per 100 addresses</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE & SECURITY -->
+<section id="compliance" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Compliance & Security</div>
+    <h2 class="reveal" style="margin-bottom:.75rem">Built for India's<br/><span style="color:var(--purple)">regulatory landscape</span></h2>
+    <p class="subtext reveal" style="margin-bottom:.25rem">GST, e-way bills, DPDP Act data residency, ONDC network compliance — not bolted on. Built in from day one.</p>
+    <div class="comp-grid reveal">
+      <div class="comp-card c-green">
+        <div class="comp-icon">🧾</div>
+        <div class="comp-title">GST & Tax Compliance</div>
+        <p style="font-size:.82rem;color:var(--muted)">All invoicing, TDS and GSTR filings handled automatically.</p>
+        <div class="comp-items">
+          <div class="comp-item">Auto GST invoice on every shipment</div>
+          <div class="comp-item">GSTR-1 ready export (monthly)</div>
+          <div class="comp-item">e-Way bill auto-generation for goods &gt;₹50K</div>
+          <div class="comp-item">TDS deduction on courier charges</div>
+          <div class="comp-item">HSN code mapping per product category</div>
+        </div>
+      </div>
+      <div class="comp-card c-cyan">
+        <div class="comp-icon">🔐</div>
+        <div class="comp-title">Data Protection (DPDP)</div>
+        <p style="font-size:.82rem;color:var(--muted)">India's Digital Personal Data Protection Act 2023 compliant.</p>
+        <div class="comp-items">
+          <div class="comp-item">Data residency: ap-south-1 only</div>
+          <div class="comp-item">Consent management for customer data</div>
+          <div class="comp-item">Right to erasure API for customer PII</div>
+          <div class="comp-item">90-day log retention (CloudTrail)</div>
+          <div class="comp-item">AES-256 encryption at rest</div>
+        </div>
+      </div>
+      <div class="comp-card c-purple">
+        <div class="comp-icon">🌐</div>
+        <div class="comp-title">ONDC Integration</div>
+        <p style="font-size:.82rem;color:var(--muted)">Certified logistics service provider on the ONDC network.</p>
+        <div class="comp-items">
+          <div class="comp-item">ONDC logistics API v1.2 certified</div>
+          <div class="comp-item">Beckn protocol order flow</div>
+          <div class="comp-item">Auto-accept orders from ONDC buyers</div>
+          <div class="comp-item">Real-time status push to ONDC network</div>
+          <div class="comp-item">Seller-side address enrichment pre-dispatch</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec-grid" style="margin-top:1.5rem" class="reveal">
+      <div class="sec-card reveal"><div class="sec-icon">🛡️</div><div class="sec-title">WAF Protection</div><div class="sec-desc">AWS WAF with OWASP Top 10 rules and rate limiting on all API endpoints</div></div>
+      <div class="sec-card reveal reveal-delay-1"><div class="sec-icon">🔍</div><div class="sec-title">GuardDuty Active</div><div class="sec-desc">AWS GuardDuty threat detection with 15-minute finding frequency</div></div>
+      <div class="sec-card reveal reveal-delay-2"><div class="sec-icon">📋</div><div class="sec-title">CloudTrail Audit</div><div class="sec-desc">Multi-region audit log, 180-day retention, tamper-proof log validation</div></div>
+      <div class="sec-card reveal reveal-delay-3"><div class="sec-icon">🔑</div><div class="sec-title">Secrets Manager</div><div class="sec-desc">Zero secrets in code. All credentials in AWS Secrets Manager with rotation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Pricing</div>
+    <h2 class="reveal" style="margin-bottom:.75rem">Simple. Usage-based.<br/><span style="color:var(--green)">Scales with you.</span></h2>
+    <p class="subtext reveal">Start free. Pay only for what you use. No per-seat, no annual lock-in, no surprise bills.</p>
+    <div class="price-grid reveal">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount">Free<span>/forever</span></div>
+        <div class="price-desc">For developers, early-stage logistics startups and pilot testing.</div>
+        <div class="price-feats">
+          <div class="price-feat">500 address resolutions/month</div>
+          <div class="price-feat">Bulk API (up to 100 addresses/call)</div>
+          <div class="price-feat">REST API access</div>
+          <div class="price-feat">GPS + structured output</div>
+          <div class="price-feat">Community support</div>
+          <div class="price-feat na">Live tracking dashboard</div>
+          <div class="price-feat na">Fleet management</div>
+          <div class="price-feat na">COD reconciliation</div>
+        </div>
+        <a href="/index.html" class="btn btn-ghost" style="width:100%;justify-content:center">Get API Key →</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-rec">Most Popular</div>
+        <div class="price-tier">Growth</div>
+        <div class="price-amount">₹2–5<span>/1000 calls</span></div>
+        <div class="price-desc">For logistics companies doing 1,000–100,000 deliveries/month.</div>
+        <div class="price-feats">
+          <div class="price-feat">Unlimited address resolutions</div>
+          <div class="price-feat">Bulk API (1,000 addresses/call)</div>
+          <div class="price-feat">Live tracking for customers</div>
+          <div class="price-feat">WhatsApp notifications</div>
+          <div class="price-feat">COD reconciliation dashboard</div>
+          <div class="price-feat">RTO prediction per order</div>
+          <div class="price-feat">Fleet GPS (up to 50 vehicles)</div>
+          <div class="price-feat">ONDC integration</div>
+          <div class="price-feat">Dedicated onboarding support</div>
+        </div>
+        <a href="/index.html#contact" class="btn btn-green" style="width:100%;justify-content:center">Talk to Us →</a>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-desc">For large logistics operators, 3PLs and government deployments.</div>
+        <div class="price-feats">
+          <div class="price-feat">Everything in Growth</div>
+          <div class="price-feat">Unlimited fleet vehicles</div>
+          <div class="price-feat">Custom AI model fine-tuning</div>
+          <div class="price-feat">SLA guarantee (99.9% uptime)</div>
+          <div class="price-feat">Dedicated AWS VPC deployment</div>
+          <div class="price-feat">ERP integration (SAP, Tally, Zoho)</div>
+          <div class="price-feat">On-premise deployment option</div>
+          <div class="price-feat">24/7 dedicated support</div>
+          <div class="price-feat">Custom compliance reporting</div>
+        </div>
+        <a href="/index.html#contact" class="btn btn-ghost" style="width:100%;justify-content:center">Contact Sales →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="border-top:1px solid var(--border)">
+  <div class="container" style="max-width:800px">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="reveal" style="margin-bottom:2rem">Common Questions</h2>
+    <div id="faqList" class="reveal">
+      <div class="acc-item"><button class="acc-q" onclick="toggleAcc(this)">What makes BiGeo different from Google Maps or HERE Maps? <span class="acc-icon">+</span></button><div class="acc-body"><p>Google and HERE Maps work great for urban structured addresses. They fail completely on rural unstructured addresses like "near banyan tree, Yellareddyguda" — which is how 800M rural Indians actually describe their location. BiGeo uses Claude AI + a 1M+ rural location knowledge base assembled from PMGSY, LGD and India Post data. We resolve what Google Maps returns "no result" for.</p></div></div>
+      <div class="acc-item"><button class="acc-q" onclick="toggleAcc(this)">How accurate is the address resolution? <span class="acc-icon">+</span></button><div class="acc-body"><p>92% of rural Indian addresses resolve with a confidence score above 0.75. Each response includes a confidence_score (0–1) and a gps_source field so you know exactly how reliable the result is. For the remaining 8%, we return the best available pincode centroid with a lower confidence score — never a silent failure.</p></div></div>
+      <div class="acc-item"><button class="acc-q" onclick="toggleAcc(this)">How does the WhatsApp booking work? <span class="acc-icon">+</span></button><div class="acc-body"><p>Customers or agents send a WhatsApp message to your BiGeo business number in any Indian language. Our IndicBERT NLP model extracts pickup address, delivery address, package description and COD amount from natural conversation. No form, no app, no English required. The booking is created instantly and the customer gets a tracking link.</p></div></div>
+      <div class="acc-item"><button class="acc-q" onclick="toggleAcc(this)">Is BiGeo ONDC compliant? <span class="acc-icon">+</span></button><div class="acc-body"><p>Yes. BiGeo is a certified logistics service provider on the ONDC network, implementing Beckn protocol v1.2. Orders from any ONDC buyer app automatically flow into your BiGeo dashboard. We push real-time status updates back to the ONDC network and handle the address enrichment before dispatch.</p></div></div>
+      <div class="acc-item"><button class="acc-q" onclick="toggleAcc(this)">Where is data stored? Is it DPDP compliant? <span class="acc-icon">+</span></button><div class="acc-body"><p>All data is stored in AWS ap-south-1 (Mumbai) — never leaves India. We comply with India's Digital Personal Data Protection Act 2023: consent management, right-to-erasure API, and 90-day log retention. Customer PII is encrypted at rest with AES-256 and in transit with TLS 1.3.</p></div></div>
+      <div class="acc-item"><button class="acc-q" onclick="toggleAcc(this)">Can I self-host BiGeo? <span class="acc-icon">+</span></button><div class="acc-body"><p>Enterprise customers can request a dedicated VPC deployment or on-premise option for government and banking use cases. Contact us at admin@bigeo.in. The core address resolution API will always remain available as a managed service.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2 style="font-size:clamp(2rem,4vw,3rem)">Ready to deliver<br/>rural India — <span style="color:var(--green)">reliably</span>?</h2>
+      <p>Join logistics companies using BiGeo to reduce rural RTO from 27% to under 8%. Start with 500 free address resolutions. No credit card.</p>
+      <div class="cta-btns">
+        <a href="/index.html" class="btn btn-green" style="font-size:.95rem;padding:.75rem 1.75rem">Get Free API Key →</a>
+        <a href="/index.html#contact" class="btn btn-ghost" style="font-size:.95rem;padding:.75rem 1.75rem">Talk to Us</a>
+      </div>
+      <div style="margin-top:1.75rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap">
+        <span style="font-size:.8rem;color:var(--muted)">✓ No credit card</span>
+        <span style="font-size:.8rem;color:var(--muted)">✓ 500 free API calls</span>
+        <span style="font-size:.8rem;color:var(--muted)">✓ Live in 5 minutes</span>
+        <span style="font-size:.8rem;color:var(--muted)">✓ India data residency</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:.75rem">
+        <div class="logo-mark"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#07090F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        BiGeo
+      </div>
+      <p>Rural India's Logistics OS. AI-powered address intelligence, live tracking, fleet management and COD reconciliation — purpose-built for Bharat.</p>
+      <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+        <span class="badge badge-green">ONDC Ready</span>
+        <span class="badge badge-cyan">DPDP Compliant</span>
+        <span class="badge badge-orange">GST Enabled</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <a href="#tracking">Live Tracking</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#ai">AI Engine</a>
+      <a href="#fleet">Fleet Management</a>
+      <a href="#cod">COD & Payments</a>
+      <a href="#rural">Rural Features</a>
+    </div>
+    <div class="footer-col">
+      <h5>Developers</h5>
+      <a href="/index.html">API Reference</a>
+      <a href="/index.html">Get API Key</a>
+      <a href="/index.html#contact">Bulk Pricing</a>
+      <a href="/index.html">Postman Collection</a>
+      <a href="/index.html">Webhooks</a>
+      <a href="/index.html">Status Page</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="/index.html">About BiGeo</a>
+      <a href="/index.html#contact">Contact Us</a>
+      <a href="mailto:admin@bigeo.in">admin@bigeo.in</a>
+      <a href="/swamy.html">Founder</a>
+      <a href="/bigeo-demo-deck.html">Demo Deck</a>
+    </div>
+  </div>
+  <div class="footer-bottom" style="max-width:1320px;margin:0 auto;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.78rem;color:var(--muted2)">
+    <span>© 2026 BiGeo. Built in Siddipet, Telangana for Rural India.</span>
+    <span>API: v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1 · Demo key: demo-public-readonly</span>
+  </div>
+</footer>
+
+<script>
+// Tab switching
+function switchTab(group, id) {
+  document.querySelectorAll(`[id^="${group}-"]`).forEach(p => p.classList.remove('active'));
+  document.querySelectorAll(`[id^="${group}-"]`).forEach((p,i,all) => {});
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${group}'`)) b.classList.remove('active');
+  });
+  const panel = document.getElementById(`${group}-${id}`);
+  if (panel) panel.classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Accordion
+function toggleAcc(btn) {
+  const item = btn.parentElement;
+  const body = item.querySelector('.acc-body');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.acc-body').style.maxHeight = '0';
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, { threshold: 0.08 });
+reveals.forEach(r => ro.observe(r));
+
+// Animate metric bars on reveal
+const barFills = document.querySelectorAll('.metric-bar-fill');
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.dataset.w + '%';
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+barFills.forEach(b => barObs.observe(b));
+
+// Dashboard bar chart
+(function buildChart() {
+  const chart = document.getElementById('dashChart');
+  if (!chart) return;
+  const data = [
+    {label:'Mon',v:920,c:var_green()},
+    {label:'Tue',v:1080,c:var_green()},
+    {label:'Wed',v:1240,c:var_green()},
+    {label:'Thu',v:1180,c:var_green()},
+    {label:'Fri',v:1320,c:var_green()},
+    {label:'Sat',v:1410,c:var_green()},
+    {label:'Sun',v:1284,c:'#00D4FF'},
+  ];
+  const max = Math.max(...data.map(d => d.v));
+  const chartH = 120;
+  data.forEach(d => {
+    const h = Math.round((d.v / max) * chartH);
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.cssText = `height:${h}px;background:${d.c};opacity:.85;position:relative`;
+    const tip = document.createElement('div');
+    tip.className = 'bar-tip';
+    tip.textContent = d.label;
+    bar.appendChild(tip);
+    chart.appendChild(bar);
+  });
+})();
+function var_green() { return '#22C55E'; }
+
+// WhatsApp auto-typing animation
+setTimeout(() => {
+  const msgs = document.getElementById('waMsgs');
+  if (!msgs) return;
+  const typing = document.createElement('div');
+  typing.className = 'wa-msg bot';
+  typing.innerHTML = '<span style="letter-spacing:.1em">● ● ●</span>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => {
+    typing.innerHTML = 'ఎంత బరువు? ఏ వస్తువు? COD కావాలా? 📦<div class="wa-time">10:17 AM</div><div class="wa-chips"><span class="wa-chip">COD కావాలి</span><span class="wa-chip">Prepaid</span></div>';
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 2000);
+}, 3000);
+
+// Smooth nav active state
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--green)' : '';
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BiGeo — Team & Investor Slides</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090F;--surface:#0D1117;--surface2:#111827;--surface3:#1A2235;
+  --border:#1C2840;--border2:#243352;
+  --text:#F0F4FC;--muted:#8899B4;--muted2:#526080;
+  --green:#22C55E;--cyan:#00D4FF;--orange:#FF6B35;--purple:#A78BFA;--yellow:#FBBF24;--red:#F87171;
+  --font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* SLIDE CONTAINER */
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:5rem 6rem;position:relative;border-bottom:1px solid var(--border);overflow:hidden}
+.slide::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.slide-green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.slide-cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
+.slide-purple::before{background:linear-gradient(90deg,var(--purple),transparent)}
+.slide-orange::before{background:linear-gradient(90deg,var(--orange),transparent)}
+.slide-yellow::before{background:linear-gradient(90deg,var(--yellow),transparent)}
+@media(max-width:900px){.slide{padding:3rem 1.5rem}}
+
+/* LOGO / NAV */
+.slide-logo{position:absolute;top:2rem;left:2.5rem;display:flex;align-items:center;gap:8px;font-weight:800;font-size:.95rem;letter-spacing:-.03em;opacity:.6}
+.logo-mark{width:26px;height:26px;background:var(--green);border-radius:6px;display:grid;place-items:center}
+.logo-mark svg{width:13px;height:13px;fill:none;stroke:#07090F;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.slide-num{position:absolute;top:2rem;right:2.5rem;font-size:.75rem;font-family:var(--mono);color:var(--muted2)}
+
+/* SECTION LABEL */
+.label{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
+.label::before{content:'';width:18px;height:2px;background:var(--green);border-radius:2px}
+.label.cyan{color:var(--cyan)}.label.cyan::before{background:var(--cyan)}
+.label.purple{color:var(--purple)}.label.purple::before{background:var(--purple)}
+.label.orange{color:var(--orange)}.label.orange::before{background:var(--orange)}
+.label.yellow{color:var(--yellow)}.label.yellow::before{background:var(--yellow)}
+
+h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;letter-spacing:-.04em;line-height:1.1;margin-bottom:.5rem}
+.sub{font-size:1rem;color:var(--muted);max-width:620px;line-height:1.7;margin-bottom:2.5rem}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .6rem;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.bg{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.bc{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
+.bp{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.bo{background:rgba(255,107,53,.1);color:var(--orange);border:1px solid rgba(255,107,53,.2)}
+.by{background:rgba(251,191,36,.1);color:var(--yellow);border:1px solid rgba(251,191,36,.2)}
+
+/* ═══════════════════════════════════════════
+   SLIDE 1 — TEAM
+═══════════════════════════════════════════ */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:1rem}
+@media(max-width:1100px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.team-grid{grid-template-columns:1fr}}
+
+.member-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.75rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;transition:border-color .2s,transform .2s}
+.member-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.member-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0}
+.mc-green::before{background:var(--green)}
+.mc-cyan::before{background:var(--cyan)}
+.mc-purple::before{background:var(--purple)}
+.mc-orange::before{background:var(--orange)}
+
+.avatar-wrap{position:relative;margin-bottom:1.25rem}
+.avatar{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--border2)}
+.avatar-ring{position:absolute;inset:-4px;border-radius:50%;border:2px solid transparent}
+.mc-green .avatar-ring{border-color:rgba(34,197,94,.4)}
+.mc-cyan .avatar-ring{border-color:rgba(0,212,255,.4)}
+.mc-purple .avatar-ring{border-color:rgba(167,139,250,.4)}
+.mc-orange .avatar-ring{border-color:rgba(255,107,53,.4)}
+
+.avatar-fallback{width:90px;height:90px;border-radius:50%;display:grid;place-items:center;font-size:2rem;font-weight:800;letter-spacing:-.04em;border:3px solid var(--border2)}
+.af-green{background:linear-gradient(135deg,rgba(34,197,94,.2),rgba(34,197,94,.05));color:var(--green)}
+.af-cyan{background:linear-gradient(135deg,rgba(0,212,255,.2),rgba(0,212,255,.05));color:var(--cyan)}
+.af-purple{background:linear-gradient(135deg,rgba(167,139,250,.2),rgba(167,139,250,.05));color:var(--purple)}
+.af-orange{background:linear-gradient(135deg,rgba(255,107,53,.2),rgba(255,107,53,.05));color:var(--orange)}
+
+.member-name{font-size:1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem}
+.member-eng{font-size:.78rem;color:var(--muted);margin-bottom:.5rem}
+.member-role{font-size:.8rem;font-weight:700;margin-bottom:1rem}
+.mc-green .member-role{color:var(--green)}
+.mc-cyan .member-role{color:var(--cyan)}
+.mc-purple .member-role{color:var(--purple)}
+.mc-orange .member-role{color:var(--orange)}
+
+.member-prev{display:flex;flex-direction:column;gap:.35rem;width:100%;margin-top:.25rem}
+.prev-item{display:flex;align-items:center;gap:.5rem;padding:.35rem .6rem;background:var(--surface2);border-radius:7px;font-size:.72rem;color:var(--muted);text-align:left}
+.prev-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pd-green{background:var(--green)}
+.pd-cyan{background:var(--cyan)}
+.pd-purple{background:var(--purple)}
+.pd-orange{background:var(--orange)}
+
+.member-badges{display:flex;gap:.3rem;flex-wrap:wrap;justify-content:center;margin-top:.75rem}
+
+/* ═══════════════════════════════════════════
+   SLIDE 2 — COMPETITIVE LANDSCAPE
+═══════════════════════════════════════════ */
+.comp-table-wrap{overflow-x:auto;margin-top:1.5rem}
+.comp-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.comp-table th{background:var(--surface2);color:var(--muted);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+.comp-table th:first-child{border-radius:10px 0 0 0}
+.comp-table th:last-child{border-radius:0 10px 0 0}
+.comp-table td{padding:.8rem 1rem;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:middle}
+.comp-table tr:hover td{background:var(--surface2)}
+.comp-table tr.bigeo-row td{background:rgba(34,197,94,.04);color:var(--text);font-weight:600}
+.comp-table .comp-name{font-weight:700;color:var(--text);display:flex;align-items:center;gap:.5rem}
+.comp-table .bigeo-row .comp-name{color:var(--green)}
+.tick{color:var(--green);font-weight:800}
+.cross{color:var(--red)}
+.partial{color:var(--yellow)}
+.comp-badge{font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:4px;background:rgba(34,197,94,.15);color:var(--green);white-space:nowrap}
+
+/* ═══════════════════════════════════════════
+   SLIDE 3 — CUSTOMER PERSONAS
+═══════════════════════════════════════════ */
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.5rem}
+@media(max-width:900px){.persona-grid{grid-template-columns:1fr}}
+.persona-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:border-color .2s}
+.persona-card:hover{border-color:var(--border2)}
+.persona-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;pointer-events:none}
+.pc-green{border-left:3px solid var(--green)}.pc-green::after{background:linear-gradient(transparent,rgba(34,197,94,.04))}
+.pc-cyan{border-left:3px solid var(--cyan)}.pc-cyan::after{background:linear-gradient(transparent,rgba(0,212,255,.04))}
+.pc-purple{border-left:3px solid var(--purple)}.pc-purple::after{background:linear-gradient(transparent,rgba(167,139,250,.04))}
+
+.persona-icon{font-size:2.2rem;margin-bottom:1rem}
+.persona-type{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem}
+.pc-green .persona-type{color:var(--green)}
+.pc-cyan .persona-type{color:var(--cyan)}
+.pc-purple .persona-type{color:var(--purple)}
+.persona-name{font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.2rem}
+.persona-desc{font-size:.8rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.persona-pain{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.15);border-radius:8px;padding:.75rem;margin-bottom:.75rem}
+.persona-pain-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:.35rem}
+.persona-pain p{font-size:.78rem;color:var(--muted);line-height:1.5}
+.persona-win{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:8px;padding:.75rem}
+.persona-win-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:.35rem}
+.persona-win p{font-size:.78rem;color:var(--muted);line-height:1.5}
+.persona-buyers{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.9rem}
+.persona-buyer{font-size:.68rem;background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.2rem .5rem;color:var(--muted2);font-weight:600}
+
+/* ═══════════════════════════════════════════
+   SLIDE 4 — UNIT ECONOMICS
+═══════════════════════════════════════════ */
+.unit-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;margin-top:1.5rem}
+@media(max-width:800px){.unit-grid{grid-template-columns:1fr}}
+.econ-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.econ-header{background:var(--surface2);padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.econ-title{font-size:.82rem;font-weight:700}
+.econ-body{padding:1.5rem}
+.econ-row{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.econ-row:last-child{border-bottom:none;padding-top:.75rem;margin-top:.25rem;font-weight:800;font-size:.95rem}
+.econ-label{color:var(--muted)}
+.econ-val{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.econ-row.total .econ-label{color:var(--text)}
+.econ-row.total .econ-val{color:var(--green)}
+.econ-row.cost .econ-val{color:var(--red)}
+.econ-row.margin .econ-val{color:var(--green)}
+.margin-bar{margin-top:1.25rem}
+.mb-label{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.4rem}
+.mb-label span:first-child{color:var(--muted)}
+.mb-label span:last-child{color:var(--green);font-weight:700;font-family:var(--mono)}
+.mb-track{height:8px;background:var(--border);border-radius:999px;overflow:hidden}
+.mb-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--cyan));width:72%}
+.scale-table{margin-top:1.5rem}
+.scale-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.5rem;padding:.55rem .75rem;font-size:.78rem;border-radius:8px;margin-bottom:.3rem}
+.scale-row.header{background:var(--surface2);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted2)}
+.scale-row.data:nth-child(even){background:var(--surface)}
+.scale-row.data:nth-child(odd){background:rgba(0,0,0,.2)}
+.scale-row .sc-mrr{color:var(--green);font-weight:700;font-family:var(--mono)}
+
+/* ═══════════════════════════════════════════
+   SLIDE 5 — ONDC OPPORTUNITY
+═══════════════════════════════════════════ */
+.ondc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:1.5rem}
+@media(max-width:800px){.ondc-grid{grid-template-columns:1fr}}
+.ondc-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.ondc-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.ondc-stat-n{font-size:1.8rem;font-weight:900;letter-spacing:-.04em}
+.ondc-stat-l{font-size:.72rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
+.ondc-flow{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.ondc-flow-header{background:var(--surface2);padding:.75rem 1.25rem;font-size:.8rem;font-weight:700;border-bottom:1px solid var(--border)}
+.ondc-steps{padding:1.5rem;display:flex;flex-direction:column;gap:0}
+.ondc-step{display:flex;align-items:flex-start;gap:.9rem;padding-bottom:1.5rem;position:relative}
+.ondc-step:last-child{padding-bottom:0}
+.ondc-step::after{content:'';position:absolute;left:15px;top:32px;width:2px;height:calc(100% - 26px);background:var(--border)}
+.ondc-step:last-child::after{display:none}
+.ondc-dot{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;flex-shrink:0;z-index:1}
+.od-green{background:rgba(34,197,94,.15);border:2px solid var(--green);color:var(--green)}
+.od-cyan{background:rgba(0,212,255,.15);border:2px solid var(--cyan);color:var(--cyan)}
+.od-purple{background:rgba(167,139,250,.15);border:2px solid var(--purple);color:var(--purple)}
+.od-orange{background:rgba(255,107,53,.15);border:2px solid var(--orange);color:var(--orange)}
+.ondc-step-title{font-size:.88rem;font-weight:700;margin-bottom:.2rem}
+.ondc-step-desc{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* NAV DOTS */
+.slide-nav{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.5rem;z-index:100}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--border2);cursor:pointer;transition:background .2s,transform .2s}
+.nav-dot:hover,.nav-dot.active{background:var(--green);transform:scale(1.3)}
+@media(max-width:900px){.slide-nav{display:none}}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+.rd1{transition-delay:.08s}.rd2{transition-delay:.16s}.rd3{transition-delay:.24s}.rd4{transition-delay:.32s}
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<div class="slide-nav">
+  <div class="nav-dot active" onclick="goTo(0)" title="Team"></div>
+  <div class="nav-dot" onclick="goTo(1)" title="Competitive"></div>
+  <div class="nav-dot" onclick="goTo(2)" title="Customers"></div>
+  <div class="nav-dot" onclick="goTo(3)" title="Unit Economics"></div>
+  <div class="nav-dot" onclick="goTo(4)" title="ONDC"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 1 — TEAM
+════════════════════════════════════════════ -->
+<section class="slide slide-green" id="s0">
+  <div class="slide-logo"><div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>BiGeo</div>
+  <div class="slide-num">01 / 05</div>
+
+  <div class="label reveal">The Team</div>
+  <h2 class="reveal">Built by people who've<br/>shipped at <span style="color:var(--green)">scale</span></h2>
+  <p class="sub reveal">Engineering, business development and research — from AT&T, Verizon and TSIC. Incubated at IIM Udaipur through MeitY Genesis.</p>
+
+  <div class="team-grid">
+
+    <!-- SWAMY -->
+    <div class="member-card mc-green reveal rd1">
+      <div class="avatar-wrap">
+        <div class="avatar-fallback af-green">JS</div>
+        <div class="avatar-ring"></div>
+      </div>
+      <div class="member-name">Jerra Swamynathan</div>
+      <div class="member-eng">Mechanical Engineer</div>
+      <div class="member-role">Founder & CEO</div>
+      <div class="member-prev">
+        <div class="prev-item"><span class="prev-dot pd-green"></span>Ex TSIC — Telangana State Innovation Cell</div>
+        <div class="prev-item"><span class="prev-dot pd-green"></span>Mercedes-Benz BeVisioneers Fellow</div>
+        <div class="prev-item"><span class="prev-dot pd-green"></span>Perplexity AI contributor</div>
+        <div class="prev-item"><span class="prev-dot pd-green"></span>BITS Pilani · IIM Udaipur</div>
+      </div>
+      <div class="member-badges" style="margin-top:.9rem">
+        <span class="badge bg">Founder</span>
+        <span class="badge bg">MeitY Genesis</span>
+      </div>
+    </div>
+
+    <!-- SAI SMARAN -->
+    <div class="member-card mc-cyan reveal rd2">
+      <div class="avatar-wrap">
+        <div class="avatar-fallback af-cyan">NS</div>
+        <div class="avatar-ring"></div>
+      </div>
+      <div class="member-name">Nalla Sai Smaran</div>
+      <div class="member-eng">CSE Engineer</div>
+      <div class="member-role">Co-founder & BDE</div>
+      <div class="member-prev">
+        <div class="prev-item"><span class="prev-dot pd-cyan"></span>Ex AT&T — Business Development</div>
+        <div class="prev-item"><span class="prev-dot pd-cyan"></span>Enterprise sales & partnerships</div>
+        <div class="prev-item"><span class="prev-dot pd-cyan"></span>Logistics & telecom sector focus</div>
+      </div>
+      <div class="member-badges" style="margin-top:.9rem">
+        <span class="badge bc">Co-founder</span>
+        <span class="badge bc">Ex AT&T</span>
+      </div>
+    </div>
+
+    <!-- AKHIL -->
+    <div class="member-card mc-purple reveal rd3">
+      <div class="avatar-wrap">
+        <div class="avatar-fallback af-purple">MA</div>
+        <div class="avatar-ring"></div>
+      </div>
+      <div class="member-name">Modumpuram Akhil</div>
+      <div class="member-eng">Electronics Engineer · Law Student</div>
+      <div class="member-role">Business Development</div>
+      <div class="member-prev">
+        <div class="prev-item"><span class="prev-dot pd-purple"></span>Electronics Engineering background</div>
+        <div class="prev-item"><span class="prev-dot pd-purple"></span>Pursuing Law — regulatory & compliance</div>
+        <div class="prev-item"><span class="prev-dot pd-purple"></span>B2B partnerships & GTM strategy</div>
+      </div>
+      <div class="member-badges" style="margin-top:.9rem">
+        <span class="badge bp">BDE</span>
+        <span class="badge bp">Legal</span>
+      </div>
+    </div>
+
+    <!-- SHANMUKHA -->
+    <div class="member-card mc-orange reveal rd4">
+      <div class="avatar-wrap">
+        <div class="avatar-fallback af-orange">SY</div>
+        <div class="avatar-ring"></div>
+      </div>
+      <div class="member-name">Shanmukha Yenduri</div>
+      <div class="member-eng">Software Developer</div>
+      <div class="member-role">Software Engineer</div>
+      <div class="member-prev">
+        <div class="prev-item"><span class="prev-dot pd-orange"></span>SDE at Verizon</div>
+        <div class="prev-item"><span class="prev-dot pd-orange"></span>Large-scale distributed systems</div>
+        <div class="prev-item"><span class="prev-dot pd-orange"></span>API design & backend infrastructure</div>
+      </div>
+      <div class="member-badges" style="margin-top:.9rem">
+        <span class="badge bo">Engineering</span>
+        <span class="badge bo">Ex Verizon</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 2 — COMPETITIVE LANDSCAPE
+════════════════════════════════════════════ -->
+<section class="slide slide-cyan" id="s1">
+  <div class="slide-logo"><div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>BiGeo</div>
+  <div class="slide-num">02 / 05</div>
+
+  <div class="label cyan reveal">Competitive Landscape</div>
+  <h2 class="reveal">Nobody has cracked<br/><span style="color:var(--cyan)">rural India</span> at API quality</h2>
+  <p class="sub reveal">Every major geocoder fails the same way — great for MG Road, useless for "near banyan tree, Yellareddyguda".</p>
+
+  <div class="comp-table-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Urban Accuracy</th>
+          <th>Rural Structured</th>
+          <th>Rural Unstructured</th>
+          <th>22 Indian Languages</th>
+          <th>API-Ready</th>
+          <th>India Data Residency</th>
+          <th>Price/1K calls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bigeo-row">
+          <td><div class="comp-name">🟢 BiGeo <span class="comp-badge">US</span></div></td>
+          <td class="tick">✓</td>
+          <td class="tick">✓</td>
+          <td class="tick">✓ <small style="color:var(--green);font-size:.7rem">92%</small></td>
+          <td class="tick">✓ 22 langs</td>
+          <td class="tick">✓ &lt;2s</td>
+          <td class="tick">✓ ap-south-1</td>
+          <td style="color:var(--green);font-family:var(--mono)">₹2–5</td>
+        </tr>
+        <tr>
+          <td><div class="comp-name">Google Maps</div></td>
+          <td class="tick">✓</td>
+          <td class="tick">✓</td>
+          <td class="cross">✗ Fails</td>
+          <td class="partial">⚠ Limited</td>
+          <td class="tick">✓</td>
+          <td class="cross">✗ US servers</td>
+          <td style="font-family:var(--mono);color:var(--muted)">$5</td>
+        </tr>
+        <tr>
+          <td><div class="comp-name">HERE Maps</div></td>
+          <td class="tick">✓</td>
+          <td class="partial">⚠ Partial</td>
+          <td class="cross">✗ Fails</td>
+          <td class="cross">✗</td>
+          <td class="tick">✓</td>
+          <td class="cross">✗ EU servers</td>
+          <td style="font-family:var(--mono);color:var(--muted)">$4</td>
+        </tr>
+        <tr>
+          <td><div class="comp-name">MapMyIndia</div></td>
+          <td class="tick">✓</td>
+          <td class="partial">⚠ Partial</td>
+          <td class="cross">✗ Fails</td>
+          <td class="cross">✗</td>
+          <td class="partial">⚠ Basic API</td>
+          <td class="tick">✓ India</td>
+          <td style="font-family:var(--mono);color:var(--muted)">₹8–12</td>
+        </tr>
+        <tr>
+          <td><div class="comp-name">India Post</div></td>
+          <td class="tick">✓</td>
+          <td class="tick">✓</td>
+          <td class="cross">✗ Fails</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗ No API</td>
+          <td class="tick">✓ India</td>
+          <td style="font-family:var(--mono);color:var(--muted)">N/A</td>
+        </tr>
+        <tr>
+          <td><div class="comp-name">Nominatim (OSM)</div></td>
+          <td class="partial">⚠ OK</td>
+          <td class="partial">⚠ Partial</td>
+          <td class="cross">✗ Fails</td>
+          <td class="cross">✗</td>
+          <td class="tick">✓ Self-host</td>
+          <td class="tick">✓ Self-host</td>
+          <td style="font-family:var(--mono);color:var(--muted)">Free*</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="margin-top:1.25rem;display:flex;gap:.75rem;flex-wrap:wrap" class="reveal">
+    <span class="badge bg">Only API resolving unstructured rural addresses</span>
+    <span class="badge bc">Only provider with 22 Indian language NER</span>
+    <span class="badge bp">Only geocoder with India gov data moat (PMGSY + LGD + India Post)</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 3 — CUSTOMER PERSONAS
+════════════════════════════════════════════ -->
+<section class="slide slide-purple" id="s2">
+  <div class="slide-logo"><div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>BiGeo</div>
+  <div class="slide-num">03 / 05</div>
+
+  <div class="label purple reveal">Customer Personas</div>
+  <h2 class="reveal">Three buyers.<br/><span style="color:var(--purple)">Same pain.</span> One API.</h2>
+  <p class="sub reveal">Every customer loses money because of unresolvable rural addresses. BiGeo fixes it at the API layer for all of them.</p>
+
+  <div class="persona-grid">
+
+    <div class="persona-card pc-green reveal rd1">
+      <div class="persona-icon">🚚</div>
+      <div class="persona-type">E-Commerce & Logistics</div>
+      <div class="persona-name">The Logistics Operator</div>
+      <div class="persona-desc">Delhivery, Shadowfax, Porter, Meesho sellers, ONDC merchants doing rural COD delivery at scale.</div>
+      <div class="persona-pain">
+        <div class="persona-pain-label">Their Pain</div>
+        <p>27% RTO rate on rural orders. ₹180 wasted per failed delivery. Call centres overwhelmed with "cannot find address" tickets.</p>
+      </div>
+      <div class="persona-win">
+        <div class="persona-win-label">BiGeo Win</div>
+        <p>Pre-validate every address before dispatch. RTO drops from 27% to under 8%. ₹180 × 10,000 deliveries = ₹18L saved monthly.</p>
+      </div>
+      <div class="persona-buyers">
+        <span class="persona-buyer">Delhivery</span>
+        <span class="persona-buyer">Shadowfax</span>
+        <span class="persona-buyer">Porter</span>
+        <span class="persona-buyer">Ecom Express</span>
+        <span class="persona-buyer">ONDC LSPs</span>
+      </div>
+    </div>
+
+    <div class="persona-card pc-cyan reveal rd2">
+      <div class="persona-icon">🏦</div>
+      <div class="persona-type">Rural Fintech & Banking</div>
+      <div class="persona-name">The Rural Lender</div>
+      <div class="persona-desc">Aye Finance, Spice Money, Avail Finance, MFIs doing KYC, loan disbursement and insurance in Tier 3/4 markets.</div>
+      <div class="persona-pain">
+        <div class="persona-pain-label">Their Pain</div>
+        <p>KYC address verification fails for 40%+ of rural applicants. Field agents spend 3 hours locating first-time borrowers. Fraud risk from unverifiable addresses.</p>
+      </div>
+      <div class="persona-win">
+        <div class="persona-win-label">BiGeo Win</div>
+        <p>Verify any rural address to GPS in &lt;2s during KYC. Field agent gets exact coordinates before the visit. Fraud risk drops with GPS-stamped address verification.</p>
+      </div>
+      <div class="persona-buyers">
+        <span class="persona-buyer">Aye Finance</span>
+        <span class="persona-buyer">Spice Money</span>
+        <span class="persona-buyer">Avail Finance</span>
+        <span class="persona-buyer">Rural MFIs</span>
+      </div>
+    </div>
+
+    <div class="persona-card pc-purple reveal rd3">
+      <div class="persona-icon">🏛️</div>
+      <div class="persona-type">Government & Public Services</div>
+      <div class="persona-name">The eGovernance Vendor</div>
+      <div class="persona-desc">State NIC offices, CSC centres, eGovernance software vendors geocoding beneficiaries for PM-KISAN, PM Awas Yojana, ration cards.</div>
+      <div class="persona-pain">
+        <div class="persona-pain-label">Their Pain</div>
+        <p>PM-KISAN has 110M farmer beneficiaries — most with unstructured addresses. Subsidy leakage due to unverifiable locations. Manual field verification costs crores.</p>
+      </div>
+      <div class="persona-win">
+        <div class="persona-win-label">BiGeo Win</div>
+        <p>Bulk geocode beneficiary lists at ₹2–5/1000 calls. GPS-stamp every PM-KISAN, PM Awas or ration card record. Audit trail with confidence scores.</p>
+      </div>
+      <div class="persona-buyers">
+        <span class="persona-buyer">State NIC</span>
+        <span class="persona-buyer">CSC Centres</span>
+        <span class="persona-buyer">NIC eGov</span>
+        <span class="persona-buyer">DigiLocker ISPs</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 4 — UNIT ECONOMICS
+════════════════════════════════════════════ -->
+<section class="slide slide-orange" id="s3">
+  <div class="slide-logo"><div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>BiGeo</div>
+  <div class="slide-num">04 / 05</div>
+
+  <div class="label orange reveal">Unit Economics</div>
+  <h2 class="reveal">High margin.<br/><span style="color:var(--orange)">Scales without headcount.</span></h2>
+  <p class="sub reveal">API business with government data moat. Cost per call drops as volume grows. No physical assets, no inventory, no field ops.</p>
+
+  <div class="unit-grid">
+    <div>
+      <div class="econ-card reveal">
+        <div class="econ-header">
+          <div class="econ-title">Per 1,000 API Calls</div>
+          <span class="badge bo">Growth Plan</span>
+        </div>
+        <div class="econ-body">
+          <div class="econ-row">
+            <span class="econ-label">Revenue (₹3/1000 calls)</span>
+            <span class="econ-val" style="color:var(--text)">₹3.00</span>
+          </div>
+          <div class="econ-row cost">
+            <span class="econ-label">AWS Bedrock (Claude Fable 5)</span>
+            <span class="econ-val">−₹0.42</span>
+          </div>
+          <div class="econ-row cost">
+            <span class="econ-label">HERE Maps API</span>
+            <span class="econ-val">−₹0.28</span>
+          </div>
+          <div class="econ-row cost">
+            <span class="econ-label">AWS Lambda + API GW</span>
+            <span class="econ-val">−₹0.08</span>
+          </div>
+          <div class="econ-row cost">
+            <span class="econ-label">DynamoDB reads</span>
+            <span class="econ-val">−₹0.06</span>
+          </div>
+          <div class="econ-row total">
+            <span class="econ-label">Gross Profit</span>
+            <span class="econ-val">₹2.16</span>
+          </div>
+          <div class="margin-bar">
+            <div class="mb-label"><span>Gross Margin</span><span>72%</span></div>
+            <div class="mb-track"><div class="mb-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="label orange reveal" style="font-size:.68rem;margin-bottom:.75rem">Revenue Scale Model</div>
+      <div class="scale-table reveal">
+        <div class="scale-row header">
+          <span>Customers</span>
+          <span>Calls/mo</span>
+          <span>MRR</span>
+          <span>Gross Profit</span>
+        </div>
+        <div class="scale-row data">
+          <span>1</span>
+          <span style="font-family:var(--mono)">1M</span>
+          <span class="sc-mrr">₹3,000</span>
+          <span style="color:var(--green);font-family:var(--mono)">₹2,160</span>
+        </div>
+        <div class="scale-row data">
+          <span>5</span>
+          <span style="font-family:var(--mono)">5M</span>
+          <span class="sc-mrr">₹15,000</span>
+          <span style="color:var(--green);font-family:var(--mono)">₹10,800</span>
+        </div>
+        <div class="scale-row data">
+          <span>20</span>
+          <span style="font-family:var(--mono)">20M</span>
+          <span class="sc-mrr">₹60,000</span>
+          <span style="color:var(--green);font-family:var(--mono)">₹43,200</span>
+        </div>
+        <div class="scale-row data">
+          <span>100</span>
+          <span style="font-family:var(--mono)">100M</span>
+          <span class="sc-mrr">₹3,00,000</span>
+          <span style="color:var(--green);font-family:var(--mono)">₹2,16,000</span>
+        </div>
+        <div class="scale-row data" style="border-top:1px solid var(--border)">
+          <span>500</span>
+          <span style="font-family:var(--mono)">500M</span>
+          <span class="sc-mrr">₹15,00,000</span>
+          <span style="color:var(--green);font-family:var(--mono)">₹10,80,000</span>
+        </div>
+      </div>
+      <div style="margin-top:1.25rem;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.8rem;color:var(--muted);line-height:1.6" class="reveal">
+        <strong style="color:var(--orange)">Revenue expansion levers:</strong><br/>
+        API calls → + SaaS dashboard fee (Merchant/Carrier/Hub portals) → + COD reconciliation fee (0.5% of COD value) → + Data licensing (pincode intelligence reports to logistics companies)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE 5 — ONDC OPPORTUNITY
+════════════════════════════════════════════ -->
+<section class="slide slide-yellow" id="s4">
+  <div class="slide-logo"><div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>BiGeo</div>
+  <div class="slide-num">05 / 05</div>
+
+  <div class="label yellow reveal">ONDC Opportunity</div>
+  <h2 class="reveal">ONDC is mandating<br/>rural expansion.<br/><span style="color:var(--yellow)">BiGeo is the missing piece.</span></h2>
+
+  <div class="ondc-grid">
+    <div>
+      <div class="ondc-stat-grid reveal">
+        <div class="ondc-stat">
+          <div class="ondc-stat-n" style="color:var(--yellow)">7M+</div>
+          <div class="ondc-stat-l">ONDC transactions/month (2024)</div>
+        </div>
+        <div class="ondc-stat">
+          <div class="ondc-stat-n" style="color:var(--green)">800M</div>
+          <div class="ondc-stat-l">Rural Indians ONDC wants to reach</div>
+        </div>
+        <div class="ondc-stat">
+          <div class="ondc-stat-n" style="color:var(--cyan)">0%</div>
+          <div class="ondc-stat-l">Rural addresses resolvable today</div>
+        </div>
+        <div class="ondc-stat">
+          <div class="ondc-stat-n" style="color:var(--orange)">₹2,800 Cr</div>
+          <div class="ondc-stat-l">Annual rural RTO waste blocked by this</div>
+        </div>
+      </div>
+      <div style="padding:1.25rem;background:var(--surface);border:1px solid rgba(251,191,36,.2);border-radius:12px;font-size:.85rem;line-height:1.7;color:var(--muted)" class="reveal">
+        <strong style="color:var(--yellow)">The mandate:</strong> ONDC's Phase 3 rural expansion requires all logistics service providers (LSPs) on the network to handle Tier 3/4 addresses. This makes rural address resolution a <strong style="color:var(--text)">compliance requirement</strong>, not a nice-to-have. Every LSP on ONDC needs BiGeo or something like it — and nothing like it exists.
+      </div>
+    </div>
+    <div>
+      <div class="ondc-flow reveal">
+        <div class="ondc-flow-header">How BiGeo fits into ONDC</div>
+        <div class="ondc-steps">
+          <div class="ondc-step">
+            <div class="ondc-dot od-green">1</div>
+            <div>
+              <div class="ondc-step-title">Buyer places order on ONDC app</div>
+              <div class="ondc-step-desc">Types address in local language — "నీటి ట్యాంక్ దగ్గర, భూంపల్లి, సిద్దిపేట"</div>
+            </div>
+          </div>
+          <div class="ondc-step">
+            <div class="ondc-dot od-cyan">2</div>
+            <div>
+              <div class="ondc-step-title">BiGeo API resolves address</div>
+              <div class="ondc-step-desc">IndicBERT NER → Fable 5 → HERE Maps → returns lat: 18.103, lng: 78.847, confidence: 0.92</div>
+            </div>
+          </div>
+          <div class="ondc-step">
+            <div class="ondc-dot od-purple">3</div>
+            <div>
+              <div class="ondc-step-title">LSP accepts & routes the order</div>
+              <div class="ondc-step-desc">Carrier gets verified GPS, OSRM optimises route, rider navigates precisely — not by guesswork</div>
+            </div>
+          </div>
+          <div class="ondc-step">
+            <div class="ondc-dot od-orange">4</div>
+            <div>
+              <div class="ondc-step-title">Delivered. Status pushed to ONDC.</div>
+              <div class="ondc-step-desc">RTO drops from 27% → 8%. Merchant, buyer and ONDC network all get real-time status via Beckn protocol</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target)} }), {threshold:0.07});
+reveals.forEach(r => ro.observe(r));
+
+// Nav dots
+const slides = document.querySelectorAll('section[id]');
+const dots = document.querySelectorAll('.nav-dot');
+function goTo(i){ slides[i].scrollIntoView({behavior:'smooth'}) }
+window.addEventListener('scroll', () => {
+  let cur = 0;
+  slides.forEach((s,i) => { if(window.scrollY >= s.offsetTop - window.innerHeight/2) cur = i; });
+  dots.forEach((d,i) => d.classList.toggle('active', i===cur));
+}, {passive:true});
+</script>
+</body>
+</html>

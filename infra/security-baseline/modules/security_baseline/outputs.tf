@@ -1,0 +1,12 @@
+output "cloudtrail_arn"          { value = aws_cloudtrail.main.arn }
+output "guardduty_detector_id"   { value = aws_guardduty_detector.main.id }
+output "security_hub_arn"        { value = aws_securityhub_account.main.id }
+output "waf_acl_arn"             { value = aws_wafv2_web_acl.main.arn }
+output "sns_alert_topic_arn"     { value = aws_sns_topic.security_alerts.arn }
+output "break_glass_role_arn"    { value = aws_iam_role.break_glass_admin.arn }
+output "security_auditor_role_arn" { value = aws_iam_role.security_auditor.arn }
+output "developer_role_arn"      { value = aws_iam_role.developer.arn }
+output "dashboard_name"          { value = aws_cloudwatch_dashboard.security.dashboard_name }
+output "cloudtrail_bucket"       { value = aws_s3_bucket.cloudtrail.bucket }
+output "kms_cloudtrail_arn"      { value = aws_kms_key.cloudtrail.arn }
+output "kms_sns_arn"             { value = aws_kms_key.sns.arn }

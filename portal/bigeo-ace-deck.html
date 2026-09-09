@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BiGeo — ACE $100K Cohort Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --accent:#ff4000;--accent2:#e03800;
+  --bg:#ffffff;--surface:#f6f6ef;--surface2:#eeeeea;
+  --border:#e0e0d8;--text:#1a1a1a;--muted:#6b6b6b;
+  --green:#2d7a2d;--blue:#0066cc;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+body{background:#f0f0eb;font-family:var(--font);overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.deck-wrap{position:relative;width:min(100vw,177.78vh);height:min(56.25vw,100vh);background:var(--bg);box-shadow:0 32px 80px rgba(0,0,0,0.18)}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:5% 7%;opacity:0;visibility:hidden;transition:opacity .35s ease;background:var(--bg);overflow:hidden}
+.slide.active{opacity:1;visibility:visible}
+
+/* PROGRESS */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);transition:width .3s;z-index:100}
+.nav{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;z-index:100;background:rgba(255,255,255,0.92);border:1px solid var(--border);border-radius:100px;padding:8px 20px;backdrop-filter:blur(8px)}
+.nav button{background:none;border:none;color:var(--text);font-size:18px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .15s}
+.nav button:hover{background:var(--surface)}
+.nav-counter{font-size:13px;font-weight:600;color:var(--muted);font-family:var(--mono);min-width:48px;text-align:center}
+.slide-label{position:absolute;top:28px;right:36px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);opacity:.5}
+
+/* SHARED */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid rgba(255,64,0,.25);color:var(--accent);background:rgba(255,64,0,.06);margin-bottom:20px}
+.chip-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.big-head{font-size:clamp(28px,4.5vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1.05;color:var(--text);text-align:center}
+.accent{color:var(--accent)}
+.sub{font-size:clamp(13px,1.6vw,18px);color:var(--muted);line-height:1.7;text-align:center;max-width:72%}
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:22px 24px;transition:border-color .2s}
+.tag{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;display:block}
+.live-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.06em;background:rgba(45,122,45,.09);color:var(--green);border:1px solid rgba(45,122,45,.2)}
+.live-badge::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 1.5s infinite}
+
+/* ── SLIDE 1: TITLE ── */
+.s1-logo{width:56px;height:56px;background:var(--accent);border-radius:14px;display:grid;place-items:center;margin:0 auto 20px}
+.s1-logo svg{width:28px;height:28px}
+.s1-name{font-size:clamp(52px,8vw,96px);font-weight:900;letter-spacing:-.04em;color:var(--text);line-height:1}
+.s1-tagline{font-size:clamp(16px,2.2vw,24px);font-weight:600;color:var(--accent);margin:10px 0 6px}
+.s1-one{font-size:clamp(13px,1.5vw,17px);color:var(--muted);max-width:580px;text-align:center;line-height:1.6}
+.s1-stats{display:flex;gap:32px;margin-top:32px}
+.s1-stat{text-align:center}
+.s1-stat-n{font-size:clamp(20px,2.5vw,28px);font-weight:800;color:var(--text)}
+.s1-stat-l{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.s1-stat-div{width:1px;height:40px;background:var(--border);align-self:center}
+.s1-founder{position:absolute;bottom:28px;right:36px;text-align:right;font-size:12px;color:var(--muted)}
+.s1-founder strong{color:var(--text)}
+
+/* ── SLIDE 2: PROBLEM ── */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;margin:24px 0}
+.prob-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:24px 20px;text-align:center;position:relative;overflow:hidden}
+.prob-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.prob-num{font-size:clamp(32px,5vw,52px);font-weight:900;color:var(--accent);letter-spacing:-.04em;display:block;margin-bottom:6px}
+.prob-desc{font-size:clamp(11px,1.2vw,14px);color:var(--muted);line-height:1.55}
+.prob-quote{background:#fff8f6;border:1.5px solid rgba(255,64,0,.18);border-radius:12px;padding:16px 22px;margin-top:16px;font-style:italic;font-size:clamp(11px,1.3vw,14px);color:var(--muted);width:100%;text-align:center}
+.prob-quote strong{color:var(--text);font-style:normal}
+.prob-foot{font-size:clamp(11px,1.2vw,13px);color:var(--muted);margin-top:12px;text-align:center}
+
+/* ── SLIDE 3: COMPETITORS ── */
+.comp-table{width:100%;border-collapse:collapse;margin-top:20px}
+.comp-table th{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:10px 14px;text-align:center;border-bottom:2px solid var(--border)}
+.comp-table th:first-child{text-align:left}
+.comp-table td{padding:12px 14px;text-align:center;font-size:clamp(13px,1.5vw,15px);border-bottom:1px solid var(--border);color:var(--text)}
+.comp-table td:first-child{text-align:left;font-weight:700}
+.comp-table tr:last-child td{border-bottom:none}
+.comp-table tbody tr:hover td{background:var(--surface)}
+.comp-table .bigeo-row td{background:rgba(255,64,0,.05);font-weight:800}
+.comp-table .bigeo-row td:first-child{color:var(--accent)}
+.comp-foot{font-size:clamp(11px,1.3vw,14px);color:var(--text);font-weight:700;margin-top:20px;text-align:center;padding:12px 20px;background:rgba(255,64,0,.06);border:1.5px solid rgba(255,64,0,.2);border-radius:10px}
+
+/* ── SLIDE 4: SOLUTION ── */
+.sol-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;margin-top:20px;align-items:start}
+.sol-input,.sol-output{background:#111827;border-radius:14px;padding:18px 20px;font-family:var(--mono);font-size:clamp(10px,1.1vw,13px);line-height:1.8;overflow:hidden}
+.sol-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #2d3748}
+.sol-method{color:#7ec8f4}.sol-path{color:#fca47a}.sol-str{color:#a8d8a8}.sol-key{color:#7ec8f4}.sol-val{color:#c8e6ff}.sol-num{color:#fca47a}.sol-good{color:#7ec87e}
+.sol-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--accent);font-weight:900}
+.sol-sub{font-size:clamp(12px,1.4vw,15px);color:var(--muted);text-align:center;margin-top:14px}
+.sol-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,64,0,.08);border:1.5px solid rgba(255,64,0,.2);border-radius:100px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--accent);margin-top:8px}
+
+/* ── SLIDE 5: HOW IT WORKS ── */
+.pipeline{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr 28px 1fr;gap:0;width:100%;align-items:center;margin-top:20px}
+.pipe-node{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center}
+.pipe-num{width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-size:13px;font-weight:800;display:grid;place-items:center;margin:0 auto 10px}
+.pipe-title{font-size:clamp(10px,1.1vw,13px);font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-.01em}
+.pipe-desc{font-size:clamp(9px,.9vw,11px);color:var(--muted);line-height:1.5}
+.pipe-arr{text-align:center;color:var(--accent);font-size:20px;font-weight:800}
+.pipe-badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border-radius:100px;padding:7px 18px;font-size:clamp(11px,1.2vw,13px);font-weight:700;margin-top:20px}
+
+/* ── SLIDE 6: PRODUCTS ── */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;margin-top:20px}
+.prod-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.prod-card.fl{border-color:rgba(255,64,0,.3);background:linear-gradient(135deg,rgba(255,64,0,.04),var(--surface))}
+.prod-icon{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;margin-bottom:12px}
+.prod-icon svg{width:22px;height:22px;fill:none;stroke-width:2;stroke-linecap:round}
+.prod-name{font-size:clamp(13px,1.4vw,16px);font-weight:800;color:var(--text);margin-bottom:4px}
+.prod-ep{font-family:var(--mono);font-size:10px;color:var(--accent);font-weight:600;margin-bottom:8px;display:block}
+.prod-desc{font-size:clamp(10px,1vw,12px);color:var(--muted);line-height:1.55}
+
+/* ── SLIDE 7: DATA MOAT ── */
+.moat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;width:100%;margin-top:20px}
+.moat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 12px;text-align:center}
+.moat-num{font-size:clamp(18px,2.2vw,26px);font-weight:900;color:var(--accent);display:block;margin-bottom:4px;letter-spacing:-.03em}
+.moat-src{font-size:clamp(9px,.9vw,11px);font-weight:700;color:var(--text);margin-bottom:4px}
+.moat-desc{font-size:clamp(8px,.8vw,10px);color:var(--muted);line-height:1.5}
+.moat-foot{font-size:clamp(10px,1.1vw,13px);color:var(--text);font-weight:700;text-align:center;margin-top:16px;padding:10px 20px;background:rgba(255,64,0,.05);border:1.5px solid rgba(255,64,0,.18);border-radius:9px}
+
+/* ── SLIDE 8: MARKET ── */
+.mkt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;margin:18px 0}
+.mkt-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.mkt-card::before{content:'';position:absolute;top:0;left:0;width:4px;top:0;bottom:0;border-radius:4px 0 0 4px}
+.mkt-card.c1::before{background:var(--accent)}
+.mkt-card.c2::before{background:var(--blue)}
+.mkt-card.c3::before{background:var(--green)}
+.mkt-name{font-size:clamp(11px,1.2vw,14px);font-weight:800;color:var(--text);margin-bottom:6px}
+.mkt-val{font-size:clamp(10px,1vw,12px);color:var(--muted);line-height:1.55;margin-bottom:8px}
+.mkt-who{font-size:clamp(9px,.9vw,11px);font-weight:600;color:var(--muted);font-family:var(--mono)}
+.mkt-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.mkt-num-card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.mkt-big{font-size:clamp(16px,2vw,22px);font-weight:900;color:var(--text);display:block;margin-bottom:2px}
+.mkt-small{font-size:clamp(9px,.9vw,11px);color:var(--muted);line-height:1.4}
+
+/* ── SLIDE 9: TRACTION ── */
+.trac-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%;margin-top:20px}
+.trac-col h3{font-size:clamp(11px,1.2vw,14px);font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.trac-col.done h3{color:var(--green)}
+.trac-col.next h3{color:var(--accent)}
+.trac-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:clamp(10px,1.1vw,13px);color:var(--text);line-height:1.5}
+.trac-icon{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:10px;margin-top:1px}
+.trac-icon.ok{background:rgba(45,122,45,.1);color:var(--green)}
+.trac-icon.go{background:rgba(255,64,0,.1);color:var(--accent)}
+
+/* ── SLIDE 10: ASK ── */
+.ask-amount{font-size:clamp(48px,8vw,88px);font-weight:900;color:var(--accent);letter-spacing:-.04em;line-height:1;margin:12px 0}
+.ask-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;margin:20px 0}
+.ask-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px;text-align:center}
+.ask-cat{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.ask-val{font-size:clamp(12px,1.3vw,15px);color:var(--text);line-height:1.55}
+.ask-why{background:rgba(255,64,0,.05);border:1.5px solid rgba(255,64,0,.18);border-radius:12px;padding:16px 22px;font-size:clamp(11px,1.2vw,14px);color:var(--text);line-height:1.65;text-align:center;width:100%}
+.ask-contact{display:flex;gap:14px;margin-top:14px}
+.ask-cta{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--accent);color:#fff;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none}
+.ask-email{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:transparent;color:var(--text);border:1.5px solid var(--border);border-radius:8px;font-weight:600;font-size:13px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .s1-stats{gap:16px}.prob-grid{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr;grid-template-rows:auto}
+  .pipe-arr{transform:rotate(90deg)}.prod-grid{grid-template-columns:1fr}.moat-grid{grid-template-columns:repeat(2,1fr)}
+  .mkt-grid{grid-template-columns:1fr}.trac-grid{grid-template-columns:1fr}.ask-grid{grid-template-columns:1fr}
+  .sol-wrap{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck-wrap">
+
+<!-- ── SLIDE 1: TITLE ── -->
+<div class="slide active">
+  <span class="slide-label">01 / 10</span>
+  <div class="s1-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+  </div>
+  <div class="s1-name">Bi<span class="accent">Geo</span></div>
+  <div class="s1-tagline">Rural India's Last-Mile OS</div>
+  <div class="s1-one">We parse any Indian village address into precision GPS coordinates in under 2 seconds — powering logistics, fintech, and government delivery for 800M+ rural citizens.</div>
+  <div class="s1-stats">
+    <div class="s1-stat"><div class="s1-stat-n">1M+</div><div class="s1-stat-l">GPS Locations</div></div>
+    <div class="s1-stat-div"></div>
+    <div class="s1-stat"><div class="s1-stat-n">36</div><div class="s1-stat-l">States Covered</div></div>
+    <div class="s1-stat-div"></div>
+    <div class="s1-stat"><div class="s1-stat-n">&lt;2s</div><div class="s1-stat-l">Resolution Time</div></div>
+    <div class="s1-stat-div"></div>
+    <div class="s1-stat"><div class="s1-stat-n">3</div><div class="s1-stat-l">Live Products</div></div>
+  </div>
+  <div class="s1-founder"><strong>Swamy</strong> — Founder &amp; CEO<br/>admin@bigeo.in · bigeo.in</div>
+</div>
+
+<!-- ── SLIDE 2: PROBLEM ── -->
+<div class="slide">
+  <span class="slide-label">02 / 10</span>
+  <div class="chip">The Problem</div>
+  <div class="big-head">800M Indians Live at Addresses<br/><span class="accent">That Don't Exist Digitally</span></div>
+  <div class="prob-grid">
+    <div class="prob-card">
+      <span class="prob-num">30%</span>
+      <div class="prob-desc">Rural delivery failure rate vs 8% in cities — most caused by unresolvable addresses</div>
+    </div>
+    <div class="prob-card">
+      <span class="prob-num">₹180</span>
+      <div class="prob-desc">Wasted per failed rural COD delivery in reverse logistics — on a ₹400 order</div>
+    </div>
+    <div class="prob-card">
+      <span class="prob-num">800M</span>
+      <div class="prob-desc">Rural Indians living in habitations that exist nowhere in any digital database</div>
+    </div>
+  </div>
+  <div class="prob-quote">
+    <strong>"Near banyan tree, behind Raju shop, Yellareddyguda, Siddipet"</strong><br/>
+    A real delivery address. Google Maps cannot find it. Your courier will fail.
+  </div>
+  <div class="prob-foot">Every failed delivery. Every rejected loan. Every undelivered government scheme. Starts here.</div>
+</div>
+
+<!-- ── SLIDE 3: COMPETITORS ── -->
+<div class="slide">
+  <span class="slide-label">03 / 10</span>
+  <div class="chip">Landscape</div>
+  <div class="big-head">Google Maps, HERE, MapMyIndia —<br/><span class="accent">All Fail Here</span></div>
+  <table class="comp-table" style="margin-top:16px">
+    <thead>
+      <tr>
+        <th>Solution</th>
+        <th>Urban Accuracy</th>
+        <th>Rural Structured</th>
+        <th>Rural Unstructured</th>
+        <th>API-Ready</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Google Maps</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td></tr>
+      <tr><td>HERE Maps</td><td>✅</td><td>⚠️</td><td>❌</td><td>✅</td></tr>
+      <tr><td>MapMyIndia</td><td>✅</td><td>⚠️</td><td>❌</td><td>⚠️</td></tr>
+      <tr><td>India Post</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+      <tr class="bigeo-row"><td>BiGeo VAAHAN</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    </tbody>
+  </table>
+  <div class="comp-foot">Nobody has cracked Tier 3 / Tier 4 rural addresses at API quality. Until BiGeo.</div>
+</div>
+
+<!-- ── SLIDE 4: SOLUTION ── -->
+<div class="slide">
+  <span class="slide-label">04 / 10</span>
+  <div class="chip">The Solution</div>
+  <div class="big-head">BiGeo <span class="accent">VAAHAN</span> API</div>
+  <div class="sub" style="margin-bottom:16px">Send us any Indian address. Get back GPS + structured data in under 2 seconds.</div>
+  <div class="sol-wrap">
+    <div class="sol-input">
+      <div class="sol-label" style="color:#9ca3af">REQUEST</div>
+      <span class="sol-method">POST</span> <span class="sol-path">/parse</span><br/><br/>
+      {<br/>
+      &nbsp;&nbsp;<span class="sol-key">"address"</span>: <span class="sol-str">"Near banyan tree,<br/>&nbsp;&nbsp;&nbsp;Yellareddyguda,<br/>&nbsp;&nbsp;&nbsp;Siddipet, Telangana"</span><br/>
+      }
+    </div>
+    <div class="sol-arrow">→</div>
+    <div class="sol-output">
+      <div class="sol-label" style="color:#9ca3af">RESPONSE &lt;2s</div>
+      {<br/>
+      &nbsp;&nbsp;<span class="sol-key">"village"</span>: <span class="sol-str">"Yellareddyguda"</span>,<br/>
+      &nbsp;&nbsp;<span class="sol-key">"mandal"</span>: <span class="sol-str">"Siddipet"</span>,<br/>
+      &nbsp;&nbsp;<span class="sol-key">"pincode"</span>: <span class="sol-num">"502103"</span>,<br/>
+      &nbsp;&nbsp;<span class="sol-key">"lat"</span>: <span class="sol-num">18.10344</span>,<br/>
+      &nbsp;&nbsp;<span class="sol-key">"lng"</span>: <span class="sol-num">78.84707</span>,<br/>
+      &nbsp;&nbsp;<span class="sol-key">"confidence"</span>: <span class="sol-good">0.95</span><br/>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- ── SLIDE 5: HOW IT WORKS ── -->
+<div class="slide">
+  <span class="slide-label">05 / 10</span>
+  <div class="chip">Technology</div>
+  <div class="big-head">4-Layer <span class="accent">AI Resolution</span> Pipeline</div>
+  <div class="pipeline" style="margin-top:24px">
+    <div class="pipe-node">
+      <div class="pipe-num">1</div>
+      <div class="pipe-title">Knowledge Base</div>
+      <div class="pipe-desc">Vector search across 1M+ PMGSY habitations + India Post in AWS Bedrock</div>
+    </div>
+    <div class="pipe-arr">→</div>
+    <div class="pipe-node">
+      <div class="pipe-num">2</div>
+      <div class="pipe-title">LLM Disambiguation</div>
+      <div class="pipe-desc">Claude Sonnet reads address in context, ranks candidates, resolves ambiguity</div>
+    </div>
+    <div class="pipe-arr">→</div>
+    <div class="pipe-node">
+      <div class="pipe-num">3</div>
+      <div class="pipe-title">GPS Enrichment</div>
+      <div class="pipe-desc">HERE Maps validates. 19,559 pincode centroids as guaranteed fallback.</div>
+    </div>
+    <div class="pipe-arr">→</div>
+    <div class="pipe-node">
+      <div class="pipe-num">4</div>
+      <div class="pipe-title">Structured Output</div>
+      <div class="pipe-desc">village · mandal · district · state · pincode · lat · lng · confidence</div>
+    </div>
+  </div>
+  <div class="pipe-badge">⚡ &lt;2 seconds end-to-end</div>
+</div>
+
+<!-- ── SLIDE 6: PRODUCTS ── -->
+<div class="slide">
+  <span class="slide-label">06 / 10</span>
+  <div class="chip"><span class="chip-dot"></span>3 Live Products</div>
+  <div class="big-head">One Rural <span class="accent">Intelligence</span> Stack</div>
+  <div class="prod-grid">
+    <div class="prod-card fl">
+      <div class="live-badge" style="margin-bottom:12px">LIVE</div>
+      <div class="prod-icon" style="background:rgba(255,64,0,.1)">
+        <svg viewBox="0 0 24 24" stroke="#ff4000"><path d="M15 7h3a5 5 0 010 10h-3m-6 0H6A5 5 0 016 7h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      </div>
+      <div class="prod-name">VAAHAN API</div>
+      <span class="prod-ep">POST /parse</span>
+      <div class="prod-desc">Any Indian address → GPS in &lt;2s. 1M+ locations, 36 states. 500 free calls/month. Production SLA.</div>
+    </div>
+    <div class="prod-card">
+      <div class="live-badge" style="margin-bottom:12px">LIVE</div>
+      <div class="prod-icon" style="background:rgba(0,102,204,.08)">
+        <svg viewBox="0 0 24 24" stroke="#0066cc"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div class="prod-name">Route Optimizer</div>
+      <span class="prod-ep">POST /route/optimize</span>
+      <div class="prod-desc">150 delivery stops → optimal vehicle routes in &lt;5s. VRP solver + HERE Maps road matrix.</div>
+    </div>
+    <div class="prod-card">
+      <div class="live-badge" style="margin-bottom:12px">LIVE</div>
+      <div class="prod-icon" style="background:rgba(45,122,45,.09)">
+        <svg viewBox="0 0 24 24" stroke="#2d7a2d"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="prod-name">Setu — Village Pickup</div>
+      <span class="prod-ep">POST /setu/book-pickup</span>
+      <div class="prod-desc">Village address → Shiprocket courier → AWB tracking. Delhivery, DTDC, Shadowfax, India Post.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SLIDE 7: DATA MOAT ── -->
+<div class="slide">
+  <span class="slide-label">07 / 10</span>
+  <div class="chip">Data Moat</div>
+  <div class="big-head">The Data Nobody<br/><span class="accent">Assembled Before Us</span></div>
+  <div class="moat-grid">
+    <div class="moat-card">
+      <span class="moat-num">815K</span>
+      <div class="moat-src">PMGSY GeoSadak</div>
+      <div class="moat-desc">Rural habitation GPS points from Ministry of Rural Development</div>
+    </div>
+    <div class="moat-card">
+      <span class="moat-num">649K</span>
+      <div class="moat-src">LGD Village Directory</div>
+      <div class="moat-desc">Villages across all 36 states &amp; UTs</div>
+    </div>
+    <div class="moat-card">
+      <span class="moat-num">165K</span>
+      <div class="moat-src">India Post Pincode DB</div>
+      <div class="moat-desc">Post offices with verified lat/lon</div>
+    </div>
+    <div class="moat-card">
+      <span class="moat-num">19,559</span>
+      <div class="moat-src">DynamoDB Pincode Index</div>
+      <div class="moat-desc">Pincodes with GPS centroids, live in production</div>
+    </div>
+    <div class="moat-card">
+      <span class="moat-num">1M+</span>
+      <div class="moat-src">AWS Bedrock KB</div>
+      <div class="moat-desc">Locations vector-indexed, semantic search &lt;500ms</div>
+    </div>
+  </div>
+  <div class="moat-foot">5 government datasets · 3 months ETL · Not downloadable from anywhere · Replication takes months</div>
+</div>
+
+<!-- ── SLIDE 8: MARKET ── -->
+<div class="slide">
+  <span class="slide-label">08 / 10</span>
+  <div class="chip">Market</div>
+  <div class="big-head">3 Paying Verticals, <span class="accent">One API</span></div>
+  <div class="mkt-grid">
+    <div class="mkt-card c1">
+      <div class="mkt-name">E-Commerce &amp; Logistics</div>
+      <div class="mkt-val">Reduce 30% rural RTO to under 10%. ₹180 saved per delivery. Immediate P&amp;L impact.</div>
+      <div class="mkt-who">Delhivery · Shadowfax · Meesho · ONDC merchants</div>
+    </div>
+    <div class="mkt-card c2">
+      <div class="mkt-name">Rural Fintech &amp; Banking</div>
+      <div class="mkt-val">GPS-verified KYC, loan disbursement, insurance claim address validation.</div>
+      <div class="mkt-who">Aye Finance · Spice Money · Avail Finance · Rural MFIs</div>
+    </div>
+    <div class="mkt-card c3">
+      <div class="mkt-name">Government &amp; Public Services</div>
+      <div class="mkt-val">Geocode beneficiaries for PM-KISAN, PM Awas Yojana, ration cards across 36 states.</div>
+      <div class="mkt-who">State NIC offices · CSC centres · eGovernance vendors</div>
+    </div>
+  </div>
+  <div class="mkt-numbers">
+    <div class="mkt-num-card"><span class="mkt-big">₹2,800 Cr</span><div class="mkt-small">Annual rural reverse logistics waste (COD, 2025)</div></div>
+    <div class="mkt-num-card"><span class="mkt-big">$1.89B</span><div class="mkt-small">India Location-Based Services Market (2025)</div></div>
+    <div class="mkt-num-card"><span class="mkt-big">Mandate</span><div class="mkt-small">ONDC making rural address resolution a compliance requirement</div></div>
+  </div>
+</div>
+
+<!-- ── SLIDE 9: TRACTION ── -->
+<div class="slide">
+  <span class="slide-label">09 / 10</span>
+  <div class="chip"><span class="chip-dot"></span>Traction</div>
+  <div class="big-head">3 Weeks In — <span class="accent">Here's Where We Are</span></div>
+  <div class="trac-grid">
+    <div class="trac-col done">
+      <h3>✓ Done</h3>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>VAAHAN API live on AWS ap-south-1</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>Bulk endpoint: 1,000 addresses/request</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>Route Optimizer + Setu — 3 live products</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>649K villages + 1M+ GPS points loaded</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>API key registration + email provisioning</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>bigeo.in live</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>5 warm conversations — logistics/fintech ops leads</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>₹4.75L raised — MeitY Genesis (IIM Udaipur) + IIT Hyderabad</span></div>
+      <div class="trac-item"><div class="trac-icon ok">✓</div><span>$10,000 AWS credits active</span></div>
+    </div>
+    <div class="trac-col next">
+      <h3>→ Next 60 Days</h3>
+      <div class="trac-item"><div class="trac-icon go">→</div><span>10,000 failed-delivery address pilot with logistics partner</span></div>
+      <div class="trac-item"><div class="trac-icon go">→</div><span>First paying customer (₹2–5/call, 1M+ calls/month target)</span></div>
+      <div class="trac-item"><div class="trac-icon go">→</div><span>India Address Graph deployed to production (AWS ECS)</span></div>
+      <div class="trac-item"><div class="trac-icon go">→</div><span>DPIIT Startup Recognition</span></div>
+      <div class="trac-item"><div class="trac-icon go">→</div><span>NVIDIA Inception Application</span></div>
+      <div class="trac-item"><div class="trac-icon go">→</div><span>Google Maps GPS activation (GCP billing)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SLIDE 10: ASK ── -->
+<div class="slide">
+  <span class="slide-label">10 / 10</span>
+  <div class="chip">The Ask</div>
+  <div class="big-head">We're Raising <span class="accent">Pre-Seed</span></div>
+  <div class="ask-amount">₹1–2 Crore</div>
+  <div class="ask-grid">
+    <div class="ask-card">
+      <div class="ask-cat">Data</div>
+      <div class="ask-val">Expand KB to 5M locations. State polygon shapefiles. PMGSY habitation CSV full load.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-cat">GTM</div>
+      <div class="ask-val">Pilot 3 logistics companies. Convert 1 to paid contract. First ₹10L ARR.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-cat">Team</div>
+      <div class="ask-val">First hire — backend engineer (ETL + API). Scale data pipeline and API throughput.</div>
+    </div>
+  </div>
+  <div class="ask-why">
+    <strong>Why ACE?</strong> BiGeo is a deeptech infrastructure play — not a SaaS app. We need operator mentorship, enterprise introductions in logistics and fintech, and Invention Engine's network to close our first ₹10L ARR customer. Varun's AI research depth + Shubham's YC experience is exactly the table we want to be at.
+  </div>
+  <div class="ask-contact" style="justify-content:center;margin-top:16px">
+    <a class="ask-cta" href="mailto:admin@bigeo.in">admin@bigeo.in</a>
+    <span class="ask-email">bigeo.in</span>
+    <span class="ask-email" style="font-family:monospace;font-size:11px">demo-public-readonly</span>
+  </div>
+</div>
+
+</div><!-- /.deck-wrap -->
+
+<div class="nav">
+  <button onclick="prev()">←</button>
+  <span class="nav-counter" id="ctr">1 / 10</span>
+  <button onclick="next()">→</button>
+</div>
+
+<script>
+let cur = 1;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+
+function show(n) {
+  if (n < 1) n = 1;
+  if (n > total) n = total;
+  cur = n;
+  slides.forEach((s, i) => {
+    s.classList.toggle('active', i === n - 1);
+    s.style.transform = i === n - 1 ? 'translateX(0)' : (i < n - 1 ? 'translateX(-100%)' : 'translateX(100%)');
+  });
+  document.getElementById('ctr').textContent = cur + ' / ' + total;
+  document.getElementById('progress').style.width = (cur / total * 100) + '%';
+}
+
+function next() { show(cur + 1); }
+function prev() { show(cur - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+});
+
+// Touch swipe
+let tx = 0;
+document.querySelector('.deck-wrap').addEventListener('touchstart', e => tx = e.touches[0].clientX, {passive:true});
+document.querySelector('.deck-wrap').addEventListener('touchend', e => {
+  const dx = tx - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 40) dx > 0 ? next() : prev();
+}, {passive:true});
+
+show(1);
+</script>
+</body>
+</html>

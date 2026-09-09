@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, claude/happy-ramanujan-obsurt]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: freightcheck/package-lock.json
+      - name: Install dependencies
+        working-directory: freightcheck
+        run: npm install --frozen-lockfile
+      - name: Type check
+        working-directory: freightcheck
+        run: npx turbo run typecheck
+      - name: Lint
+        working-directory: freightcheck
+        run: npx turbo run lint
+
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: freightcheck/package-lock.json
+      - name: Install dependencies
+        working-directory: freightcheck
+        run: npm install --frozen-lockfile
+      - name: Run tests
+        working-directory: freightcheck
+        run: npx turbo run test

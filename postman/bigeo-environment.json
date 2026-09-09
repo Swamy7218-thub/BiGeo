@@ -1,0 +1,37 @@
+{
+  "id": "bigeo-env-prod",
+  "name": "BiGeo — Production",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "apiKey",
+      "value": "554a55471bba46e3970817cd84b01018",
+      "type": "secret",
+      "enabled": true
+    },
+    {
+      "key": "last_lat",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "last_lng",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "last_district",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

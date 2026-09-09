@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BiGeo Merchant Portal — Ravi Textiles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── Design Tokens ────────────────────────────────────────────── */
+:root {
+  --bg:        #07090F;
+  --surface:   #0D1117;
+  --surface2:  #111827;
+  --surface3:  #151E2E;
+  --border:    #1C2840;
+  --border2:   #243050;
+
+  --green:     #22C55E;
+  --green-dim: rgba(34,197,94,0.12);
+  --cyan:      #00D4FF;
+  --cyan-dim:  rgba(0,212,255,0.10);
+  --orange:    #FF6B35;
+  --orange-dim:rgba(255,107,53,0.12);
+  --red:       #F87171;
+  --red-dim:   rgba(248,113,113,0.12);
+  --yellow:    #FBBF24;
+  --yellow-dim:rgba(251,191,36,0.12);
+  --blue:      #60A5FA;
+  --blue-dim:  rgba(96,165,250,0.12);
+
+  --text-primary:   #F0F4FF;
+  --text-secondary: #8B9CC8;
+  --text-muted:     #4B5E8A;
+
+  --sidebar-w: 220px;
+  --radius:    10px;
+  --radius-sm: 6px;
+
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ─── Reset ────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--font); border: none; background: none; }
+svg { flex-shrink: 0; }
+
+/* ─── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ─── Sidebar ──────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.sidebar-logo {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.logo-icon {
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, var(--cyan) 0%, #0099CC 100%);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-wordmark {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+}
+
+.logo-sub {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-left: 40px;
+}
+
+/* Nav */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 10px;
+}
+
+.nav-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 12px 10px 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.15s, background 0.15s;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+  background: var(--surface2);
+}
+
+.nav-item.active {
+  color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 18px;
+  background: var(--cyan);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.nav-badge {
+  margin-left: auto;
+  background: var(--orange-dim);
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,107,53,0.2);
+}
+
+/* User profile at bottom */
+.sidebar-user {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1D4ED8 0%, #7C3AED 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+
+.user-info { overflow: hidden; flex: 1; }
+
+.user-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-email {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-badge {
+  display: inline-block;
+  margin-top: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,212,255,0.2);
+}
+
+/* ─── Main Content ─────────────────────────────────────────────── */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ─── Top Bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(7, 9, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-greeting {
+  flex: 1;
+}
+
+.topbar-greeting h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+
+.topbar-date {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-icon {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  position: relative;
+}
+
+.btn-icon:hover {
+  color: var(--text-primary);
+  border-color: var(--border2);
+  background: var(--surface3);
+}
+
+.notif-dot {
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 7px; height: 7px;
+  background: var(--orange);
+  border-radius: 50%;
+  border: 1.5px solid var(--bg);
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 36px;
+  background: var(--cyan);
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); opacity: 1; }
+
+/* ─── Page Body ────────────────────────────────────────────────── */
+.page-body {
+  padding: 24px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─── Section Heading ──────────────────────────────────────────── */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.1px;
+}
+
+.section-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ─── KPI Cards ────────────────────────────────────────────────── */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.kpi-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.kpi-card:hover { border-color: var(--border2); }
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.kpi-card.kpi-cyan::after  { background: var(--cyan); }
+.kpi-card.kpi-green::after { background: var(--green); }
+.kpi-card.kpi-orange::after{ background: var(--orange); }
+.kpi-card.kpi-red::after   { background: var(--red); }
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.8px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.kpi-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-trend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-trend.up   { color: var(--green); }
+.kpi-trend.down { color: var(--red); }
+.kpi-trend.good { color: var(--green); } /* down is good for RTO */
+
+/* ─── Card Base ────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.card-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-body { padding: 20px; }
+
+/* ─── Orders Table ─────────────────────────────────────────────── */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+thead th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+thead th:first-child { border-radius: 0; }
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--surface2); }
+
+tbody td {
+  padding: 11px 14px;
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.td-muted { color: var(--text-secondary); }
+.td-mono  { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.03em; }
+
+.td-customer { font-weight: 500; }
+
+.td-address {
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  max-width: 180px;
+}
+
+.td-amount {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Status badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.badge::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.badge-delivered  { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(34,197,94,0.2);  }
+.badge-delivered::before  { background: var(--green); }
+.badge-transit    { background: var(--cyan-dim);   color: var(--cyan);   border: 1px solid rgba(0,212,255,0.2);  }
+.badge-transit::before    { background: var(--cyan); }
+.badge-ofd        { background: var(--blue-dim);   color: var(--blue);   border: 1px solid rgba(96,165,250,0.2); }
+.badge-ofd::before        { background: var(--blue); }
+.badge-rto        { background: var(--red-dim);    color: var(--red);    border: 1px solid rgba(248,113,113,0.2);}
+.badge-rto::before        { background: var(--red); }
+.badge-pending    { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
+.badge-pending::before    { background: var(--yellow); }
+
+/* Track button */
+.btn-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.btn-track:hover {
+  color: var(--cyan);
+  border-color: rgba(0,212,255,0.3);
+  background: var(--cyan-dim);
+}
+
+/* ─── Two-col layout for mid sections ──────────────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ─── Bulk Upload Panel ────────────────────────────────────────── */
+.upload-zone {
+  border: 1.5px dashed var(--border2);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.upload-zone:hover {
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+.upload-icon {
+  width: 40px; height: 40px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  color: var(--text-muted);
+}
+
+.upload-zone h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.upload-zone p {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.btn-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text-secondary);
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-upload:hover { color: var(--text-primary); border-color: var(--cyan); }
+
+.upload-meta {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.upload-meta-text {
+  font-size: 11.5px;
+  color: var(--text-secondary);
+}
+
+.upload-meta-text strong { color: var(--text-primary); font-weight: 600; }
+
+.upload-meta-err {
+  font-size: 11px;
+  color: var(--orange);
+  font-weight: 500;
+}
+
+.upload-err-link {
+  color: var(--orange);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.upload-template {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.upload-template a {
+  color: var(--cyan);
+  font-weight: 500;
+}
+
+/* ─── COD Table (compact) ──────────────────────────────────────── */
+.cod-table table thead th { background: transparent; }
+
+.remit-status-settled {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(34,197,94,0.2);
+}
+
+.remit-status-processing {
+  background: var(--yellow-dim);
+  color: var(--yellow);
+  border: 1px solid rgba(251,191,36,0.2);
+}
+
+.remit-status-pending {
+  background: var(--orange-dim);
+  color: var(--orange);
+  border: 1px solid rgba(255,107,53,0.2);
+}
+
+.cod-total-row td {
+  border-top: 1px solid var(--border2);
+  padding-top: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.highlight-yellow { color: var(--yellow); font-weight: 600; }
+
+/* ─── RTO Analysis ─────────────────────────────────────────────── */
+.rto-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rto-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rto-row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rto-pincode {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.rto-location {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+.rto-count {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.rto-pct {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}
+
+.rto-bar-track {
+  height: 5px;
+  background: var(--surface2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.rto-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--red) 0%, #ff9b9b 100%);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.32, 1);
+}
+
+/* ─── Quick Stats ──────────────────────────────────────────────── */
+.quick-stats {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.qs-item {
+  flex: 1;
+  padding: 0 24px;
+  border-right: 1px solid var(--border);
+  min-width: 0;
+}
+
+.qs-item:first-child { padding-left: 0; }
+.qs-item:last-child  { padding-right: 0; border-right: none; }
+
+.qs-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.qs-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.qs-sub {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Scroll Reveal ────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── Hamburger (mobile concept) ──────────────────────────────── */
+.hamburger {
+  display: none;
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  align-items: center; justify-content: center;
+}
+
+/* ─── Empty: inline-flex fix for badges in table ────────────────── */
+.badge { display: inline-flex; }
+
+/* ─── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-220px); width: 220px; transition: transform 0.25s; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .hamburger { display: flex; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .quick-stats { flex-wrap: wrap; gap: 16px; }
+  .qs-item { border-right: none; padding: 0; min-width: calc(50% - 8px); }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .page-body { padding: 16px 16px 40px; }
+  .topbar { padding: 0 16px; }
+}
+
+/* ─── Light theme (intentionally not offered — dark-committed) ──── */
+/* This dashboard is deliberately single-theme: OLED dark is part   */
+/* of the product's visual identity. A logistics ops dashboard is    */
+/* used at all hours; dark reduces fatigue and is industry-standard. */
+</style>
+</head>
+<body>
+
+<!-- ─── Sidebar ──────────────────────────────────────────────────── -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">
+      <div class="logo-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="6" r="3.5" stroke="#000" stroke-width="1.5"/>
+          <path d="M8 9.5C5 9.5 2.5 11.2 2.5 13.5" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 9.5C11 9.5 13.5 11.2 13.5 13.5" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M8 14.5V9.5" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-wordmark">BiGeo</span>
+    </div>
+    <div class="logo-sub">Merchant Portal</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+
+    <button class="nav-item active">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <rect x="1" y="1" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="8.5" y="1" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="1" y="8.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="8.5" y="8.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+      Overview
+    </button>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <rect x="1.5" y="2.5" width="12" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5 6h5M5 9h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Orders
+      <span class="nav-badge">12</span>
+    </button>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M2.5 4.5h10M2.5 7.5h10M2.5 10.5h6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="11.5" cy="11" r="2.5" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M11.5 9.5v1.5l1 0.7" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+      Bulk Upload
+    </button>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <rect x="1.5" y="3.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5 7.5h5M7.5 5v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      COD &amp; Payments
+    </button>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M13 4L7.5 9.5 5 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 7.5A5.5 5.5 0 1 0 7.5 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M2 2v5.5H7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Returns
+      <span class="nav-badge">3</span>
+    </button>
+
+    <div class="nav-section-label">Insights</div>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <path d="M2 11L5.5 7.5 8 10l4.5-6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Analytics
+    </button>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <rect x="2" y="1.5" width="11" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M5 5.5h5M5 8h5M5 10.5h3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Invoices
+    </button>
+
+    <div class="nav-section-label">Account</div>
+
+    <button class="nav-item">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+        <circle cx="7.5" cy="7.5" r="5.5" stroke="currentColor" stroke-width="1.3"/>
+        <circle cx="7.5" cy="7.5" r="2" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+      Settings
+    </button>
+  </nav>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">RT</div>
+    <div class="user-info">
+      <div class="user-name">Ravi Textiles</div>
+      <div class="user-email">ravi@ravitextiles.in</div>
+      <div class="user-badge">Merchant</div>
+    </div>
+  </div>
+</aside>
+
+<!-- ─── Main ─────────────────────────────────────────────────────── -->
+<div class="main">
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger" aria-label="Open sidebar">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="topbar-greeting">
+      <h1>Good morning, Ravi 👋</h1>
+      <div class="topbar-date">Thursday, 10 July 2026 &nbsp;·&nbsp; Karimnagar Hub Active</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" title="Search">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M10 10l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="btn-icon" title="Notifications">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M7.5 2a4.5 4.5 0 0 0-4.5 4.5c0 1.5-.5 2.5-1 3.5h11c-.5-1-.5-2-1-3.5A4.5 4.5 0 0 0 7.5 2z" stroke="currentColor" stroke-width="1.3"/>
+          <path d="M6 11.5a1.5 1.5 0 0 0 3 0" stroke="currentColor" stroke-width="1.3"/>
+        </svg>
+        <span class="notif-dot"></span>
+      </button>
+      <button class="btn-primary">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <path d="M6.5 2v9M2 6.5h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        New Order
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Body -->
+  <div class="page-body">
+
+    <!-- ─── KPI Row ──────────────────────────────────────────────── -->
+    <div class="kpi-grid reveal">
+      <!-- Today's Orders -->
+      <div class="kpi-card kpi-cyan">
+        <div class="kpi-label">Today's Orders</div>
+        <div class="kpi-value">284</div>
+        <div class="kpi-trend up">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 8L5.5 4 9 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          +18% vs yesterday
+        </div>
+      </div>
+
+      <!-- Success Rate -->
+      <div class="kpi-card kpi-green">
+        <div class="kpi-label">Success Rate</div>
+        <div class="kpi-value">91.4%</div>
+        <div class="kpi-trend up">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 8L5.5 4 9 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          +2.1pp this week
+        </div>
+      </div>
+
+      <!-- COD Pending -->
+      <div class="kpi-card kpi-orange">
+        <div class="kpi-label">COD Pending</div>
+        <div class="kpi-value">₹1,24,800</div>
+        <div class="kpi-sub" style="color:var(--text-muted)">18 orders awaiting remittance</div>
+      </div>
+
+      <!-- RTO This Week -->
+      <div class="kpi-card kpi-red">
+        <div class="kpi-label">RTO This Week</div>
+        <div class="kpi-value">8.6%</div>
+        <div class="kpi-trend good">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 3L5.5 7 9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ↓1.4pp — improving
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Orders Table ─────────────────────────────────────────── -->
+    <div class="card reveal">
+      <div class="card-head">
+        <span class="section-title">Recent Orders</span>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="section-meta">Last 8 shipments</span>
+          <button class="btn-track">View all →</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>AWB #</th>
+              <th>Customer</th>
+              <th>Address</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-mono">BG2407-91043</td>
+              <td class="td-customer">Lakshmi Devi</td>
+              <td class="td-address td-muted">Vangapally, Siddipet, TG 502103</td>
+              <td class="td-amount">₹1,450</td>
+              <td><span class="badge badge-delivered">Delivered</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-91038</td>
+              <td class="td-customer">Srinivas Reddy</td>
+              <td class="td-address td-muted">Kodad Bypass, Suryapet, TG 508206</td>
+              <td class="td-amount">₹870</td>
+              <td><span class="badge badge-transit">In Transit</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-91029</td>
+              <td class="td-customer">Pushpa Yellaiah</td>
+              <td class="td-address td-muted">Thimmapur Village, Nalgonda, TG 508001</td>
+              <td class="td-amount">₹2,100</td>
+              <td><span class="badge badge-ofd">Out for Delivery</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-91017</td>
+              <td class="td-customer">Ramu Goud</td>
+              <td class="td-address td-muted">Medak Road, Sangareddy, TG 502001</td>
+              <td class="td-amount">₹560</td>
+              <td><span class="badge badge-delivered">Delivered</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-91011</td>
+              <td class="td-customer">Saraswathi Naik</td>
+              <td class="td-address td-muted">Ponkal Mandal, Kamareddy, TG 503001</td>
+              <td class="td-amount">₹1,800</td>
+              <td><span class="badge badge-rto">RTO</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-91004</td>
+              <td class="td-customer">Venkat Rao</td>
+              <td class="td-address td-muted">Chinthalpalli, Khammam, TG 507123</td>
+              <td class="td-amount">₹430</td>
+              <td><span class="badge badge-delivered">Delivered</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-90997</td>
+              <td class="td-customer">Annapurna Devi</td>
+              <td class="td-address td-muted">Rajiv Nagar, Karimnagar, TG 505001</td>
+              <td class="td-amount">₹990</td>
+              <td><span class="badge badge-pending">Pending</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+            <tr>
+              <td class="td-mono">BG2407-90981</td>
+              <td class="td-customer">Hanumaiah B.</td>
+              <td class="td-address td-muted">Maddirala Village, Guntur, AP 522317</td>
+              <td class="td-amount">₹1,250</td>
+              <td><span class="badge badge-transit">In Transit</span></td>
+              <td><button class="btn-track">Track</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── Two column: Bulk Upload + RTO Analysis ──────────────── -->
+    <div class="two-col">
+
+      <!-- Bulk Upload -->
+      <div class="card reveal">
+        <div class="card-head">
+          <span class="section-title">Bulk Upload</span>
+          <span class="section-meta">CSV · Max 5,000 orders</span>
+        </div>
+        <div class="card-body">
+          <div class="upload-zone">
+            <div class="upload-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 12V4M6 7l3-3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 13.5a3 3 0 0 0 0 1c0 .8.7 1.5 1.5 1.5h9c.8 0 1.5-.7 1.5-1.5a3 3 0 0 0 0-1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Drop your order sheet here</h3>
+            <p>CSV or XLSX — recipient name, phone, village, pincode, COD amount</p>
+            <button class="btn-upload">
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M1.5 9v2.5h10V9M6.5 1.5v7M4 5l2.5-3.5L9 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Choose file
+            </button>
+          </div>
+
+          <div class="upload-meta">
+            <div>
+              <div class="upload-meta-text"><strong>284 orders uploaded</strong> &nbsp;·&nbsp; 8 Jul 2026, 9:14 AM</div>
+              <div class="upload-meta-err">2 rows with errors — <a href="#" class="upload-err-link">review &amp; fix</a></div>
+            </div>
+            <span class="badge badge-pending">2 Errors</span>
+          </div>
+
+          <div class="upload-template">
+            <a href="#">Download CSV template</a> &nbsp;·&nbsp; <a href="#" style="color:var(--text-muted);">View upload history</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RTO Analysis -->
+      <div class="card reveal">
+        <div class="card-head">
+          <span class="section-title">RTO by Pincode</span>
+          <span class="section-meta">This week · Top 5</span>
+        </div>
+        <div class="card-body">
+          <div class="rto-list">
+
+            <div class="rto-row">
+              <div class="rto-row-head">
+                <div>
+                  <span class="rto-pincode">502103</span>
+                  <span class="rto-location">Siddipet, TG</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span class="rto-count">7 of 41</span>
+                  <span class="rto-pct">17.1%</span>
+                </div>
+              </div>
+              <div class="rto-bar-track"><div class="rto-bar-fill" style="width:17.1%"></div></div>
+            </div>
+
+            <div class="rto-row">
+              <div class="rto-row-head">
+                <div>
+                  <span class="rto-pincode">508206</span>
+                  <span class="rto-location">Suryapet, TG</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span class="rto-count">5 of 33</span>
+                  <span class="rto-pct">15.2%</span>
+                </div>
+              </div>
+              <div class="rto-bar-track"><div class="rto-bar-fill" style="width:15.2%"></div></div>
+            </div>
+
+            <div class="rto-row">
+              <div class="rto-row-head">
+                <div>
+                  <span class="rto-pincode">522317</span>
+                  <span class="rto-location">Guntur, AP</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span class="rto-count">4 of 29</span>
+                  <span class="rto-pct">13.8%</span>
+                </div>
+              </div>
+              <div class="rto-bar-track"><div class="rto-bar-fill" style="width:13.8%"></div></div>
+            </div>
+
+            <div class="rto-row">
+              <div class="rto-row-head">
+                <div>
+                  <span class="rto-pincode">503001</span>
+                  <span class="rto-location">Kamareddy, TG</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span class="rto-count">3 of 27</span>
+                  <span class="rto-pct">11.1%</span>
+                </div>
+              </div>
+              <div class="rto-bar-track"><div class="rto-bar-fill" style="width:11.1%"></div></div>
+            </div>
+
+            <div class="rto-row">
+              <div class="rto-row-head">
+                <div>
+                  <span class="rto-pincode">508001</span>
+                  <span class="rto-location">Nalgonda, TG</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span class="rto-count">2 of 22</span>
+                  <span class="rto-pct">9.1%</span>
+                </div>
+              </div>
+              <div class="rto-bar-track"><div class="rto-bar-fill" style="width:9.1%"></div></div>
+            </div>
+
+          </div>
+
+          <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);">
+            High RTO in 502103 &amp; 508206 — address resolution active. <a href="#" style="color:var(--cyan);">See geocoding report →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── COD Remittance ─────────────────────────────────────── -->
+    <div class="card cod-table reveal">
+      <div class="card-head">
+        <span class="section-title">COD Remittance</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="section-meta">T+1 settlement · Bank: HDFC ••4421</span>
+          <button class="btn-track">View all →</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Orders</th>
+              <th>Collected</th>
+              <th>Remitted</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-muted">9 Jul 2026</td>
+              <td style="font-variant-numeric:tabular-nums;">92</td>
+              <td class="td-amount">₹74,320</td>
+              <td class="td-amount">₹74,320</td>
+              <td><span class="badge remit-status-settled">Settled</span></td>
+            </tr>
+            <tr>
+              <td class="td-muted">8 Jul 2026</td>
+              <td style="font-variant-numeric:tabular-nums;">78</td>
+              <td class="td-amount">₹61,850</td>
+              <td class="td-amount">₹61,850</td>
+              <td><span class="badge remit-status-settled">Settled</span></td>
+            </tr>
+            <tr>
+              <td class="td-muted">10 Jul 2026</td>
+              <td style="font-variant-numeric:tabular-nums;">18</td>
+              <td class="td-amount">₹1,24,800</td>
+              <td class="td-amount" style="color:var(--text-muted);">—</td>
+              <td><span class="badge remit-status-pending">Pending</span></td>
+            </tr>
+            <tr class="cod-total-row">
+              <td colspan="2" style="color:var(--text-muted);font-size:11px;font-weight:500;">Total pending remittance</td>
+              <td></td>
+              <td class="highlight-yellow">₹1,24,800</td>
+              <td><span class="badge remit-status-processing">Processing</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ─── Quick Stats ──────────────────────────────────────────── -->
+    <div class="quick-stats reveal">
+      <div class="qs-item">
+        <div class="qs-label">This Month — Orders</div>
+        <div class="qs-value" style="color:var(--cyan);">4,821</div>
+        <div class="qs-sub">July 2026 · 10 days</div>
+      </div>
+      <div class="qs-item">
+        <div class="qs-label">Revenue (Est.)</div>
+        <div class="qs-value" style="color:var(--green);">₹8.4L</div>
+        <div class="qs-sub">+14% vs last month</div>
+      </div>
+      <div class="qs-item">
+        <div class="qs-label">Success Rate</div>
+        <div class="qs-value">92%</div>
+        <div class="qs-sub">July rolling average</div>
+      </div>
+      <div class="qs-item">
+        <div class="qs-label">COD Remitted</div>
+        <div class="qs-value" style="color:var(--yellow);">₹2.1L</div>
+        <div class="qs-sub">Settled to HDFC ••4421</div>
+      </div>
+    </div>
+
+  </div><!-- /page-body -->
+</div><!-- /main -->
+
+<script>
+// ─── Scroll Reveal ────────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => io.observe(el));
+
+// ─── Hamburger toggle ────────────────────────────────────────────
+const ham = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+if (ham && sidebar) {
+  ham.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !ham.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  });
+}
+
+// ─── Nav active state ────────────────────────────────────────────
+document.querySelectorAll('.nav-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// ─── Animate RTO bars on load ─────────────────────────────────────
+// CSS handles via transition; bars start at 0 via inline width
+// We set them after a small delay to trigger the transition
+window.addEventListener('load', () => {
+  // Bars are already set via inline style — IntersectionObserver
+  // reveal triggers the parent; bars animate naturally on render.
+  // For extra polish, we can reset and re-apply:
+  const bars = document.querySelectorAll('.rto-bar-fill');
+  bars.forEach(bar => {
+    const target = bar.style.width;
+    bar.style.width = '0%';
+    setTimeout(() => { bar.style.width = target; }, 300);
+  });
+});
+</script>
+</body>
+</html>

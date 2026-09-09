@@ -1,0 +1,684 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Vaahan - Address Intelligence API by BiGeo
+
+Parameters:
+  HereApiKey:
+    Type: String
+    NoEcho: true
+    Description: HERE Maps API key for routing matrix
+  VaahanInternalKey:
+    Type: String
+    NoEcho: true
+    Description: Internal API key used by route-function to call /parse/bulk
+  ShiprocketToken:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Shiprocket Bearer token for logistics API
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 256
+    Runtime: nodejs22.x
+    Architectures:
+      - x86_64
+    Tags:
+      Project: BiGeo
+      Env: prod
+
+Resources:
+
+  # ── API Gateway ──────────────────────────────────────────────────────────────
+  VaahanApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: v1
+      Auth:
+        Authorizers:
+          ApiKeyAuthorizer:
+            AuthorizerPayloadFormatVersion: "2.0"
+            FunctionArn: !GetAtt AuthorizerFunction.Arn
+            FunctionInvokeRole: !GetAtt AuthorizerInvokeRole.Arn
+            EnableSimpleResponses: true
+            Identity:
+              Headers:
+                - x-api-key
+        DefaultAuthorizer: ApiKeyAuthorizer
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowMethods:
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+          - X-Api-Key
+      Tags:
+        Project: BiGeo
+        Env: prod
+
+  # IAM role for API GW to invoke authorizer
+  AuthorizerInvokeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: InvokeAuthorizer
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource: !GetAtt AuthorizerFunction.Arn
+      Tags:
+        - Key: Project
+          Value: BiGeo
+
+  # ── Authorizer Lambda ─────────────────────────────────────────────────────────
+  AuthorizerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-authorizer
+      CodeUri: authorizer-function/
+      Handler: index.handler
+      Description: Validate API keys and enforce usage quotas
+      Environment:
+        Variables:
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:UpdateItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+
+  # ── Register Lambda ───────────────────────────────────────────────────────────
+  RegisterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-register
+      CodeUri: register-function/
+      Handler: index.handler
+      Description: Register company and issue API key
+      Environment:
+        Variables:
+          KEYS_TABLE: bigeo-api-keys
+          FROM_EMAIL: admin@bigeo.in
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        RegisterApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /register
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        RegisterOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /register
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Parse Lambda ──────────────────────────────────────────────────────────────
+  ParseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-parse-address
+      CodeUri: parse-function/
+      Handler: index.handler
+      Description: Parse rural Indian address — Gemini Flash (primary) + Claude Sonnet (fallback) + Translation
+      Timeout: 30
+      Environment:
+        Variables:
+          ADDRESS_TABLE: bigeo-address-graph
+          PINCODE_TABLE: bigeo-pincodes
+          GCP_PROJECT_ID: bigeo-491617
+          GCP_SECRET_ARN: bigeo/gcp-service-account
+          MODEL_ROUTE: auto
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource: "*"
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:BatchWriteItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-address-graph"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-pincodes"
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+              Resource:
+                - !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:bigeo/gcp-service-account-*"
+                - !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:bigeo/google-maps-api-key-*"
+            - Effect: Allow
+              Action:
+                - bedrock:Retrieve
+              Resource:
+                - !Sub "arn:aws:bedrock:${AWS::Region}:${AWS::AccountId}:knowledge-base/ZFLJ7NGEMF"
+            - Effect: Allow
+              Action:
+                - location:SearchPlaceIndexForText
+              Resource:
+                - !Sub "arn:aws:geo:${AWS::Region}:${AWS::AccountId}:place-index/bigeo-place-index"
+      Events:
+        ParseApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /parse
+            Method: POST
+        ParseOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /parse
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Bulk Parse Lambda ─────────────────────────────────────────────────────────
+  BulkParseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-bulk-parse
+      CodeUri: bulk-function/
+      Handler: index.handler
+      Description: Bulk address parse — up to 1000 addresses per request, parallel batches of 20
+      Timeout: 300
+      MemorySize: 256
+      Environment:
+        Variables:
+          PARSE_FUNCTION_NAME: vaahan-parse-address
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - lambda:InvokeFunction
+              Resource:
+                - !Sub "arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:vaahan-parse-address"
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+      Events:
+        BulkParseApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /parse/bulk
+            Method: POST
+        BulkParseOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /parse/bulk
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Health Lambda ─────────────────────────────────────────────────────────────
+  HealthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-health
+      CodeUri: health-function/
+      Handler: index.handler
+      Description: System health check — DynamoDB table status
+      Environment:
+        Variables:
+          ADDRESS_TABLE: bigeo-address-graph
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:DescribeTable
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-address-graph"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+      Events:
+        HealthApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /health
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        HealthOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /health
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Usage Lambda ──────────────────────────────────────────────────────────────
+  UsageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-usage
+      CodeUri: usage-function/
+      Handler: index.handler
+      Description: Return current month API usage for the caller's key
+      Environment:
+        Variables:
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+      Events:
+        UsageApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /usage
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        UsageOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /usage
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Daily Summary Lambda ─────────────────────────────────────────────────────
+  DailySummaryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-daily-summary
+      CodeUri: daily-summary-function/
+      Handler: index.handler
+      Timeout: 60
+      Description: Send daily 7am IST summary email with call volume and top districts
+      Environment:
+        Variables:
+          ADDRESS_TABLE: bigeo-address-graph
+          KEYS_TABLE: bigeo-api-keys
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - cloudwatch:GetMetricStatistics
+              Resource: "*"
+            - Effect: Allow
+              Action:
+                - dynamodb:Scan
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-address-graph"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-api-keys"
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        DailySchedule:
+          Type: Schedule
+          Properties:
+            Schedule: cron(30 1 * * ? *)  # 7:00 AM IST = 1:30 AM UTC
+            Description: Daily summary email at 7am IST
+            Enabled: true
+
+  # ── Producer Webhook Lambda ───────────────────────────────────────────────────
+  ProducerWebhookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-producer-webhook
+      CodeUri: producer-webhook-function/
+      Handler: index.handler
+      Description: Dialogflow CX fulfillment webhook for WhatsApp producer onboarding bot
+      Environment:
+        Variables:
+          PRODUCERS_TABLE: bigeo-producers
+          PICKUPS_TABLE: bigeo-pickups
+          VAAHAN_API: "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1"
+          VAAHAN_API_KEY: ""
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+                - dynamodb:GetItem
+                - dynamodb:Query
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-producers"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-pickups"
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        WebhookApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /producer-webhook
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        WebhookOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /producer-webhook
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── Route Optimize Lambda ─────────────────────────────────────────────────────
+  RouteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-route
+      CodeUri: route-function/
+      Handler: handler.lambda_handler
+      Runtime: python3.12
+      MemorySize: 1024
+      Timeout: 60
+      Tags:
+        Project: BiGeo
+        Env: prod
+      Description: VRP route optimisation — greedy NN + 2-opt, up to 150 stops
+      Environment:
+        Variables:
+          HERE_API_KEY: !Ref HereApiKey
+          VAAHAN_API_URL: !Sub "https://${VaahanApi}.execute-api.${AWS::Region}.amazonaws.com/v1"
+          VAAHAN_INTERNAL_KEY: !Ref VaahanInternalKey
+      Events:
+        RouteOptimize:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /route/optimize
+            Method: POST
+        RouteOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /route/optimize
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── DynamoDB: Producers Table ─────────────────────────────────────────────────
+  ProducersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: bigeo-producers
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+      Tags:
+        - Key: Project
+          Value: BiGeo
+        - Key: Env
+          Value: prod
+
+  # ── DynamoDB: Pickups Table ───────────────────────────────────────────────────
+  PickupsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: bigeo-pickups
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+      Tags:
+        - Key: Project
+          Value: BiGeo
+        - Key: Env
+          Value: prod
+
+  # ── Setu Pickup Lambda ────────────────────────────────────────────────────────
+  SetuFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-setu-pickup
+      CodeUri: setu-function/
+      Handler: handler.lambda_handler
+      Runtime: python3.12
+      MemorySize: 512
+      Timeout: 45
+      Tags:
+        Project: BiGeo
+        Env: prod
+      Description: Setu — village-to-city pickup booking via Shiprocket + VAAHAN address resolution
+      Environment:
+        Variables:
+          HERE_API_KEY: !Ref HereApiKey
+          VAAHAN_API_URL: !Sub "https://${VaahanApi}.execute-api.${AWS::Region}.amazonaws.com/v1"
+          VAAHAN_INTERNAL_KEY: !Ref VaahanInternalKey
+          SHIPROCKET_TOKEN: !Ref ShiprocketToken
+          SETU_TABLE: !Ref SetuPickupsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref SetuPickupsTable
+      Events:
+        SetuBookPickup:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /setu/book-pickup
+            Method: POST
+        SetuOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /setu/book-pickup
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── DynamoDB: Setu Pickups Table ──────────────────────────────────────────────
+  SetuPickupsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: SetuPickups
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pickup_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pickup_id
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: BiGeo
+        - Key: Env
+          Value: prod
+
+  # ── Contact / Lead Capture Lambda ────────────────────────────────────────────
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: vaahan-contact
+      CodeUri: contact-function/
+      Handler: index.handler
+      Description: Capture B2B leads from bigeo.in contact form — stores to DynamoDB, emails Swamy
+      Environment:
+        Variables:
+          LEADS_TABLE: bigeo-leads
+          SES_FROM_EMAIL: admin@bigeo.in
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/bigeo-leads"
+            - Effect: Allow
+              Action:
+                - ses:SendEmail
+                - ses:SendRawEmail
+              Resource: "*"
+      Events:
+        ContactApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /contact
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        ContactOptions:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VaahanApi
+            Path: /contact
+            Method: OPTIONS
+            Auth:
+              Authorizer: NONE
+
+  # ── DynamoDB: Leads Table ─────────────────────────────────────────────────────
+  LeadsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: bigeo-leads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: lead_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: lead_id
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: BiGeo
+        - Key: Env
+          Value: prod
+
+  # ── CloudWatch Dashboard ──────────────────────────────────────────────────────
+  VaahanDashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: Vaahan-Production
+      DashboardBody: !Sub |
+        {
+          "widgets": [
+            {
+              "type": "metric", "x": 0, "y": 0, "width": 8, "height": 6,
+              "properties": {
+                "title": "API Calls (24h)",
+                "metrics": [["AWS/Lambda","Invocations","FunctionName","vaahan-parse-address",{"stat":"Sum","period":3600,"color":"#4f46e5"}]],
+                "view": "timeSeries", "region": "${AWS::Region}", "period": 3600
+              }
+            },
+            {
+              "type": "metric", "x": 8, "y": 0, "width": 8, "height": 6,
+              "properties": {
+                "title": "Errors & Error Rate",
+                "metrics": [
+                  ["AWS/Lambda","Errors","FunctionName","vaahan-parse-address",{"stat":"Sum","color":"#ef4444"}],
+                  ["AWS/Lambda","Invocations","FunctionName","vaahan-parse-address",{"stat":"Sum","color":"#94a3b8","yAxis":"right"}]
+                ],
+                "view": "timeSeries", "region": "${AWS::Region}", "period": 300
+              }
+            },
+            {
+              "type": "metric", "x": 16, "y": 0, "width": 8, "height": 6,
+              "properties": {
+                "title": "Latency (p50 / p99)",
+                "metrics": [
+                  ["AWS/Lambda","Duration","FunctionName","vaahan-parse-address",{"stat":"p50","color":"#059669","label":"p50"}],
+                  ["AWS/Lambda","Duration","FunctionName","vaahan-parse-address",{"stat":"p99","color":"#f59e0b","label":"p99"}]
+                ],
+                "view": "timeSeries", "region": "${AWS::Region}", "period": 300
+              }
+            },
+            {
+              "type": "metric", "x": 0, "y": 6, "width": 8, "height": 6,
+              "properties": {
+                "title": "Authorizer Invocations",
+                "metrics": [["AWS/Lambda","Invocations","FunctionName","vaahan-authorizer",{"stat":"Sum","color":"#8b5cf6"}]],
+                "view": "timeSeries", "region": "${AWS::Region}", "period": 3600
+              }
+            },
+            {
+              "type": "metric", "x": 8, "y": 6, "width": 8, "height": 6,
+              "properties": {
+                "title": "Throttles",
+                "metrics": [["AWS/Lambda","Throttles","FunctionName","vaahan-parse-address",{"stat":"Sum","color":"#ef4444"}]],
+                "view": "timeSeries", "region": "${AWS::Region}", "period": 300
+              }
+            },
+            {
+              "type": "alarm", "x": 16, "y": 6, "width": 8, "height": 6,
+              "properties": {
+                "title": "Active Alarms",
+                "alarms": [
+                  "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:vaahan-high-error-rate",
+                  "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:vaahan-high-latency",
+                  "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:vaahan-api-down",
+                  "arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:vaahan-throttles"
+                ]
+              }
+            }
+          ]
+        }
+
+Outputs:
+  ApiEndpoint:
+    Description: Vaahan API endpoint
+    Value: !Sub "https://${VaahanApi}.execute-api.${AWS::Region}.amazonaws.com/v1"
+    Export:
+      Name: VaahanApiEndpoint
+  DashboardUrl:
+    Description: CloudWatch dashboard
+    Value: !Sub "https://${AWS::Region}.console.aws.amazon.com/cloudwatch/home?region=${AWS::Region}#dashboards:name=Vaahan-Production"

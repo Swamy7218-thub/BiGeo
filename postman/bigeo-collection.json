@@ -1,0 +1,469 @@
+{
+  "info": {
+    "_postman_id": "bigeo-api-v1",
+    "name": "BiGeo — Rural India's Last-Mile OS",
+    "description": "# BiGeo API\n\nRural India's Last-Mile OS. Parse any village address into GPS coordinates, optimize delivery routes, and connect farmers to logistics — in Telugu, Hindi, and English.\n\n## Base URL\n`https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1`\n\n## Authentication\nAll requests require an `x-api-key` header.\n\n## Live Stats\n- 112 addresses parsed\n- 3 districts live (Siddipet, Medak, Sangareddy)\n- 94% parse accuracy\n- AWS ap-south-1 (Mumbai)\n\n## Contact\nadmin@bigeo.in",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://v34s17v3h2.execute-api.ap-south-1.amazonaws.com/v1",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "554a55471bba46e3970817cd84b01018",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-key", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            },
+            "description": "Check API status, DynamoDB connectivity, and region. No auth required."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"status\": \"ok\",\n  \"version\": \"1.0.0\",\n  \"region\": \"ap-south-1\",\n  \"latency_ms\": 431,\n  \"checks\": {\n    \"address_graph\": { \"status\": \"ok\", \"table_status\": \"ACTIVE\" },\n    \"api_keys\": { \"status\": \"ok\", \"table_status\": \"ACTIVE\" }\n  },\n  \"timestamp\": \"2026-06-12T10:06:16.812Z\"\n}"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('API is healthy', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.status).to.eql('ok');",
+                  "  pm.expect(json.checks.address_graph.status).to.eql('ok');",
+                  "  pm.expect(json.checks.api_keys.status).to.eql('ok');",
+                  "});",
+                  "pm.test('Response time under 2s', () => pm.expect(pm.response.responseTime).to.be.below(2000));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Address Parsing",
+      "item": [
+        {
+          "name": "Parse — English Address",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"Yellareddyguda village, near Siddipet\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/parse",
+              "host": ["{{baseUrl}}"],
+              "path": ["parse"]
+            },
+            "description": "Parse an English village address into GPS coordinates with district and mandal metadata."
+          },
+          "response": [
+            {
+              "name": "200 — Parsed successfully",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"input_address\": \"Yellareddyguda village, near Siddipet\",\n  \"structured_address\": \"Yellareddyguda Village, Siddipet, Siddipet District, Telangana\",\n  \"village\": \"Yellareddyguda\",\n  \"mandal\": \"Siddipet\",\n  \"district\": \"Siddipet\",\n  \"state\": \"Telangana\",\n  \"pincode\": \"502103\",\n  \"lat\": 18.1018,\n  \"lng\": 78.852,\n  \"confidence_score\": 0.72,\n  \"latency_ms\": 3579,\n  \"model\": \"claude-sonnet-fallback\",\n  \"gps_source\": \"ai\",\n  \"source\": \"ai\"\n}"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns GPS coordinates', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.lat).to.be.a('number');",
+                  "  pm.expect(json.lng).to.be.a('number');",
+                  "  pm.expect(json.lat).to.be.within(17, 20);",
+                  "  pm.expect(json.lng).to.be.within(77, 81);",
+                  "});",
+                  "pm.test('Returns district and mandal', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.district).to.be.a('string').and.not.empty;",
+                  "  pm.expect(json.mandal).to.be.a('string').and.not.empty;",
+                  "});",
+                  "pm.test('Confidence score is valid', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.confidence_score).to.be.within(0, 1);",
+                  "});",
+                  "pm.test('Response under 5s', () => pm.expect(pm.response.responseTime).to.be.below(5000));",
+                  "",
+                  "// Save parsed result for chaining",
+                  "const json = pm.response.json();",
+                  "pm.environment.set('last_lat', json.lat);",
+                  "pm.environment.set('last_lng', json.lng);",
+                  "pm.environment.set('last_district', json.district);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Parse — Telugu Script",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"సిద్దిపేట జిల్లా కోమురవెల్లి మండలం\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/parse",
+              "host": ["{{baseUrl}}"],
+              "path": ["parse"]
+            },
+            "description": "Parse a Telugu-script address. BiGeo auto-detects the language, translates, and returns GPS."
+          },
+          "response": [
+            {
+              "name": "200 — Telugu parsed",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"input_address\": \"సిద్దిపేట జిల్లా కోమురవెల్లి మండలం\",\n  \"structured_address\": \"Komuravelli Mandal, Siddipet District, Telangana\",\n  \"mandal\": \"Komuravelli\",\n  \"district\": \"Siddipet\",\n  \"state\": \"Telangana\",\n  \"pincode\": \"502277\",\n  \"lat\": 18.0726,\n  \"lng\": 78.8329,\n  \"confidence_score\": 0.82,\n  \"detected_language\": \"te\",\n  \"model\": \"claude-sonnet-fallback\",\n  \"gps_source\": \"ai\",\n  \"source\": \"ai\"\n}"
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Language detected as Telugu', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.detected_language).to.eql('te');",
+                  "});",
+                  "pm.test('GPS returned for Telugu input', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.lat).to.be.a('number');",
+                  "  pm.expect(json.lng).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Parse — Hindi Script",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"येल्लारेड्डीगुडा गांव, सिद्दिपेट जिला, तेलंगाना\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/parse",
+              "host": ["{{baseUrl}}"],
+              "path": ["parse"]
+            },
+            "description": "Parse a Hindi-script address. Tests multilingual auto-detection pipeline."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Language detected as Hindi', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.detected_language).to.eql('hi');",
+                  "});",
+                  "pm.test('GPS returned', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.lat).to.be.a('number');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Parse — Fuzzy / Incomplete Address",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"near mallanna temple komuravelli\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/parse",
+              "host": ["{{baseUrl}}"],
+              "path": ["parse"]
+            },
+            "description": "Tests BiGeo's ability to resolve landmark-based, incomplete rural addresses."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Returns some GPS even for fuzzy input', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.lat).to.be.a('number');",
+                  "});",
+                  "pm.test('Confidence reflects uncertainty', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.confidence_score).to.be.a('number');",
+                  "  console.log('Confidence for fuzzy input:', json.confidence_score);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Parse — Cache Hit (repeat request)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"Yellareddyguda village, near Siddipet\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/parse",
+              "host": ["{{baseUrl}}"],
+              "path": ["parse"]
+            },
+            "description": "Same address as the first parse request. Should return from DynamoDB cache — latency drops from ~3s to <100ms."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Served from cache', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.source).to.eql('cache');",
+                  "});",
+                  "pm.test('Cache is fast (under 500ms)', () => {",
+                  "  pm.expect(pm.response.responseTime).to.be.below(500);",
+                  "  console.log('Cache latency:', pm.response.responseTime + 'ms');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Parse — Invalid (too short)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"abc\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/parse",
+              "host": ["{{baseUrl}}"],
+              "path": ["parse"]
+            },
+            "description": "Negative test — address under 5 characters should return 400."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Returns 400 for short address', () => pm.response.to.have.status(400));",
+                  "pm.test('Error message present', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.error).to.be.a('string').and.not.empty;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Registration",
+      "item": [
+        {
+          "name": "Register New User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Demo Logistics Co.\",\n  \"email\": \"demo@example.com\",\n  \"phone\": \"+91-9876543210\",\n  \"company\": \"Demo Logistics\",\n  \"use_case\": \"last-mile delivery\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["register"]
+            },
+            "description": "Register a new API user. Returns an API key for subsequent requests."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 or 201', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "const json = pm.response.json();",
+                  "if (json.api_key) {",
+                  "  pm.environment.set('apiKey', json.api_key);",
+                  "  console.log('New API key saved:', json.api_key);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Usage & Analytics",
+      "item": [
+        {
+          "name": "Get API Usage",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/usage",
+              "host": ["{{baseUrl}}"],
+              "path": ["usage"]
+            },
+            "description": "Returns API call counts, address parse stats, and district coverage for the authenticated key."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Usage data returned', () => {",
+                  "  const json = pm.response.json();",
+                  "  console.log('Usage:', JSON.stringify(json, null, 2));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "WhatsApp / Producer",
+      "item": [
+        {
+          "name": "Producer Webhook (WhatsApp)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionInfo\": {\n    \"session\": \"projects/bigeo-491617/agent/sessions/demo-session-001\"\n  },\n  \"intentInfo\": {\n    \"lastMatchedIntent\": \"register_producer\"\n  },\n  \"parameters\": {\n    \"village\": \"Komuravelli\",\n    \"phone\": \"+919876543210\",\n    \"name\": \"Ramu Farmer\"\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/producer-webhook",
+              "host": ["{{baseUrl}}"],
+              "path": ["producer-webhook"]
+            },
+            "description": "Dialogflow CX webhook for WhatsApp producer onboarding. Triggered when a farmer messages the BiGeo WhatsApp bot with their village name."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Webhook responds successfully', () => {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+                  "});",
+                  "pm.test('Returns fulfillment response', () => {",
+                  "  const json = pm.response.json();",
+                  "  console.log('Webhook response:', JSON.stringify(json, null, 2));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Auto-set timestamp for request tracing",
+          "pm.globals.set('requestTime', new Date().toISOString());"
+        ],
+        "type": "text/javascript"
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "// Global: log latency on every request",
+          "console.log(`[BiGeo] ${pm.info.requestName} → ${pm.response.status} in ${pm.response.responseTime}ms`);"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ]
+}
