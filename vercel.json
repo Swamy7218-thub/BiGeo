@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "cd acquaht-website && npm ci",
+  "buildCommand": "cd acquaht-website && npm run build",
+  "outputDirectory": "acquaht-website/out"
+}
